@@ -20,7 +20,7 @@ public class KeyInput : MonoBehaviour
     {
     	if(Input.GetKey("a")){
 		testObject.transform.position += translationVector;		
-	}    
+	    }    
     }
 
 }

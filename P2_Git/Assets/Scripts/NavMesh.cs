@@ -42,12 +42,10 @@ public class NavMesh : MonoBehaviour
             if (path.status == NavMeshPathStatus.PathComplete){
                 navMeshAgent.destination = target.position;
                 navMeshAgent.isStopped = false;
-                Debug.Log("isComplete");
             } 
             else{
                 navMeshAgent.isStopped = true;
 
-                Debug.Log("isNOTComplete");
                 
             } 
         }
