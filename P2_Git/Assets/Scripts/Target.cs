@@ -5,17 +5,32 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     public bool isDeadly;
-    public bool isBusy; //true, if a child selected this target
+    public bool isReachable; //true, if a child selected this target
+    public bool isOneCurrentDestination;
+    public float waitTime_seconds = 5.0f; //initially 5 secs, can be changed in the inspector
     
-    // Start is called before the first frame update
+
+    float r, g, b;
+
+    [SerializeField] Renderer renderer;
+    Material mat;
+    
+
+    /*
     void Start()
     {
         
+
+        r = g = b = 0.0f;
+        mat = this.gameObject.GetComponent<Renderer>().material;
+        mat.color = new Color(r,g,b);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        r++;
+        g++;
+        b++;        
     }
+    */
 }

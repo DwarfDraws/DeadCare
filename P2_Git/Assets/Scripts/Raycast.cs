@@ -30,10 +30,9 @@ public class Raycast : MonoBehaviour
     float mouseClamp_x, mouseClamp_z;
 
     private void Start() {
-        float floor_initialSize = 10; //when generating a plane, it's 10 units long and wide
         
-        floor_length_x = floor.transform.localScale.x * floor_initialSize;
-        floor_depth_z = floor.transform.localScale.z * floor_initialSize;
+        floor_length_x = floor.transform.localScale.x;
+        floor_depth_z = floor.transform.localScale.z;
     }
     void Update()
     {
@@ -190,7 +189,7 @@ public class Raycast : MonoBehaviour
             {
                 MousePressed_L = false;
                 missingOffset = false;
-                navMesh.RecalculatePath();
+                navMesh.isPathRecalculated = false;
             }
         }
     }
