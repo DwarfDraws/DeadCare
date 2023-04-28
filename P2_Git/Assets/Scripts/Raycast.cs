@@ -3,12 +3,12 @@ using System.Collections;
 
 public class Raycast : MonoBehaviour
 {
-    Object_info object_info;
+    Object_attributes object_info;
         
     [SerializeField] NavMesh navMesh;
     [SerializeField] GameObject floor;
     [SerializeField] LayerMask layer_Floor;
-    [SerializeField] Camera camera;
+    [SerializeField] Camera main_camera;
 
     RaycastHit hit;
     Ray ray;
@@ -27,12 +27,13 @@ public class Raycast : MonoBehaviour
     float floor_length_x, floor_depth_z; 
 
     float distanceToGap_x, distanceToGap_z;
-    float mouseClamp_x, mouseClamp_z;
+    float mouseClampPos_x, mouseClampPos_z;
 
     private void Start() {
         
         floor_length_x = floor.transform.localScale.x;
         floor_depth_z = floor.transform.localScale.z;
+
     }
     void Update()
     {
@@ -40,21 +41,27 @@ public class Raycast : MonoBehaviour
         //Object Detection (Left Mouse-Click)
         if (Input.GetMouseButtonDown(0) && !MousePressed_L)
         {
-            ray = camera.ScreenPointToRay(Input.mousePosition);
+            ray = main_camera.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hit, float.MaxValue, ~layer_Floor))
-            {
+            { 
                 hitObject = hit.transform; //object transform
-                object_info = hitObject.GetComponent<Object_info>();
-                moveableObject = object_info.isMoveable;                    //EDIT THIS
-                hitObject_localLength_x = hitObject.lossyScale.x;
-                hitObject_localLength_z = hitObject.lossyScale.z;
 
-                initHit_Pos = hit.point; //mouse position
-                initHit_Pos.y = 0;
+                if(hitObject.tag == "obstacle"){
+                    if(hitObject.GetComponent<Object_attributes>().isMoveable){
+                        moveableObject = true;                    //EDIT THIS
+                        object_info = hitObject.GetComponent<Object_attributes>();
+                        hitObject_localLength_x = hitObject.lossyScale.x;
+                        hitObject_localLength_z = hitObject.lossyScale.z;
 
-                MousePressed_L = true;
-                missingOffset = true;
+                        initHit_Pos = hit.point; //mouse position
+                        initHit_Pos.y = 0;
+
+                        MousePressed_L = true;
+                        missingOffset = true;
+                    }
+                    else moveableObject = false;
+                }
             }
         }
 
@@ -63,7 +70,7 @@ public class Raycast : MonoBehaviour
             //Object Transformation (Left Mouse pressed)
             if (Input.GetMouseButton(0) && MousePressed_L)
             {
-                ray = camera.ScreenPointToRay(Input.mousePosition);
+                ray = main_camera.ScreenPointToRay(Input.mousePosition);
 
                 if (Physics.Raycast(ray, out hit, float.MaxValue, layer_Floor))
                 {
@@ -96,11 +103,10 @@ public class Raycast : MonoBehaviour
                     }
 
 
-                    //check boundaries for translation
+                    //check boundaries for translation, clamp 
             
-                    float obj_posX = hitObject.position.x;
+                    Vector3 mouse3D = mouse_Pos3D - offset;
                     float obj_posY = hitObject.position.y;
-                    float obj_posZ = hitObject.position.z;
                     float half_floorLength_x = 0.5f * floor_length_x;
                     float half_floorDepth_z = 0.5f * floor_depth_z;
                     
@@ -112,8 +118,7 @@ public class Raycast : MonoBehaviour
                         if (DistanceToGap_X(true) <= 0)
                         {
                             
-                            mouseClamp_x = (mouse_Pos3D - offset).x; //save mousePos at clamp-time
-                            hitObject.position = new Vector3(half_floorLength_x - Object_OffsetToOuterBorder_X(), obj_posY, obj_posZ);
+                            mouseClampPos_x = mouse3D.x; //save mousePos at clamp-time
                             isClamped_right = true;
                         }
 
@@ -123,8 +128,7 @@ public class Raycast : MonoBehaviour
                     {
                         if (DistanceToGap_X(false) >= floor_length_x)
                         {
-                            mouseClamp_x = (mouse_Pos3D - offset).x;
-                            hitObject.position = new Vector3(-half_floorLength_x + Object_OffsetToOuterBorder_X(), obj_posY, obj_posZ);
+                            mouseClampPos_x = mouse3D.x;
                             isClamped_left = true;
                         }
                     }
@@ -136,8 +140,7 @@ public class Raycast : MonoBehaviour
                         //Debug.Log(DistanceToGap_Z(true));
                         if (DistanceToGap_Z(true) <= 0)
                         {
-                            mouseClamp_z = (mouse_Pos3D - offset).z;
-                            hitObject.position = new Vector3(obj_posX, obj_posY, half_floorDepth_z - Object_OffsetToOuterBorder_Z());
+                            mouseClampPos_z = mouse3D.z;
                             isClamped_front = true;
                         }
                     }
@@ -147,54 +150,64 @@ public class Raycast : MonoBehaviour
 
                         if (DistanceToGap_Z(false) >= floor_depth_z)
                         {
-                            mouseClamp_z = (mouse_Pos3D - offset).z;
-                            hitObject.position = new Vector3(obj_posX, obj_posY, -half_floorDepth_z + Object_OffsetToOuterBorder_Z());
+                            mouseClampPos_z = mouse3D.z;
                             isClamped_back = true;
                         }
                     }
 
-                    //pure object translation
-                    if (!isClamped_right && !isClamped_left && !isClamped_front && !isClamped_back)
-                        hitObject.position = mouse_Pos3D - offset;
+
+                    //object translation
+                    float clamped_X, clamped_Z;
+
+                    if(isClamped_left)          clamped_X = -half_floorLength_x + Object_OffsetToOuterBorder_X(); 
+                    else if(isClamped_right)    clamped_X = half_floorLength_x - Object_OffsetToOuterBorder_X();
+                    else                        clamped_X = mouse3D.x;
+                    if(isClamped_back)          clamped_Z = -half_floorDepth_z + Object_OffsetToOuterBorder_Z();
+                    else if(isClamped_front)    clamped_Z = half_floorDepth_z - Object_OffsetToOuterBorder_Z();
+                    else                        clamped_Z = mouse3D.z;
+                    
+                    hitObject.position = new Vector3(clamped_X, obj_posY, clamped_Z);
+
 
                     //un-clamp & object translation
-                    else if (isClamped_right && mouseClamp_x > (mouse_Pos3D - offset).x)
+                    if (isClamped_right && mouseClampPos_x > mouse3D.x)
                     {
                         isClamped_right = false;
-                        hitObject.position = mouse_Pos3D - offset;
+                        hitObject.position = mouse_Pos3D - offset; //move away in same frame to un-clamp 
                     }
 
-                    else if (isClamped_left && mouseClamp_x < (mouse_Pos3D - offset).x)
+                    else if (isClamped_left && mouseClampPos_x < mouse3D.x)
                     {
                         isClamped_left = false;
                         hitObject.position = mouse_Pos3D - offset;
                     }
 
-                    else if (isClamped_front && mouseClamp_z > (mouse_Pos3D - offset).z)
+                    else if (isClamped_front && mouseClampPos_z > mouse3D.z)
                     {
                         isClamped_front = false;
                         hitObject.position = mouse_Pos3D - offset;
                     }
 
-                    else if (isClamped_back && mouseClamp_z < (mouse_Pos3D - offset).z)
+                    else if (isClamped_back && mouseClampPos_z < mouse3D.z)
                     {
                         isClamped_back = false;
                         hitObject.position = mouse_Pos3D - offset;
                     }
                 }
             }
-
+            
             //Left Mouse Up finally re-calculates NavMesh
             if (Input.GetMouseButtonUp(0))
             {
                 MousePressed_L = false;
                 missingOffset = false;
-                navMesh.isPathRecalculated = false;
+
+                navMesh.Update_AllTargeted();
+                navMesh.RecalculateAllPaths();
             }
+
         }
     }
-
-
 
     float DistanceToGap_X(bool isLeftMove)
     {
@@ -206,7 +219,8 @@ public class Raycast : MonoBehaviour
         return distanceToGap_x;
     }
 
-    float Object_borderPosX(bool isRightMove, float obj_posX){
+    float Object_borderPosX(bool isRightMove, float obj_posX)
+    {
         float hitObject_border_x;
          
         if (isRightMove)    hitObject_border_x = obj_posX + Object_OffsetToOuterBorder_X();
@@ -215,7 +229,8 @@ public class Raycast : MonoBehaviour
         return hitObject_border_x;
     }
 
-    float Object_OffsetToOuterBorder_X(){
+    float Object_OffsetToOuterBorder_X()
+    {
         float offset_toOuterBorder;
         float outerBound_x;
         
@@ -237,7 +252,8 @@ public class Raycast : MonoBehaviour
         return distanceToGap_z;      
     }
 
-    float Object_borderPosZ(bool isBackwardMove, float obj_posZ){
+    float Object_borderPosZ(bool isBackwardMove, float obj_posZ)
+    {
         float hitObject_border_z;
          
         if (isBackwardMove)     hitObject_border_z = obj_posZ + Object_OffsetToOuterBorder_Z();
@@ -246,7 +262,8 @@ public class Raycast : MonoBehaviour
         return hitObject_border_z;
     }
 
-    float Object_OffsetToOuterBorder_Z(){
+    float Object_OffsetToOuterBorder_Z()
+    {
         float offset_toOuterBorder;
         float outerBound_z;
         
@@ -258,11 +275,13 @@ public class Raycast : MonoBehaviour
     }
 
 
-    void UpdateOffset(){
+    void UpdateOffset()
+    {
         offset = mouse_Pos3D - hitObject.position;
     }
     
-    void UpdateInitOffset(){
+    void UpdateInitOffset()
+    {
         initHit_Offset = initHit_Pos - mouse_Pos3D;
     }
 }

@@ -5,144 +5,183 @@ using UnityEngine.AI;
 
 public class NavMesh : MonoBehaviour
 {
-    public NavMeshAgent navMeshAgent;
-    List<Target> targets = new List<Target>();
+    public List<NavMeshAgent> agents = new List<NavMeshAgent>();
+    List<NavMeshAgent> stoppedAgents = new List<NavMeshAgent>();
+    List<Target_attributes> targets = new List<Target_attributes>();
     [SerializeField] List<GameObject> target_transforms = new List<GameObject>();
     
     NavMeshPath path;
 
-    public bool isPathRecalculated;
+    private bool isPathInitialized;
     float timer;
 
 
     private void Start() {
-        timer = 0;
-        isPathRecalculated = false;  
-        path = new NavMeshPath();
+        timer = 0.0f;
+        isPathInitialized = false;  
 
+        path = new NavMeshPath();
         GenerateRandomSeed();
         InitTargets();
-        
-        
-        //foreach(Target t in targets) Debug.Log(t.isOpen);
-        //Debug.Log(targets.Count);
+        InitAgentsList();
     }
 
     private void Update() {
         
+        //Initializing Path        
         //Waiting for dynamic obstacles to finish calculating before checking Path (could be improved) 
         timer += Time.deltaTime;
-        
-        //Consequent Updating of Path-Finding
-        //isPathRecalculated gets true if a path is found, gets false if there is no path avaiable
-        if(timer >= 0.05 && !isPathRecalculated){
-            Debug.Log("Update() - recalculates path...");
-            RecalculatePath();
-        }
-    }
-
-
-
-    //gets also called when mousebutton is released after dragging dynamic obstacle
-    public void RecalculatePath(){ 
-        
-        List<Target> reachableTargets;
-        Transform destination;
-        int targetIndex;
-
-        UpdateTarget_Reachabilities();
-        reachableTargets = GetReachableTargets();
-
-        if(reachableTargets.Count == 0){
-            Debug.Log("no open targets");
-            StopAgent();
-            return;
+        if(timer >= 0.05 && !isPathInitialized){            
+            foreach (NavMeshAgent a in agents) RecalculatePath(a);
+            isPathInitialized = true;
         }
 
-        targetIndex = RandomTargetIndex(reachableTargets);
-
-        destination = reachableTargets[targetIndex].gameObject.transform;
-
-        //Calculates the Path
-        if (navMeshAgent.CalculatePath(destination.position, path)) 
-        {         
-            //set navMesh Path   
-            if (path.status == NavMeshPathStatus.PathComplete){
-                navMeshAgent.destination = destination.position;
-                navMeshAgent.isStopped = false;
-                
-                reachableTargets[targetIndex].isReachable = false;
-                reachableTargets[targetIndex].isOneCurrentDestination = true;
-                Debug.Log("path recalculated, targetIndex: " + targetIndex);
-            } 
-            
-            //if no Path is avaiable
-            else{
-                StopAgent();
-            } 
-            
-            isPathRecalculated = true; //ends Update-Loop
-        }
-    }
-
-    void StopAgent(){
-        navMeshAgent.isStopped = true;
-        Debug.Log("StopAgent() - wait for open path");
-    }
-
-
-    void InitTargets(){
-
-        foreach(GameObject t in GameObject.FindGameObjectsWithTag("target")){
-            target_transforms.Add(t);
-            targets.Add(t.GetComponent<Target>());
-        }
-    }
-
-    //resets target-state after a dynamic Obstacle was moved 
-    public void UpdateTarget_Reachabilities(){
-        
-        foreach(Target target in targets){
-            if (navMeshAgent.CalculatePath(target.gameObject.transform.position, path)){
-                Debug.Log(target.name + ": " + target.isOneCurrentDestination);
-                if (path.status == NavMeshPathStatus.PathComplete && !target.isOneCurrentDestination){
-                    target.isReachable = true;
+        //in every frame try to find a new destination for the agents if they're stopped
+        if(stoppedAgents.Count > 0){
+            List<NavMeshAgent> stoppedAgents_Copy = stoppedAgents;
+            foreach(NavMeshAgent a in stoppedAgents_Copy){
+                //Debug.Log(stoppedAgents.Count);
+                UpdateOpenTargets(a);
+                if(GetOpenTargets().Count > 0)
+                { 
+                    RecalculatePath(a);
+                    Debug.Log("new open Path found!");
                 }
-                else if(target.isOneCurrentDestination){
-                    target.isReachable = false;
-                    target.isOneCurrentDestination = false;
-                }
+                //else Debug.Log("no new target found");
             }
         }
     }
 
-    List<Target> GetReachableTargets(){
 
-        List<Target> openTargets = new List<Target>(); 
+    public void RecalculateAllPaths(){
+        foreach(NavMeshAgent a in agents) RecalculatePath(a);
+    }
 
-        foreach(Target t in targets){
-            if (t.isReachable) openTargets.Add(t);
+    //gets also called when mousebutton is released after dragging dynamic obstacle
+    public void RecalculatePath(NavMeshAgent agent){ 
+        
+        if(agents != null){
+
+            List<Target_attributes> openTargets;
+            Vector3 destination;
+            int targetIndex;
+
+            UpdateOpenTargets(agent);
+            openTargets = GetOpenTargets();
+
+            if(openTargets.Count == 0){
+                Debug.Log("no open targets found");
+                StopAgent(agent);
+                return;
+            }
+
+            targetIndex = RandomTargetIndex(openTargets);
+            destination = openTargets[targetIndex].gameObject.transform.position;
+            //Debug.Log("new Target");
+
+            //Calculates the Path
+            if (agent.CalculatePath(destination, path)) 
+            {         
+                //sets navMesh Path   
+                if (path.status == NavMeshPathStatus.PathComplete){
+                    agent.destination = destination;
+                    agent.isStopped = false;
+
+
+                    openTargets[targetIndex].isTargeted = true;
+                    agent.gameObject.GetComponent<Children>().SetTarget(openTargets[targetIndex]);
+                    Debug.Log(agent.name + " target: " + openTargets[targetIndex].name);
+                } 
+
+                //if no Path is avaiable
+                else{
+                    StopAgent(agent);
+                } 
+
+                //isPathInitialized = true; //ends Update-Loop
+            
+            }
+        }
+        else Debug.Log("ALL CHILDREN DEAD!");
+    }
+
+    void StopAgent(NavMeshAgent agent){
+        Debug.Log("StopAgent(): " + agent.name);
+        agent.isStopped = true;
+        stoppedAgents.Add(agent);
+    }
+
+
+    //updates isOpen-attribute for all targets
+    public void UpdateOpenTargets(NavMeshAgent agent){
+        
+        foreach(Target_attributes target in targets){
+            if (agent.CalculatePath(target.gameObject.transform.position, path)){
+                //Debug.Log(target.name + ": " + target.isOneCurrentDestination);
+                if (path.status == NavMeshPathStatus.PathComplete){
+                    target.isOpen = true;
+                }
+                else target.isOpen = false;
+            }
+        }
+    }
+
+    //give's all open targets !excluding targets targeted by children!
+    List<Target_attributes> GetOpenTargets(){
+        List<Target_attributes> openTargets = new List<Target_attributes>(); 
+
+        foreach(Target_attributes t in targets){
+            if (t.isOpen && !t.isTargeted) openTargets.Add(t);
         }
 
         return openTargets;
     }
 
 
-    int RandomTargetIndex(List<Target> openTargets){
-        int targetIndex = Random.Range(0, openTargets.Count);
-        //Debug.Log(target_Index);
-        return targetIndex;
+
+    void InitTargets(){
+
+        foreach(GameObject t in GameObject.FindGameObjectsWithTag("target")){
+            target_transforms.Add(t);
+            targets.Add(t.GetComponent<Target_attributes>());
+        }
+    }
+    void InitAgentsList(){
+
+        foreach(GameObject a in GameObject.FindGameObjectsWithTag("child")){
+            agents.Add(a.GetComponent<NavMeshAgent>());
+        }
     }
     void GenerateRandomSeed(){
         int tempSeed = (int)System.DateTime.Now.Ticks;
         Random.InitState(tempSeed);
     }
 
+    public void AddAgent(NavMeshAgent a){
+        agents.Add(a);
+        RecalculatePath(a);
+    }
+    public void RemoveAgent(NavMeshAgent a){
+        agents.Remove(a);
+    }
+
+    int RandomTargetIndex(List<Target_attributes> openTargets){
+        int targetIndex = Random.Range(0, openTargets.Count);
+        //Debug.Log(target_Index);
+        return targetIndex;
+    }
    
+    
+    public void Update_AllTargeted(){
+        foreach (Target_attributes t in targets) 
+            foreach (NavMeshAgent a in agents){
+                if(a.gameObject.GetComponent<Children>().GetTarget() != t) Un_target(t);
+            };
+    }
+    
     //gets called when children exits Zone again
-    public void ReOpenTarget(Collider target_collider){
-        target_collider.gameObject.GetComponent<Target>().isReachable = true;
-        target_collider.gameObject.GetComponent<Target>().isOneCurrentDestination = false;
+    public void Un_target(Target_attributes t){
+        t.isTargeted = false;
     }
     
 }
