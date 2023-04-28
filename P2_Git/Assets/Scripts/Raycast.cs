@@ -205,7 +205,6 @@ public class Raycast : MonoBehaviour
                 navMesh.Update_AllTargeted();
                 navMesh.RecalculateAllPaths();
             }
-
         }
     }
 

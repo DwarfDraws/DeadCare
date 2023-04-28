@@ -7,7 +7,7 @@ public class NavMesh : MonoBehaviour
 {
     public List<NavMeshAgent> agents = new List<NavMeshAgent>();
     List<NavMeshAgent> stoppedAgents = new List<NavMeshAgent>();
-    List<Target_attributes> targets = new List<Target_attributes>();
+    List<Target> targets = new List<Target>();
     [SerializeField] List<GameObject> target_transforms = new List<GameObject>();
     
     NavMeshPath path;
@@ -41,13 +41,12 @@ public class NavMesh : MonoBehaviour
             List<NavMeshAgent> stoppedAgents_Copy = stoppedAgents;
             foreach(NavMeshAgent a in stoppedAgents_Copy){
                 //Debug.Log(stoppedAgents.Count);
-                UpdateOpenTargets(a);
+                UpdateAllOpenTargets(a);
                 if(GetOpenTargets().Count > 0)
                 { 
                     RecalculatePath(a);
                     Debug.Log("new open Path found!");
                 }
-                //else Debug.Log("no new target found");
             }
         }
     }
@@ -62,22 +61,22 @@ public class NavMesh : MonoBehaviour
         
         if(agents != null){
 
-            List<Target_attributes> openTargets;
+            Children children = agent.gameObject.GetComponent<Children>();
+            List<Target> openTargets;
             Vector3 destination;
             int targetIndex;
 
-            UpdateOpenTargets(agent);
+            UpdateAllOpenTargets(agent);
             openTargets = GetOpenTargets();
 
-            if(openTargets.Count == 0){
-                Debug.Log("no open targets found");
+            if(openTargets.Count == 0)
+            {
                 StopAgent(agent);
                 return;
             }
 
             targetIndex = RandomTargetIndex(openTargets);
             destination = openTargets[targetIndex].gameObject.transform.position;
-            //Debug.Log("new Target");
 
             //Calculates the Path
             if (agent.CalculatePath(destination, path)) 
@@ -89,33 +88,26 @@ public class NavMesh : MonoBehaviour
 
 
                     openTargets[targetIndex].isTargeted = true;
-                    agent.gameObject.GetComponent<Children>().SetTarget(openTargets[targetIndex]);
-                    Debug.Log(agent.name + " target: " + openTargets[targetIndex].name);
-                } 
-
-                //if no Path is avaiable
-                else{
-                    StopAgent(agent);
-                } 
-
-                //isPathInitialized = true; //ends Update-Loop
-            
+                    children.SetTarget(openTargets[targetIndex]);
+                    
+                    //Debug.Log(agent.name + " target: " + openTargets[targetIndex].name);
+                }           
             }
         }
         else Debug.Log("ALL CHILDREN DEAD!");
     }
 
     void StopAgent(NavMeshAgent agent){
-        Debug.Log("StopAgent(): " + agent.name);
+        //Debug.Log("StopAgent(): " + agent.name);
         agent.isStopped = true;
         stoppedAgents.Add(agent);
     }
 
 
     //updates isOpen-attribute for all targets
-    public void UpdateOpenTargets(NavMeshAgent agent){
+    public void UpdateAllOpenTargets(NavMeshAgent agent){
         
-        foreach(Target_attributes target in targets){
+        foreach(Target target in targets){
             if (agent.CalculatePath(target.gameObject.transform.position, path)){
                 //Debug.Log(target.name + ": " + target.isOneCurrentDestination);
                 if (path.status == NavMeshPathStatus.PathComplete){
@@ -127,10 +119,10 @@ public class NavMesh : MonoBehaviour
     }
 
     //give's all open targets !excluding targets targeted by children!
-    List<Target_attributes> GetOpenTargets(){
-        List<Target_attributes> openTargets = new List<Target_attributes>(); 
+    List<Target> GetOpenTargets(){
+        List<Target> openTargets = new List<Target>(); 
 
-        foreach(Target_attributes t in targets){
+        foreach(Target t in targets){
             if (t.isOpen && !t.isTargeted) openTargets.Add(t);
         }
 
@@ -143,7 +135,7 @@ public class NavMesh : MonoBehaviour
 
         foreach(GameObject t in GameObject.FindGameObjectsWithTag("target")){
             target_transforms.Add(t);
-            targets.Add(t.GetComponent<Target_attributes>());
+            targets.Add(t.GetComponent<Target>());
         }
     }
     void InitAgentsList(){
@@ -163,9 +155,10 @@ public class NavMesh : MonoBehaviour
     }
     public void RemoveAgent(NavMeshAgent a){
         agents.Remove(a);
+        if(stoppedAgents.Contains(a)) stoppedAgents.Remove(a);
     }
 
-    int RandomTargetIndex(List<Target_attributes> openTargets){
+    int RandomTargetIndex(List<Target> openTargets){
         int targetIndex = Random.Range(0, openTargets.Count);
         //Debug.Log(target_Index);
         return targetIndex;
@@ -173,14 +166,24 @@ public class NavMesh : MonoBehaviour
    
     
     public void Update_AllTargeted(){
-        foreach (Target_attributes t in targets) 
-            foreach (NavMeshAgent a in agents){
-                if(a.gameObject.GetComponent<Children>().GetTarget() != t) Un_target(t);
-            };
+        foreach (Target t in targets) {    
+            foreach (Target currentlyTargeted in GetAllCurrentlyTargeted()) 
+                if(t != currentlyTargeted) Un_target(t);
+        }
+    }
+
+    List<Target> GetAllCurrentlyTargeted(){
+        List<Target> currentlyTargeted = new List<Target>();
+
+        foreach (NavMeshAgent a in agents){
+            Children children = a.gameObject.GetComponent<Children>();
+            currentlyTargeted.Add(children.GetTarget());
+        }
+
+        return currentlyTargeted;
     }
     
-    //gets called when children exits Zone again
-    public void Un_target(Target_attributes t){
+    public void Un_target(Target t){
         t.isTargeted = false;
     }
     

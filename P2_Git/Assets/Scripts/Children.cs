@@ -7,14 +7,15 @@ public class Children : MonoBehaviour
 {
 
     //[SerializeField] Canvas_Script canvas;
-    Target_attributes currentTarget; //used to check for trigger-events
-    Target_attributes tempOldTarget;
+    Target currentTarget; //used to check for trigger-events
+    Target tempOldTarget;
     NavMeshAgent attachedAgent; 
     NavMesh navMesh;
     float waitTime; //seconds
     float timer, stuckTimer;
     bool timerUp, timerDown;
-    bool startTimer;
+    bool startTimer, startStuckTimer;
+    public bool isStopped;
 
     private void Start() {
         attachedAgent = this.GetComponent<NavMeshAgent>();
@@ -24,26 +25,27 @@ public class Children : MonoBehaviour
 
     void Update()
     {
-         if(startTimer){
-            Timer();
-            StuckTimer();
-         }
+        if(startTimer) Timer();
+        if(startStuckTimer) StuckTimer();
     }
 
 
-    public void SetTarget(Target_attributes t)
+    public void SetTarget(Target t)
     {
         currentTarget = t;
         waitTime = currentTarget.waitTime_seconds;
         ResetTimer();
         //Debug.Log(currentTarget.name + " set as currentTarget");
     }
-    public Target_attributes GetTarget() { return currentTarget; }
+    public Target GetTarget() 
+    { 
+        return currentTarget; 
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log(other.gameObject.GetComponent<Target_attributes>().name);
-        if (other.gameObject.GetComponent<Target_attributes>() == currentTarget){
+        if (other.gameObject.GetComponent<Target>() == currentTarget){
             currentTarget.isOpen = false;
             startTimer = true;
             timerDown = true;
@@ -52,12 +54,16 @@ public class Children : MonoBehaviour
 
     private void OnTriggerStay(Collider other) 
     {
-        if(stuckTimer >= waitTime + 1) Reset(); //checks, if child is stuck at a target
+        if(stuckTimer >= waitTime + 3){
+            Debug.Log("Was stuck");
+            Reset(); //checks, if child is stuck at a target
+            startStuckTimer = false;
+        } 
     }
 
     private void OnTriggerExit(Collider other) 
     {
-        if (other.gameObject.GetComponent<Target_attributes>() == currentTarget){
+        if (other.gameObject.GetComponent<Target>() == currentTarget){
             currentTarget.isOpen = true;
         }
     }
@@ -73,16 +79,20 @@ public class Children : MonoBehaviour
 
             if(timer <= 0){
                 //Debug.Log("Timer() - is Zero");
-                if(currentTarget.isDeadly){
+                if(currentTarget.isDeadly)
+                {
+                    currentTarget.isOpen = true;
                     navMesh.RemoveAgent(this.GetComponent<NavMeshAgent>());
                     Destroy(gameObject); 
                 }
-                else Reset();
+                else 
+                    Reset();
             }
         }
 
         //timer goes up (until waitTime is reached)
-        else if(timerUp){
+        else if(timerUp)
+        {
             if (timer >= waitTime) ResetTimer();
             timer += Time.deltaTime / waitTime;
         }
@@ -90,14 +100,16 @@ public class Children : MonoBehaviour
         //canvas.UpdateSlider(timer);
     }
 
-    void StuckTimer(){
+    void StuckTimer()
+    {
         stuckTimer += Time.deltaTime;
     }
 
-    void Reset(){
+    void Reset()
+    {
         tempOldTarget = currentTarget;
         navMesh.RecalculatePath(attachedAgent);           
-        navMesh.Un_target(tempOldTarget);
+        if(!attachedAgent.isStopped) navMesh.Un_target(tempOldTarget);
         ResetTimer();
     }
 
