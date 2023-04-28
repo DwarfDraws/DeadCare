@@ -6,11 +6,12 @@ using UnityEngine.AI;
 public class Children : MonoBehaviour
 {
 
-    //[SerializeField] Canvas_Script canvas;
+    Canvas_Script canvas;
     Target currentTarget; //used to check for trigger-events
     Target tempOldTarget;
     NavMeshAgent attachedAgent; 
     NavMesh navMesh;
+    Widget widget;
     float waitTime; //seconds
     float timer, stuckTimer;
     bool timerUp, timerDown;
@@ -18,6 +19,8 @@ public class Children : MonoBehaviour
     public bool isStopped;
 
     private void Start() {
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas_Script>();
+ 
         attachedAgent = this.GetComponent<NavMeshAgent>();
         currentTarget = null;
         navMesh = GameObject.Find("NavMesh_Handler").GetComponent<NavMesh>();
@@ -37,6 +40,7 @@ public class Children : MonoBehaviour
         ResetTimer();
         //Debug.Log(currentTarget.name + " set as currentTarget");
     }
+
     public Target GetTarget() 
     { 
         return currentTarget; 
@@ -46,6 +50,10 @@ public class Children : MonoBehaviour
     {
         //Debug.Log(other.gameObject.GetComponent<Target_attributes>().name);
         if (other.gameObject.GetComponent<Target>() == currentTarget){
+            
+            Vector3 widget_pos = other.gameObject.transform.GetChild(0).gameObject.transform.position;
+            widget = canvas.InstantiateWidget(widget_pos, waitTime, currentTarget.isDeadly);
+
             currentTarget.isOpen = false;
             startTimer = true;
             timerDown = true;
@@ -75,18 +83,21 @@ public class Children : MonoBehaviour
         if(timerDown)
         {
             timer -= Time.deltaTime;
-            if(currentTarget.isDeadly) Debug.Log(timer);
 
-            if(timer <= 0){
+            if(timer <= 0)
+            {
                 //Debug.Log("Timer() - is Zero");
                 if(currentTarget.isDeadly)
                 {
                     currentTarget.isOpen = true;
+                    currentTarget.isTargeted = false;
                     navMesh.RemoveAgent(this.GetComponent<NavMeshAgent>());
                     Destroy(gameObject); 
                 }
                 else 
                     Reset();
+
+                Destroy(widget.gameObject);
             }
         }
 
@@ -97,7 +108,7 @@ public class Children : MonoBehaviour
             timer += Time.deltaTime / waitTime;
         }
 
-        //canvas.UpdateSlider(timer);
+        widget.UpdateTimer(timer);
     }
 
     void StuckTimer()
@@ -107,6 +118,7 @@ public class Children : MonoBehaviour
 
     void Reset()
     {
+        
         tempOldTarget = currentTarget;
         navMesh.RecalculatePath(attachedAgent);           
         if(!attachedAgent.isStopped) navMesh.Un_target(tempOldTarget);
