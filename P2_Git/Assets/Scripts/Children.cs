@@ -7,12 +7,11 @@ public class Children : MonoBehaviour
 {
 
     Canvas_Script canvas;
-    Target currentTarget; //used to check for trigger-events
-    Target tempOldTarget;
+    Target currentTarget, tempOldTarget;
     NavMeshAgent attachedAgent; 
     NavMesh navMesh;
     Widget widget;
-    float waitTime; //seconds
+    float waitTime_seconds; 
     float timer, stuckTimer;
     bool timerUp, timerDown;
     bool startTimer, startStuckTimer;
@@ -36,7 +35,7 @@ public class Children : MonoBehaviour
     public void SetTarget(Target t)
     {
         currentTarget = t;
-        waitTime = currentTarget.waitTime_seconds;
+        waitTime_seconds = currentTarget.waitTime_seconds;
         ResetTimer();
         //Debug.Log(currentTarget.name + " set as currentTarget");
     }
@@ -52,7 +51,7 @@ public class Children : MonoBehaviour
         if (other.gameObject.GetComponent<Target>() == currentTarget){
             
             Vector3 widget_pos = other.gameObject.transform.GetChild(0).gameObject.transform.position;
-            widget = canvas.InstantiateWidget(widget_pos, waitTime, currentTarget.isDeadly);
+            widget = canvas.InstantiateWidget(widget_pos, waitTime_seconds, currentTarget.isDeadly);
 
             currentTarget.isOpen = false;
             startTimer = true;
@@ -62,7 +61,7 @@ public class Children : MonoBehaviour
 
     private void OnTriggerStay(Collider other) 
     {
-        if(stuckTimer >= waitTime + 3){
+        if(stuckTimer >= waitTime_seconds + 3){
             Debug.Log("Was stuck");
             Reset(); //checks, if child is stuck at a target
             startStuckTimer = false;
@@ -104,8 +103,8 @@ public class Children : MonoBehaviour
         //timer goes up (until waitTime is reached)
         else if(timerUp)
         {
-            if (timer >= waitTime) ResetTimer();
-            timer += Time.deltaTime / waitTime;
+            if (timer >= waitTime_seconds) ResetTimer();
+            timer += Time.deltaTime / waitTime_seconds;
         }
 
         widget.UpdateTimer(timer);
@@ -127,7 +126,7 @@ public class Children : MonoBehaviour
 
     void ResetTimer()
     {
-        timer = waitTime;
+        timer = waitTime_seconds;
         stuckTimer = 0.0f;
         startTimer = false;
         timerDown = false;
