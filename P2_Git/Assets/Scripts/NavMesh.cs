@@ -67,7 +67,12 @@ public class NavMesh : MonoBehaviour
             int targetIndex;
 
             UpdateAllOpenTargets(agent);
+            Update_AllTargeted();
             openTargets = GetOpenTargets();
+
+            foreach(Target t in openTargets){
+                //Debug.Log(t.name);
+            }
 
             if(openTargets.Count == 0)
             {
@@ -125,6 +130,7 @@ public class NavMesh : MonoBehaviour
         foreach(Target t in targets){
             if (t.isOpen && !t.isTargeted) openTargets.Add(t);
         }
+        Debug.Log("open targets count: " + openTargets.Count);
 
         return openTargets;
     }
@@ -166,9 +172,14 @@ public class NavMesh : MonoBehaviour
    
     
     public void Update_AllTargeted(){
+        List<Target> currentlyTargeted_copy = GetAllCurrentlyTargeted();
+        
         foreach (Target t in targets) {    
-            foreach (Target currentlyTargeted in GetAllCurrentlyTargeted()) 
-                if(t != currentlyTargeted) Un_target(t);
+            foreach (Target currentlyTargeted in currentlyTargeted_copy) {
+                if(t != currentlyTargeted){
+                    Un_target(t);
+                }
+            }
         }
     }
 
@@ -179,7 +190,6 @@ public class NavMesh : MonoBehaviour
             Children children = a.gameObject.GetComponent<Children>();
             currentlyTargeted.Add(children.GetTarget());
         }
-
         return currentlyTargeted;
     }
     
