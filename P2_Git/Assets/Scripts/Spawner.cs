@@ -16,6 +16,6 @@ public class Spawner : MonoBehaviour
         
         GameObject newChild = GameObject.Instantiate(childPrefab, this.gameObject.transform.position, Quaternion.identity);
         NavMeshAgent newAgent = newChild.GetComponent<NavMeshAgent>();
-        navMesh.AddAgent(newAgent);
+        navMesh.Add_Agent(newAgent);
     }
 }

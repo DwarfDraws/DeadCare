@@ -7,7 +7,8 @@ public class Children : MonoBehaviour
 {
 
     Canvas_Script canvas;
-    Target currentTarget, tempOldTarget;
+    public Target currentTarget;
+    Target tempOldTarget;
     NavMeshAgent attachedAgent; 
     NavMesh navMesh;
     Widget widget;
@@ -90,7 +91,7 @@ public class Children : MonoBehaviour
                 {
                     currentTarget.isOpen = true;
                     currentTarget.isTargeted = false;
-                    navMesh.RemoveAgent(this.GetComponent<NavMeshAgent>());
+                    navMesh.Remove_Agent(this.GetComponent<NavMeshAgent>());
                     Destroy(gameObject); 
                 }
                 else 
@@ -120,7 +121,10 @@ public class Children : MonoBehaviour
         
         tempOldTarget = currentTarget;
         navMesh.RecalculatePath(attachedAgent);           
-        if(!attachedAgent.isStopped) navMesh.Un_target(tempOldTarget);
+        if(!attachedAgent.isStopped){
+            navMesh.Un_target(tempOldTarget);
+            Debug.Log(attachedAgent.name + " untargeted " + tempOldTarget.name);
+        }
         ResetTimer();
     }
 

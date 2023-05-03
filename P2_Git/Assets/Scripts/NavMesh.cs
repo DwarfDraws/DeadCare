@@ -71,7 +71,7 @@ public class NavMesh : MonoBehaviour
             openTargets = GetOpenTargets();
 
             foreach(Target t in openTargets){
-                //Debug.Log(t.name);
+                Debug.Log(t.name);
             }
 
             if(openTargets.Count == 0)
@@ -102,19 +102,49 @@ public class NavMesh : MonoBehaviour
         else Debug.Log("ALL CHILDREN DEAD!");
     }
 
-    void StopAgent(NavMeshAgent agent){
-        //Debug.Log("StopAgent(): " + agent.name);
+
+
+    //Agent
+    void InitAgentsList()
+    {
+        foreach(GameObject a in GameObject.FindGameObjectsWithTag("child")){
+            agents.Add(a.GetComponent<NavMeshAgent>());
+        }
+    }
+    public void Add_Agent(NavMeshAgent a)
+    {
+        agents.Add(a);
+        RecalculatePath(a);
+    }
+    public void Remove_Agent(NavMeshAgent a)
+    {
+        agents.Remove(a);
+        if(stoppedAgents.Contains(a)) stoppedAgents.Remove(a);
+    }
+
+    void StopAgent(NavMeshAgent agent)
+    {
+        Debug.Log("StopAgent(): " + agent.name);
         agent.isStopped = true;
         stoppedAgents.Add(agent);
     }
 
 
-    //updates isOpen-attribute for all targets
-    public void UpdateAllOpenTargets(NavMeshAgent agent){
-        
-        foreach(Target target in targets){
-            if (agent.CalculatePath(target.gameObject.transform.position, path)){
-                //Debug.Log(target.name + ": " + target.isOneCurrentDestination);
+
+
+    //Targets
+    void InitTargets()
+    {
+        foreach(GameObject t in GameObject.FindGameObjectsWithTag("target")){
+            target_transforms.Add(t);
+            targets.Add(t.GetComponent<Target>());
+        }
+    }
+    public void UpdateAllOpenTargets(NavMeshAgent agent)
+    {
+        foreach(Target target in targets)
+        {
+            if (agent.CalculatePath(target.gameObject.transform.position, path)){ //checks all reachable targets
                 if (path.status == NavMeshPathStatus.PathComplete){
                     target.isOpen = true;
                 }
@@ -122,68 +152,24 @@ public class NavMesh : MonoBehaviour
             }
         }
     }
-
-    //give's all open targets !excluding targets targeted by children!
-    List<Target> GetOpenTargets(){
-        List<Target> openTargets = new List<Target>(); 
-
-        foreach(Target t in targets){
-            if (t.isOpen && !t.isTargeted) openTargets.Add(t);
-        }
-        Debug.Log("open targets count: " + openTargets.Count);
-
-        return openTargets;
-    }
-
-
-
-    void InitTargets(){
-
-        foreach(GameObject t in GameObject.FindGameObjectsWithTag("target")){
-            target_transforms.Add(t);
-            targets.Add(t.GetComponent<Target>());
-        }
-    }
-    void InitAgentsList(){
-
-        foreach(GameObject a in GameObject.FindGameObjectsWithTag("child")){
-            agents.Add(a.GetComponent<NavMeshAgent>());
-        }
-    }
-    void GenerateRandomSeed(){
-        int tempSeed = (int)System.DateTime.Now.Ticks;
-        Random.InitState(tempSeed);
-    }
-
-    public void AddAgent(NavMeshAgent a){
-        agents.Add(a);
-        RecalculatePath(a);
-    }
-    public void RemoveAgent(NavMeshAgent a){
-        agents.Remove(a);
-        if(stoppedAgents.Contains(a)) stoppedAgents.Remove(a);
-    }
-
-    int RandomTargetIndex(List<Target> openTargets){
-        int targetIndex = Random.Range(0, openTargets.Count);
-        //Debug.Log(target_Index);
-        return targetIndex;
-    }
-   
-    
-    public void Update_AllTargeted(){
+    public void Update_AllTargeted()
+    {
         List<Target> currentlyTargeted_copy = GetAllCurrentlyTargeted();
         
         foreach (Target t in targets) {    
             foreach (Target currentlyTargeted in currentlyTargeted_copy) {
-                if(t != currentlyTargeted){
-                    Un_target(t);
+                if(t == currentlyTargeted){
+                    Debug.Log(t.name + " is " + currentlyTargeted.name);
+                    t.isTargeted = true;
+                    break;
                 }
+                else Un_target(t);
             }
         }
     }
 
-    List<Target> GetAllCurrentlyTargeted(){
+    List<Target> GetAllCurrentlyTargeted()
+    {
         List<Target> currentlyTargeted = new List<Target>();
 
         foreach (NavMeshAgent a in agents){
@@ -193,8 +179,38 @@ public class NavMesh : MonoBehaviour
         return currentlyTargeted;
     }
     
-    public void Un_target(Target t){
+
+    List<Target> GetOpenTargets()
+    {
+        List<Target> openTargets = new List<Target>(); 
+
+        foreach(Target t in targets){
+            if (t.isOpen && !t.isTargeted) openTargets.Add(t);
+        }
+
+        return openTargets;
+    }
+  
+    public void Un_target(Target t)
+    {
         t.isTargeted = false;
     }
-    
+
+
+
+
+    //Randomization
+    void GenerateRandomSeed()
+    {
+        int tempSeed = (int)System.DateTime.Now.Ticks;
+        Random.InitState(tempSeed);
+    }
+
+    int RandomTargetIndex(List<Target> openTargets)
+    {
+        int targetIndex = Random.Range(0, openTargets.Count);
+        //Debug.Log(target_Index);
+        return targetIndex;
+    }
+
 }
