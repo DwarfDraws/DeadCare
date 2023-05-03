@@ -85,17 +85,18 @@ public class Raycast : MonoBehaviour
                     object_MoveHandler.ClampObject(mouse3D_wOffset, hitObject.position, mouse3D_wOffset);
 
                     //object translation
+                    //EDIT: Move to object_Movehandler
                     obj_posY = hitObject.position.y;   
                     float x = object_MoveHandler.GetClampedPosX_Object(mouse3D_wOffset);
                     float z = object_MoveHandler.GetClampedPosZ_Object(mouse3D_wOffset);   
-                    hitObject.position = new Vector3(x, obj_posY, z);
+                    hitObject.position = new Vector3(x, obj_posY, z); 
                 }
             }
-
 
         }
             
         //Left Mouse Up finally re-calculates NavMesh
+        //EDIT weist ja
         if (Input.GetMouseButtonUp(0))
         {
             if(isObstacle){
@@ -107,7 +108,7 @@ public class Raycast : MonoBehaviour
         }
 
 
-        //collectible
+        //consumables
         if(canvas_script.isBtnPressed_Consumable()){
             ray = main_camera.ScreenPointToRay(Input.mousePosition);
 

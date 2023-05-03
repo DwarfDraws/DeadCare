@@ -22,8 +22,8 @@ public class NavMesh : MonoBehaviour
 
         path = new NavMeshPath();
         GenerateRandomSeed();
-        InitTargets();
         InitAgentsList();
+        InitTargets();
     }
 
     private void Update() {
@@ -35,7 +35,8 @@ public class NavMesh : MonoBehaviour
             foreach (NavMeshAgent a in agents) RecalculatePath(a);
             isPathInitialized = true;
         }
-
+        
+        //EDIT: Random walk
         //in every frame try to find a new destination for the agents if they're stopped
         if(stoppedAgents.Count > 0){
             List<NavMeshAgent> stoppedAgents_Copy = stoppedAgents;
@@ -62,9 +63,9 @@ public class NavMesh : MonoBehaviour
         if(agents != null){
 
             Children children = agent.gameObject.GetComponent<Children>();
-            List<Target> openTargets;
-            Vector3 destination;
+            List<Target> openTargets; //EDIT: Make global?
             int targetIndex;
+            Vector3 destination;
 
             UpdateAllOpenTargets(agent);
             Update_AllTargeted();
@@ -80,6 +81,7 @@ public class NavMesh : MonoBehaviour
                 return;
             }
 
+
             targetIndex = RandomTargetIndex(openTargets);
             destination = openTargets[targetIndex].gameObject.transform.position;
 
@@ -87,7 +89,7 @@ public class NavMesh : MonoBehaviour
             if (agent.CalculatePath(destination, path)) 
             {         
                 //sets navMesh Path   
-                if (path.status == NavMeshPathStatus.PathComplete){
+                if (path.status == NavMeshPathStatus.PathComplete){ //EDIT: already calculated in UpdateAllOpenTargets(agent); ?
                     agent.destination = destination;
                     agent.isStopped = false;
 
@@ -140,7 +142,7 @@ public class NavMesh : MonoBehaviour
             targets.Add(t.GetComponent<Target>());
         }
     }
-    public void UpdateAllOpenTargets(NavMeshAgent agent)
+    public void UpdateAllOpenTargets(NavMeshAgent agent) //EDIT THIS: MUST BE CALC FOR ALL AGENTS
     {
         foreach(Target target in targets)
         {
@@ -195,6 +197,7 @@ public class NavMesh : MonoBehaviour
     {
         t.isTargeted = false;
     }
+
 
 
 
