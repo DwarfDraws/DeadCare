@@ -58,7 +58,7 @@ public class Canvas_Script : MonoBehaviour
         
         if(!obj_moveHandler.IsObjectAtEdge(instantiate_pos)){
             
-            Instantiate(pref_consumable, raycast.GetMousePos3D(), Quaternion.identity);
+            GameObject inst = Instantiate(pref_consumable, raycast.GetMousePos3D(), Quaternion.identity);
         }
     }
 }

@@ -71,10 +71,6 @@ public class NavMesh : MonoBehaviour
             Update_AllTargeted();
             openTargets = GetOpenTargets();
 
-            foreach(Target t in openTargets){
-                Debug.Log(t.name);
-            }
-
             if(openTargets.Count == 0)
             {
                 StopAgent(agent);
@@ -102,6 +98,27 @@ public class NavMesh : MonoBehaviour
             }
         }
         else Debug.Log("ALL CHILDREN DEAD!");
+    }
+
+
+    //For specific targets
+    public void SetSpecificPath(NavMeshAgent agent, Target target){
+            Children children = agent.gameObject.GetComponent<Children>();
+            Vector3 destination;
+            destination = target.transform.position;
+
+            //Calculates the Path
+            if (agent.CalculatePath(destination, path)) 
+            {         
+                //sets navMesh Path   
+                if (path.status == NavMeshPathStatus.PathComplete){ 
+                    agent.destination = destination;
+                    agent.isStopped = false;
+
+
+                    children.SetTarget(target);
+                }           
+            }
     }
 
 
@@ -137,7 +154,8 @@ public class NavMesh : MonoBehaviour
     //Targets
     void InitTargets()
     {
-        foreach(GameObject t in GameObject.FindGameObjectsWithTag("target")){
+        foreach(GameObject t in GameObject.FindGameObjectsWithTag("target"))
+        {
             target_transforms.Add(t);
             targets.Add(t.GetComponent<Target>());
         }
@@ -186,7 +204,8 @@ public class NavMesh : MonoBehaviour
     {
         List<Target> openTargets = new List<Target>(); 
 
-        foreach(Target t in targets){
+        foreach(Target t in targets)
+        {
             if (t.isOpen && !t.isTargeted) openTargets.Add(t);
         }
 

@@ -18,7 +18,8 @@ public class Children : MonoBehaviour
     bool startTimer, startStuckTimer;
     public bool isStopped;
 
-    private void Start() {
+    private void Start() 
+    {
         canvas = GameObject.Find("Canvas").GetComponent<Canvas_Script>();
  
         attachedAgent = this.GetComponent<NavMeshAgent>();
@@ -48,8 +49,10 @@ public class Children : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log(other.gameObject.GetComponent<Target_attributes>().name);
-        if (other.gameObject.GetComponent<Target>() == currentTarget){
+        GameObject triggerObject = other.gameObject;
+        
+        if(triggerObject.GetComponent<Target>() != null){
+            if (triggerObject.GetComponent<Target>() == currentTarget){
             
             Vector3 widget_pos = other.gameObject.transform.GetChild(0).gameObject.transform.position;
             widget = canvas.InstantiateWidget(widget_pos, waitTime_seconds, currentTarget.isDeadly);
@@ -57,6 +60,13 @@ public class Children : MonoBehaviour
             currentTarget.isOpen = false;
             startTimer = true;
             timerDown = true;
+            }
+        }
+
+        else if(other.tag == "consumable_radius")
+        {
+            Target consumableTarget = triggerObject.transform.GetComponentInParent<Target>();
+            navMesh.SetSpecificPath(attachedAgent, consumableTarget);
         }
     }
 
@@ -94,6 +104,7 @@ public class Children : MonoBehaviour
                     navMesh.Remove_Agent(this.GetComponent<NavMeshAgent>());
                     Destroy(gameObject); 
                 }
+
                 else 
                     Reset();
 
@@ -119,12 +130,23 @@ public class Children : MonoBehaviour
     void Reset()
     {
         
-        tempOldTarget = currentTarget;
-        navMesh.RecalculatePath(attachedAgent);           
-        if(!attachedAgent.isStopped){
-            navMesh.Un_target(tempOldTarget);
-            Debug.Log(attachedAgent.name + " untargeted " + tempOldTarget.name);
+        if(currentTarget.isConsumable)
+        {
+            Debug.Log(currentTarget.name);
+            Destroy(currentTarget.gameObject);
+            navMesh.RecalculatePath(attachedAgent);
         }
+        
+        else{
+            tempOldTarget = currentTarget;
+            navMesh.RecalculatePath(attachedAgent);
+
+            if(!attachedAgent.isStopped)
+            {
+                navMesh.Un_target(tempOldTarget);
+            }
+        }
+
         ResetTimer();
     }
 
