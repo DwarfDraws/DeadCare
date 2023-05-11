@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: mat_pill_3
-  m_Shader: {fileID: -6465566751694194690, guid: 1324a778bf970c34690381bbc1f02cfe, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: e40a39ca6db24e348a8f9a54a395dd54, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -48,11 +48,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _normal:
-        m_Texture: {fileID: 2800000, guid: c6556f1423b86f24890ab47342763863, type: 3}
+        m_Texture: {fileID: 2800000, guid: 03358b2c0a220064c8bf48c3088ffba6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _saturated_map:
-        m_Texture: {fileID: 2800000, guid: 8123b58f97353964a85adb62b2144742, type: 3}
+        m_Texture: {fileID: 2800000, guid: c20f517c81220db4187d00909e92267a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -81,6 +81,7 @@ Material:
     - _custom_col1: {r: 0.2713154, g: 0.6190152, b: 0.8584906, a: 0}
     - _customcol2: {r: 0, g: 0, b: 0, a: 0}
     - _highlight3: {r: 0.9811321, g: 0.8685068, b: 0.15272337, a: 0}
+    - _highlight_col: {r: 0.32953006, g: 0.33508053, b: 0.9339623, a: 0}
     - _highlightcol_1: {r: 1, g: 1, b: 1, a: 0}
     - _highlightcol_2: {r: 1, g: 1, b: 1, a: 0}
     - _highlightcol_3: {r: 1, g: 1, b: 1, a: 0}
