@@ -16,6 +16,7 @@ public class Children : MonoBehaviour
     float timer, stuckTimer;
     bool timerUp, timerDown;
     bool startTimer, startStuckTimer;
+    bool isInSafeZone;
     public bool isStopped;
 
     private void Start() 
@@ -49,31 +50,52 @@ public class Children : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        startStuckTimer = true;
         GameObject triggerObject = other.gameObject;
         
-        if(triggerObject.GetComponent<Target>() != null){
-            if (triggerObject.GetComponent<Target>() == currentTarget){
-            
-            Vector3 widget_pos = other.gameObject.transform.GetChild(0).gameObject.transform.position;
-            widget = canvas.InstantiateWidget(widget_pos, waitTime_seconds, currentTarget.isDeadly);
+        //normal target
 
-            currentTarget.isOpen = false;
-            startTimer = true;
-            timerDown = true;
+            if (triggerObject.GetComponent<Target>() == currentTarget)
+            {
+                Vector3 widget_pos = other.gameObject.transform.GetChild(0).gameObject.transform.position;
+                Color color;
+                
+                if(currentTarget.isDeadly) color = Color.red;
+                else color = Color.green;
+
+                widget = canvas.InstantiateWidget(widget_pos, waitTime_seconds, color);
+
+                currentTarget.isOpen = false;
+                startTimer = true;
+                timerDown = true;
+
+                if(!currentTarget.isDeadly) isInSafeZone = true;
             }
-        }
 
-        else if(other.tag == "consumable_radius")
+
+        //consumable
+        else if(other.tag == "consumable_radius" && !isInSafeZone)
         {
             Target consumableTarget = triggerObject.transform.GetComponentInParent<Target>();
-            navMesh.SetSpecificPath(attachedAgent, consumableTarget);
+            if(consumableTarget.isOpen)
+            {   
+                Consumables consumable = triggerObject.GetComponentInParent<Consumables>();
+                if(widget != null) Destroy(widget.gameObject);
+
+                SetTarget(consumableTarget);
+                navMesh.SetSpecificPath(attachedAgent, consumableTarget);
+                consumable.StartExistenceTimer(false);
+
+                consumableTarget.isOpen = false;
+            }            
         }
     }
 
     private void OnTriggerStay(Collider other) 
     {
-        if(stuckTimer >= waitTime_seconds + 3){
-            Debug.Log("Was stuck");
+        Debug.Log(other.name);
+        if(stuckTimer >= waitTime_seconds + 3)
+        {
             Reset(); //checks, if child is stuck at a target
             startStuckTimer = false;
         } 
@@ -81,9 +103,7 @@ public class Children : MonoBehaviour
 
     private void OnTriggerExit(Collider other) 
     {
-        if (other.gameObject.GetComponent<Target>() == currentTarget){
-            currentTarget.isOpen = true;
-        }
+        IsSafeZone(false);
     }
 
 
@@ -119,12 +139,18 @@ public class Children : MonoBehaviour
             timer += Time.deltaTime / waitTime_seconds;
         }
 
-        widget.UpdateTimer(timer);
+        widget.UpdateWidget(timer);
     }
 
     void StuckTimer()
     {
         stuckTimer += Time.deltaTime;
+    }
+
+    void IsSafeZone(bool isActivated)
+    {
+        if (isActivated) isInSafeZone = true;
+        else isInSafeZone = false;
     }
 
     void Reset()
@@ -146,6 +172,8 @@ public class Children : MonoBehaviour
                 navMesh.Un_target(tempOldTarget);
             }
         }
+        
+        IsSafeZone(false);
 
         ResetTimer();
     }

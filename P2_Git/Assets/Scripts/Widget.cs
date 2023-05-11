@@ -8,15 +8,18 @@ public class Widget : MonoBehaviour
 
     Slider slider;
 
-    private void Start() {
+    private void Start() 
+    {
         slider = this.gameObject.GetComponent<Slider>();
     }
 
-    public void SetTimer(float time){
+    public void SetTimer(float time)
+    {
         slider.maxValue = time;
     }
 
-    public void UpdateTimer(float timer){
+    public void UpdateWidget(float timer)
+    {
         slider.value = timer;
     }
 }

@@ -103,6 +103,8 @@ public class NavMesh : MonoBehaviour
 
     //For specific targets
     public void SetSpecificPath(NavMeshAgent agent, Target target){
+        if(target.isOpen)
+        {  
             Children children = agent.gameObject.GetComponent<Children>();
             Vector3 destination;
             destination = target.transform.position;
@@ -114,11 +116,12 @@ public class NavMesh : MonoBehaviour
                 if (path.status == NavMeshPathStatus.PathComplete){ 
                     agent.destination = destination;
                     agent.isStopped = false;
-
+                    target.isOpen = false;
 
                     children.SetTarget(target);
                 }           
             }
+        }
     }
 
 
