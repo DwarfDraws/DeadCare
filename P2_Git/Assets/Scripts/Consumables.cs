@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Consumables : MonoBehaviour
 {
-    
+    [SerializeField] Settings_script settings;
     public float existenceTimeSeconds;
     float timer;
     Canvas_Script canvas;
@@ -16,9 +16,16 @@ public class Consumables : MonoBehaviour
     private void Start() 
     {
         timer = existenceTimeSeconds;
-        Vector3 widget_pos = this.transform.GetChild(0).gameObject.transform.position;
-        canvas = GameObject.Find("Canvas").GetComponent<Canvas_Script>();
-        widget = canvas.InstantiateWidget(widget_pos, existenceTimeSeconds, Color.blue);
+        settings = GameObject.Find("Settings").GetComponent<Settings_script>();
+
+        if(settings.consumablesHaveExistenceTimer)
+        {
+            Vector3 widget_pos = this.transform.GetChild(0).gameObject.transform.position;
+
+            canvas = GameObject.Find("Canvas").GetComponent<Canvas_Script>();
+            widget = canvas.InstantiateWidget(widget_pos, existenceTimeSeconds, Color.blue);
+            StartExistenceTimer(true);
+        }
     }
 
     private void Update() 

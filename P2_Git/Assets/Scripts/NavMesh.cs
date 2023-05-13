@@ -27,15 +27,7 @@ public class NavMesh : MonoBehaviour
     }
 
     private void Update() {
-        
-        //Initializing Path        
-        //Waiting for dynamic obstacles to finish calculating before checking Path (could be improved) 
-        timer += Time.deltaTime;
-        if(timer >= 0.05 && !isPathInitialized){            
-            foreach (NavMeshAgent a in agents) RecalculatePath(a);
-            isPathInitialized = true;
-        }
-        
+               
         //EDIT: Random walk
         //in every frame try to find a new destination for the agents if they're stopped
         if(stoppedAgents.Count > 0){
@@ -53,7 +45,8 @@ public class NavMesh : MonoBehaviour
     }
 
 
-    public void RecalculateAllPaths(){
+    public void RecalculateAllPaths()
+    {
         foreach(NavMeshAgent a in agents) RecalculatePath(a);
     }
 
@@ -103,6 +96,8 @@ public class NavMesh : MonoBehaviour
 
     //For specific targets
     public void SetSpecificPath(NavMeshAgent agent, Target target){
+        UpdateAllOpenTargets(agent);
+        
         if(target.isOpen)
         {  
             Children children = agent.gameObject.GetComponent<Children>();
@@ -182,7 +177,6 @@ public class NavMesh : MonoBehaviour
         foreach (Target t in targets) {    
             foreach (Target currentlyTargeted in currentlyTargeted_copy) {
                 if(t == currentlyTargeted){
-                    Debug.Log(t.name + " is " + currentlyTargeted.name);
                     t.isTargeted = true;
                     break;
                 }
