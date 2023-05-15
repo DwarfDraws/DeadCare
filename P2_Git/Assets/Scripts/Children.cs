@@ -23,9 +23,11 @@ public class Children : MonoBehaviour
     bool startTimer, startStuckTimer;
     bool isInSafeZone;
     public bool isStopped;
+    public Animator animator;
 
     private void Start() 
     {
+
         tutorialIndex = 0;
         
         settings = GameObject.Find("Settings").GetComponent<Settings_script>();
@@ -38,6 +40,21 @@ public class Children : MonoBehaviour
 
     void Update()
     {
+        //animator
+        if (attachedAgent.velocity != Vector3.zero)
+        {
+            animator.SetBool("iswalking", true);
+            animator.SetBool("isidle", false); ;
+
+        }
+        else
+        {
+            animator.SetBool("iswalking", false);
+            animator.SetBool("isidle", true);
+
+
+        }
+        //animator
         beginTimer += Time.deltaTime;
         if(beginTimer >= 0.05 && !isPathInitialized)
         {            
