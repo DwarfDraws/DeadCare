@@ -6,6 +6,10 @@ using UnityEngine.AI;
 public class Children : MonoBehaviour
 {
 
+    Settings_script settings;
+    [SerializeField] List<Target> tutorialTargets;
+    int tutorialIndex;
+
     Canvas_Script canvas;
     public Target currentTarget;
     Target tempOldTarget;
@@ -13,12 +17,18 @@ public class Children : MonoBehaviour
     NavMesh navMesh;
     Widget widget;
     float waitTime_seconds; 
-    float timer, stuckTimer;
+    float beginTimer, timer, stuckTimer;
+    bool isPathInitialized;
     bool timerUp, timerDown;
     bool startTimer, startStuckTimer;
+    bool isInSafeZone;
     public bool isStopped;
 
-    private void Start() {
+    private void Start() 
+    {
+        tutorialIndex = 0;
+        
+        settings = GameObject.Find("Settings").GetComponent<Settings_script>();
         canvas = GameObject.Find("Canvas").GetComponent<Canvas_Script>();
  
         attachedAgent = this.GetComponent<NavMeshAgent>();
@@ -28,6 +38,14 @@ public class Children : MonoBehaviour
 
     void Update()
     {
+        beginTimer += Time.deltaTime;
+        if(beginTimer >= 0.05 && !isPathInitialized)
+        {            
+            if(settings.isTutorial) navMesh.SetSpecificPath(attachedAgent, tutorialTargets[tutorialIndex]);
+            else navMesh.RecalculatePath(attachedAgent);
+            isPathInitialized = true;
+        }
+
         if(startTimer) Timer();
         if(startStuckTimer) StuckTimer();
     }
@@ -48,22 +66,51 @@ public class Children : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log(other.gameObject.GetComponent<Target_attributes>().name);
-        if (other.gameObject.GetComponent<Target>() == currentTarget){
-            
+        GameObject triggerObject = other.gameObject;
+        
+        //normal target
+        if (triggerObject.GetComponent<Target>() == currentTarget)
+        {
+            startStuckTimer = true;
             Vector3 widget_pos = other.gameObject.transform.GetChild(0).gameObject.transform.position;
-            widget = canvas.InstantiateWidget(widget_pos, waitTime_seconds, currentTarget.isDeadly);
+            Color color;
+            
+            if(currentTarget.isDeadly) color = Color.red;
+            else color = Color.green;
+            widget = canvas.InstantiateWidget(widget_pos, waitTime_seconds, color);
 
             currentTarget.isOpen = false;
             startTimer = true;
             timerDown = true;
+
+            if(!currentTarget.isDeadly) isInSafeZone = true;
+        }
+
+
+        //consumable
+        else if(other.tag == "consumable_radius" && !isInSafeZone)
+        {
+            startStuckTimer = true;
+            Target consumableTarget = triggerObject.transform.GetComponentInParent<Target>();
+            if(consumableTarget.isOpen)
+            {   
+                Consumables consumable = triggerObject.GetComponentInParent<Consumables>();
+                if(widget != null) Destroy(widget.gameObject);
+
+                SetTarget(consumableTarget);
+                navMesh.SetSpecificPath(attachedAgent, consumableTarget);
+                if(settings.consumablesHaveExistenceTimer) consumable.StartExistenceTimer(false);
+
+                consumableTarget.isOpen = false;
+            }            
         }
     }
 
     private void OnTriggerStay(Collider other) 
     {
-        if(stuckTimer >= waitTime_seconds + 3){
-            Debug.Log("Was stuck");
+        if(stuckTimer >= waitTime_seconds + 3)
+        {
+            Debug.Log("stuckTimer");
             Reset(); //checks, if child is stuck at a target
             startStuckTimer = false;
         } 
@@ -71,9 +118,7 @@ public class Children : MonoBehaviour
 
     private void OnTriggerExit(Collider other) 
     {
-        if (other.gameObject.GetComponent<Target>() == currentTarget){
-            currentTarget.isOpen = true;
-        }
+        IsSafeZone(false);
     }
 
 
@@ -86,7 +131,6 @@ public class Children : MonoBehaviour
 
             if(timer <= 0)
             {
-                //Debug.Log("Timer() - is Zero");
                 if(currentTarget.isDeadly)
                 {
                     currentTarget.isOpen = true;
@@ -94,45 +138,73 @@ public class Children : MonoBehaviour
                     navMesh.Remove_Agent(this.GetComponent<NavMeshAgent>());
                     Destroy(gameObject); 
                 }
-                else 
-                    Reset();
+
+                else Reset();
 
                 Destroy(widget.gameObject);
             }
         }
 
-        //timer goes up (until waitTime is reached)
+        //timer goes up
         else if(timerUp)
         {
             if (timer >= waitTime_seconds) ResetTimer();
             timer += Time.deltaTime / waitTime_seconds;
         }
 
-        widget.UpdateTimer(timer);
+        widget.UpdateWidget(timer);
     }
 
     void StuckTimer()
     {
         stuckTimer += Time.deltaTime;
     }
-
+  
     void Reset()
     {
-        
-        tempOldTarget = currentTarget;
-        navMesh.RecalculatePath(attachedAgent);           
-        if(!attachedAgent.isStopped){
-            navMesh.Un_target(tempOldTarget);
-            Debug.Log(attachedAgent.name + " untargeted " + tempOldTarget.name);
+        if(settings.isTutorial)
+        {
+            tutorialIndex++;
+            if(tutorialIndex < tutorialTargets.Count)
+                navMesh.SetSpecificPath(attachedAgent, tutorialTargets[tutorialIndex]);
+            else Debug.Log("Tutorial finished");
         }
+
+        else if(currentTarget.isConsumable)
+        {
+            Destroy(currentTarget.gameObject);
+            navMesh.RecalculatePath(attachedAgent);
+        }
+        
+        else
+        {
+            tempOldTarget = currentTarget;
+            navMesh.RecalculatePath(attachedAgent);
+
+            if(!attachedAgent.isStopped)
+            {
+                navMesh.Un_target(tempOldTarget);
+            }
+        }
+        
+        IsSafeZone(false);
+
         ResetTimer();
     }
 
     void ResetTimer()
     {
         timer = waitTime_seconds;
-        stuckTimer = 0.0f;
         startTimer = false;
+        startStuckTimer = false;
         timerDown = false;
+        stuckTimer = 0.0f;
+    }
+
+
+    void IsSafeZone(bool isActivated)
+    {
+        if (isActivated) isInSafeZone = true;
+        else isInSafeZone = false;
     }
 }
