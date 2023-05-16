@@ -5,10 +5,11 @@ using UnityEngine;
 public class Consumables : MonoBehaviour
 {
     [SerializeField] Settings_script settings;
-    public float existenceTimeSeconds;
-    float timer;
     Canvas_Script canvas;
     Widget widget;
+    
+    public float existenceTimeSeconds;
+    float timer;
 
     bool timeStart;
 

@@ -4,9 +4,74 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    public float waitTime_seconds = 2.0f; //initially 2 secs, can be changed in the inspector   
+    Widget widget;
+    Canvas_Script canvas;
+    public float waitTime_seconds = 2.0f;   
     public bool isDeadly;
     public bool isConsumable;
     public bool isOpen; 
     public bool isTargeted;
+    bool timerDown;
+    float timer;
+
+    private void Start() {
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas_Script>();
+        timer = waitTime_seconds;
+        timerDown = true;
+    }
+
+    public void Timer(Children child)
+    {
+        //timer goes down
+        if(timerDown)
+        {
+            timer -= Time.deltaTime;
+
+            if(timer <= 0)
+            {
+                if(isDeadly)
+                {
+                    isOpen = true;
+                    isTargeted = false;
+                    child.ChildDestroy();
+                }
+
+                else child.Reset();
+
+                Destroy(widget.gameObject);
+                timer = waitTime_seconds;
+            }
+        }
+
+        //timer goes up
+        else if(!timerDown)
+        {
+            timer += Time.deltaTime;
+
+            if (timer > waitTime_seconds)
+            { 
+                child.Reset();
+
+                Destroy(widget.gameObject);
+                ToggleDown(true);
+                timer = waitTime_seconds;
+            }
+        }
+
+        widget.UpdateWidget(timer);
+    }
+
+    public void ToggleDown(bool isDown) 
+    { 
+        if(isDown) timerDown = true;
+        else timerDown = false;
+    }
+
+    public void InstantiateWidget(Vector3 widget_worldPos, float time, Color color){
+        widget = canvas.InstantiateWidget(widget_worldPos, waitTime_seconds, color);
+    }
+
+    public void DestroyWidget(){
+        if(widget != null) Destroy(widget.gameObject);
+    }
 }

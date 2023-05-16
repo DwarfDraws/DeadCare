@@ -5,12 +5,13 @@ using UnityEngine.AI;
 
 public class NavMesh : MonoBehaviour
 {
+    List<Target> targets = new List<Target>();
+    
     public List<NavMeshAgent> agents = new List<NavMeshAgent>();
     List<NavMeshAgent> stoppedAgents = new List<NavMeshAgent>();
-    List<Target> targets = new List<Target>();
-    [SerializeField] List<GameObject> target_transforms = new List<GameObject>();
-    
     NavMeshPath path;
+    
+    [SerializeField] List<GameObject> target_transforms = new List<GameObject>();
 
     private bool isPathInitialized;
     float timer;

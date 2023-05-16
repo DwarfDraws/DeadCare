@@ -5,23 +5,16 @@ using UnityEngine;
 public class Object_attributes : MonoBehaviour
 {
     public bool isRotated;  
-    public bool isMoveable = true; //initially true, can be changed
-
+    public bool isMoveable = true; 
     bool isClamped_left, isClamped_right, isClamped_front, isClamped_back;
 
+    public Target attachedTarget;
 
-    public bool IsClamped_Left(){
-        return isClamped_left;
-    } 
-    public bool IsClamped_Right(){
-        return isClamped_right;
-    } 
-    public bool IsClamped_Front(){
-        return isClamped_front;
-    } 
-    public bool IsClamped_Back(){
-        return isClamped_back;
-    } 
+
+    public bool IsClamped_Left(){ return isClamped_left; } 
+    public bool IsClamped_Right(){ return isClamped_right; } 
+    public bool IsClamped_Front(){ return isClamped_front; } 
+    public bool IsClamped_Back(){ return isClamped_back; } 
 
     public void SetClamp_Left(bool isClamped){
         if(isClamped) isClamped_left = true;

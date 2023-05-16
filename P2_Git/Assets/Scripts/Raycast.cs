@@ -5,25 +5,25 @@ public class Raycast : MonoBehaviour
 {
         
     [SerializeField] NavMesh navMesh;
-    [SerializeField] LayerMask layer_Floor;
-    [SerializeField] Camera main_camera;
     [SerializeField] Canvas_Script canvas_script;
     [SerializeField] Object_moveHandler object_MoveHandler;
-    RaycastHit hit;
     Object_attributes obj_attributes;
+    Target object_attachedTarget;
+    
+    [SerializeField] Camera main_camera;
+    [SerializeField] LayerMask layer_Floor;
+    RaycastHit hit;
     Ray ray;
 
     [SerializeField] Transform consumable_ghostObject;
     Transform hitObject;
-
     Vector3 mouse_Pos3D, offset, mouse3D_wOffset;
     Vector3 initMouse_Pos, initHit_Offset;
 
+    public bool isMoveable;
     bool MousePressed_L;
     bool missingOffset;
-    bool isObstacle;
-
-
+    bool hasAttachedTarget;
     float localLength_x_Object, localLength_z_Object;
     float obj_posY;
 
@@ -40,9 +40,14 @@ public class Raycast : MonoBehaviour
             { 
                 hitObject = hit.transform; //object transform
 
-                if(hitObject.tag == "obstacle"){
-                    if(hitObject.GetComponent<Object_attributes>().isMoveable){
-                        isObstacle = true;                    //EDIT THIS
+                if(hitObject.tag == "obstacle")
+                {
+
+                    if(hitObject.GetComponent<Object_attributes>().isMoveable)
+                    {
+                        isMoveable = true;                  
+                        MousePressed_L = true;
+
                         obj_attributes = hitObject.GetComponent<Object_attributes>();
                         localLength_x_Object = hitObject.lossyScale.x;
                         localLength_z_Object = hitObject.lossyScale.z;
@@ -51,59 +56,81 @@ public class Raycast : MonoBehaviour
                         initMouse_Pos = hit.point; //mouse position
                         initMouse_Pos.y = 0;
 
-                        MousePressed_L = true;
                         missingOffset = true;
                     }
+                    else isMoveable = false;
+                    
+                    if (hit.transform.GetComponent<Object_attributes>().attachedTarget != null)
+                    {
+                        hasAttachedTarget = true;
+                        MousePressed_L = true;
+
+                        object_attachedTarget = hit.transform.GetComponent<Object_attributes>().attachedTarget;
+                    }
+                    else hasAttachedTarget = false;
                 }
+                else 
+                {
+                    MousePressed_L = false;
+                }  
             }
-            else isObstacle = false;  
         }
 
         if (Input.GetMouseButton(0))
         {
             //Object Transformation
-            if(MousePressed_L && isObstacle){
-                ray = main_camera.ScreenPointToRay(Input.mousePosition);
+            if(MousePressed_L)
+            {
+                //switch timer to go up 
+                if(hasAttachedTarget) object_attachedTarget.ToggleDown(false);
 
-                if (Physics.Raycast(ray, out hit, float.MaxValue, layer_Floor))
+                if(isMoveable)
                 {
-                    mouse_Pos3D = hit.point;
+                    ray = main_camera.ScreenPointToRay(Input.mousePosition);
 
-                    if (missingOffset)
+                    if (Physics.Raycast(ray, out hit, float.MaxValue, layer_Floor))
                     {
-                        UpdateOffset();
-                        UpdateInitOffset();
-                        missingOffset = false;
+                        mouse_Pos3D = hit.point;
+
+                        if (missingOffset)
+                        {
+                            UpdateOffset();
+                            UpdateInitOffset();
+                            missingOffset = false;
+                        }
+
+                        offset.y = 0;
+                        mouse_Pos3D.y = 0;
+
+                        object_MoveHandler.CheckInput_Rotation(hitObject, mouse_Pos3D, initHit_Offset);
+
+                        mouse3D_wOffset = mouse_Pos3D - offset;         
+                        object_MoveHandler.ClampObject(mouse3D_wOffset, hitObject.position, mouse3D_wOffset);
+
+                        //object translation
+                        //EDIT: Move to object_Movehandler
+                        obj_posY = hitObject.position.y;   
+                        float x = object_MoveHandler.GetClampedPosX_Object(mouse3D_wOffset);
+                        float z = object_MoveHandler.GetClampedPosZ_Object(mouse3D_wOffset);   
+                        hitObject.position = new Vector3(x, obj_posY, z); 
                     }
-
-                    offset.y = 0;
-                    mouse_Pos3D.y = 0;
-
-                    object_MoveHandler.CheckInput_Rotation(hitObject, mouse_Pos3D, initHit_Offset);
-
-                    mouse3D_wOffset = mouse_Pos3D - offset;         
-                    object_MoveHandler.ClampObject(mouse3D_wOffset, hitObject.position, mouse3D_wOffset);
-
-                    //object translation
-                    //EDIT: Move to object_Movehandler
-                    obj_posY = hitObject.position.y;   
-                    float x = object_MoveHandler.GetClampedPosX_Object(mouse3D_wOffset);
-                    float z = object_MoveHandler.GetClampedPosZ_Object(mouse3D_wOffset);   
-                    hitObject.position = new Vector3(x, obj_posY, z); 
                 }
-            }
 
+            }
         }
             
         //Left Mouse Up finally re-calculates NavMesh
         //EDIT weist ja
         if (Input.GetMouseButtonUp(0))
         {
-            if(isObstacle){
+            if(MousePressed_L){
                 MousePressed_L = false;
                 missingOffset = false;
 
-                navMesh.RecalculateAllPaths();
+                //switch timer to go down 
+                if(hasAttachedTarget) object_attachedTarget.ToggleDown(true);
+
+                //navMesh.RecalculateAllPaths();
             }
         }
 

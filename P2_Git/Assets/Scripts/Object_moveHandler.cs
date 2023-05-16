@@ -5,12 +5,12 @@ using UnityEngine;
 public class Object_moveHandler : MonoBehaviour
 {
 
-    [SerializeField] GameObject floor;
     [SerializeField] Raycast raycast;
     Object_attributes obj_attributes;
     
+    [SerializeField] GameObject floor;
+
     float mouseClampPos_x, mouseClampPos_z;
-    
     float distanceToGap_x, distanceToGap_z;
     float floor_length_x, floor_depth_z; 
     float half_floorLength_x, half_floorDepth_z;
