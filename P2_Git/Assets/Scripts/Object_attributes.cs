@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Object_attributes : MonoBehaviour
 {
-    public bool isRotated;  
     public bool isMoveable = true; 
+    public bool isRotated;  
     bool isClamped_left, isClamped_right, isClamped_front, isClamped_back;
 
     public Target attachedTarget;
