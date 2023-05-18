@@ -7,6 +7,7 @@ public class Menu_Handler : MonoBehaviour
 {
     [SerializeField] Raycast raycast;
     [SerializeField] Spawner spawner;
+
     GameObject[] obstacles;
     [SerializeField] TMP_Text txt_Countdown;
     bool prepCountDownStart, gameCountdownStart;
@@ -47,7 +48,7 @@ public class Menu_Handler : MonoBehaviour
             gameCountdownStart = false;
             gameCountdownTimer = 255;
 
-            txt_Countdown.text = "Game Over";
+            txt_Countdown.text = "--";
         }
     }
 
