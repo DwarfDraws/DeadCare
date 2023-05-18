@@ -16,7 +16,7 @@ public class Spawner : MonoBehaviour
     }
     public void SpawnChild(){
 
-        if (!isBlocked)
+        //if (!isBlocked)
         {
             GameObject newChild = GameObject.Instantiate(childPrefab, this.gameObject.transform.position, Quaternion.identity);
             NavMeshAgent newAgent = newChild.GetComponent<NavMeshAgent>();
