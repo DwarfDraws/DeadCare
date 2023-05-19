@@ -7,6 +7,7 @@ public class Canvas_Script : MonoBehaviour
 {
     [SerializeField] Raycast raycast;
     [SerializeField] Object_moveHandler obj_moveHandler;
+    
     [SerializeField] Camera cam;
     [SerializeField] Slider slider_prefab;
     [SerializeField] GameObject pref_consumable;
