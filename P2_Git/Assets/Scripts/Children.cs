@@ -82,7 +82,7 @@ public class Children : MonoBehaviour
         {
             Color color;
             Vector3 widget_pos = other.gameObject.transform.GetChild(0).gameObject.transform.position;
-            isStopped = true;
+            isStopped = true; //animator
             
             if(currentTarget.isDeadly) color = Color.red;
             else
@@ -120,7 +120,7 @@ public class Children : MonoBehaviour
     private void OnTriggerExit(Collider other) 
     {
         IsSafeZone(false);
-        isStopped = false;
+        isStopped = false; //animator
     }
   
     public void Reset()
