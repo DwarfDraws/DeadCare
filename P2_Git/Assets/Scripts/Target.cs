@@ -11,6 +11,7 @@ public class Target : MonoBehaviour
     public bool isConsumable;
     public bool isOpen; 
     public bool isTargeted;
+    bool isTaped;
     bool timerDown;
     float timer;
 
@@ -29,7 +30,15 @@ public class Target : MonoBehaviour
 
             if(timer <= 0)
             {
-                if(isDeadly)
+                if(isTaped)
+                {
+                    isOpen = true;
+                    isTargeted = false;
+                    isTaped = false;
+                    child.Reset();
+                }
+                
+                else if(isDeadly)
                 {
                     isOpen = true;
                     isTargeted = false;
@@ -65,6 +74,11 @@ public class Target : MonoBehaviour
     { 
         if(isDown) timerDown = true;
         else timerDown = false;
+    }
+
+    public void SetTargetTaped()
+    {
+        isTaped = true;
     }
 
     public void InstantiateWidget(Vector3 widget_worldPos, float time, Color color)

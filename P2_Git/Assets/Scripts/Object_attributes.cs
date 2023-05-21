@@ -8,6 +8,7 @@ public class Object_attributes : MonoBehaviour
     
     public bool isMoveable = true; 
     public bool isRotated;  
+    public bool isTaped;
     bool isClamped_left, isClamped_right, isClamped_front, isClamped_back;
 
 
