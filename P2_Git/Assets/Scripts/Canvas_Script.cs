@@ -11,11 +11,9 @@ public class Canvas_Script : MonoBehaviour
     [SerializeField] Camera cam;
     [SerializeField] Slider slider_prefab;
     [SerializeField] GameObject pref_consumable;
-    [SerializeField] GameObject btn_move, btn_tape;
     Canvas canvas;
     Object_attributes pref_consumable_attributes;
     public bool btnConsumable;
-    public bool isMoveBtnPressed, isTapeBtnPressed;
     float pref_consumable_localScaleX, pref_consumable_localScaleZ;
     
     // Start is called before the first frame update
@@ -66,35 +64,5 @@ public class Canvas_Script : MonoBehaviour
             GameObject consumableInst = Instantiate(pref_consumable, raycast.GetMousePos3D(), Quaternion.identity);
                         
         }
-    }
-
-    public void moveButtonPressed(){
-        isMoveBtnPressed = !isMoveBtnPressed;
-
-        if(isMoveBtnPressed)
-        {
-            if(isTapeBtnPressed)
-            {
-                isTapeBtnPressed = false;
-                btn_tape.GetComponent<Image>().color = Color.white;
-            }
-            btn_move.GetComponent<Image>().color = Color.gray;
-        }
-        else btn_move.GetComponent<Image>().color = Color.white;
-    }
-
-    public void tapeButtonPressed(){
-        isTapeBtnPressed = !isTapeBtnPressed;
-
-        if(isTapeBtnPressed)
-        {
-            if(isMoveBtnPressed)
-            {
-                isMoveBtnPressed = false;
-                btn_move.GetComponent<Image>().color = Color.white;
-            }
-            btn_tape.GetComponent<Image>().color = Color.gray;
-        }
-        else btn_tape.GetComponent<Image>().color = Color.white;
     }
 }
