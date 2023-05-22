@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 3376878036064299750}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &9001787472484844374
 BoxCollider:
@@ -87,6 +87,7 @@ MonoBehaviour:
   attachedTarget: {fileID: 0}
   isMoveable: 1
   isRotated: 0
+  isTaped: 0
 --- !u!1001 &2381532387251875494
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -105,7 +106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 549369232210716569, guid: 7b64051c90834ae49a9be6ea9708cd3a, type: 3}
       propertyPath: m_TagString
-      value: obstacle
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 549369232210716569, guid: 7b64051c90834ae49a9be6ea9708cd3a, type: 3}
       propertyPath: m_StaticEditorFlags

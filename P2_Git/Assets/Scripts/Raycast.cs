@@ -43,7 +43,9 @@ public class Raycast : MonoBehaviour
                 if(hitObject.tag == "obstacle")
                 {
 
-                    if(hitObject.GetComponent<Object_attributes>().isMoveable)
+                    
+                    //move
+                    if (canvas_script.isMoveBtnPressed && hitObject.GetComponent<Object_attributes>().isMoveable)
                     {
                         isMoveable = true;                  
                         MousePressed_L = true;
@@ -60,6 +62,7 @@ public class Raycast : MonoBehaviour
                     }
                     else isMoveable = false;
                     
+                    //get attached target
                     if (hit.transform.GetComponent<Object_attributes>().attachedTarget != null)
                     {
                         hasAttachedTarget = true;
@@ -68,6 +71,18 @@ public class Raycast : MonoBehaviour
                         object_attachedTarget = hit.transform.GetComponent<Object_attributes>().attachedTarget;
                     }
                     else hasAttachedTarget = false;
+
+                    //tape
+                    if(canvas_script.isTapeBtnPressed)
+                    {
+                        obj_attributes = hitObject.GetComponent<Object_attributes>();
+                        
+                        //this will be excanged later with textur-change instead isTaped
+                        obj_attributes.isTaped = true;
+                        //
+
+                        if(obj_attributes.attachedTarget != null) obj_attributes.attachedTarget.SetTargetTaped();
+                    }
                 }
                 else 
                 {

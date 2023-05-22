@@ -9,6 +9,7 @@ public class Menu_Handler : MonoBehaviour
     [SerializeField] Spawner spawner;
 
     GameObject[] obstacles;
+    [SerializeField] GameObject btn_move, btn_tape;
     [SerializeField] TMP_Text txt_Countdown;
     bool prepCountDownStart, gameCountdownStart;
     bool spawnChildAfterCountdown;
@@ -74,6 +75,7 @@ public class Menu_Handler : MonoBehaviour
     {    
         foreach(GameObject oa in obstacles)
         {
+            Debug.Log(oa.name);
             oa.GetComponent<Object_attributes>().isMoveable = false;
         }
 
@@ -83,6 +85,9 @@ public class Menu_Handler : MonoBehaviour
 
     void NextPhase()
     {
+        btn_move.SetActive(false);
+        btn_tape.SetActive(false);
+        
         MakeObjectsUnmoveable();
         txt_Countdown.text = "movement locked";
         if(childrenAmount > 0) spawner.SpawnChild();
