@@ -87,6 +87,7 @@ MonoBehaviour:
   attachedTarget: {fileID: 0}
   isMoveable: 1
   isRotated: 0
+  isTaped: 0
 --- !u!1001 &7758435689923309493
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101,7 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 899083169207669629, guid: c8c909d9e4ad3e247ab9c83afe7ea428, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 899083169207669629, guid: c8c909d9e4ad3e247ab9c83afe7ea428, type: 3}
       propertyPath: m_StaticEditorFlags

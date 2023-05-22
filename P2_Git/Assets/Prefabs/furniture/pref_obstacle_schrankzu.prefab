@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 4174211029175245936}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!65 &573475329624198476
 BoxCollider:
@@ -87,6 +87,7 @@ MonoBehaviour:
   attachedTarget: {fileID: 0}
   isMoveable: 0
   isRotated: 0
+  isTaped: 0
 --- !u!1001 &3826202925995199974
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -139,17 +140,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 5712660380299424470, guid: 444076a636d99cf4a9da2963a72d6801, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6becfc227f8ca754dae14fd93a3021df, type: 2}
     - target: {fileID: 8196116973945566774, guid: 444076a636d99cf4a9da2963a72d6801, type: 3}
       propertyPath: m_Name
       value: schrankzu
       objectReference: {fileID: 0}
     - target: {fileID: 8196116973945566774, guid: 444076a636d99cf4a9da2963a72d6801, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8196116973945566774, guid: 444076a636d99cf4a9da2963a72d6801, type: 3}
       propertyPath: m_TagString
-      value: obstacle
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8196116973945566774, guid: 444076a636d99cf4a9da2963a72d6801, type: 3}
       propertyPath: m_StaticEditorFlags

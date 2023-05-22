@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 473286166205490962}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!65 &5901956909122174069
 BoxCollider:
@@ -66,7 +66,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.75, y: 0.5, z: 0.125}
+  m_Extents: {x: 0.9, y: 0.5, z: 0.2}
   m_MoveThreshold: 0
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -87,6 +87,7 @@ MonoBehaviour:
   attachedTarget: {fileID: 0}
   isMoveable: 1
   isRotated: 0
+  isTaped: 0
 --- !u!1001 &1175940562327505281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -145,7 +146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3940796825482902143, guid: af6051c2450d4804d946428b0dedea5a, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3940796825482902143, guid: af6051c2450d4804d946428b0dedea5a, type: 3}
       propertyPath: m_StaticEditorFlags

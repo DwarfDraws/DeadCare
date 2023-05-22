@@ -75,6 +75,7 @@ public class Menu_Handler : MonoBehaviour
     {    
         foreach(GameObject oa in obstacles)
         {
+            Debug.Log(oa);
             oa.GetComponent<Object_attributes>().isMoveable = false;
         }
 
