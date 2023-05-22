@@ -27,19 +27,21 @@ public class NavMesh : MonoBehaviour
         InitTargets();
     }
 
-    private void Update() {
+    private void Update() 
+    {
                
         //EDIT: Random walk
         //in every frame try to find a new destination for the agents if they're stopped
-        if(stoppedAgents.Count > 0){
-            List<NavMeshAgent> stoppedAgents_Copy = stoppedAgents;
-            foreach(NavMeshAgent a in stoppedAgents_Copy){
+        if(stoppedAgents.Count > 0)
+        {
+            foreach(NavMeshAgent a in stoppedAgents)
+            {
                 //Debug.Log(stoppedAgents.Count);
                 UpdateAllOpenTargets(a);
                 if(GetOpenTargets().Count > 0)
                 { 
                     RecalculatePath(a);
-                    Debug.Log("new open Path found!");
+                    Debug.Log("new open Path found");
                 }
             }
         }
@@ -140,7 +142,7 @@ public class NavMesh : MonoBehaviour
         if(stoppedAgents.Contains(a)) stoppedAgents.Remove(a);
     }
 
-    void StopAgent(NavMeshAgent agent)
+    public void StopAgent(NavMeshAgent agent)
     {
         Debug.Log("StopAgent(): " + agent.name);
         agent.isStopped = true;

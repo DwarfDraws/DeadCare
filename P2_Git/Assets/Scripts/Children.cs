@@ -52,7 +52,15 @@ public class Children : MonoBehaviour
         beginTimer += Time.deltaTime;
         if(beginTimer >= 0.05 && !isPathInitialized)
         {            
-            if(settings.isTutorial) navMesh.SetSpecificPath(attachedAgent, tutorialTargets[tutorialIndex]);
+            if(settings.isTutorial) 
+            {
+                if(tutorialTargets.Count != 0) navMesh.SetSpecificPath(attachedAgent, tutorialTargets[tutorialIndex]);
+                else
+                {
+                    Debug.Log("!!!! no tutorial-target set !!!!");
+                    navMesh.StopAgent(attachedAgent);
+                }
+            }
             else navMesh.RecalculatePath(attachedAgent);
             isPathInitialized = true;
         }

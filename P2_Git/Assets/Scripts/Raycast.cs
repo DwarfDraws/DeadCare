@@ -74,13 +74,10 @@ public class Raycast : MonoBehaviour
 
                     //tape
                     if(canvas_script.isTapeBtnPressed)
-                    {
-                        obj_attributes = hitObject.GetComponent<Object_attributes>();
-                        
-                        //this will be excanged later with textur-change instead isTaped
-                        obj_attributes.isTaped = true;
-                        //
+                    {   
+                        hitObject.GetChild(0).gameObject.SetActive(true);
 
+                        obj_attributes = hitObject.GetComponent<Object_attributes>();
                         if(obj_attributes.attachedTarget != null) obj_attributes.attachedTarget.SetTargetTaped();
                     }
                 }

@@ -6,6 +6,9 @@ public class Target : MonoBehaviour
 {
     Widget widget;
     Canvas_Script canvas;
+
+    [SerializeField] GameObject attachedObject;
+
     public float waitTime_seconds = 2.0f;   
     public bool isDeadly;
     public bool isConsumable;
@@ -35,6 +38,7 @@ public class Target : MonoBehaviour
                     isOpen = true;
                     isTargeted = false;
                     isTaped = false;
+                    if(attachedObject != null) attachedObject.transform.GetChild(0).gameObject.SetActive(false);
                     child.Reset();
                 }
                 
