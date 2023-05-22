@@ -8,7 +8,8 @@ public class Children : MonoBehaviour
 
     Settings_script settings;
     Canvas_Script canvas;
-    //public Animator animator;
+    
+    [SerializeField] Animator animator;
     [SerializeField] List<Target> tutorialTargets;
     public Target currentTarget;
     Target tempOldTarget;
@@ -40,23 +41,13 @@ public class Children : MonoBehaviour
 
     void Update()
     {
-        /*
+        
         //animator
-        if (attachedAgent.velocity != Vector3.zero)
-        {
-            animator.SetBool("iswalking", true);
-            animator.SetBool("isidle", false); ;
-
-        }
-        else
-        {
-            animator.SetBool("iswalking", false);
-            animator.SetBool("isidle", true);
-
-
-        }
+        
+        animator.SetBool("isidle", isStopped);
+        
         //animator
-        */
+    
 
         beginTimer += Time.deltaTime;
         if(beginTimer >= 0.05 && !isPathInitialized)
@@ -91,7 +82,7 @@ public class Children : MonoBehaviour
         {
             Color color;
             Vector3 widget_pos = other.gameObject.transform.GetChild(0).gameObject.transform.position;
-
+            isStopped = true; //animator
             
             if(currentTarget.isDeadly) color = Color.red;
             else
@@ -123,11 +114,13 @@ public class Children : MonoBehaviour
                 consumableTarget.isOpen = false;
             }            
         }
+        
     }
 
     private void OnTriggerExit(Collider other) 
     {
         IsSafeZone(false);
+        isStopped = false; //animator
     }
   
     public void Reset()

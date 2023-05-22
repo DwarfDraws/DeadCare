@@ -7,11 +7,13 @@ public class Menu_Handler : MonoBehaviour
 {
     [SerializeField] Raycast raycast;
     [SerializeField] Spawner spawner;
+
     GameObject[] obstacles;
     [SerializeField] TMP_Text txt_Countdown;
     bool prepCountDownStart, gameCountdownStart;
     bool spawnChildAfterCountdown;
     float prepCountdownTimer, gameCountdownTimer;
+    int childrenAmount;
     int displayTimer;
 
     private void Start() 
@@ -46,7 +48,7 @@ public class Menu_Handler : MonoBehaviour
             gameCountdownStart = false;
             gameCountdownTimer = 255;
 
-            txt_Countdown.text = "Game Over";
+            txt_Countdown.text = "--";
         }
     }
 
@@ -59,9 +61,9 @@ public class Menu_Handler : MonoBehaviour
         gameCountdownTimer = f;
     }
 
-    public void SpawnChildAfterCountdown(bool b)
+    public void SpawnChildrenAfterCountdown(int amount)
     {
-        spawnChildAfterCountdown = b;
+        childrenAmount = amount;
     }
 
     public void StartCountdown(){
@@ -83,7 +85,7 @@ public class Menu_Handler : MonoBehaviour
     {
         MakeObjectsUnmoveable();
         txt_Countdown.text = "movement locked";
-        if(spawnChildAfterCountdown) spawner.SpawnChild();
+        if(childrenAmount > 0) spawner.SpawnChild();
 
         gameCountdownStart = true;
     }

@@ -39,7 +39,7 @@ public class Target : MonoBehaviour
                 else child.Reset();
 
                 Destroy(widget.gameObject);
-                timer = waitTime_seconds;
+                ResetTimer();
             }
         }
 
@@ -54,7 +54,7 @@ public class Target : MonoBehaviour
 
                 Destroy(widget.gameObject);
                 ToggleDown(true);
-                timer = waitTime_seconds;
+                ResetTimer();
             }
         }
 
@@ -67,11 +67,17 @@ public class Target : MonoBehaviour
         else timerDown = false;
     }
 
-    public void InstantiateWidget(Vector3 widget_worldPos, float time, Color color){
+    public void InstantiateWidget(Vector3 widget_worldPos, float time, Color color)
+    {
         widget = canvas.InstantiateWidget(widget_worldPos, waitTime_seconds, color);
+        ResetTimer();
     }
 
     public void DestroyWidget(){
         if(widget != null) Destroy(widget.gameObject);
+    }
+
+    void ResetTimer(){
+        timer = waitTime_seconds;
     }
 }
