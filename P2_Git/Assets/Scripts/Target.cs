@@ -39,6 +39,7 @@ public class Target : MonoBehaviour
                     isTargeted = false;
                     isTaped = false;
                     if(attachedObject != null) attachedObject.transform.GetChild(0).gameObject.SetActive(false);
+                    else Debug.Log("hallo");
                     child.Reset();
                 }
                 

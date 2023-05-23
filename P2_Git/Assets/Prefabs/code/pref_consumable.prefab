@@ -132,8 +132,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0b761287f9862b4ebe3d337d87e55d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRotated: 0
+  attachedTarget: {fileID: 0}
   isMoveable: 1
+  isRotated: 0
+  isTaped: 0
 --- !u!114 &-3658021604067511530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499a29b21a31f28478ee7d4f0c6740ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attachedObject: {fileID: 0}
   waitTime_seconds: 4
   isDeadly: 0
   isConsumable: 1
@@ -171,9 +174,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 2.0259933
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.0020332634, z: 0}
 --- !u!114 &-5000165414723017129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90133cfb038cea48a870a3a5558e891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 0}
   existenceTimeSeconds: 2
 --- !u!1 &7087333286062599367
 GameObject:
