@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: 9a0e2750ee938c24990524218535017a
+guid: 9e6e7baff99bc794a857235f5cc1c78b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: side
-    second: {fileID: 2100000, guid: 1143f7d837cbd8a47a1b8d79d5e3f48a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: top
-    second: {fileID: 2100000, guid: 33056cb0f55e2c841bc65b21e35cc9f1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: wallmat
-    second: {fileID: 2100000, guid: 42c7a78ae5bbb524e8d9a388fabf215e, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -62,7 +47,7 @@ ModelImporter:
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
