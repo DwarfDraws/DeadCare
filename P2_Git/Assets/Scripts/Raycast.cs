@@ -27,10 +27,15 @@ public class Raycast : MonoBehaviour
     float localLength_x_Object, localLength_z_Object;
     float obj_posY;
 
+   /// //////////
+   //Hakon
+    private GameObject halochild;
+    // ////////
+
 
     void Update()
     {
-
+   
         //Object Detection (Left Mouse-Click)
         if (Input.GetMouseButtonDown(0) && !MousePressed_L)
         {
@@ -42,10 +47,21 @@ public class Raycast : MonoBehaviour
 
                 if(hitObject.tag == "obstacle")
                 {
-
+                    ////////////////////////
+                    //turnon halo -> by Hakon
+                    if(hitObject.transform.Find("halo").gameObject)
+                    { 
+                    halochild = hitObject.transform.Find("halo").gameObject;
                     
-                    //move
-                    if (canvas_script.isMoveBtnPressed && hitObject.GetComponent<Object_attributes>().isMoveable)
+                        if (halochild.CompareTag("halo"))
+                        {
+                            halochild.SetActive(true);
+
+                        }
+                    }
+                    ////////////////////////////////
+                        //move
+                        if (canvas_script.isMoveBtnPressed && hitObject.GetComponent<Object_attributes>().isMoveable)
                     {
                         isMoveable = true;                  
                         MousePressed_L = true;
@@ -84,9 +100,11 @@ public class Raycast : MonoBehaviour
                 else 
                 {
                     MousePressed_L = false;
-                }  
+
+                }
             }
         }
+
 
         if (Input.GetMouseButton(0))
         {
@@ -135,7 +153,15 @@ public class Raycast : MonoBehaviour
         //EDIT weist ja
         if (Input.GetMouseButtonUp(0))
         {
-            if(MousePressed_L){
+            //////////////////////////////////
+            //Hakon
+            if (halochild != null)
+            {
+                halochild.SetActive(false);
+            }
+            
+            /////////////////////////////////
+            if (MousePressed_L){
                 MousePressed_L = false;
                 missingOffset = false;
 
@@ -161,6 +187,8 @@ public class Raycast : MonoBehaviour
                 consumable_ghostObject.position = mouse_Pos3D;
             }
         }
+
+        
     }
 
     public Vector3 GetMousePos3D(){

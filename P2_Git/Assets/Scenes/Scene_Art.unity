@@ -477,11 +477,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 551571668a8b4f04cb91a49e82a7c922, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.000221
+      value: -0.00102
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 551571668a8b4f04cb91a49e82a7c922, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.000455
+      value: -0.00045
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 551571668a8b4f04cb91a49e82a7c922, type: 3}
       propertyPath: m_LocalRotation.w
@@ -518,6 +518,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 551571668a8b4f04cb91a49e82a7c922, type: 3}
       propertyPath: m_Name
       value: Kallax (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 551571668a8b4f04cb91a49e82a7c922, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 551571668a8b4f04cb91a49e82a7c922, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4725,7 +4729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 551571668a8b4f04cb91a49e82a7c922, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.481
+      value: 0.518
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 551571668a8b4f04cb91a49e82a7c922, type: 3}
       propertyPath: m_LocalPosition.z
