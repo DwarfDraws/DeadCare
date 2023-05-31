@@ -47,24 +47,26 @@ public class Raycast : MonoBehaviour
 
                 if(hitObject.tag == "obstacle")
                 {
-                    ////////////////////////
-                    //turnon halo -> by Hakon
-                    if(hitObject.transform.Find("halo").gameObject)
-                    { 
-                    halochild = hitObject.transform.Find("halo").gameObject;
-                    
-                        if (halochild.CompareTag("halo"))
-                        {
-                            halochild.SetActive(true);
-
-                        }
-                    }
-                    ////////////////////////////////
-                        //move
+                    //move
                         if (canvas_script.isMoveBtnPressed && hitObject.GetComponent<Object_attributes>().isMoveable)
                     {
                         isMoveable = true;                  
                         MousePressed_L = true;
+                        
+                        ////////////////////////
+                        //turnon halo -> by Hakon
+                        if(hitObject.transform.Find("halo").gameObject)
+                        { 
+                            halochild = hitObject.transform.Find("halo").gameObject;
+                    
+                            if (halochild.CompareTag("halo"))
+                            {
+                                halochild.SetActive(true);
+
+                            }
+                        }
+                        ////////////////////////////////
+                        
 
                         obj_attributes = hitObject.GetComponent<Object_attributes>();
                         localLength_x_Object = hitObject.lossyScale.x;
