@@ -94,7 +94,13 @@ public class Raycast : MonoBehaviour
                     if(canvas_script.isTapeBtnPressed)
                     {   
                         hitObject.GetChild(0).gameObject.SetActive(true);
+                        ////////////////////////
+                        //turnon halo -> by Hakon
+                        halochild = hitObject.GetChild(1).gameObject;
+                        halochild.SetActive(true);
 
+
+                        ////////////////////////////////
                         obj_attributes = hitObject.GetComponent<Object_attributes>();
                         if(obj_attributes.attachedTarget != null) obj_attributes.attachedTarget.SetTargetTaped();
                     }
