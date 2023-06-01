@@ -92,7 +92,7 @@ public class Children : MonoBehaviour
             Vector3 widget_pos = other.gameObject.transform.GetChild(0).gameObject.transform.position;
             isStopped = true; //animator
             
-            if(currentTarget.isDeadly) color = Color.red;
+            if(currentTarget.isDeadly) color = Color.green; // TEST: Changed color to green
             else
             {
                 color = Color.green;

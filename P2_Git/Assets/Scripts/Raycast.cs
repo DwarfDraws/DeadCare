@@ -45,7 +45,7 @@ public class Raycast : MonoBehaviour
             { 
                 hitObject = hit.transform; //object transform
 
-                if(hitObject.tag == "obstacle")
+                if(hitObject.CompareTag("obstacle"))
                 {
                     //move
                         if (canvas_script.isMoveBtnPressed && hitObject.GetComponent<Object_attributes>().isMoveable)
@@ -59,10 +59,10 @@ public class Raycast : MonoBehaviour
                         { 
                             halochild = hitObject.transform.Find("halo").gameObject;
                     
-                            if (halochild.CompareTag("halo"))
+                            if (halochild.CompareTag("moveHalo"))
                             {
                                 halochild.SetActive(true);
-
+                                Debug.Log("Moveable!");
                             }
                         }
                         ////////////////////////////////
@@ -91,13 +91,22 @@ public class Raycast : MonoBehaviour
                     else hasAttachedTarget = false;
 
                     //tape
-                    if(canvas_script.isTapeBtnPressed)
+                    if(canvas_script.isTapeBtnPressed && !hitObject.GetComponent<Object_attributes>().isMoveable)
                     {   
                         hitObject.GetChild(0).gameObject.SetActive(true);
                         ////////////////////////
-                        //turnon halo -> by Hakon
-                        halochild = hitObject.GetChild(1).gameObject;
-                        halochild.SetActive(true);
+                        //turnon halo -> by Hakon & Nastja fixed
+                        if(hitObject.transform.Find("halo").gameObject)
+                        { 
+                            halochild = hitObject.transform.Find("halo").gameObject;
+                    
+                            if (halochild.CompareTag("tapeHalo"))
+                            {
+                                halochild.SetActive(true);
+                                Debug.Log("Tapeable!");
+
+                            }
+                        }
 
 
                         ////////////////////////////////

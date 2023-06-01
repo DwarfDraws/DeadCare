@@ -38,9 +38,9 @@ public class Target : MonoBehaviour
                     isOpen = true;
                     isTargeted = false;
                     isTaped = false;
-                    if(attachedObject != null) attachedObject.transform.GetChild(0).gameObject.SetActive(false);
-                    else Debug.Log("hallo");
-                    child.Reset();
+                    if(attachedObject != null) attachedObject.SetActive(false);
+                    else Debug.Log("No Tape removed");
+                    child.Reset(); 
                 }
                 
                 else if(isDeadly)
