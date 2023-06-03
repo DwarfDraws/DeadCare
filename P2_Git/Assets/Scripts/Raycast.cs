@@ -27,11 +27,11 @@ public class Raycast : MonoBehaviour
     float localLength_x_Object, localLength_z_Object;
     float obj_posY;
 
-   /// //////////
-   //Hakon
+    //Hakon
     private GameObject halochild;
-    // ////////
 
+    /// Tape Counter by Anastasia
+    public int tapeCounter = 5;
 
     void Update()
     {
@@ -54,7 +54,7 @@ public class Raycast : MonoBehaviour
                         MousePressed_L = true;
                         
                         ////////////////////////
-                        //turnon halo -> by Hakon
+                        //turnon halo -> by Hakon & Anastasia
                         if(hitObject.transform.Find("halo").gameObject)
                         { 
                             halochild = hitObject.transform.Find("halo").gameObject;
@@ -93,9 +93,9 @@ public class Raycast : MonoBehaviour
                     //tape
                     if(canvas_script.isTapeBtnPressed && !hitObject.GetComponent<Object_attributes>().isMoveable)
                     {   
-                        hitObject.GetChild(0).gameObject.SetActive(true);
+                        
                         ////////////////////////
-                        //turnon halo -> by Hakon & Nastja fixed
+                        //turnon halo -> by Hakon & Anastasia
                         if(hitObject.transform.Find("halo").gameObject)
                         { 
                             halochild = hitObject.transform.Find("halo").gameObject;
@@ -107,11 +107,16 @@ public class Raycast : MonoBehaviour
 
                             }
                         }
-
-
                         ////////////////////////////////
-                        obj_attributes = hitObject.GetComponent<Object_attributes>();
-                        if(obj_attributes.attachedTarget != null) obj_attributes.attachedTarget.SetTargetTaped();
+                        if (tapeCounter > 0) {
+                            
+                            hitObject.GetChild(0).gameObject.SetActive(true);
+                            obj_attributes = hitObject.GetComponent<Object_attributes>();
+                            if(obj_attributes.attachedTarget != null) obj_attributes.attachedTarget.SetTargetTaped();
+                            
+                            tapeCounter--; // Anastasia
+                            //include ButtonText (Canvas) update of current tape count
+                        }
                     }
                 }
                 else 
@@ -176,8 +181,8 @@ public class Raycast : MonoBehaviour
             {
                 halochild.SetActive(false);
             }
-            
             /////////////////////////////////
+            /// 
             if (MousePressed_L){
                 MousePressed_L = false;
                 missingOffset = false;

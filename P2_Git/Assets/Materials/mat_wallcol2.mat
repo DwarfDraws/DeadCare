@@ -9,11 +9,11 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: mat_wallcol2
   m_Shader: {fileID: -6465566751694194690, guid: a29f12b3096ed9549b15f2bc46d3a230, type: 3}
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 2100000, guid: 5568c29432fbcc946be4607192a73025, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -22,44 +22,11 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs:
-    - _SampleTexture2D_60a263299efe493797c4422345be6162_Texture_1:
-        m_Texture: {fileID: 2800000, guid: 4eba1a97feaf8fb4e8c5cf4b55092f40, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _mask:
-        m_Texture: {fileID: 2800000, guid: e7f1d8ed4427f6e48a9a20d38673cbc7, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _normal:
-        m_Texture: {fileID: 2800000, guid: 4eba1a97feaf8fb4e8c5cf4b55092f40, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _saturated:
-        m_Texture: {fileID: 2800000, guid: 5e68998e16b069c4ba7918f0567721f6, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+    m_TexEnvs: []
     m_Ints: []
-    m_Floats:
-    - _QueueControl: 0
-    - _QueueOffset: 0
-    - _ao: 0
-    - _smoothnes: -3
+    m_Floats: []
     m_Colors:
-    - _wall: {r: 0.4943396, g: 1, b: 0.50683033, a: 0}
-    - _wood: {r: 0.9339623, g: 0.71856356, b: 0.593859, a: 0}
+    - _wall: {r: 0.86103505, g: 0.8679245, b: 0.37209758, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1522578512059651966
 MonoBehaviour:

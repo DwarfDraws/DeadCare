@@ -17,6 +17,8 @@ public class Target : MonoBehaviour
     bool isTaped;
     bool timerDown;
     float timer;
+    
+
 
     private void Start() {
         canvas = GameObject.Find("Canvas").GetComponent<Canvas_Script>();

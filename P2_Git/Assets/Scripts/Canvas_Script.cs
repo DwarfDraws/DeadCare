@@ -71,7 +71,7 @@ public class Canvas_Script : MonoBehaviour
 
     public void moveButtonPressed(){
         isMoveBtnPressed = !isMoveBtnPressed;
-
+        
         if(isMoveBtnPressed)
         {
             if(isTapeBtnPressed)
