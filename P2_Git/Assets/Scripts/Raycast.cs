@@ -108,8 +108,18 @@ public class Raycast : MonoBehaviour
                             }
                         }
                         ////////////////////////////////
-                        if (tapeCounter > 0) {
+                        
+                        
+                        if (hitObject.GetChild(0).gameObject.activeSelf)
+                        {
+                            hitObject.GetChild(0).gameObject.SetActive(false);
+                            obj_attributes = hitObject.GetComponent<Object_attributes>();
+                            if(obj_attributes.attachedTarget != null) obj_attributes.attachedTarget.SetTargetUntaped();
                             
+                            tapeCounter++;
+                        }
+                        else if (tapeCounter > 0) 
+                        {
                             hitObject.GetChild(0).gameObject.SetActive(true);
                             obj_attributes = hitObject.GetComponent<Object_attributes>();
                             if(obj_attributes.attachedTarget != null) obj_attributes.attachedTarget.SetTargetTaped();
@@ -117,6 +127,7 @@ public class Raycast : MonoBehaviour
                             tapeCounter--; // Anastasia
                             //include ButtonText (Canvas) update of current tape count
                         }
+                        
                     }
                 }
                 else 

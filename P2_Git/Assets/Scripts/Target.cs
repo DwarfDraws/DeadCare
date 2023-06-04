@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Target : MonoBehaviour
@@ -80,6 +81,11 @@ public class Target : MonoBehaviour
     public void SetTargetTaped()
     {
         isTaped = true;
+    }
+
+    public void SetTargetUntaped() //Added by Anastasia
+    {
+        isTaped = false;
     }
 
     public void ToggleDown(bool isDown) 
