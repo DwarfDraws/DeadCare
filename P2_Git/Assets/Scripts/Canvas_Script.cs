@@ -27,10 +27,9 @@ public class Canvas_Script : MonoBehaviour
         pref_consumable_localScaleZ = pref_consumable.transform.localScale.z;
     }
 
-    public Widget InstantiateWidget(Vector3 widget_worldPos, float time, Color color)
+    public Widget InstantiateWidget(Vector3 widget_worldPos, Color color)
     {
         Slider widget_instance = Slider.Instantiate(slider_prefab, widget_worldPos, Quaternion.identity, canvas.transform);
-        widget_instance.maxValue = time;
         
         Image fillColor_image = widget_instance.gameObject.transform.GetChild(1).GetChild(0).transform.GetComponent<Image>();
         fillColor_image.color = color;

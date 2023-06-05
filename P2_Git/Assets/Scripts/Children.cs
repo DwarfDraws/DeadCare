@@ -22,7 +22,6 @@ public class Children : MonoBehaviour
     float beginTimer;
     public bool isStopped;
     bool isPathInitialized;
-    bool timerDown;
     bool startTimer;
     bool isInSafeZone;
     
@@ -37,6 +36,7 @@ public class Children : MonoBehaviour
         attachedAgent = this.GetComponent<NavMeshAgent>();
         currentTarget = null;
         navMesh = GameObject.Find("NavMesh_Handler").GetComponent<NavMesh>();
+
     }
 
     void Update()
@@ -85,23 +85,25 @@ public class Children : MonoBehaviour
     {
         GameObject triggerObject = other.gameObject;
         
-        //normal target
+        //current target
         if (triggerObject.GetComponent<Target>() == currentTarget)
         {
             Color color;
             Vector3 widget_pos = other.gameObject.transform.GetChild(0).gameObject.transform.position;
             isStopped = true; //animator
             
+            color = Color.green;
+            /*
             if(currentTarget.isDeadly) color = Color.green; // TEST: Changed color to green
             else
             {
                 color = Color.green;
                 isInSafeZone = true;
             } 
-            currentTarget.InstantiateWidget(widget_pos, waitTime_seconds, color);
+            */
+            currentTarget.InstantiateWidget(widget_pos, color);
 
             currentTarget.isOpen = false;
-            timerDown = true;
             startTimer = true;
         }
 
@@ -166,7 +168,6 @@ public class Children : MonoBehaviour
     public void ResetTimer()
     {
         startTimer = false;
-        timerDown = false;
     }
 
 

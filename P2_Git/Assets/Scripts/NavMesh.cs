@@ -13,13 +13,8 @@ public class NavMesh : MonoBehaviour
     
     [SerializeField] List<GameObject> target_transforms = new List<GameObject>();
 
-    private bool isPathInitialized;
-    float timer;
-
 
     private void Start() {
-        timer = 0.0f;
-        isPathInitialized = false;  
 
         path = new NavMeshPath();
         GenerateRandomSeed();

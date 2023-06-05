@@ -16,7 +16,7 @@ public class Consumables : MonoBehaviour
 
     private void Start() 
     {
-        timer = existenceTimeSeconds;
+        timer = 1.0f;
         settings = GameObject.Find("Settings").GetComponent<Settings_script>();
 
         if(settings.consumablesHaveExistenceTimer)
@@ -24,7 +24,7 @@ public class Consumables : MonoBehaviour
             Vector3 widget_pos = this.transform.GetChild(0).gameObject.transform.position;
 
             canvas = GameObject.Find("Canvas").GetComponent<Canvas_Script>();
-            widget = canvas.InstantiateWidget(widget_pos, existenceTimeSeconds, Color.blue);
+            widget = canvas.InstantiateWidget(widget_pos, Color.blue);
             StartExistenceTimer(true);
         }
     }
@@ -37,7 +37,7 @@ public class Consumables : MonoBehaviour
 
     public void Timer()
     {
-        timer -= Time.deltaTime;
+        timer -= Time.deltaTime / existenceTimeSeconds;
         widget.UpdateWidget(timer);
 
         if(timer <= 0)

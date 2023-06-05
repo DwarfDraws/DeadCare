@@ -6,12 +6,41 @@ public class Object_attributes : MonoBehaviour
 {
     public Target attachedTarget;
     
+    [SerializeField] GameObject tape;
+    [SerializeField] Animation animaton;
+
     public bool isMoveable = true; 
     public bool isRotated; 
     public bool isTaped; 
     bool isClamped_left, isClamped_right, isClamped_front, isClamped_back;
 
 
+    public void Start(){
+        if(animaton != null){
+            animaton.Play("anim_placeholder");
+            animaton["anim_placeholder"].speed = 0;
+        }
+    }
+
+    public void SetTapeActive(bool isActive)
+    {
+        if(tape != null){
+            if (isActive){
+                isTaped = true;
+                tape.SetActive(true);
+                attachedTarget.SetTargetTaped();
+            }
+            else{
+                isTaped = false;
+                tape.SetActive(false);
+                attachedTarget.SetTargetUntaped();
+            }
+        }
+    }
+
+    public void Animate(float timer){
+        if(animaton != null) animaton["anim_placeholder"].normalizedTime = 1.0f-timer;
+    }
 
     public bool IsClamped_Left(){ return isClamped_left; } 
     public bool IsClamped_Right(){ return isClamped_right; } 

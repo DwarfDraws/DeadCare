@@ -7,8 +7,7 @@ public class Target : MonoBehaviour
 {
     Widget widget;
     Canvas_Script canvas;
-
-    [SerializeField] GameObject attachedObject;
+    public Object_attributes attachedObject;
 
     public float waitTime_seconds = 2.0f;   
     public bool isDeadly;
@@ -23,7 +22,7 @@ public class Target : MonoBehaviour
 
     private void Start() {
         canvas = GameObject.Find("Canvas").GetComponent<Canvas_Script>();
-        timer = waitTime_seconds;
+        timer = 1.0f;
         timerDown = true;
     }
 
@@ -32,7 +31,8 @@ public class Target : MonoBehaviour
         //timer goes down
         if(timerDown)
         {
-            timer -= Time.deltaTime;
+            timer -= Time.deltaTime / waitTime_seconds;
+            Debug.Log(timer);
 
             if(timer <= 0)
             {
@@ -41,8 +41,7 @@ public class Target : MonoBehaviour
                     isOpen = true;
                     isTargeted = false;
                     isTaped = false;
-                    if(attachedObject != null) attachedObject.SetActive(false);
-                    else Debug.Log("No Tape removed");
+                    attachedObject.SetTapeActive(false);
                     child.Reset(); 
                 }
                 
@@ -63,9 +62,9 @@ public class Target : MonoBehaviour
         //timer goes up
         else if(!timerDown)
         {
-            timer += Time.deltaTime;
+            timer += Time.deltaTime / waitTime_seconds;
 
-            if (timer > waitTime_seconds)
+            if (timer > 1.0f)
             { 
                 child.Reset();
 
@@ -74,7 +73,8 @@ public class Target : MonoBehaviour
                 ResetTimer();
             }
         }
-
+        
+        if(!isTaped && attachedObject != null) attachedObject.Animate(timer);
         widget.UpdateWidget(timer);
     }
 
@@ -94,9 +94,9 @@ public class Target : MonoBehaviour
         else timerDown = false;
     }
 
-    public void InstantiateWidget(Vector3 widget_worldPos, float time, Color color)
+    public void InstantiateWidget(Vector3 widget_worldPos, Color color)
     {
-        widget = canvas.InstantiateWidget(widget_worldPos, waitTime_seconds, color);
+        widget = canvas.InstantiateWidget(widget_worldPos, color);
         ResetTimer();
     }
 
@@ -105,6 +105,6 @@ public class Target : MonoBehaviour
     }
 
     void ResetTimer(){
-        timer = waitTime_seconds;
+        timer = 1.0f;
     }
 }

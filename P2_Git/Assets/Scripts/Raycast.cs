@@ -103,29 +103,30 @@ public class Raycast : MonoBehaviour
                             if (halochild.CompareTag("tapeHalo"))
                             {
                                 halochild.SetActive(true);
-                                Debug.Log("Tapeable!");
-
                             }
                         }
                         ////////////////////////////////
                         
                         
-                        if (hitObject.GetChild(0).gameObject.activeSelf)
+                        obj_attributes = hitObject.GetComponent<Object_attributes>();
+                        if (obj_attributes.isTaped)
                         {
-                            hitObject.GetChild(0).gameObject.SetActive(false);
-                            obj_attributes = hitObject.GetComponent<Object_attributes>();
-                            if(obj_attributes.attachedTarget != null) obj_attributes.attachedTarget.SetTargetUntaped();
+                            if(obj_attributes.attachedTarget != null){
+                                obj_attributes.attachedTarget.SetTargetUntaped(); //!!!!!!!! Should not be here, only on Obj itselfe
+                                obj_attributes.SetTapeActive(false);
+                            } 
                             
                             tapeCounter++;
                         }
                         else if (tapeCounter > 0) 
                         {
-                            hitObject.GetChild(0).gameObject.SetActive(true);
-                            obj_attributes = hitObject.GetComponent<Object_attributes>();
-                            if(obj_attributes.attachedTarget != null) obj_attributes.attachedTarget.SetTargetTaped();
-                            
-                            tapeCounter--; // Anastasia
-                            //include ButtonText (Canvas) update of current tape count
+                            if(obj_attributes.attachedTarget != null){ 
+                                obj_attributes.attachedTarget.SetTargetTaped(); //!!!!!!!! same problem
+                                obj_attributes.SetTapeActive(true);
+                                tapeCounter--; // Anastasia
+                                //include ButtonText (Canvas) update of current tape count
+                            } 
+
                         }
                         
                     }
