@@ -11,6 +11,7 @@ public class Menu_Handler : MonoBehaviour
     GameObject[] obstacles;
     [SerializeField] GameObject btn_move, btn_tape;
     [SerializeField] TMP_Text txt_Countdown;
+    [SerializeField] TMP_Text txt_tapeCounter;
     bool prepCountDownStart, gameCountdownStart;
     bool spawnChildAfterCountdown;
     float prepCountdownTimer, gameCountdownTimer;
@@ -82,7 +83,6 @@ public class Menu_Handler : MonoBehaviour
         raycast.isMoveable = false;
     }
 
-
     void NextPhase()
     {
         btn_move.SetActive(false);
@@ -93,6 +93,10 @@ public class Menu_Handler : MonoBehaviour
         if(childrenAmount > 0) spawner.SpawnChild();
 
         gameCountdownStart = true;
+    }
+
+    public void UpdateTapeCounter(int count){
+        txt_tapeCounter.text = count.ToString();
     }
 
 }

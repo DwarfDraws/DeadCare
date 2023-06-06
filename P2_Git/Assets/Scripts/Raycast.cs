@@ -7,6 +7,7 @@ public class Raycast : MonoBehaviour
     [SerializeField] NavMesh navMesh;
     [SerializeField] Canvas_Script canvas_script;
     [SerializeField] Object_moveHandler object_MoveHandler;
+    [SerializeField] Menu_Handler menu_Handler;
     Object_attributes obj_attributes;
     Target object_attachedTarget;
     
@@ -26,12 +27,17 @@ public class Raycast : MonoBehaviour
     bool hasAttachedTarget;
     float localLength_x_Object, localLength_z_Object;
     float obj_posY;
+    public int tapeCounter;
+
 
     //Hakon
     private GameObject halochild;
 
-    /// Tape Counter by Anastasia
-    public int tapeCounter = 5;
+
+
+    private void Start() {
+        menu_Handler.UpdateTapeCounter(tapeCounter);
+    }
 
     void Update()
     {
@@ -117,14 +123,16 @@ public class Raycast : MonoBehaviour
                             } 
                             
                             tapeCounter++;
+                            menu_Handler.UpdateTapeCounter(tapeCounter);
                         }
                         else if (tapeCounter > 0) 
                         {
                             if(obj_attributes.attachedTarget != null){ 
                                 obj_attributes.attachedTarget.SetTargetTaped(); //!!!!!!!! same problem
                                 obj_attributes.SetTapeActive(true);
+                                
                                 tapeCounter--; // Anastasia
-                                //include ButtonText (Canvas) update of current tape count
+                                menu_Handler.UpdateTapeCounter(tapeCounter);
                             } 
 
                         }

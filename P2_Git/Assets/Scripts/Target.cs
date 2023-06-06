@@ -32,7 +32,6 @@ public class Target : MonoBehaviour
         if(timerDown)
         {
             timer -= Time.deltaTime / waitTime_seconds;
-            Debug.Log(timer);
 
             if(timer <= 0)
             {
