@@ -24,6 +24,7 @@ public class Children : MonoBehaviour
     bool isPathInitialized;
     bool startTimer;
     bool isInSafeZone;
+    bool isTargetDetected;
     
 
     private void Start() 
@@ -43,11 +44,9 @@ public class Children : MonoBehaviour
     {
         
         //animator
-        
         animator.SetBool("isidle", isStopped);
-        
         //animator
-    
+        
 
         beginTimer += Time.deltaTime;
         if(beginTimer >= 0.05 && !isPathInitialized)
@@ -73,7 +72,6 @@ public class Children : MonoBehaviour
     {
         currentTarget = t;
         ResetTimer();
-        //Debug.Log(currentTarget.name + " set as currentTarget");
     }
 
     public Target GetTarget() 
@@ -85,9 +83,54 @@ public class Children : MonoBehaviour
     {
         GameObject triggerObject = other.gameObject;
         
-        //current target
-        if (triggerObject.GetComponent<Target>() == currentTarget)
+        //consumable
+        if(other.tag == "consumable_radius" && !isInSafeZone)
         {
+            Target consumableTarget = triggerObject.transform.GetComponentInParent<Target>();
+            if(consumableTarget.isOpen)
+            {   
+                Consumables consumable = triggerObject.GetComponentInParent<Consumables>();
+
+                currentTarget.DestroyWidget();
+                isTargetDetected = false;
+                Debug.Log("consumable_radius entered");
+                if (currentTarget.attachedObject != null) currentTarget.attachedObject.Animate(1); //reset animation
+
+                SetTarget(consumableTarget);
+                navMesh.SetSpecificPath(attachedAgent, consumableTarget);
+                if(settings.consumablesHaveExistenceTimer) consumable.StartExistenceTimer(false);
+
+                consumableTarget.isOpen = false;
+            }            
+        }
+
+        //current target
+        else if (other.tag == "target" && triggerObject.GetComponent<Target>() == currentTarget)
+        {
+            TargetTriggered(other);
+            Debug.Log("enter");
+        }        
+    }
+
+    private void OnTriggerStay(Collider other) 
+    {
+        GameObject triggerObject = other.gameObject;
+
+        if (other.tag == "target" && triggerObject.GetComponent<Target>() == currentTarget && !isTargetDetected)
+        {
+            TargetTriggered(other);
+            Debug.Log("stay");
+        }
+    }
+
+    private void OnTriggerExit(Collider other) 
+    {
+        IsSafeZone(false);
+        isStopped = false; //animator
+    }
+
+    void TargetTriggered(Collider other)
+    {
             Color color;
             Vector3 widget_pos = other.gameObject.transform.GetChild(0).gameObject.transform.position;
             isStopped = true; //animator
@@ -105,32 +148,8 @@ public class Children : MonoBehaviour
 
             currentTarget.isOpen = false;
             startTimer = true;
-        }
 
-
-        //consumable
-        else if(other.tag == "consumable_radius" && !isInSafeZone)
-        {
-            Target consumableTarget = triggerObject.transform.GetComponentInParent<Target>();
-            if(consumableTarget.isOpen)
-            {   
-                Consumables consumable = triggerObject.GetComponentInParent<Consumables>();
-                currentTarget.DestroyWidget();
-
-                SetTarget(consumableTarget);
-                navMesh.SetSpecificPath(attachedAgent, consumableTarget);
-                if(settings.consumablesHaveExistenceTimer) consumable.StartExistenceTimer(false);
-
-                consumableTarget.isOpen = false;
-            }            
-        }
-        
-    }
-
-    private void OnTriggerExit(Collider other) 
-    {
-        IsSafeZone(false);
-        isStopped = false; //animator
+            isTargetDetected = true;
     }
   
     public void Reset()
@@ -161,7 +180,8 @@ public class Children : MonoBehaviour
         }
         
         IsSafeZone(false);
-
+        isTargetDetected = false;
+        Debug.Log("child reset");
         ResetTimer();
     }
 

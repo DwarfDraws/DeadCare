@@ -7,6 +7,7 @@ public class Menu_Handler : MonoBehaviour
 {
     [SerializeField] Raycast raycast;
     [SerializeField] Spawner spawner;
+    [SerializeField] Canvas_Script canvas;
 
     GameObject[] obstacles;
     [SerializeField] GameObject btn_move, btn_tape;
@@ -15,7 +16,6 @@ public class Menu_Handler : MonoBehaviour
     bool prepCountDownStart, gameCountdownStart;
     bool spawnChildAfterCountdown;
     float prepCountdownTimer, gameCountdownTimer;
-    int childrenAmount;
     int displayTimer;
 
     private void Start() 
@@ -63,11 +63,6 @@ public class Menu_Handler : MonoBehaviour
         gameCountdownTimer = f;
     }
 
-    public void SpawnChildrenAfterCountdown(int amount)
-    {
-        childrenAmount = amount;
-    }
-
     public void StartCountdown(){
         prepCountDownStart = true;
     }
@@ -76,7 +71,6 @@ public class Menu_Handler : MonoBehaviour
     {    
         foreach(GameObject oa in obstacles)
         {
-            Debug.Log(oa);
             oa.GetComponent<Object_attributes>().isMoveable = false;
         }
 
@@ -90,7 +84,9 @@ public class Menu_Handler : MonoBehaviour
         
         MakeObjectsUnmoveable();
         txt_Countdown.text = "movement locked";
-        if(childrenAmount > 0) spawner.SpawnChild();
+        canvas.SetMoveableHalosActive(false);
+
+        spawner.SpawnChildren();
 
         gameCountdownStart = true;
     }

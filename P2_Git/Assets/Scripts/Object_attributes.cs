@@ -7,6 +7,7 @@ public class Object_attributes : MonoBehaviour
     public Target attachedTarget;
     
     [SerializeField] GameObject tape;
+    public GameObject moveableHalo;
     [SerializeField] Animation animaton;
 
     public bool isMoveable = true; 
@@ -15,7 +16,8 @@ public class Object_attributes : MonoBehaviour
     bool isClamped_left, isClamped_right, isClamped_front, isClamped_back;
 
 
-    public void Start(){
+    public void Start()
+    {
         if(animaton != null){
             animaton.Play("anim_placeholder");
             animaton["anim_placeholder"].speed = 0;

@@ -10,7 +10,9 @@ public class Canvas_Script : MonoBehaviour
     [SerializeField] GameObject btn_move, btn_tape;
     [SerializeField] Camera cam;
     [SerializeField] Slider slider_prefab;
+
     [SerializeField] GameObject pref_consumable;
+    GameObject[] allObstacles;
 
     Canvas canvas;
     Object_attributes pref_consumable_attributes;
@@ -25,6 +27,8 @@ public class Canvas_Script : MonoBehaviour
         pref_consumable_attributes = pref_consumable.GetComponent<Object_attributes>();
         pref_consumable_localScaleX = pref_consumable.transform.localScale.x;
         pref_consumable_localScaleZ = pref_consumable.transform.localScale.z;
+
+        allObstacles = GameObject.FindGameObjectsWithTag("obstacle");
     }
 
     public Widget InstantiateWidget(Vector3 widget_worldPos, Color color)
@@ -79,8 +83,24 @@ public class Canvas_Script : MonoBehaviour
                 btn_tape.GetComponent<Image>().color = Color.white;
             }
             btn_move.GetComponent<Image>().color = Color.gray;
+            
+            SetMoveableHalosActive(true);  
+
         }
-        else btn_move.GetComponent<Image>().color = Color.white;
+        else
+        { 
+            btn_move.GetComponent<Image>().color = Color.white;
+            SetMoveableHalosActive(false);
+        }
+    }
+
+    public void SetMoveableHalosActive(bool isActive)
+    {
+            foreach(GameObject obstacle in allObstacles)
+            {
+                GameObject halo = obstacle.GetComponent<Object_attributes>().moveableHalo;
+                if(halo != null) halo.SetActive(isActive);
+            }        
     }
 
     public void tapeButtonPressed(){

@@ -59,6 +59,7 @@ public class Raycast : MonoBehaviour
                         isMoveable = true;                  
                         MousePressed_L = true;
                         
+                        /*
                         ////////////////////////
                         //turnon halo -> by Hakon & Anastasia
                         if(hitObject.transform.Find("halo").gameObject)
@@ -68,11 +69,10 @@ public class Raycast : MonoBehaviour
                             if (halochild.CompareTag("moveHalo"))
                             {
                                 halochild.SetActive(true);
-                                Debug.Log("Moveable!");
                             }
                         }
                         ////////////////////////////////
-                        
+                        */
 
                         obj_attributes = hitObject.GetComponent<Object_attributes>();
                         localLength_x_Object = hitObject.lossyScale.x;

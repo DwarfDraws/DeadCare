@@ -53,7 +53,7 @@ public class Target : MonoBehaviour
 
                 else child.Reset();
 
-                Destroy(widget.gameObject);
+                DestroyWidget();
                 ResetTimer();
             }
         }
@@ -101,6 +101,8 @@ public class Target : MonoBehaviour
 
     public void DestroyWidget(){
         if(widget != null) Destroy(widget.gameObject);
+
+        Debug.Log("destroyed");
     }
 
     void ResetTimer(){
