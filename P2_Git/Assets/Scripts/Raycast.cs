@@ -8,6 +8,7 @@ public class Raycast : MonoBehaviour
     [SerializeField] Canvas_Script canvas_script;
     [SerializeField] Object_moveHandler object_MoveHandler;
     [SerializeField] Menu_Handler menu_Handler;
+    Gameplay gameplay;
     Object_attributes obj_attributes;
     Target object_attachedTarget;
     
@@ -27,16 +28,14 @@ public class Raycast : MonoBehaviour
     bool hasAttachedTarget;
     float localLength_x_Object, localLength_z_Object;
     float obj_posY;
-    public int tapeCounter;
+    
 
 
     //Hakon
     private GameObject halochild;
 
-
-
     private void Start() {
-        menu_Handler.UpdateTapeCounter(tapeCounter);
+        gameplay = GameObject.Find("Gameplay_Handler").GetComponent<Gameplay>();
     }
 
     void Update()
@@ -54,7 +53,7 @@ public class Raycast : MonoBehaviour
                 if(hitObject.CompareTag("obstacle"))
                 {
                     //move
-                        if (canvas_script.isMoveBtnPressed && hitObject.GetComponent<Object_attributes>().isMoveable)
+                    if (canvas_script.isMoveBtnPressed && hitObject.GetComponent<Object_attributes>().isMoveable)
                     {
                         isMoveable = true;                  
                         MousePressed_L = true;
@@ -122,17 +121,15 @@ public class Raycast : MonoBehaviour
                                 obj_attributes.SetTapeActive(false);
                             } 
                             
-                            tapeCounter++;
-                            menu_Handler.UpdateTapeCounter(tapeCounter);
+                            gameplay.IncreaseTapeCount();
                         }
-                        else if (tapeCounter > 0) 
+                        else if (gameplay.GetTapeCount() > 0) 
                         {
                             if(obj_attributes.attachedTarget != null){ 
                                 obj_attributes.attachedTarget.SetTargetTaped(); //!!!!!!!! same problem
                                 obj_attributes.SetTapeActive(true);
                                 
-                                tapeCounter--; // Anastasia
-                                menu_Handler.UpdateTapeCounter(tapeCounter);
+                                gameplay.DecreaseTapeCount();
                             } 
 
                         }
@@ -156,7 +153,7 @@ public class Raycast : MonoBehaviour
                 //switch timer to go up 
                 if(hasAttachedTarget) object_attachedTarget.ToggleDown(false);
 
-                if(isMoveable)
+                if(isMoveable && canvas_script.isMoveBtnPressed)
                 {
                     ray = main_camera.ScreenPointToRay(Input.mousePosition);
 

@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] GameObject childPrefab;
 
 
-    public int children_Amount;
+    public int childrenToSpawn;
     bool isBlocked;
     bool isSpawning;
    
@@ -20,20 +20,25 @@ public class Spawner : MonoBehaviour
 
     private void Update() {
 
-        if(isSpawning && !isBlocked && children_Amount > 0)
+        if(isSpawning && !isBlocked && childrenToSpawn > 0)
         {
             GameObject newChild = GameObject.Instantiate(childPrefab, this.gameObject.transform.position, Quaternion.identity);
             NavMeshAgent newAgent = newChild.GetComponent<NavMeshAgent>();
             navMesh.Add_Agent(newAgent);
 
-            children_Amount--;
+            childrenToSpawn--;
+            if(childrenToSpawn == 0) isSpawning = false;
+
             isBlocked = true;
         }
+
+        Debug.Log(isSpawning + " " + isBlocked + " " + childrenToSpawn);
 
     }
 
     public void SpawnChildren()
     {
+        isBlocked = false;
         isSpawning = true;
     }
 

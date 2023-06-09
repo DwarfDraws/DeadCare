@@ -94,6 +94,12 @@ public class Canvas_Script : MonoBehaviour
         }
     }
 
+    public void Deactivate_MoveButton()
+    {
+        isMoveBtnPressed = false;
+        btn_move.GetComponent<Image>().color = Color.white;
+    }
+
     public void SetMoveableHalosActive(bool isActive)
     {
             foreach(GameObject obstacle in allObstacles)
@@ -117,5 +123,11 @@ public class Canvas_Script : MonoBehaviour
             btn_tape.GetComponent<Image>().color = Color.gray;
         }
         else btn_tape.GetComponent<Image>().color = Color.white;
+    }
+
+    public void Deactivate_TapeButton()
+    {
+        isTapeBtnPressed = false;
+        btn_tape.GetComponent<Image>().color = Color.white;
     }
 }

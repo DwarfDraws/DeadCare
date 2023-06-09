@@ -136,6 +136,10 @@ public class NavMesh : MonoBehaviour
         agents.Remove(a);
         if(stoppedAgents.Contains(a)) stoppedAgents.Remove(a);
     }
+    public void Clear_AgentList()
+    {
+        agents.Clear();
+    }
 
     public void StopAgent(NavMeshAgent agent)
     {
