@@ -87,6 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachedTarget: {fileID: 0}
   tape: {fileID: 0}
+  moveableHalo: {fileID: 6477131034935552421}
   animaton: {fileID: 0}
   isMoveable: 1
   isRotated: 0
@@ -183,6 +184,11 @@ PrefabInstance:
 --- !u!4 &6191176694639240768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5158832689236886274, guid: 32fd370454c55ac4faab489a366d449c, type: 3}
+  m_PrefabInstance: {fileID: 1332116169859360066}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6477131034935552421 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5449290414412041447, guid: 32fd370454c55ac4faab489a366d449c, type: 3}
   m_PrefabInstance: {fileID: 1332116169859360066}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5109173537674678828

@@ -111,6 +111,7 @@ public class Canvas_Script : MonoBehaviour
             if(isMoveBtnPressed)
             {
                 isMoveBtnPressed = false;
+                SetMoveableHalosActive(false);
                 btn_move.GetComponent<Image>().color = Color.white;
             }
             btn_tape.GetComponent<Image>().color = Color.gray;
