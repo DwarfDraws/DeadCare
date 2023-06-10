@@ -2,20 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Canvas_Script : MonoBehaviour
 {
     [SerializeField] Raycast raycast;
     [SerializeField] Object_moveHandler obj_moveHandler;
-    [SerializeField] GameObject btn_move, btn_tape;
+    Canvas canvas;
+    Object_attributes pref_consumable_attributes;
+
     [SerializeField] Camera cam;
     [SerializeField] Slider slider_prefab;
 
+    public GameObject btn_move, btn_tape;
+    public GameObject pnl_GameOver;
     [SerializeField] GameObject pref_consumable;
+    [SerializeField] TMP_Text txt_YouWin, txt_ChildrenCounter;
+    [SerializeField] TMP_Text txt_Countdown;
+    [SerializeField] TMP_Text txt_tapeCounter;
     GameObject[] allObstacles;
 
-    Canvas canvas;
-    Object_attributes pref_consumable_attributes;
     public bool btnConsumable;
     public bool isMoveBtnPressed, isTapeBtnPressed;
     float pref_consumable_localScaleX, pref_consumable_localScaleZ;
@@ -70,7 +76,6 @@ public class Canvas_Script : MonoBehaviour
                         
         }
     }
-
 
     public void moveButtonPressed(){
         isMoveBtnPressed = !isMoveBtnPressed;
@@ -130,4 +135,26 @@ public class Canvas_Script : MonoBehaviour
         isTapeBtnPressed = false;
         btn_tape.GetComponent<Image>().color = Color.white;
     }
+
+
+    public void SetCountdown_Txt(string text)
+    {
+        txt_Countdown.text = text;
+    }
+
+    public void SetChildrenCounter_Txt(string text)
+    {
+        txt_ChildrenCounter.text = text;
+    }
+
+    public void SetYouWin_Txt(string text)
+    {
+        txt_YouWin.text = text;
+    }
+
+    public void SetTapeCounter_Txt(string text)
+    {
+        txt_tapeCounter.text = text;
+    }
+
 }

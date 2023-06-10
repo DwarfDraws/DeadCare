@@ -12,11 +12,7 @@ public class Menu_Handler : MonoBehaviour
     [SerializeField] NavMesh navMesh;
 
     GameObject[] obstacles;
-    [SerializeField] GameObject btn_move, btn_tape;
-    [SerializeField] GameObject pnl_GameOver;
-    [SerializeField] TMP_Text txt_YouWin, txt_ChildrenCounter;
-    [SerializeField] TMP_Text txt_Countdown;
-    [SerializeField] TMP_Text txt_tapeCounter;
+
     bool prepCountDownStart, gameCountdownStart;
     bool spawnChildAfterCountdown;
     float init_prepCountdownTimer, current_prepCountdownTimer;
@@ -35,7 +31,7 @@ public class Menu_Handler : MonoBehaviour
         {
             current_prepCountdownTimer -= Time.deltaTime;
             displayTimer = (int)current_prepCountdownTimer + 1;
-            txt_Countdown.text = displayTimer.ToString();
+            canvas.SetCountdown_Txt(displayTimer.ToString());
         } 
         if(current_prepCountdownTimer < 0)
         {
@@ -49,7 +45,7 @@ public class Menu_Handler : MonoBehaviour
         {
             current_gameCountdownTimer -= Time.deltaTime;
             displayTimer = (int)current_gameCountdownTimer + 1;
-            txt_Countdown.text = displayTimer.ToString();
+            canvas.SetCountdown_Txt(displayTimer.ToString());
         }
         if(current_gameCountdownTimer < 0)
         {
@@ -72,25 +68,13 @@ public class Menu_Handler : MonoBehaviour
         isGameOver = false; //in case of restart
         prepCountDownStart = true;
     }
-    
-    void MakeObjectsUnmoveable()
-    {    
-        foreach(GameObject oa in obstacles)
-        {
-            oa.GetComponent<Object_attributes>().isMoveable = false;
-        }
-
-        raycast.isMoveable = false;
-    }
 
     void NextPhase()
     {
-        btn_move.SetActive(false);
-        btn_tape.SetActive(false);
-        
+        canvas.btn_move.SetActive(false);
+        canvas.btn_tape.SetActive(false);   
         canvas.Deactivate_MoveButton();
         canvas.Deactivate_TapeButton();
-        txt_Countdown.text = "movement locked";
         canvas.SetMoveableHalosActive(false);
 
         spawner.SpawnChildren();
@@ -104,16 +88,15 @@ public class Menu_Handler : MonoBehaviour
         {
             gameCountdownStart = false;
             current_gameCountdownTimer = init_gameCountdownTimer;
-            txt_Countdown.text = "--";
+            canvas.SetCountdown_Txt(" ");
 
             //GameOver-Panel
             int survivedChildren = gameplay.GetChildCount();
-            Debug.Log(survivedChildren);
             int initial_childAmount = gameplay.init_childCounter;
-            txt_ChildrenCounter.text = survivedChildren.ToString() + "/" + initial_childAmount.ToString() + " children survived";
-            if(isWon) txt_YouWin.text = "You win!";
-            else txt_YouWin.text = "You lose!";
-            pnl_GameOver.SetActive(true);
+            canvas.SetChildrenCounter_Txt(survivedChildren.ToString() + "/" + initial_childAmount.ToString() + " children survived");
+            if(isWon) canvas.SetYouWin_Txt("You win!");
+            else canvas.SetYouWin_Txt("You lose!");
+            canvas.pnl_GameOver.SetActive(true);
 
             isGameOver = true;
             
@@ -132,10 +115,6 @@ public class Menu_Handler : MonoBehaviour
                 Destroy(widget);
             }
         }
-    }
-
-    public void UpdateTapeCounter(int count){
-        txt_tapeCounter.text = count.ToString();
     }
 
 }

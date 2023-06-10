@@ -10,6 +10,7 @@ public class Settings_script : MonoBehaviour
     [SerializeField] Spawner spawner;
     [SerializeField] Gameplay gameplay;
     [SerializeField] Button btnSpawnChildren;
+    [SerializeField] Canvas_Script canvas;
 
     public bool consumablesHaveExistenceTimer;
     public bool isTutorial;
@@ -26,7 +27,8 @@ public class Settings_script : MonoBehaviour
         spawner.childrenToSpawn = this.children_Amount;
         gameplay.init_childCounter = this.children_Amount;
         gameplay.init_tapeCounter = tape_Amount;
-        menu_Handler.UpdateTapeCounter(tape_Amount);
+        canvas.SetTapeCounter_Txt(tape_Amount.ToString());
+
 
         if (isTutorial) btnSpawnChildren.gameObject.SetActive(false);
         if (hideTargets) HideTargets();

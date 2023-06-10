@@ -6,6 +6,7 @@ public class Gameplay : MonoBehaviour
 {
     [SerializeField] Menu_Handler menu_Handler;
     [SerializeField] Spawner spawner;
+    [SerializeField] Canvas_Script canvas;
     
     public int init_tapeCounter;
     int current_tapeCounter;
@@ -38,17 +39,18 @@ public class Gameplay : MonoBehaviour
     public void DecreaseTapeCount() 
     {
         current_tapeCounter--;
-        menu_Handler.UpdateTapeCounter(current_tapeCounter);
+        canvas.SetTapeCounter_Txt(current_tapeCounter.ToString());
     }
     public void IncreaseTapeCount() 
     {
         current_tapeCounter++;
-        menu_Handler.UpdateTapeCounter(current_tapeCounter);
+        canvas.SetTapeCounter_Txt(current_tapeCounter.ToString());
+
     }
     public void ResetTapeCount()
     {
         current_tapeCounter = init_tapeCounter;
-        menu_Handler.UpdateTapeCounter(current_tapeCounter);
+        canvas.SetTapeCounter_Txt(current_tapeCounter.ToString());
     }
     public int GetTapeCount()
     {
