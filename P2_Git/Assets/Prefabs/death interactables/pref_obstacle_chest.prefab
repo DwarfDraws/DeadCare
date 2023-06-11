@@ -35,7 +35,7 @@ Transform:
   - {fileID: 8539862666749010369}
   - {fileID: 1483128023167860519}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!65 &4227064642261400369
 BoxCollider:
@@ -87,6 +87,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachedTarget: {fileID: 0}
+  tape: {fileID: 8428488266250173930}
+  moveableHalo: {fileID: 0}
+  animaton: {fileID: 0}
   isMoveable: 0
   isRotated: 0
   isTaped: 0

@@ -32,8 +32,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8179204573235733924}
-  - {fileID: 1092052309660854727}
   - {fileID: 5490007826427560108}
+  - {fileID: 1092052309660854727}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -88,6 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachedTarget: {fileID: 0}
   tape: {fileID: 1119573010087654864}
+  moveableHalo: {fileID: 0}
   animaton: {fileID: 0}
   isMoveable: 0
   isRotated: 0
