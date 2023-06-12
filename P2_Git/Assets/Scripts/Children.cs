@@ -66,7 +66,9 @@ public class Children : MonoBehaviour
             isPathInitialized = true;
         }
 
-        if(startTimer) currentTarget.Timer(this);
+        if(startTimer){
+            currentTarget.Timer(this);          
+        } 
     }
 
 
@@ -93,7 +95,12 @@ public class Children : MonoBehaviour
             {   
                 Consumables consumable = triggerObject.GetComponentInParent<Consumables>();
 
-                currentTarget.DestroyWidget();
+                if (!currentTarget.isWaitTarget)
+                {
+                    currentTarget.DestroyWidget();
+                    
+                }
+                
                 isTargetDetected = false;
                 Debug.Log("consumable_radius entered");
                 if (currentTarget.attachedObject != null) currentTarget.attachedObject.Animate(1); //reset animation
@@ -110,7 +117,6 @@ public class Children : MonoBehaviour
         else if (other.tag == "target" && triggerObject.GetComponent<Target>() == currentTarget)
         {
             TargetTriggered(other);
-            Debug.Log("enter");
         }        
     }
 
@@ -131,29 +137,36 @@ public class Children : MonoBehaviour
         isStopped = false; //animator
     }
 
+
+
     void TargetTriggered(Collider other)
     {
             Color color;
             Vector3 widget_pos = other.gameObject.transform.GetChild(0).gameObject.transform.position;
             isStopped = true; //animator
             
-            color = Color.green;
-            /*
-            if(currentTarget.isDeadly) color = Color.green; // TEST: Changed color to green
-            else
+            //color = Color.green;
+            if (!currentTarget.isWaitTarget)
             {
-                color = Color.green;
-                isInSafeZone = true;
-            } 
-            */
-            currentTarget.InstantiateWidget(widget_pos, color);
+                if (currentTarget.isDeadly) color = Color.red; // TEST: Changed color to green
+                else
+                {
+                    color = Color.green;
+                    isInSafeZone = true;
+                }
 
-            currentTarget.isOpen = false;
-            startTimer = true;
+                currentTarget.InstantiateWidget(widget_pos, color);
+            }
 
-            isTargetDetected = true;
+                currentTarget.isOpen = false;
+                startTimer = true;
+                currentTarget.Animate_AttachedObject(); 
+
+                isTargetDetected = true;
     }
   
+
+
     public void Reset()
     {
         if(settings.isTutorial)

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5369129641188349338}
   m_Layer: 7
   m_Name: pref_wall_1L
-  m_TagString: obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,6 +85,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachedTarget: {fileID: 0}
+  tape: {fileID: 0}
+  moveableHalo: {fileID: 0}
+  animaton: {fileID: 0}
   isMoveable: 0
   isRotated: 0
   isTaped: 0
