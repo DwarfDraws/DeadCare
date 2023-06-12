@@ -8,7 +8,7 @@ public class Settings_script : MonoBehaviour
     [SerializeField] Menu_Handler menu_Handler;
     [SerializeField] Raycast raycast;
     [SerializeField] Spawner spawner;
-
+    [SerializeField] Gameplay gameplay;
     [SerializeField] Button btnSpawnChildren;
 
     public bool consumablesHaveExistenceTimer;
@@ -23,8 +23,10 @@ public class Settings_script : MonoBehaviour
     {
         menu_Handler.SetPrepCountdownTimer(prepCountdownTime_Seconds);
         menu_Handler.SetGameCountdownTimer(gameCountdownTime_Seconds);
-        spawner.children_Amount = this.children_Amount;
-        raycast.tapeCounter = tape_Amount;
+        spawner.childrenToSpawn = this.children_Amount;
+        gameplay.init_childCounter = this.children_Amount;
+        gameplay.init_tapeCounter = tape_Amount;
+        menu_Handler.UpdateTapeCounter(tape_Amount);
 
         if (isTutorial) btnSpawnChildren.gameObject.SetActive(false);
         if (hideTargets) HideTargets();

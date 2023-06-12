@@ -40,7 +40,8 @@ public class Object_attributes : MonoBehaviour
         }
     }
 
-    public void Animate(float timer){
+    public void Animate(float timer)
+    {
         if(animaton != null) animaton["anim_placeholder"].normalizedTime = 1.0f-timer;
     }
 

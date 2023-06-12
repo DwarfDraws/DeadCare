@@ -8,6 +8,7 @@ public class Children : MonoBehaviour
 
     Settings_script settings;
     Canvas_Script canvas;
+    Gameplay gameplay;
     
     [SerializeField] Animator animator;
     [SerializeField] List<Target> tutorialTargets;
@@ -33,6 +34,7 @@ public class Children : MonoBehaviour
         
         settings = GameObject.Find("Settings").GetComponent<Settings_script>();
         canvas = GameObject.Find("Canvas").GetComponent<Canvas_Script>();
+        gameplay = GameObject.Find("Gameplay_Handler").GetComponent<Gameplay>();
  
         attachedAgent = this.GetComponent<NavMeshAgent>();
         currentTarget = null;
@@ -200,6 +202,7 @@ public class Children : MonoBehaviour
 
     public void ChildDestroy(){
         navMesh.Remove_Agent(this.GetComponent<NavMeshAgent>());
+        gameplay.DecreaseChildCount();
         Destroy(gameObject); 
     }
 }
