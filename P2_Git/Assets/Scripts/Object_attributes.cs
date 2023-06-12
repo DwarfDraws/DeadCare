@@ -18,10 +18,7 @@ public class Object_attributes : MonoBehaviour
 
     public void Start()
     {
-        if(animaton != null){
-            animaton.Play("anim_placeholder");
-            animaton["anim_placeholder"].speed = 0;
-        }
+
     }
 
     public void SetTapeActive(bool isActive)
@@ -42,7 +39,7 @@ public class Object_attributes : MonoBehaviour
 
     public void Animate(float timer)
     {
-        if(animaton != null) animaton["anim_placeholder"].normalizedTime = 1.0f-timer;
+        
     }
 
     public bool IsClamped_Left(){ return isClamped_left; } 

@@ -66,7 +66,9 @@ public class Children : MonoBehaviour
             isPathInitialized = true;
         }
 
-        if(startTimer) currentTarget.Timer(this);
+        if(startTimer){
+            currentTarget.Timer(this);          
+        } 
     }
 
 
@@ -115,7 +117,6 @@ public class Children : MonoBehaviour
         else if (other.tag == "target" && triggerObject.GetComponent<Target>() == currentTarget)
         {
             TargetTriggered(other);
-            Debug.Log("enter");
         }        
     }
 
@@ -135,6 +136,8 @@ public class Children : MonoBehaviour
         IsSafeZone(false);
         isStopped = false; //animator
     }
+
+
 
     void TargetTriggered(Collider other)
     {
@@ -157,10 +160,13 @@ public class Children : MonoBehaviour
 
                 currentTarget.isOpen = false;
                 startTimer = true;
+                currentTarget.Animate_AttachedObject(); 
 
                 isTargetDetected = true;
     }
   
+
+
     public void Reset()
     {
         if(settings.isTutorial)

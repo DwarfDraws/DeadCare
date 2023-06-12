@@ -108,7 +108,6 @@ public class Menu_Handler : MonoBehaviour
 
             //GameOver-Panel
             int survivedChildren = gameplay.GetChildCount();
-            Debug.Log(survivedChildren);
             int initial_childAmount = gameplay.init_childCounter;
             txt_ChildrenCounter.text = survivedChildren.ToString() + "/" + initial_childAmount.ToString() + " children survived";
             if(isWon) txt_YouWin.text = "You win!";

@@ -31,9 +31,6 @@ public class Spawner : MonoBehaviour
 
             isBlocked = true;
         }
-
-        Debug.Log(isSpawning + " " + isBlocked + " " + childrenToSpawn);
-
     }
 
     public void SpawnChildren()
