@@ -8,7 +8,7 @@ public class Target : MonoBehaviour
     Widget widget;
     Canvas_Script canvas;
     public Object_attributes attachedObject;
-    Animation_Script attachedObject_Animation;
+    public Animation_Script attachedObject_Animation;
 
     public float waitTime_seconds = 2.0f;   
     public bool isDeadly;
@@ -28,11 +28,12 @@ public class Target : MonoBehaviour
 
         timer = 1.0f;
         timerDown = true;
+        if(attachedObject_Animation != null) attachedObject_Animation.SetAnimationSpeed(waitTime_seconds);
     }
 
     public void Animate_AttachedObject()
     {
-        if(!isTaped && attachedObject != null) attachedObject_Animation.PlayAnimation();
+        if(!isTaped && attachedObject_Animation != null) attachedObject_Animation.PlayAnimation(true);
     }
 
     public void Timer(Children child)
@@ -71,18 +72,19 @@ public class Target : MonoBehaviour
         else if(!timerDown)
         {
             timer += Time.deltaTime / waitTime_seconds;
+            //Debug.Log(timer);
 
             if (timer > 1.0f)
             { 
                 child.Reset();
-
                 Destroy(widget.gameObject);
+                attachedObject_Animation.PlayAnimation(false);
                 ToggleDown(true);
                 ResetTimer();
             }
         }
         
-        if(!isWaitTarget) widget.UpdateWidget(timer);
+        if(!isWaitTarget && widget != null) widget.UpdateWidget(timer);
     }
 
     public void SetTargetTaped()
@@ -107,8 +109,10 @@ public class Target : MonoBehaviour
         ResetTimer();
     }
 
-    public void DestroyWidget(){
+    public void DestroyWidget()
+    {
         if(widget != null) Destroy(widget.gameObject);
+        Debug.Log("destroywidget");
     }
 
     void ResetTimer(){

@@ -31,11 +31,11 @@ public class Consumables : MonoBehaviour
 
     private void Update() 
     {
-        if(timeStart) Timer();
+        if(timeStart) ExistenceTimer();
     }
 
 
-    public void Timer()
+    public void ExistenceTimer()
     {
         timer -= Time.deltaTime / existenceTimeSeconds;
         widget.UpdateWidget(timer);

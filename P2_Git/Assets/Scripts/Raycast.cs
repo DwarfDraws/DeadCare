@@ -11,6 +11,7 @@ public class Raycast : MonoBehaviour
     Gameplay gameplay;
     Object_attributes obj_attributes;
     Target object_attachedTarget;
+    Animation_Script object_Animation;
     
     [SerializeField] Camera main_camera;
     [SerializeField] LayerMask layer_Floor;
@@ -26,6 +27,7 @@ public class Raycast : MonoBehaviour
     bool MousePressed_L;
     bool missingOffset;
     bool hasAttachedTarget;
+    bool isObject_Animation_Rewinded;
     float localLength_x_Object, localLength_z_Object;
     float obj_posY;
     
@@ -41,150 +43,164 @@ public class Raycast : MonoBehaviour
     void Update()
     {
    
-        //Object Detection (Left Mouse-Click)
-        if (Input.GetMouseButtonDown(0) && !MousePressed_L)
+        if(!menu_Handler.isGameOver)
         {
-            ray = main_camera.ScreenPointToRay(Input.mousePosition);
+            //Object Detection (Left Mouse-Click)
+            if (Input.GetMouseButtonDown(0) && !MousePressed_L)
+            {
+                ray = main_camera.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, float.MaxValue, ~layer_Floor))
-            { 
-                hitObject = hit.transform; //object transform
+                if (Physics.Raycast(ray, out hit, float.MaxValue, ~layer_Floor))
+                { 
+                    hitObject = hit.transform; //object transform
 
-                if(hitObject.CompareTag("obstacle"))
-                {
-                    //move
-                    if (canvas_script.isMoveBtnPressed && hitObject.GetComponent<Object_attributes>().isMoveable)
+                    if(hitObject.CompareTag("obstacle"))
                     {
-                        isMoveable = true;                  
-                        MousePressed_L = true;
-                        
-                        /*
-                        ////////////////////////
-                        //turnon halo -> by Hakon & Anastasia
-                        if(hitObject.transform.Find("halo").gameObject)
-                        { 
-                            halochild = hitObject.transform.Find("halo").gameObject;
-                    
-                            if (halochild.CompareTag("moveHalo"))
-                            {
-                                halochild.SetActive(true);
+                        //move
+                        if (canvas_script.isMoveBtnPressed && hitObject.GetComponent<Object_attributes>().isMoveable)
+                        {
+                            isMoveable = true;                  
+                            MousePressed_L = true;
+
+                            /*
+                            ////////////////////////
+                            //turnon halo -> by Hakon & Anastasia
+                            if(hitObject.transform.Find("halo").gameObject)
+                            { 
+                                halochild = hitObject.transform.Find("halo").gameObject;
+
+                                if (halochild.CompareTag("moveHalo"))
+                                {
+                                    halochild.SetActive(true);
+                                }
                             }
+                            ////////////////////////////////
+                            */
+
+                            obj_attributes = hitObject.GetComponent<Object_attributes>();
+                            localLength_x_Object = hitObject.lossyScale.x;
+                            localLength_z_Object = hitObject.lossyScale.z;
+                            object_MoveHandler.SetObject(obj_attributes, localLength_x_Object, localLength_z_Object);
+
+                            initMouse_Pos = hit.point; //mouse position
+                            initMouse_Pos.y = 0;
+
+                            missingOffset = true;
                         }
-                        ////////////////////////////////
-                        */
+                        else isMoveable = false;
 
-                        obj_attributes = hitObject.GetComponent<Object_attributes>();
-                        localLength_x_Object = hitObject.lossyScale.x;
-                        localLength_z_Object = hitObject.lossyScale.z;
-                        object_MoveHandler.SetObject(obj_attributes, localLength_x_Object, localLength_z_Object);
+                        //get attached target
+                        if (hit.transform.GetComponent<Object_attributes>().attachedTarget != null)
+                        {
+                            hasAttachedTarget = true;
+                            MousePressed_L = true;
 
-                        initMouse_Pos = hit.point; //mouse position
-                        initMouse_Pos.y = 0;
+                            object_attachedTarget = hit.transform.GetComponent<Object_attributes>().attachedTarget;
+                            object_Animation = hit.transform.GetComponent<Animation_Script>();
+                        }
+                        else hasAttachedTarget = false;
 
-                        missingOffset = true;
+                        //tape
+                        if(canvas_script.isTapeBtnPressed && !hitObject.GetComponent<Object_attributes>().isMoveable)
+                        {   
+
+                            ////////////////////////
+                            //turnon halo -> by Hakon & Anastasia
+                            if(hitObject.transform.Find("halo").gameObject)
+                            { 
+                                halochild = hitObject.transform.Find("halo").gameObject;
+
+                                if (halochild.CompareTag("tapeHalo"))
+                                {
+                                    halochild.SetActive(true);
+                                }
+                            }
+                            ////////////////////////////////
+
+
+                            obj_attributes = hitObject.GetComponent<Object_attributes>();
+                            if (obj_attributes.isTaped)
+                            {
+                                if(obj_attributes.attachedTarget != null){
+                                    obj_attributes.attachedTarget.SetTargetUntaped(); //!!!!!!!! Should not be here, only on Obj itselfe
+                                    obj_attributes.SetTapeActive(false);
+                                } 
+
+                                gameplay.IncreaseTapeCount();
+                            }
+                            else if (gameplay.GetTapeCount() > 0) 
+                            {
+                                if(obj_attributes.attachedTarget != null){ 
+                                    obj_attributes.attachedTarget.SetTargetTaped(); //!!!!!!!! same problem
+                                    obj_attributes.SetTapeActive(true);
+
+                                    gameplay.DecreaseTapeCount();
+                                } 
+
+                            }
+
+                        }
                     }
-                    else isMoveable = false;
-                    
-                    //get attached target
-                    if (hit.transform.GetComponent<Object_attributes>().attachedTarget != null)
+                    else 
                     {
-                        hasAttachedTarget = true;
-                        MousePressed_L = true;
+                        MousePressed_L = false;
 
-                        object_attachedTarget = hit.transform.GetComponent<Object_attributes>().attachedTarget;
                     }
-                    else hasAttachedTarget = false;
-
-                    //tape
-                    if(canvas_script.isTapeBtnPressed && !hitObject.GetComponent<Object_attributes>().isMoveable)
-                    {   
-                        
-                        ////////////////////////
-                        //turnon halo -> by Hakon & Anastasia
-                        if(hitObject.transform.Find("halo").gameObject)
-                        { 
-                            halochild = hitObject.transform.Find("halo").gameObject;
-                    
-                            if (halochild.CompareTag("tapeHalo"))
-                            {
-                                halochild.SetActive(true);
-                            }
-                        }
-                        ////////////////////////////////
-                        
-                        
-                        obj_attributes = hitObject.GetComponent<Object_attributes>();
-                        if (obj_attributes.isTaped)
-                        {
-                            if(obj_attributes.attachedTarget != null){
-                                obj_attributes.attachedTarget.SetTargetUntaped(); //!!!!!!!! Should not be here, only on Obj itselfe
-                                obj_attributes.SetTapeActive(false);
-                            } 
-                            
-                            gameplay.IncreaseTapeCount();
-                        }
-                        else if (gameplay.GetTapeCount() > 0) 
-                        {
-                            if(obj_attributes.attachedTarget != null){ 
-                                obj_attributes.attachedTarget.SetTargetTaped(); //!!!!!!!! same problem
-                                obj_attributes.SetTapeActive(true);
-                                
-                                gameplay.DecreaseTapeCount();
-                            } 
-
-                        }
-                        
-                    }
-                }
-                else 
-                {
-                    MousePressed_L = false;
-
                 }
             }
-        }
 
 
-        if (Input.GetMouseButton(0))
-        {
-            //Object Transformation
-            if(MousePressed_L)
+            if (Input.GetMouseButton(0))
             {
-                //switch timer to go up 
-                if(hasAttachedTarget) object_attachedTarget.ToggleDown(false);
-
-                if(isMoveable && canvas_script.isMoveBtnPressed)
+                //Object Transformation
+                if(MousePressed_L)
                 {
-                    ray = main_camera.ScreenPointToRay(Input.mousePosition);
-
-                    if (Physics.Raycast(ray, out hit, float.MaxValue, layer_Floor))
-                    {
-                        mouse_Pos3D = hit.point;
-
-                        if (missingOffset)
-                        {
-                            UpdateOffset();
-                            UpdateInitOffset();
-                            missingOffset = false;
+                    //switch timer to go up 
+                    if(hasAttachedTarget)
+                    { 
+                        object_attachedTarget.ToggleDown(false);
+                        if(!isObject_Animation_Rewinded) 
+                        {   
+                            object_Animation.RewindAnimation();
+                            isObject_Animation_Rewinded = true;
                         }
 
-                        offset.y = 0;
-                        mouse_Pos3D.y = 0;
-
-                        object_MoveHandler.CheckInput_Rotation(hitObject, mouse_Pos3D, initHit_Offset);
-
-                        mouse3D_wOffset = mouse_Pos3D - offset;         
-                        object_MoveHandler.ClampObject(mouse3D_wOffset, hitObject.position, mouse3D_wOffset);
-
-                        //object translation
-                        //EDIT: Move to object_Movehandler
-                        obj_posY = hitObject.position.y;   
-                        float x = object_MoveHandler.GetClampedPosX_Object(mouse3D_wOffset);
-                        float z = object_MoveHandler.GetClampedPosZ_Object(mouse3D_wOffset);   
-                        hitObject.position = new Vector3(x, obj_posY, z); 
                     }
-                }
 
+
+                    if(isMoveable && canvas_script.isMoveBtnPressed)
+                    {
+                        ray = main_camera.ScreenPointToRay(Input.mousePosition);
+
+                        if (Physics.Raycast(ray, out hit, float.MaxValue, layer_Floor))
+                        {
+                            mouse_Pos3D = hit.point;
+
+                            if (missingOffset)
+                            {
+                                UpdateOffset();
+                                UpdateInitOffset();
+                                missingOffset = false;
+                            }
+
+                            offset.y = 0;
+                            mouse_Pos3D.y = 0;
+
+                            object_MoveHandler.CheckInput_Rotation(hitObject, mouse_Pos3D, initHit_Offset);
+
+                            mouse3D_wOffset = mouse_Pos3D - offset;         
+                            object_MoveHandler.ClampObject(mouse3D_wOffset, hitObject.position, mouse3D_wOffset);
+
+                            //object translation
+                            //EDIT: Move to object_Movehandler
+                            obj_posY = hitObject.position.y;   
+                            float x = object_MoveHandler.GetClampedPosX_Object(mouse3D_wOffset);
+                            float z = object_MoveHandler.GetClampedPosZ_Object(mouse3D_wOffset);   
+                            hitObject.position = new Vector3(x, obj_posY, z); 
+                        }
+                    }
+
+                }
             }
         }
             
@@ -205,7 +221,16 @@ public class Raycast : MonoBehaviour
                 missingOffset = false;
 
                 //switch timer to go down 
-                if(hasAttachedTarget) object_attachedTarget.ToggleDown(true);
+                if(hasAttachedTarget)
+                {
+                    object_attachedTarget.ToggleDown(true);
+                    if(isObject_Animation_Rewinded) 
+                    {
+                        object_Animation.RewindAnimation();
+                        isObject_Animation_Rewinded = false;
+                    }
+
+                }
 
                 //navMesh.RecalculateAllPaths();
             }

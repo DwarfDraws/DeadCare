@@ -5,26 +5,36 @@ using UnityEngine;
 public class Animation_Script : MonoBehaviour
 {
     Animator anim;
-    
     string animation_Start = "start";
+    string animation_Speed = "animation_speed";
+    float speed;
     
-    void Start()
+    private void Awake() 
     {
         anim = this.GetComponent<Animator>();
+        speed = 1.0f;
     }
 
-    public void PlayAnimation()
+    public void SetAnimationSpeed(float targetSpeed)
     {
-        Debug.Log(this.gameObject.name + " playanimation");
-        anim.Play(animation_Start);
+        float multiplicator;
+        float normal_AnimationLength = anim.runtimeAnimatorController.animationClips[0].length;
+
+        multiplicator = normal_AnimationLength / targetSpeed;
+        speed *= multiplicator;
+        anim.SetFloat(animation_Speed, speed);
+    }
+    
+    public void PlayAnimation(bool isPlaying)
+    {
+        anim.SetBool(animation_Start, isPlaying);
+        Debug.Log("playanim " + isPlaying);
     }
 
-    void RewindAnimation()
+    public void RewindAnimation()
     {
-        if(anim.speed == 1)
-        {
-            anim.speed = -1;
-        } 
-        else anim.speed = 1;
+        speed *= -1;
+        anim.SetFloat(animation_Speed, speed);
     }
+
 }

@@ -18,7 +18,7 @@ public class Menu_Handler : MonoBehaviour
     float init_prepCountdownTimer, current_prepCountdownTimer;
     float init_gameCountdownTimer, current_gameCountdownTimer;
     int displayTimer;
-    bool isGameOver;
+    public bool isGameOver;
 
     private void Start() 
     {
@@ -109,7 +109,8 @@ public class Menu_Handler : MonoBehaviour
                 Object_attributes oa = obstacle.GetComponent<Object_attributes>();
                 oa.Animate(1);
                 oa.SetTapeActive(false);
-                
+
+                obstacle.GetComponent<Animation_Script>().PlayAnimation(false);
             }
             foreach(GameObject widget in GameObject.FindGameObjectsWithTag("widget")){
                 Destroy(widget);

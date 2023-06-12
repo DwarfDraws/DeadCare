@@ -16,11 +16,6 @@ public class Object_attributes : MonoBehaviour
     bool isClamped_left, isClamped_right, isClamped_front, isClamped_back;
 
 
-    public void Start()
-    {
-
-    }
-
     public void SetTapeActive(bool isActive)
     {
         if(tape != null){
