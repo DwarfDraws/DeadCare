@@ -93,7 +93,12 @@ public class Children : MonoBehaviour
             {   
                 Consumables consumable = triggerObject.GetComponentInParent<Consumables>();
 
-                currentTarget.DestroyWidget();
+                if (!currentTarget.isWaitTarget)
+                {
+                    currentTarget.DestroyWidget();
+                    
+                }
+                
                 isTargetDetected = false;
                 Debug.Log("consumable_radius entered");
                 if (currentTarget.attachedObject != null) currentTarget.attachedObject.Animate(1); //reset animation
@@ -137,21 +142,23 @@ public class Children : MonoBehaviour
             Vector3 widget_pos = other.gameObject.transform.GetChild(0).gameObject.transform.position;
             isStopped = true; //animator
             
-            color = Color.green;
-            /*
-            if(currentTarget.isDeadly) color = Color.green; // TEST: Changed color to green
-            else
+            //color = Color.green;
+            if (!currentTarget.isWaitTarget)
             {
-                color = Color.green;
-                isInSafeZone = true;
-            } 
-            */
-            currentTarget.InstantiateWidget(widget_pos, color);
+                if (currentTarget.isDeadly) color = Color.red; // TEST: Changed color to green
+                else
+                {
+                    color = Color.green;
+                    isInSafeZone = true;
+                }
 
-            currentTarget.isOpen = false;
-            startTimer = true;
+                currentTarget.InstantiateWidget(widget_pos, color);
+            }
 
-            isTargetDetected = true;
+                currentTarget.isOpen = false;
+                startTimer = true;
+
+                isTargetDetected = true;
     }
   
     public void Reset()

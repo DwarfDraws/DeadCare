@@ -11,6 +11,7 @@ public class Target : MonoBehaviour
 
     public float waitTime_seconds = 2.0f;   
     public bool isDeadly;
+    public bool isWaitTarget;
     public bool isConsumable;
     public bool isOpen; 
     public bool isTargeted;
@@ -74,7 +75,9 @@ public class Target : MonoBehaviour
         }
         
         if(!isTaped && attachedObject != null) attachedObject.Animate(timer);
-        widget.UpdateWidget(timer);
+
+        if(!isWaitTarget) widget.UpdateWidget(timer);
+        
     }
 
     public void SetTargetTaped()
