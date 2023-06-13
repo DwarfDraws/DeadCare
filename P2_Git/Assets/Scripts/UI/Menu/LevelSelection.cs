@@ -10,4 +10,20 @@ public class LevelSelection : MonoBehaviour
     {
         SceneManager.LoadScene("Scene_Easy");
     }
+    public void SelectLevel02()
+    {
+        SceneManager.LoadScene("Scene_Middle 1");
+    }
+    public void SelectLevel03()
+    {
+        SceneManager.LoadScene("Scene_Middle 2");
+    }
+    public void SelectLevel04()
+    {
+        SceneManager.LoadScene("Scene_Hard 1");
+    }
+    public void SelectLevel05()
+    {
+        SceneManager.LoadScene("Scene_Hard 2");
+    }
 }
