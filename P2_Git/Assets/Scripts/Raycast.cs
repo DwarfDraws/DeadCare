@@ -147,7 +147,7 @@ public class Raycast : MonoBehaviour
                         object_attachedTarget.ToggleDown(false);
                         if(!isObject_Animation_Rewinded) 
                         {   
-                            object_Animation.RewindAnimation();
+                            if(object_Animation != null) object_Animation.RewindAnimation();
                             isObject_Animation_Rewinded = true;
                         }
 
@@ -212,7 +212,7 @@ public class Raycast : MonoBehaviour
                     object_attachedTarget.ToggleDown(true);
                     if(isObject_Animation_Rewinded) 
                     {
-                        object_Animation.RewindAnimation();
+                        if(object_Animation != null) object_Animation.RewindAnimation();
                         isObject_Animation_Rewinded = false;
                     }
 
