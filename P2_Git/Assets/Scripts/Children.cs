@@ -154,7 +154,7 @@ public class Children : MonoBehaviour
             //color = Color.green;
             if (!currentTarget.isWaitTarget)
             {
-                if (currentTarget.isDeadly) color = Color.red; // TEST: Changed color to green
+                if (currentTarget.isDeadly) color = Color.red;
                 else
                 {
                     color = Color.green;
