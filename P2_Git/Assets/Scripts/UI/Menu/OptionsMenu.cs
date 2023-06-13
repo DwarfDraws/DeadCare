@@ -13,6 +13,8 @@ public class OptionsMenu : MonoBehaviour
     Resolution[] resolutions;
     private void Start()
     {
+       
+
         resolutions = Screen.resolutions;
 
         resolutionDropdown.ClearOptions();
@@ -52,4 +54,5 @@ public class OptionsMenu : MonoBehaviour
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
+   
 }

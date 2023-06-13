@@ -302,6 +302,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4361863193181772085}
         m_TargetAssemblyTypeName: InGamePauseMenu, Assembly-CSharp
+        m_MethodName: ResetTimescale
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4361863193181772085}
+        m_TargetAssemblyTypeName: InGamePauseMenu, Assembly-CSharp
         m_MethodName: PauseMenuMainMenu
         m_Mode: 1
         m_Arguments:
@@ -1125,7 +1137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a61902a026c0fc4481b33c03020d487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPaused: 0
+  pauseMenuObject: {fileID: 1247887556878825947}
+  inGameMenuObject: {fileID: 2999445994972843014}
 --- !u!1 &1268784829995466472
 GameObject:
   m_ObjectHideFlags: 0
@@ -2502,6 +2515,7 @@ GameObject:
   - component: {fileID: 1175716326293562157}
   - component: {fileID: 2004465709775291747}
   - component: {fileID: 2348368488043487917}
+  - component: {fileID: 2642965194358850329}
   m_Layer: 5
   m_Name: InGameUI
   m_TagString: Untagged
@@ -2588,6 +2602,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuObject: {fileID: 1247887556878825947}
   inGameMenuObject: {fileID: 2999445994972843014}
+--- !u!114 &2642965194358850329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2999445994972843014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68018ccfe489866478ae0b2c774f7de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raycast: {fileID: 0}
+  obj_moveHandler: {fileID: 0}
+  cam: {fileID: 0}
+  slider_prefab: {fileID: 0}
+  btn_move: {fileID: 0}
+  btn_tape: {fileID: 0}
+  pnl_GameOver: {fileID: 0}
+  pref_consumable: {fileID: 0}
+  txt_YouWin: {fileID: 0}
+  txt_ChildrenCounter: {fileID: 0}
+  txt_Countdown: {fileID: 0}
+  txt_tapeCounter: {fileID: 0}
+  btnConsumable: 0
+  isMoveBtnPressed: 0
+  isTapeBtnPressed: 0
 --- !u!1 &3053911126868653054
 GameObject:
   m_ObjectHideFlags: 0
@@ -2785,6 +2826,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 4361863193181772085}
+        m_TargetAssemblyTypeName: InGamePauseMenu, Assembly-CSharp
+        m_MethodName: ResetTimescale
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 2999445994972843014}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive

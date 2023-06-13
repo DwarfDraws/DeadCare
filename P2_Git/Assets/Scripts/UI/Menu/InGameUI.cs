@@ -9,10 +9,9 @@ public class InGameUI : MonoBehaviour
     void Update()
     {
 
-       
-
         if (Input.GetKeyDown("escape"))
         {
+            Time.timeScale = 0;
             pauseMenuObject.SetActive(true);
             inGameMenuObject.SetActive(false);
         }

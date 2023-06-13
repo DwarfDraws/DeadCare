@@ -5,7 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class InGamePauseMenu : MonoBehaviour
 {
-    public bool isPaused = false;
+    public GameObject pauseMenuObject;
+    public GameObject inGameMenuObject;
+    private void Update()
+    {
+        if (Input.GetKeyDown("escape"))
+        {
+            Time.timeScale = 1;
+            inGameMenuObject.SetActive(true);
+            pauseMenuObject.SetActive(false);
+        }
+    }
     public void PauseMenuMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
@@ -14,5 +24,8 @@ public class InGamePauseMenu : MonoBehaviour
     {
         Application.Quit();
     }
-    
+    public void ResetTimescale()
+    {
+        Time.timeScale = 1;
+    }
 }
