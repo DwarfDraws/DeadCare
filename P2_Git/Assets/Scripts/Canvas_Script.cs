@@ -13,18 +13,18 @@ public class Canvas_Script : MonoBehaviour
 
     [SerializeField] Camera cam;
     [SerializeField] Slider slider_prefab;
+    [SerializeField] GameObject pref_consumable;
 
     public GameObject btn_move, btn_tape;
     public GameObject pnl_GameOver;
-    [SerializeField] GameObject pref_consumable;
     [SerializeField] TMP_Text txt_YouWin, txt_ChildrenCounter;
     [SerializeField] TMP_Text txt_Countdown;
     [SerializeField] TMP_Text txt_tapeCounter;
     GameObject[] allObstacles;
 
-    public bool btnConsumable;
-    public bool isMoveBtnPressed, isTapeBtnPressed;
-    float pref_consumable_localScaleX, pref_consumable_localScaleZ;
+    [HideInInspector] bool btnConsumable;
+    [HideInInspector] public bool isMoveBtnPressed, isTapeBtnPressed;
+    [HideInInspector] float pref_consumable_localScaleX, pref_consumable_localScaleZ;
     
     // Start is called before the first frame update
     void Start()

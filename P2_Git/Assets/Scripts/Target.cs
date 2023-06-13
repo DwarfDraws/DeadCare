@@ -19,11 +19,14 @@ public class Target : MonoBehaviour
     bool isTaped;
     bool timerDown;
     float timer;
+
+
+    string canvas_name = "InGameMenuCanvas";
     
 
 
     private void Start() {
-        canvas = GameObject.Find("Canvas").GetComponent<Canvas_Script>();
+        canvas = GameObject.Find(canvas_name).GetComponent<Canvas_Script>();
         if(attachedObject != null && attachedObject.GetComponent<Animation_Script>() != null) attachedObject_Animation = attachedObject.GetComponent<Animation_Script>();
 
         timer = 1.0f;

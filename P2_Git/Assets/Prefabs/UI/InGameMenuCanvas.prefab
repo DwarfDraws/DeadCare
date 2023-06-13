@@ -1698,7 +1698,7 @@ RectTransform:
   - {fileID: 2387160605695784322}
   - {fileID: 857727460149588508}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2619,15 +2619,14 @@ MonoBehaviour:
   obj_moveHandler: {fileID: 0}
   cam: {fileID: 0}
   slider_prefab: {fileID: 0}
+  pref_consumable: {fileID: 0}
   btn_move: {fileID: 0}
   btn_tape: {fileID: 0}
   pnl_GameOver: {fileID: 0}
-  pref_consumable: {fileID: 0}
   txt_YouWin: {fileID: 0}
   txt_ChildrenCounter: {fileID: 0}
   txt_Countdown: {fileID: 0}
   txt_tapeCounter: {fileID: 0}
-  btnConsumable: 0
   isMoveBtnPressed: 0
   isTapeBtnPressed: 0
 --- !u!1 &3053911126868653054

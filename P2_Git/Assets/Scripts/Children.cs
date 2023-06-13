@@ -7,7 +7,7 @@ public class Children : MonoBehaviour
 {
 
     Settings_script settings;
-    Canvas_Script canvas;
+    //Canvas_Script canvas;
     Gameplay gameplay;
     
     [SerializeField] Animator animator;
@@ -26,6 +26,8 @@ public class Children : MonoBehaviour
     bool startTimer;
     bool isInSafeZone;
     bool isTargetDetected, isWidgetInstantiated;
+
+    string canvas_name = "InGameMenuCanvas";
     
 
     private void Start() 
@@ -33,7 +35,7 @@ public class Children : MonoBehaviour
         tutorialIndex = 0;
         
         settings = GameObject.Find("Settings").GetComponent<Settings_script>();
-        canvas = GameObject.Find("Canvas").GetComponent<Canvas_Script>();
+        //canvas = GameObject.Find(canvas_name).GetComponent<Canvas_Script>();
         gameplay = GameObject.Find("Gameplay_Handler").GetComponent<Gameplay>();
  
         attachedAgent = this.GetComponent<NavMeshAgent>();
