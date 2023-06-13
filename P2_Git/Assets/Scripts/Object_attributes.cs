@@ -32,10 +32,6 @@ public class Object_attributes : MonoBehaviour
         }
     }
 
-    public void Animate(float timer)
-    {
-        
-    }
 
     public bool IsClamped_Left(){ return isClamped_left; } 
     public bool IsClamped_Right(){ return isClamped_right; } 

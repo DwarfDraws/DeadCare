@@ -8,6 +8,7 @@ public class Canvas_Script : MonoBehaviour
 {
     [SerializeField] Raycast raycast;
     [SerializeField] Object_moveHandler obj_moveHandler;
+    GameObject inGameMenuCanvas;
     Canvas canvas;
     Object_attributes pref_consumable_attributes;
 
@@ -17,7 +18,8 @@ public class Canvas_Script : MonoBehaviour
 
     public GameObject btn_move, btn_tape;
     public GameObject pnl_GameOver;
-    [SerializeField] TMP_Text txt_YouWin, txt_ChildrenCounter;
+    [SerializeField] GameObject youWin, youLose;
+    [SerializeField] TMP_Text txt_ChildrenCounter;
     [SerializeField] TMP_Text txt_Countdown;
     [SerializeField] TMP_Text txt_tapeCounter;
     GameObject[] allObstacles;
@@ -25,11 +27,15 @@ public class Canvas_Script : MonoBehaviour
     [HideInInspector] bool btnConsumable;
     [HideInInspector] public bool isMoveBtnPressed, isTapeBtnPressed;
     [HideInInspector] float pref_consumable_localScaleX, pref_consumable_localScaleZ;
+
+
+    string inGameMenuCanvas_name = "InGameMenuCanvas";
     
     // Start is called before the first frame update
     void Start()
     {
-        canvas = this.GetComponent<Canvas>();
+        inGameMenuCanvas = GameObject.Find(inGameMenuCanvas_name);
+        canvas = inGameMenuCanvas.GetComponent<Canvas>();
         pref_consumable_attributes = pref_consumable.GetComponent<Object_attributes>();
         pref_consumable_localScaleX = pref_consumable.transform.localScale.x;
         pref_consumable_localScaleZ = pref_consumable.transform.localScale.z;
@@ -39,6 +45,7 @@ public class Canvas_Script : MonoBehaviour
 
     public Widget InstantiateWidget(Vector3 widget_worldPos, Color color)
     {
+        Debug.Log("reached actuall Instantiation-Function");
         Slider widget_instance = Slider.Instantiate(slider_prefab, widget_worldPos, Quaternion.identity, canvas.transform);
         
         Image fillColor_image = widget_instance.gameObject.transform.GetChild(1).GetChild(0).transform.GetComponent<Image>();
@@ -53,7 +60,6 @@ public class Canvas_Script : MonoBehaviour
         Widget widget = widget_instance.GetComponent<Widget>();
         return widget;
     }
-
 
     public void SetButton_Consumable(bool onOff)
     {
@@ -107,11 +113,11 @@ public class Canvas_Script : MonoBehaviour
 
     public void SetMoveableHalosActive(bool isActive)
     {
-            foreach(GameObject obstacle in allObstacles)
-            {
-                GameObject halo = obstacle.GetComponent<Object_attributes>().moveableHalo;
-                if(halo != null) halo.SetActive(isActive);
-            }        
+        foreach(GameObject obstacle in allObstacles)
+        {
+            GameObject halo = obstacle.GetComponent<Object_attributes>().moveableHalo;
+            if(halo != null) halo.SetActive(isActive);
+        }        
     }
 
     public void tapeButtonPressed(){
@@ -147,9 +153,18 @@ public class Canvas_Script : MonoBehaviour
         txt_ChildrenCounter.text = text;
     }
 
-    public void SetYouWin_Txt(string text)
+    public void SetYouWin(bool isWin)
     {
-        txt_YouWin.text = text;
+        if(isWin) 
+        {
+            youLose.SetActive(false);
+            youWin.SetActive(true);
+        }
+        else
+        {
+            youLose.SetActive(true);
+            youWin.SetActive(false);
+        }
     }
 
     public void SetTapeCounter_Txt(string text)

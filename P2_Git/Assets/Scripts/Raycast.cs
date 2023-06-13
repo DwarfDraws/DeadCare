@@ -5,9 +5,9 @@ public class Raycast : MonoBehaviour
 {
         
     [SerializeField] NavMesh navMesh;
-    [SerializeField] Canvas_Script canvas_script;
     [SerializeField] Object_moveHandler object_MoveHandler;
     [SerializeField] Menu_Handler menu_Handler;
+    Canvas_Script canvas;
     Gameplay gameplay;
     Object_attributes obj_attributes;
     Target object_attachedTarget;
@@ -31,6 +31,7 @@ public class Raycast : MonoBehaviour
     float localLength_x_Object, localLength_z_Object;
     float obj_posY;
     
+    string canvas_name = "InGameUI";
 
 
     //Hakon
@@ -38,6 +39,7 @@ public class Raycast : MonoBehaviour
 
     private void Start() {
         gameplay = GameObject.Find("Gameplay_Handler").GetComponent<Gameplay>();
+        canvas = GameObject.Find(canvas_name).GetComponent<Canvas_Script>();
     }
 
     void Update()
@@ -57,25 +59,10 @@ public class Raycast : MonoBehaviour
                     if(hitObject.CompareTag("obstacle"))
                     {
                         //move
-                        if (canvas_script.isMoveBtnPressed && hitObject.GetComponent<Object_attributes>().isMoveable)
+                        if (canvas.isMoveBtnPressed && hitObject.GetComponent<Object_attributes>().isMoveable)
                         {
                             isMoveable = true;                  
                             MousePressed_L = true;
-
-                            /*
-                            ////////////////////////
-                            //turnon halo -> by Hakon & Anastasia
-                            if(hitObject.transform.Find("halo").gameObject)
-                            { 
-                                halochild = hitObject.transform.Find("halo").gameObject;
-
-                                if (halochild.CompareTag("moveHalo"))
-                                {
-                                    halochild.SetActive(true);
-                                }
-                            }
-                            ////////////////////////////////
-                            */
 
                             obj_attributes = hitObject.GetComponent<Object_attributes>();
                             localLength_x_Object = hitObject.lossyScale.x;
@@ -101,7 +88,7 @@ public class Raycast : MonoBehaviour
                         else hasAttachedTarget = false;
 
                         //tape
-                        if(canvas_script.isTapeBtnPressed && !hitObject.GetComponent<Object_attributes>().isMoveable)
+                        if(canvas.isTapeBtnPressed && !hitObject.GetComponent<Object_attributes>().isMoveable)
                         {   
 
                             ////////////////////////
@@ -144,7 +131,6 @@ public class Raycast : MonoBehaviour
                     else 
                     {
                         MousePressed_L = false;
-
                     }
                 }
             }
@@ -156,7 +142,7 @@ public class Raycast : MonoBehaviour
                 if(MousePressed_L)
                 {
                     //switch timer to go up 
-                    if(hasAttachedTarget)
+                    if(hasAttachedTarget && !canvas.isTapeBtnPressed && !canvas.isMoveBtnPressed)
                     { 
                         object_attachedTarget.ToggleDown(false);
                         if(!isObject_Animation_Rewinded) 
@@ -168,7 +154,7 @@ public class Raycast : MonoBehaviour
                     }
 
 
-                    if(isMoveable && canvas_script.isMoveBtnPressed)
+                    if(isMoveable && canvas.isMoveBtnPressed)
                     {
                         ray = main_camera.ScreenPointToRay(Input.mousePosition);
 
@@ -238,7 +224,7 @@ public class Raycast : MonoBehaviour
 
 
         //consumables
-        if(canvas_script.isBtnPressed_Consumable()){
+        if(canvas.isBtnPressed_Consumable()){
             ray = main_camera.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hit, float.MaxValue, layer_Floor)){

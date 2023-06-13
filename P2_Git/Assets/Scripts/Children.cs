@@ -27,7 +27,7 @@ public class Children : MonoBehaviour
     bool isInSafeZone;
     bool isTargetDetected, isWidgetInstantiated;
 
-    string canvas_name = "InGameMenuCanvas";
+    string canvas_name = "InGameUI";
     
 
     private void Start() 
@@ -122,8 +122,8 @@ public class Children : MonoBehaviour
         //current target
         if (other.tag == "target" && triggerObject.GetComponent<Target>() == currentTarget)
         {
+            //Debug.Log("enter");
             TargetTriggered(other);
-            Debug.Log("enter");
         }        
     }
 
@@ -133,8 +133,8 @@ public class Children : MonoBehaviour
 
         if (other.tag == "target" && triggerObject.GetComponent<Target>() == currentTarget && !isTargetDetected)
         {
+            //Debug.Log("stay");
             TargetTriggered(other);
-            Debug.Log("stay");
         }
     }
 
@@ -148,6 +148,7 @@ public class Children : MonoBehaviour
 
     void TargetTriggered(Collider other)
     {
+            isTargetDetected = true;
             isStopped = true; //animator
             
             Color color;
@@ -164,7 +165,7 @@ public class Children : MonoBehaviour
 
                 if(!isWidgetInstantiated) 
                 {
-                    currentTarget.InstantiateWidget(widget_pos, color);
+                    currentTarget.InstantiateWidget_target(widget_pos, color);
                     isWidgetInstantiated = true;
                 }
             }
@@ -173,7 +174,6 @@ public class Children : MonoBehaviour
             startTimer = true;
             currentTarget.Animate_AttachedObject(); 
             
-            isTargetDetected = true;
     }
   
 

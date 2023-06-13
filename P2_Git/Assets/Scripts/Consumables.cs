@@ -13,17 +13,20 @@ public class Consumables : MonoBehaviour
 
     bool timeStart;
 
+    string canvas_name = "InGameUI";
+    string settings_name = "Settings";
+
 
     private void Start() 
     {
         timer = 1.0f;
-        settings = GameObject.Find("Settings").GetComponent<Settings_script>();
+        settings = GameObject.Find(settings_name).GetComponent<Settings_script>();
 
         if(settings.consumablesHaveExistenceTimer)
         {
             Vector3 widget_pos = this.transform.GetChild(0).gameObject.transform.position;
 
-            canvas = GameObject.Find("Canvas").GetComponent<Canvas_Script>();
+            canvas = GameObject.Find(canvas_name).GetComponent<Canvas_Script>();
             widget = canvas.InstantiateWidget(widget_pos, Color.blue);
             StartExistenceTimer(true);
         }

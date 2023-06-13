@@ -21,7 +21,7 @@ public class Target : MonoBehaviour
     float timer;
 
 
-    string canvas_name = "InGameMenuCanvas";
+    string canvas_name = "InGameUI";
     
 
 
@@ -106,16 +106,17 @@ public class Target : MonoBehaviour
         else timerDown = false;
     }
 
-    public void InstantiateWidget(Vector3 widget_worldPos, Color color)
+    public void InstantiateWidget_target(Vector3 widget_worldPos, Color color)
     {
+        //if(widget == null) Debug.Log("is null");
         widget = canvas.InstantiateWidget(widget_worldPos, color);
         ResetTimer();
     }
 
+
     public void DestroyWidget()
     {
         if(widget != null) Destroy(widget.gameObject);
-        Debug.Log("destroywidget");
     }
 
     void ResetTimer(){

@@ -93,9 +93,9 @@ public class Menu_Handler : MonoBehaviour
             //GameOver-Panel
             int survivedChildren = gameplay.GetChildCount();
             int initial_childAmount = gameplay.init_childCounter;
-            canvas.SetChildrenCounter_Txt(survivedChildren.ToString() + "/" + initial_childAmount.ToString() + " children survived");
-            if(isWon) canvas.SetYouWin_Txt("You win!");
-            else canvas.SetYouWin_Txt("You lose!");
+            canvas.SetChildrenCounter_Txt(survivedChildren.ToString() + "/" + initial_childAmount.ToString());
+            if(isWon) canvas.SetYouWin(true);
+            else canvas.SetYouWin(false);
             canvas.pnl_GameOver.SetActive(true);
 
             isGameOver = true;
@@ -107,10 +107,9 @@ public class Menu_Handler : MonoBehaviour
             foreach(GameObject obstacle in GameObject.FindGameObjectsWithTag("obstacle"))
             {
                 Object_attributes oa = obstacle.GetComponent<Object_attributes>();
-                oa.Animate(1);
                 oa.SetTapeActive(false);
 
-                obstacle.GetComponent<Animation_Script>().PlayAnimation(false);
+                if(obstacle.GetComponent<Animation_Script>() != null) obstacle.GetComponent<Animation_Script>().PlayAnimation(false);
             }
             foreach(GameObject widget in GameObject.FindGameObjectsWithTag("widget")){
                 Destroy(widget);
