@@ -8,7 +8,6 @@ public class Object_attributes : MonoBehaviour
     
     [SerializeField] GameObject tape;
     public GameObject moveableHalo;
-    [SerializeField] Animation animaton;
 
     public bool isMoveable = true; 
     public bool isRotated; 

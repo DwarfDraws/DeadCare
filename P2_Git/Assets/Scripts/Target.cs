@@ -11,6 +11,7 @@ public class Target : MonoBehaviour
     public Animation_Script attachedObject_Animation;
 
     public float waitTime_seconds = 2.0f;   
+    public int animation_Index;
     public bool isDeadly;
     public bool isWaitTarget;
     public bool isConsumable;
@@ -36,7 +37,7 @@ public class Target : MonoBehaviour
 
     public void Animate_AttachedObject()
     {
-        if(!isTaped && attachedObject_Animation != null) attachedObject_Animation.PlayAnimation(true);
+        if(!isTaped && attachedObject_Animation != null) attachedObject_Animation.PlayAnimation(animation_Index, true);
     }
 
     public void Timer(Children child)
@@ -61,7 +62,7 @@ public class Target : MonoBehaviour
                 {
                     isOpen = true;
                     isTargeted = false;
-                    if(attachedObject_Animation != null) attachedObject_Animation.PlayAnimation(false);
+                    if(attachedObject_Animation != null) attachedObject_Animation.PlayAnimation(animation_Index, false);
                     child.ChildDestroy();
                 }
 
@@ -82,7 +83,7 @@ public class Target : MonoBehaviour
             { 
                 child.Reset();
                 Destroy(widget.gameObject);
-                if(attachedObject_Animation != null) attachedObject_Animation.PlayAnimation(false);
+                if(attachedObject_Animation != null) attachedObject_Animation.PlayAnimation(animation_Index, false);
                 ToggleDown(true);
                 ResetTimer();
             }

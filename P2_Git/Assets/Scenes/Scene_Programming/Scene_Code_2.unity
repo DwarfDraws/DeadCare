@@ -2853,6 +2853,10 @@ PrefabInstance:
       propertyPath: attachedObject
       value: 
       objectReference: {fileID: 770556652}
+    - target: {fileID: 6977254914155859594, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
+      propertyPath: animation_Index
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7440016335023618315, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: m_Name
       value: pref_target (3)
@@ -5049,6 +5053,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1965555358}
     - target: {fileID: 6977254914155859594, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
+      propertyPath: animation_Index
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977254914155859594, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: waitTime_seconds
       value: 2
       objectReference: {fileID: 0}
@@ -5940,7 +5948,6 @@ MonoBehaviour:
   attachedTarget: {fileID: 0}
   tape: {fileID: 0}
   moveableHalo: {fileID: 0}
-  animaton: {fileID: 0}
   isMoveable: 1
   isRotated: 0
   isTaped: 0

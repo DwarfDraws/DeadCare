@@ -106,7 +106,7 @@ public class Children : MonoBehaviour
                     currentTarget.DestroyWidget();
                 }
                 
-                if (currentTarget.attachedObject_Animation != null) currentTarget.attachedObject_Animation.PlayAnimation(false); //reset animation
+                if (currentTarget.attachedObject_Animation != null) currentTarget.attachedObject_Animation.PlayAnimation(currentTarget.animation_Index, false); //reset animation
                 SetTarget(consumableTarget);
 
                 navMesh.SetSpecificPath(attachedAgent, consumableTarget);

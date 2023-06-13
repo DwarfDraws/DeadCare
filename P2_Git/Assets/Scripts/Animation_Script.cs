@@ -5,7 +5,7 @@ using UnityEngine;
 public class Animation_Script : MonoBehaviour
 {
     Animator anim;
-    string animation_Start = "start";
+    List<string> animation_Bools = new List<string>();
     string animation_Speed = "animation_speed";
     float speed;
     
@@ -13,6 +13,9 @@ public class Animation_Script : MonoBehaviour
     {
         anim = this.GetComponent<Animator>();
         speed = 1.0f;
+
+        animation_Bools.Add("SchrankFällt");
+        animation_Bools.Add("SchrankDreht");
     }
 
     public void SetAnimationSpeed(float targetSpeed)
@@ -25,9 +28,9 @@ public class Animation_Script : MonoBehaviour
         anim.SetFloat(animation_Speed, speed);
     }
     
-    public void PlayAnimation(bool isPlaying)
+    public void PlayAnimation(int anim_index, bool isPlaying)
     {
-        anim.SetBool(animation_Start, isPlaying);
+        anim.SetBool(animation_Bools[anim_index], isPlaying);
     }
 
     public void RewindAnimation()

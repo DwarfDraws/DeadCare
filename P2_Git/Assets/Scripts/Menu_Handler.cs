@@ -104,12 +104,15 @@ public class Menu_Handler : MonoBehaviour
             {
                 child.GetComponent<Children>().ChildDestroy();
             }
+
+            int i = 0;
             foreach(GameObject obstacle in GameObject.FindGameObjectsWithTag("obstacle"))
             {
                 Object_attributes oa = obstacle.GetComponent<Object_attributes>();
                 oa.SetTapeActive(false);
 
-                if(obstacle.GetComponent<Animation_Script>() != null) obstacle.GetComponent<Animation_Script>().PlayAnimation(false);
+                if(obstacle.GetComponent<Animation_Script>() != null) obstacle.GetComponent<Animation_Script>().PlayAnimation(i, false);
+                i++;
             }
             foreach(GameObject widget in GameObject.FindGameObjectsWithTag("widget")){
                 Destroy(widget);
