@@ -61,6 +61,7 @@ public class Target : MonoBehaviour
                 {
                     isOpen = true;
                     isTargeted = false;
+                    if(attachedObject_Animation != null) attachedObject_Animation.PlayAnimation(false);
                     child.ChildDestroy();
                 }
 
@@ -81,7 +82,7 @@ public class Target : MonoBehaviour
             { 
                 child.Reset();
                 Destroy(widget.gameObject);
-                attachedObject_Animation.PlayAnimation(false);
+                if(attachedObject_Animation != null) attachedObject_Animation.PlayAnimation(false);
                 ToggleDown(true);
                 ResetTimer();
             }

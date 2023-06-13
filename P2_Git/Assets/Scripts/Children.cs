@@ -70,7 +70,6 @@ public class Children : MonoBehaviour
 
         if(startTimer)
         {
-            Debug.Log("starttimer");
             currentTarget.Timer(this);
         }   
     }
@@ -97,7 +96,6 @@ public class Children : MonoBehaviour
             Target consumableTarget = triggerObject.transform.GetComponentInParent<Target>();
             if(consumableTarget.isOpen)
             {   
-                Debug.Log("consumable_radius entered");
                 isWidgetInstantiated = false;
                 
                 Consumables consumable = triggerObject.GetComponentInParent<Consumables>();
@@ -210,7 +208,6 @@ public class Children : MonoBehaviour
         isWidgetInstantiated = false;
         ResetTimer();
 
-        Debug.Log("reset");
     }
 
     public void ResetTimer()

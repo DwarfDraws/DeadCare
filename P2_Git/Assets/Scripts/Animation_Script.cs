@@ -28,7 +28,6 @@ public class Animation_Script : MonoBehaviour
     public void PlayAnimation(bool isPlaying)
     {
         anim.SetBool(animation_Start, isPlaying);
-        Debug.Log("playanim " + isPlaying);
     }
 
     public void RewindAnimation()

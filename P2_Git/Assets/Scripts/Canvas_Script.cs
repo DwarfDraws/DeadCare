@@ -29,12 +29,12 @@ public class Canvas_Script : MonoBehaviour
     [HideInInspector] float pref_consumable_localScaleX, pref_consumable_localScaleZ;
 
 
-    string inGameMenuCanvas_name = "InGameMenuCanvas";
+    string pref_Canvas = "pref_Canvas";
     
     // Start is called before the first frame update
     void Start()
     {
-        inGameMenuCanvas = GameObject.Find(inGameMenuCanvas_name);
+        inGameMenuCanvas = GameObject.Find(pref_Canvas);
         canvas = inGameMenuCanvas.GetComponent<Canvas>();
         pref_consumable_attributes = pref_consumable.GetComponent<Object_attributes>();
         pref_consumable_localScaleX = pref_consumable.transform.localScale.x;
@@ -45,7 +45,7 @@ public class Canvas_Script : MonoBehaviour
 
     public Widget InstantiateWidget(Vector3 widget_worldPos, Color color)
     {
-        Debug.Log("reached actuall Instantiation-Function");
+
         Slider widget_instance = Slider.Instantiate(slider_prefab, widget_worldPos, Quaternion.identity, canvas.transform);
         
         Image fillColor_image = widget_instance.gameObject.transform.GetChild(1).GetChild(0).transform.GetComponent<Image>();
