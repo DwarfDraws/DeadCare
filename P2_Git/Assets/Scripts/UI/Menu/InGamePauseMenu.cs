@@ -7,13 +7,17 @@ public class InGamePauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuObject;
     public GameObject inGameMenuObject;
+    public AudioSource click;
     private void Update()
     {
         if (Input.GetKeyDown("escape"))
         {
             Time.timeScale = 1;
+            click.Play();
             inGameMenuObject.SetActive(true);
             pauseMenuObject.SetActive(false);
+           
+
         }
     }
     public void PauseMenuMainMenu()
