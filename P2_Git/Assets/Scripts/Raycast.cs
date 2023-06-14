@@ -23,22 +23,26 @@ public class Raycast : MonoBehaviour
     Vector3 mouse_Pos3D, offset, mouse3D_wOffset;
     Vector3 initMouse_Pos, initHit_Offset;
 
-    public bool isMoveable;
+    float obj_posY;
+    float localLength_x_Object, localLength_z_Object;
+    [HideInInspector] public bool isMoveable;
     bool MousePressed_L;
     bool missingOffset;
     bool hasAttachedTarget;
     bool isObject_Animation_Rewinded;
-    float localLength_x_Object, localLength_z_Object;
-    float obj_posY;
     
     string canvas_name = "InGameUI";
+    string gameplayHandler_name = "Gameplay_Handler";
+    string halo_name = "halo";
+    string tag_obstacle = "obstacle";
+    string tag_tapeHalo = "tapeHalo";
 
 
     //Hakon
     private GameObject halochild;
 
     private void Start() {
-        gameplay = GameObject.Find("Gameplay_Handler").GetComponent<Gameplay>();
+        gameplay = GameObject.Find(gameplayHandler_name).GetComponent<Gameplay>();
         canvas = GameObject.Find(canvas_name).GetComponent<Canvas_Script>();
     }
 
@@ -56,7 +60,7 @@ public class Raycast : MonoBehaviour
                 { 
                     hitObject = hit.transform; //object transform
 
-                    if(hitObject.CompareTag("obstacle"))
+                    if(hitObject.CompareTag(tag_obstacle))
                     {
                         //move
                         if (canvas.isMoveBtnPressed && hitObject.GetComponent<Object_attributes>().isMoveable)
@@ -90,21 +94,6 @@ public class Raycast : MonoBehaviour
                         //tape
                         if(canvas.isTapeBtnPressed && !hitObject.GetComponent<Object_attributes>().isMoveable)
                         {   
-
-                            ////////////////////////
-                            //turnon halo -> by Hakon & Anastasia
-                            if(hitObject.transform.Find("halo").gameObject)
-                            { 
-                                halochild = hitObject.transform.Find("halo").gameObject;
-
-                                if (halochild.CompareTag("tapeHalo"))
-                                {
-                                    halochild.SetActive(true);
-                                }
-                            }
-                            ////////////////////////////////
-
-
                             obj_attributes = hitObject.GetComponent<Object_attributes>();
                             if (obj_attributes.isTaped)
                             {
@@ -194,14 +183,6 @@ public class Raycast : MonoBehaviour
         //EDIT weist ja
         if (Input.GetMouseButtonUp(0))
         {
-            //////////////////////////////////
-            //Hakon
-            if (halochild != null)
-            {
-                halochild.SetActive(false);
-            }
-            /////////////////////////////////
-            /// 
             if (MousePressed_L){
                 MousePressed_L = false;
                 missingOffset = false;
@@ -217,8 +198,6 @@ public class Raycast : MonoBehaviour
                     }
 
                 }
-
-                //navMesh.RecalculateAllPaths();
             }
         }
 

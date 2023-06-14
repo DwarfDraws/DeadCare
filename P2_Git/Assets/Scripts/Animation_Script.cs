@@ -5,17 +5,20 @@ using UnityEngine;
 public class Animation_Script : MonoBehaviour
 {
     Animator anim;
-    List<string> animation_Bools = new List<string>();
-    string animation_Speed = "animation_speed";
+
+    List<string> objectAnimation_Bools = new List<string>();
     float speed;
+
+    string animation_Speed = "animation_speed";
+
     
     private void Awake() 
     {
         anim = this.GetComponent<Animator>();
         speed = 1.0f;
 
-        animation_Bools.Add("SchrankFällt");
-        animation_Bools.Add("SchrankDreht");
+        objectAnimation_Bools.Add("SchrankFällt");
+        objectAnimation_Bools.Add("SchrankDreht");
     }
 
     public void SetAnimationSpeed(float targetSpeed)
@@ -30,7 +33,7 @@ public class Animation_Script : MonoBehaviour
     
     public void PlayAnimation(int anim_index, bool isPlaying)
     {
-        anim.SetBool(animation_Bools[anim_index], isPlaying);
+        anim.SetBool(objectAnimation_Bools[anim_index], isPlaying);
     }
 
     public void RewindAnimation()

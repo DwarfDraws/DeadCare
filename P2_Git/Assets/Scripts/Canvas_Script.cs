@@ -24,12 +24,13 @@ public class Canvas_Script : MonoBehaviour
     [SerializeField] TMP_Text txt_tapeCounter;
     GameObject[] allObstacles;
 
-    [HideInInspector] bool btnConsumable;
-    [HideInInspector] public bool isMoveBtnPressed, isTapeBtnPressed;
     [HideInInspector] float pref_consumable_localScaleX, pref_consumable_localScaleZ;
+    [HideInInspector] public bool isMoveBtnPressed, isTapeBtnPressed;
+    [HideInInspector] bool btnConsumable;
 
 
     string pref_Canvas = "pref_Canvas";
+    string tag_obstacle = "obstacle";
     
     // Start is called before the first frame update
     void Start()
@@ -40,7 +41,7 @@ public class Canvas_Script : MonoBehaviour
         pref_consumable_localScaleX = pref_consumable.transform.localScale.x;
         pref_consumable_localScaleZ = pref_consumable.transform.localScale.z;
 
-        allObstacles = GameObject.FindGameObjectsWithTag("obstacle");
+        allObstacles = GameObject.FindGameObjectsWithTag(tag_obstacle);
     }
 
     public Widget InstantiateWidget(Vector3 widget_worldPos, Color color)
@@ -76,14 +77,14 @@ public class Canvas_Script : MonoBehaviour
         Vector3 instantiate_pos = raycast.GetMousePos3D();
         obj_moveHandler.SetObject(pref_consumable_attributes, pref_consumable_localScaleX, pref_consumable_localScaleZ);
         
-        if(!obj_moveHandler.IsObjectAtEdge(instantiate_pos)){
-            
-            GameObject consumableInst = Instantiate(pref_consumable, raycast.GetMousePos3D(), Quaternion.identity);
-                        
+        if(!obj_moveHandler.IsObjectAtEdge(instantiate_pos))
+        {
+            GameObject consumableInst = Instantiate(pref_consumable, raycast.GetMousePos3D(), Quaternion.identity);               
         }
     }
 
-    public void moveButtonPressed(){
+    public void moveButtonPressed()
+    {
         isMoveBtnPressed = !isMoveBtnPressed;
         
         if(isMoveBtnPressed)
@@ -92,11 +93,10 @@ public class Canvas_Script : MonoBehaviour
             {
                 isTapeBtnPressed = false;
                 btn_tape.GetComponent<Image>().color = Color.white;
+                SetTapeableHalosActive(false);
             }
             btn_move.GetComponent<Image>().color = Color.gray;
-            
             SetMoveableHalosActive(true);  
-
         }
         else
         { 
@@ -120,7 +120,17 @@ public class Canvas_Script : MonoBehaviour
         }        
     }
 
-    public void tapeButtonPressed(){
+    public void SetTapeableHalosActive(bool isActive)
+    {
+        foreach(GameObject obstacle in allObstacles)
+        {
+            GameObject halo = obstacle.GetComponent<Object_attributes>().tapeableHalo;
+            if(halo != null) halo.SetActive(isActive);
+        }        
+    }
+
+    public void tapeButtonPressed()
+    {
         isTapeBtnPressed = !isTapeBtnPressed;
 
         if(isTapeBtnPressed)
@@ -128,12 +138,17 @@ public class Canvas_Script : MonoBehaviour
             if(isMoveBtnPressed)
             {
                 isMoveBtnPressed = false;
-                SetMoveableHalosActive(false);
                 btn_move.GetComponent<Image>().color = Color.white;
+                SetMoveableHalosActive(false);
             }
             btn_tape.GetComponent<Image>().color = Color.gray;
+            SetTapeableHalosActive(true);
         }
-        else btn_tape.GetComponent<Image>().color = Color.white;
+        else 
+        {
+            btn_tape.GetComponent<Image>().color = Color.white;
+            SetTapeableHalosActive(false);
+        }
     }
 
     public void Deactivate_TapeButton()

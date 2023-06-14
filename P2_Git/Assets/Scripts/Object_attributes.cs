@@ -5,13 +5,12 @@ using UnityEngine;
 public class Object_attributes : MonoBehaviour
 {
     public Target attachedTarget;
-    
     [SerializeField] GameObject tape;
-    public GameObject moveableHalo;
+    public GameObject moveableHalo, tapeableHalo;
 
+    [HideInInspector] public bool isRotated; 
+    [HideInInspector] public bool isTaped; 
     public bool isMoveable = true; 
-    public bool isRotated; 
-    public bool isTaped; 
     bool isClamped_left, isClamped_right, isClamped_front, isClamped_back;
 
 

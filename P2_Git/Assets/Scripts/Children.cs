@@ -7,40 +7,44 @@ public class Children : MonoBehaviour
 {
 
     Settings_script settings;
-    //Canvas_Script canvas;
     Gameplay gameplay;
     
     [SerializeField] Animator animator;
     [SerializeField] List<Target> tutorialTargets;
-    public Target currentTarget;
+    [HideInInspector] public Target currentTarget;
     Target tempOldTarget;
     NavMesh navMesh;
-    
     NavMeshAgent attachedAgent; 
 
     int tutorialIndex;
     float waitTime_seconds; 
     float beginTimer;
-    public bool isStopped;
+    [HideInInspector] public bool isStopped;
     bool isPathInitialized;
     bool startTimer;
     bool isInSafeZone;
     bool isTargetDetected, isWidgetInstantiated;
 
     string canvas_name = "InGameUI";
+    string settings_name = "Settings";
+    string gamplayHandler_name = "Gameplay_Handler";
+    string navMeshHandler_name = "NavMesh_Handler";
+
+    string tag_consumableRadius = "consumable_radius";
+    string tag_target = "target";
     
 
     private void Start() 
     {
         tutorialIndex = 0;
         
-        settings = GameObject.Find("Settings").GetComponent<Settings_script>();
+        settings = GameObject.Find(settings_name).GetComponent<Settings_script>();
         //canvas = GameObject.Find(canvas_name).GetComponent<Canvas_Script>();
-        gameplay = GameObject.Find("Gameplay_Handler").GetComponent<Gameplay>();
+        gameplay = GameObject.Find(gamplayHandler_name).GetComponent<Gameplay>();
  
         attachedAgent = this.GetComponent<NavMeshAgent>();
         currentTarget = null;
-        navMesh = GameObject.Find("NavMesh_Handler").GetComponent<NavMesh>();
+        navMesh = GameObject.Find(navMeshHandler_name).GetComponent<NavMesh>();
 
     }
 
@@ -91,7 +95,7 @@ public class Children : MonoBehaviour
         GameObject triggerObject = other.gameObject;
         
         //consumable
-        if(other.tag == "consumable_radius" && !isInSafeZone)
+        if(other.tag == tag_consumableRadius && !isInSafeZone)
         {
             Target consumableTarget = triggerObject.transform.GetComponentInParent<Target>();
             if(consumableTarget.isOpen)
@@ -118,7 +122,7 @@ public class Children : MonoBehaviour
         }
 
         //current target
-        if (other.tag == "target" && triggerObject.GetComponent<Target>() == currentTarget)
+        if (other.tag == tag_target && triggerObject.GetComponent<Target>() == currentTarget)
         {
             //Debug.Log("enter");
             TargetTriggered(other);
@@ -129,7 +133,7 @@ public class Children : MonoBehaviour
     {
         GameObject triggerObject = other.gameObject;
 
-        if (other.tag == "target" && triggerObject.GetComponent<Target>() == currentTarget && !isTargetDetected)
+        if (other.tag == tag_target && triggerObject.GetComponent<Target>() == currentTarget && !isTargetDetected)
         {
             //Debug.Log("stay");
             TargetTriggered(other);

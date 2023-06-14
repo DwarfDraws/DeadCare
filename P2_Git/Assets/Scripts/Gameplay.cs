@@ -8,13 +8,14 @@ public class Gameplay : MonoBehaviour
     [SerializeField] Spawner spawner;
     [SerializeField] Canvas_Script canvas;
     
-    public int init_tapeCounter;
+    [HideInInspector] public int init_tapeCounter;
+    [HideInInspector] public int init_childCounter;
     int current_tapeCounter;
-    public int init_childCounter;
     int current_ChildCounter;
 
     
-    private void Start() {       
+    private void Start() 
+    {       
         current_ChildCounter = init_childCounter;
         current_tapeCounter = init_tapeCounter;
     }

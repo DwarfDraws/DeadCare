@@ -10,16 +10,16 @@ public class Target : MonoBehaviour
     public Object_attributes attachedObject;
     public Animation_Script attachedObject_Animation;
 
-    public float waitTime_seconds = 2.0f;   
     public int animation_Index;
+    public float waitTime_seconds = 2.0f;   
+    float timer;
+    [HideInInspector] public bool isOpen; 
+    [HideInInspector] public bool isTargeted;
     public bool isDeadly;
     public bool isWaitTarget;
     public bool isConsumable;
-    public bool isOpen; 
-    public bool isTargeted;
     bool isTaped;
     bool timerDown;
-    float timer;
 
 
     string canvas_name = "InGameUI";
@@ -110,7 +110,6 @@ public class Target : MonoBehaviour
 
     public void InstantiateWidget_target(Vector3 widget_worldPos, Color color)
     {
-        //if(widget == null) Debug.Log("is null");
         widget = canvas.InstantiateWidget(widget_worldPos, color);
         ResetTimer();
     }
@@ -121,7 +120,8 @@ public class Target : MonoBehaviour
         if(widget != null) Destroy(widget.gameObject);
     }
 
-    void ResetTimer(){
+    void ResetTimer()
+    {
         timer = 1.0f;
     }
 }

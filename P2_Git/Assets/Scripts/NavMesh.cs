@@ -6,12 +6,13 @@ using UnityEngine.AI;
 public class NavMesh : MonoBehaviour
 {
     List<Target> targets = new List<Target>();
-    
-    public List<NavMeshAgent> agents = new List<NavMeshAgent>();
+    [HideInInspector] public List<NavMeshAgent> agents = new List<NavMeshAgent>();
     List<NavMeshAgent> stoppedAgents = new List<NavMeshAgent>();
     NavMeshPath path;
-    
     [SerializeField] List<GameObject> target_transforms = new List<GameObject>();
+
+    string tag_child = "child";
+    string tag_target = "target";
 
 
     private void Start() {
@@ -122,7 +123,7 @@ public class NavMesh : MonoBehaviour
     //Agent
     void InitAgentsList()
     {
-        foreach(GameObject a in GameObject.FindGameObjectsWithTag("child")){
+        foreach(GameObject a in GameObject.FindGameObjectsWithTag(tag_child)){
             agents.Add(a.GetComponent<NavMeshAgent>());
         }
     }
@@ -154,7 +155,7 @@ public class NavMesh : MonoBehaviour
     //Targets
     void InitTargets()
     {
-        foreach(GameObject t in GameObject.FindGameObjectsWithTag("target"))
+        foreach(GameObject t in GameObject.FindGameObjectsWithTag(tag_target))
         {
             target_transforms.Add(t);
             targets.Add(t.GetComponent<Target>());

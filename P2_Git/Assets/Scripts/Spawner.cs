@@ -9,13 +9,16 @@ public class Spawner : MonoBehaviour
     NavMesh navMesh;
     [SerializeField] GameObject childPrefab;
 
-
-    public int childrenToSpawn;
+    [HideInInspector] public int childrenToSpawn;
     bool isBlocked;
     bool isSpawning;
    
-    private void Start() {
-        navMesh = GameObject.Find("NavMesh_Handler").GetComponent<NavMesh>();
+    string navMeshHandler_name = "NavMesh_Handler";
+    string tag_child = "child";
+
+    private void Start() 
+    {
+        navMesh = GameObject.Find(navMeshHandler_name).GetComponent<NavMesh>();
     }
 
     private void Update() {
@@ -50,14 +53,14 @@ public class Spawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "child") isBlocked = true;
+        if(other.tag == tag_child) isBlocked = true;
     }
     private void OnTriggerStay(Collider other)
     {
-        if(other.tag == "child") isBlocked = true;
+        if(other.tag == tag_child) isBlocked = true;
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "child") isBlocked = false;
+        if (other.tag == tag_child) isBlocked = false;
     }
 }

@@ -13,16 +13,20 @@ public class Menu_Handler : MonoBehaviour
 
     GameObject[] obstacles;
 
-    bool prepCountDownStart, gameCountdownStart;
-    bool spawnChildAfterCountdown;
+    int displayTimer;
     float init_prepCountdownTimer, current_prepCountdownTimer;
     float init_gameCountdownTimer, current_gameCountdownTimer;
-    int displayTimer;
-    public bool isGameOver;
+    [HideInInspector] public bool isGameOver;
+    bool prepCountDownStart, gameCountdownStart;
+    bool spawnChildAfterCountdown;
+
+    string tag_obstacle = "obstacle";
+    string tag_child = "child";
+    string tag_widget = "widget";
 
     private void Start() 
     {
-        obstacles = GameObject.FindGameObjectsWithTag("obstacle");
+        obstacles = GameObject.FindGameObjectsWithTag(tag_obstacle);
     }  
 
     private void Update() 
@@ -76,6 +80,7 @@ public class Menu_Handler : MonoBehaviour
         canvas.Deactivate_MoveButton();
         canvas.Deactivate_TapeButton();
         canvas.SetMoveableHalosActive(false);
+        canvas.SetTapeableHalosActive(false);
 
         spawner.SpawnChildren();
 
@@ -100,13 +105,13 @@ public class Menu_Handler : MonoBehaviour
 
             isGameOver = true;
             
-            foreach(GameObject child in GameObject.FindGameObjectsWithTag("child")) 
+            foreach(GameObject child in GameObject.FindGameObjectsWithTag(tag_child)) 
             {
                 child.GetComponent<Children>().ChildDestroy();
             }
 
             int i = 0;
-            foreach(GameObject obstacle in GameObject.FindGameObjectsWithTag("obstacle"))
+            foreach(GameObject obstacle in GameObject.FindGameObjectsWithTag(tag_obstacle))
             {
                 Object_attributes oa = obstacle.GetComponent<Object_attributes>();
                 oa.SetTapeActive(false);
@@ -114,10 +119,9 @@ public class Menu_Handler : MonoBehaviour
                 if(obstacle.GetComponent<Animation_Script>() != null) obstacle.GetComponent<Animation_Script>().PlayAnimation(oa.attachedTarget.animation_Index, false);
                 i++;
             }
-            foreach(GameObject widget in GameObject.FindGameObjectsWithTag("widget")){
+            foreach(GameObject widget in GameObject.FindGameObjectsWithTag(tag_widget)){
                 Destroy(widget);
             }
         }
     }
-
 }

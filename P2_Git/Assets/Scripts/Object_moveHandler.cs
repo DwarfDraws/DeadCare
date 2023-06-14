@@ -16,6 +16,9 @@ public class Object_moveHandler : MonoBehaviour
     float half_floorLength_x, half_floorDepth_z;
     float localLength_x_Object, localLength_z_Object;
 
+    string key_q = "q";
+    string key_e = "e";
+
 
     private void Start() {
         floor_length_x  = floor.transform.localScale.x;
@@ -27,7 +30,7 @@ public class Object_moveHandler : MonoBehaviour
 
     public void CheckInput_Rotation(Transform hitObject, Vector3 mouse_Pos3D, Vector3 initHit_Offset)
     {     
-        if (Input.GetKeyDown("q") || Input.GetKeyDown("e"))
+        if (Input.GetKeyDown(key_q) || Input.GetKeyDown(key_e))
         {
             var key = Input.inputString;
             float rotateAngle = 0;

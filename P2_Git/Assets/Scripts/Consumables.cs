@@ -10,7 +10,6 @@ public class Consumables : MonoBehaviour
     
     public float existenceTimeSeconds;
     float timer;
-
     bool timeStart;
 
     string canvas_name = "InGameUI";

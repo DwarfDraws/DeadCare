@@ -12,13 +12,16 @@ public class Settings_script : MonoBehaviour
     [SerializeField] Button btnSpawnChildren;
     [SerializeField] Canvas_Script canvas;
 
-    public bool consumablesHaveExistenceTimer;
-    public bool isTutorial;
-    [SerializeField] bool hideTargets;
-    [SerializeField] float prepCountdownTime_Seconds;
-    [SerializeField] float gameCountdownTime_Seconds;
     [SerializeField] int children_Amount = 0;
     [SerializeField] int tape_Amount = 0;
+    [SerializeField] float prepCountdownTime_Seconds;
+    [SerializeField] float gameCountdownTime_Seconds;
+    [SerializeField] bool hideTargets;
+    public bool consumablesHaveExistenceTimer;
+    public bool isTutorial;
+
+
+    string tag_target = "target";
 
     private void Awake() 
     {
@@ -38,7 +41,7 @@ public class Settings_script : MonoBehaviour
 
     void HideTargets()
     {
-        GameObject[] targets = GameObject.FindGameObjectsWithTag("target");
+        GameObject[] targets = GameObject.FindGameObjectsWithTag(tag_target);
         foreach(GameObject target in targets)
         {
             target.GetComponent<MeshRenderer>().enabled = false;
