@@ -19,7 +19,6 @@ public class DynamicLevelSelection : MonoBehaviour
     private void ButtonOnOnButtonClicked(int buttonNumber)
     {
         MenuClickSound.Play();
-        Debug.Log(SceneManager.GetActiveScene().buildIndex + buttonNumber);
         if(buttonNumber >= 1)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + buttonNumber);

@@ -11,11 +11,11 @@ public class LevelSelectionButton : MonoBehaviour
     public event System.Action<int> OnButtonClicked;
     private int _keyNumber;
 
-    /*private void OnValidate()
+    private void OnValidate()
     {
-        _keyNumber = 3;//transform.GetSiblingIndex() + 1;//
+        _keyNumber = transform.GetSiblingIndex() + 1;
 
-    }*/
+    }
     private void Awake()
     {
         _keyNumber = transform.GetSiblingIndex() + 1;
