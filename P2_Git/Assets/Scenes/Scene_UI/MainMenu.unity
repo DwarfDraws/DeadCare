@@ -980,18 +980,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1398692227}
-        m_TargetAssemblyTypeName: MenuSounds, Assembly-CSharp
-        m_MethodName: ButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelSelection, Assembly-CSharp
         m_MethodName: SelectLevel05
@@ -1512,8 +1500,8 @@ GameObject:
   - component: {fileID: 685845464}
   - component: {fileID: 685845467}
   - component: {fileID: 685845466}
-  - component: {fileID: 685845465}
   - component: {fileID: 685845468}
+  - component: {fileID: 685845465}
   m_Layer: 5
   m_Name: Level
   m_TagString: Untagged
@@ -1585,18 +1573,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1398692227}
-        m_TargetAssemblyTypeName: MenuSounds, Assembly-CSharp
-        m_MethodName: ButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelSelection, Assembly-CSharp
         m_MethodName: SelectLevel01
@@ -1962,6 +1938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d4df1746083c5f4e9cc3b85133d7bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MenuClickSound: {fileID: 1311337791}
 --- !u!114 &996601383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2207,18 +2184,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1398692227}
-        m_TargetAssemblyTypeName: MenuSounds, Assembly-CSharp
-        m_MethodName: ButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelSelection, Assembly-CSharp
         m_MethodName: SelectLevel02
@@ -2365,18 +2330,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1398692227}
-        m_TargetAssemblyTypeName: MenuSounds, Assembly-CSharp
-        m_MethodName: ButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelSelection, Assembly-CSharp
         m_MethodName: SelectLevel04
@@ -4080,18 +4033,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1398692227}
-        m_TargetAssemblyTypeName: MenuSounds, Assembly-CSharp
-        m_MethodName: ButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelSelection, Assembly-CSharp
         m_MethodName: SelectLevel03

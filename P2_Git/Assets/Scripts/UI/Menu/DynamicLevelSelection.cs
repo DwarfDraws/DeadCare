@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class DynamicLevelSelection : MonoBehaviour
 {
+  public AudioSource MenuClickSound;
     private void Awake()
     {
+        
         foreach (var button in GetComponentsInChildren<LevelSelectionButton>())
         {
             button.OnButtonClicked += ButtonOnOnButtonClicked;
@@ -16,7 +18,13 @@ public class DynamicLevelSelection : MonoBehaviour
 
     private void ButtonOnOnButtonClicked(int buttonNumber)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + buttonNumber);
+        MenuClickSound.Play();
+        Debug.Log(SceneManager.GetActiveScene().buildIndex + buttonNumber);
+        if(buttonNumber >= 1)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + buttonNumber);
+        }
+       
     }
 
 }

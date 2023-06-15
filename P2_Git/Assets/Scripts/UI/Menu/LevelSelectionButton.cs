@@ -7,22 +7,26 @@ using UnityEngine.Events;
 
 public class LevelSelectionButton : MonoBehaviour
 {
+   
     public event System.Action<int> OnButtonClicked;
-    private KeyCode _keyCode;
     private int _keyNumber;
 
-    private void OnValidate()
+    /*private void OnValidate()
     {
-        _keyNumber = transform.GetSiblingIndex() + 1;
-        _keyCode = KeyCode.Alpha0 + _keyNumber;
+        _keyNumber = 3;//transform.GetSiblingIndex() + 1;//
 
-    }
+    }*/
     private void Awake()
     {
-        GetComponent<Button>().onClick.AddListener(HandleClick);
+        _keyNumber = transform.GetSiblingIndex() + 1;
+        GetComponent<Button>().onClick.AddListener(HandleClick); 
+       
     }
+
     private void HandleClick()
     {
         OnButtonClicked?.Invoke(_keyNumber);
     }
+
+   
 }
