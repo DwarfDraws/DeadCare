@@ -7,6 +7,7 @@ public class Animation_Script : MonoBehaviour
     Animator anim;
 
     List<string> objectAnimation_Bools = new List<string>();
+    List<string> childrenAnimation_Bools = new List<string>();
     float speed;
 
     string animation_Speed = "animation_speed";
@@ -31,9 +32,10 @@ public class Animation_Script : MonoBehaviour
         anim.SetFloat(animation_Speed, speed);
     }
     
-    public void PlayAnimation(int anim_index, bool isPlaying)
+    public void PlayAnimation(int anim_index, bool isPlaying, bool isObjectAnimation)
     {
-        anim.SetBool(objectAnimation_Bools[anim_index], isPlaying);
+        if(isObjectAnimation && objectAnimation_Bools[anim_index] != "") anim.SetBool(objectAnimation_Bools[anim_index], isPlaying);
+        else if(childrenAnimation_Bools.Count != 0 && childrenAnimation_Bools[anim_index] != "") anim.SetBool(childrenAnimation_Bools[anim_index], isPlaying);
     }
 
     public void RewindAnimation()

@@ -116,7 +116,7 @@ public class Menu_Handler : MonoBehaviour
                 Object_attributes oa = obstacle.GetComponent<Object_attributes>();
                 oa.SetTapeActive(false);
 
-                if(obstacle.GetComponent<Animation_Script>() != null) obstacle.GetComponent<Animation_Script>().PlayAnimation(oa.attachedTarget.animation_Index, false);
+                if(obstacle.GetComponent<Animation_Script>() != null) obstacle.GetComponent<Animation_Script>().PlayAnimation(oa.attachedTarget.animation_Index, false, true);
                 i++;
             }
             foreach(GameObject widget in GameObject.FindGameObjectsWithTag(tag_widget)){
