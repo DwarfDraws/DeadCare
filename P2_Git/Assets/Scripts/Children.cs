@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,23 +10,26 @@ public class Children : MonoBehaviour
     Settings_script settings;
     Gameplay gameplay;
     
-    [SerializeField] Animator animator;
+    //[SerializeField] Animator animator;
+    [HideInInspector] public Animation_Script animation_script;
     [SerializeField] List<Target> tutorialTargets;
     [HideInInspector] public Target currentTarget;
     Target tempOldTarget;
     NavMesh navMesh;
     NavMeshAgent attachedAgent; 
+    GameObject triggerObject;
 
     int tutorialIndex;
     float waitTime_seconds; 
     float beginTimer;
-    [HideInInspector] public bool isStopped;
+    float standStill_velocityThreshold;
+    float init_WaitTime;
     bool isPathInitialized;
     bool startTimer;
     bool isInSafeZone;
     bool isTargetDetected, isWidgetInstantiated;
+    bool waitForAgentToStop;
 
-    string canvas_name = "InGameUI";
     string settings_name = "Settings";
     string gamplayHandler_name = "Gameplay_Handler";
     string navMeshHandler_name = "NavMesh_Handler";
@@ -37,34 +41,31 @@ public class Children : MonoBehaviour
     private void Start() 
     {
         tutorialIndex = 0;
+        init_WaitTime = 0.05f;
+        standStill_velocityThreshold = 0.01f;
+        currentTarget = null;
         
         settings = GameObject.Find(settings_name).GetComponent<Settings_script>();
-        //canvas = GameObject.Find(canvas_name).GetComponent<Canvas_Script>();
         gameplay = GameObject.Find(gamplayHandler_name).GetComponent<Gameplay>();
  
-        attachedAgent = this.GetComponent<NavMeshAgent>();
-        currentTarget = null;
+        attachedAgent = GetComponent<NavMeshAgent>();
+        animation_script = GetComponent<Animation_Script>();
         navMesh = GameObject.Find(navMeshHandler_name).GetComponent<NavMesh>();
 
+        animation_script.PlayWalkingAnimation(true); 
     }
 
     void Update()
     {
-        
-        //animator
-        animator.SetBool("isidle", isStopped);
-        //animator
-        
-
         beginTimer += Time.deltaTime;
-        if(beginTimer >= 0.05 && !isPathInitialized)
+        if(beginTimer >= init_WaitTime && !isPathInitialized)
         {            
             if(settings.isTutorial) 
             {
                 if(tutorialTargets.Count != 0) navMesh.SetSpecificPath(attachedAgent, tutorialTargets[tutorialIndex]);
                 else
                 {
-                    Debug.Log("!!!! no tutorial-target set !!!!");
+                    Debug.Log("Error: no tutorial-target set.");
                     navMesh.StopAgent(attachedAgent);
                 }
             }
@@ -72,89 +73,121 @@ public class Children : MonoBehaviour
             isPathInitialized = true;
         }
 
-        if(startTimer)
+
+        if(startTimer) currentTarget.Timer(this);
+
+
+        //wait until target-destination reached
+        if(waitForAgentToStop)
         {
-            currentTarget.Timer(this);
-        }   
+           if(attachedAgent.velocity.sqrMagnitude <= standStill_velocityThreshold) 
+           {
+                TargetTriggered(triggerObject);
+                waitForAgentToStop = false;
+           }
+        } 
     }
 
 
-    public void SetTarget(Target t)
+    public Target CurrentTarget
     {
-        currentTarget = t;
-        ResetTimer();
+        get 
+        { 
+            return currentTarget; 
+        }
+        set
+        {
+            currentTarget = value;
+            ResetTimer();
+        }
     }
 
-    public Target GetTarget() 
-    { 
-        return currentTarget; 
-    }
 
     private void OnTriggerEnter(Collider other)
     {
-        GameObject triggerObject = other.gameObject;
-        
+        Target hitTarget = other.gameObject.GetComponent<Target>();
+
+        //current target
+        if (other.tag == tag_target && hitTarget == currentTarget)
+        {
+            //Debug.Log("enter");
+            triggerObject = other.gameObject;
+
+            animation_script.PlayWalkingAnimation(false); 
+            waitForAgentToStop = true;
+            isTargetDetected = true;
+        }       
+
         //consumable
         if(other.tag == tag_consumableRadius && !isInSafeZone)
         {
+            triggerObject = other.gameObject;
             Target consumableTarget = triggerObject.transform.GetComponentInParent<Target>();
+
             if(consumableTarget.isOpen)
             {   
-                isWidgetInstantiated = false;
-                
                 Consumables consumable = triggerObject.GetComponentInParent<Consumables>();
+                Animation_Script object_animationScript = currentTarget.attachedObject_Animation;
+                int anim_index = currentTarget.animation_Index;
+                isWidgetInstantiated = false;
 
+                if (!currentTarget.isWaitTarget) currentTarget.DestroyWidget();
+                object_animationScript.PlayAnimation(anim_index, false, true); //reset animation
 
-                if (!currentTarget.isWaitTarget)
-                {
-                    currentTarget.DestroyWidget();
-                }
-                
-                if (currentTarget.attachedObject_Animation != null) currentTarget.attachedObject_Animation.PlayAnimation(currentTarget.animation_Index, false); //reset animation
-                SetTarget(consumableTarget);
-
+                CurrentTarget = consumableTarget;
                 navMesh.SetSpecificPath(attachedAgent, consumableTarget);
+
                 if(settings.consumablesHaveExistenceTimer) consumable.StartExistenceTimer(false);
 
                 consumableTarget.isOpen = false;
                 isTargetDetected = false;
             }            
         }
-
-        //current target
-        if (other.tag == tag_target && triggerObject.GetComponent<Target>() == currentTarget)
-        {
-            //Debug.Log("enter");
-            TargetTriggered(other);
-        }        
     }
 
     private void OnTriggerStay(Collider other) 
     {
-        GameObject triggerObject = other.gameObject;
+        Target hitTarget = other.gameObject.GetComponent<Target>();
 
-        if (other.tag == tag_target && triggerObject.GetComponent<Target>() == currentTarget && !isTargetDetected)
+        //current target
+        if (other.tag == tag_target && hitTarget == currentTarget && !isTargetDetected)
         {
             //Debug.Log("stay");
-            TargetTriggered(other);
+            triggerObject = other.gameObject;
+
+            animation_script.PlayWalkingAnimation(false); 
+            waitForAgentToStop = true;
+            isTargetDetected = true;
         }
     }
 
     private void OnTriggerExit(Collider other) 
     {
         IsSafeZone(false);
-        isStopped = false; //animator
+        animation_script.PlayWalkingAnimation(true); 
     }
 
 
-
-    void TargetTriggered(Collider other)
+    void TargetTriggered(GameObject triggerObject)
     {
-            isTargetDetected = true;
-            isStopped = true; //animator
+
+            Target target = triggerObject.GetComponent<Target>();
+            target.SetCurrentChild(this);
+        
+
+            animation_script.SetAnimationSpeed(target.animation_Index, target.waitTime_seconds, false);
+            animation_script.PlayAnimation(target.animation_Index, true, false);
             
+
+            //look at object
+            if(target.attachedObject != null)
+            {
+                Vector3 lookAt_direction = target.attachedObject.transform.position;
+                this.transform.LookAt(lookAt_direction, Vector3.up);
+            }
+
             Color color;
-            Vector3 widget_pos = other.gameObject.transform.GetChild(0).gameObject.transform.position;
+            Vector3 widget_pos = triggerObject.transform.GetChild(0).gameObject.transform.position;
             //color = Color.green;
             if (!currentTarget.isWaitTarget)
             {
@@ -175,7 +208,6 @@ public class Children : MonoBehaviour
             currentTarget.isOpen = false;
             startTimer = true;
             currentTarget.Animate_AttachedObject(); 
-            
     }
   
 
@@ -207,6 +239,7 @@ public class Children : MonoBehaviour
             }
         }
         
+        animation_script.ResetChildAnimations();
         IsSafeZone(false);
         isTargetDetected = false;
         isWidgetInstantiated = false;
@@ -227,7 +260,8 @@ public class Children : MonoBehaviour
     }
     
 
-    public void ChildDestroy(){
+    public void ChildDestroy()
+    {
         navMesh.Remove_Agent(this.GetComponent<NavMeshAgent>());
         gameplay.DecreaseChildCount();
         Destroy(gameObject); 

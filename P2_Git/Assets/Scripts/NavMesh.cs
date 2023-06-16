@@ -83,7 +83,7 @@ public class NavMesh : MonoBehaviour
 
 
                     openTargets[targetIndex].isTargeted = true;
-                    children.SetTarget(openTargets[targetIndex]);
+                    children.CurrentTarget = openTargets[targetIndex];
                     
                     //Debug.Log(agent.name + " target: " + openTargets[targetIndex].name);
                 }           
@@ -112,7 +112,7 @@ public class NavMesh : MonoBehaviour
                     agent.isStopped = false;
                     target.isOpen = false;
 
-                    children.SetTarget(target);
+                    children.CurrentTarget = target;
                 }           
             }
         }
@@ -194,7 +194,7 @@ public class NavMesh : MonoBehaviour
 
         foreach (NavMeshAgent a in agents){
             Children children = a.gameObject.GetComponent<Children>();
-            currentlyTargeted.Add(children.GetTarget());
+            currentlyTargeted.Add(children.CurrentTarget);
         }
         return currentlyTargeted;
     }

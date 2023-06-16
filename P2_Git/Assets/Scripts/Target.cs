@@ -8,15 +8,17 @@ public class Target : MonoBehaviour
     Widget widget;
     Canvas_Script canvas;
     public Object_attributes attachedObject;
-    public Animation_Script attachedObject_Animation;
+    [HideInInspector] public Children currentChild_atTarget;
+    [HideInInspector] public Animation_Script attachedObject_Animation;
+
 
     public int animation_Index;
     public float waitTime_seconds = 2.0f;   
     float timer;
     [HideInInspector] public bool isOpen; 
     [HideInInspector] public bool isTargeted;
+    [HideInInspector] public bool isWaitTarget;
     public bool isDeadly;
-    public bool isWaitTarget;
     public bool isConsumable;
     bool isTaped;
     bool timerDown;
@@ -26,18 +28,20 @@ public class Target : MonoBehaviour
     
 
 
-    private void Start() {
+    private void Start() 
+    {
         canvas = GameObject.Find(canvas_name).GetComponent<Canvas_Script>();
         if(attachedObject != null && attachedObject.GetComponent<Animation_Script>() != null) attachedObject_Animation = attachedObject.GetComponent<Animation_Script>();
+        if(attachedObject == null && !isConsumable) isWaitTarget = true;
+        if(attachedObject_Animation != null) attachedObject_Animation.SetAnimationSpeed(animation_Index, waitTime_seconds, true);
 
         timer = 1.0f;
         timerDown = true;
-        if(attachedObject_Animation != null) attachedObject_Animation.SetAnimationSpeed(waitTime_seconds);
     }
 
     public void Animate_AttachedObject()
     {
-        if(!isTaped && attachedObject_Animation != null) attachedObject_Animation.PlayAnimation(animation_Index, true);
+        if(!isTaped && attachedObject_Animation != null) attachedObject_Animation.PlayAnimation(animation_Index, true, true);
     }
 
     public void Timer(Children child)
@@ -62,7 +66,7 @@ public class Target : MonoBehaviour
                 {
                     isOpen = true;
                     isTargeted = false;
-                    if(attachedObject_Animation != null) attachedObject_Animation.PlayAnimation(animation_Index, false);
+                    if(attachedObject_Animation != null) attachedObject_Animation.PlayAnimation(animation_Index, false, true);
                     child.ChildDestroy();
                 }
 
@@ -82,8 +86,9 @@ public class Target : MonoBehaviour
             if (timer > 1.0f)
             { 
                 child.Reset();
+                child.animation_script.PlayAnimation(animation_Index, false, false);
+                if(attachedObject_Animation != null) attachedObject_Animation.PlayAnimation(animation_Index, false, true);
                 Destroy(widget.gameObject);
-                if(attachedObject_Animation != null) attachedObject_Animation.PlayAnimation(animation_Index, false);
                 ToggleDown(true);
                 ResetTimer();
             }
@@ -123,5 +128,10 @@ public class Target : MonoBehaviour
     void ResetTimer()
     {
         timer = 1.0f;
+    }
+
+    public void SetCurrentChild(Children child)
+    {
+        currentChild_atTarget = child;
     }
 }

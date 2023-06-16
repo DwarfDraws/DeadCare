@@ -33,9 +33,7 @@ public class Raycast : MonoBehaviour
     
     string canvas_name = "InGameUI";
     string gameplayHandler_name = "Gameplay_Handler";
-    string halo_name = "halo";
     string tag_obstacle = "obstacle";
-    string tag_tapeHalo = "tapeHalo";
 
 
     //Hakon
@@ -134,9 +132,10 @@ public class Raycast : MonoBehaviour
                     if(hasAttachedTarget && !canvas.isTapeBtnPressed && !canvas.isMoveBtnPressed)
                     { 
                         object_attachedTarget.ToggleDown(false);
-                        if(!isObject_Animation_Rewinded) 
+                        if(!isObject_Animation_Rewinded && !object_attachedTarget.isOpen) 
                         {   
                             if(object_Animation != null) object_Animation.RewindAnimation();
+                            object_attachedTarget.currentChild_atTarget.animation_script.RewindAnimation();
                             isObject_Animation_Rewinded = true;
                         }
 
@@ -194,6 +193,7 @@ public class Raycast : MonoBehaviour
                     if(isObject_Animation_Rewinded) 
                     {
                         if(object_Animation != null) object_Animation.RewindAnimation();
+                        object_attachedTarget.currentChild_atTarget.animation_script.RewindAnimation();
                         isObject_Animation_Rewinded = false;
                     }
 
