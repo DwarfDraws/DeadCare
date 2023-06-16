@@ -62,7 +62,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|Child_CupboardInteraction
+      name: anim_c_cupboard_Death
       takeName: rig|Child_CupboardInteraction
       internalID: -9053693263150221463
       firstFrame: 0
@@ -91,7 +91,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|Child_CupboardInteractionIdle
+      name: anim_c_Wardrobe_Idle
       takeName: rig|Child_CupboardInteractionIdle
       internalID: 1229124454810934158
       firstFrame: 0
@@ -102,8 +102,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -381,7 +381,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|Child_WardrobeClimb
+      name: anim_c_Wardrobe_Death
       takeName: rig|Child_WardrobeClimb
       internalID: -1415936663924027605
       firstFrame: 0
