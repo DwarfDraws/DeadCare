@@ -49,7 +49,6 @@ public class Animation_Script : MonoBehaviour
             List<string> o_anim = object_anim_DeathBools;
             if(isObjectAnimation &&  o_anim.Count-1 < anim_index) return; 
             else animation_bool = "timerup";       
-            Debug.Log(animation_bool);
         }
 
         if(animation_bool != "") anim.SetBool(animation_bool, isPlaying);
