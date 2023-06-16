@@ -74,7 +74,7 @@ public class Children : MonoBehaviour
         }
 
 
-        if(startTimer) currentTarget.Timer(this);
+        if(startTimer) currentTarget.Timer();
 
 
         //wait until target-destination reached
@@ -132,7 +132,7 @@ public class Children : MonoBehaviour
                 isWidgetInstantiated = false;
 
                 if (!currentTarget.isWaitTarget) currentTarget.DestroyWidget();
-                object_animationScript.PlayAnimation(anim_index, false, true); //reset animation
+                object_animationScript.PlayAnimation(anim_index, false, true, false); //reset animation
 
                 CurrentTarget = consumableTarget;
                 navMesh.SetSpecificPath(attachedAgent, consumableTarget);
@@ -152,7 +152,7 @@ public class Children : MonoBehaviour
         //current target
         if (other.tag == tag_target && hitTarget == currentTarget && !isTargetDetected)
         {
-            //Debug.Log("stay");
+            Debug.Log("stay");
             triggerObject = other.gameObject;
 
             animation_script.PlayWalkingAnimation(false); 
@@ -172,11 +172,11 @@ public class Children : MonoBehaviour
     {
 
             Target target = triggerObject.GetComponent<Target>();
+
             target.SetCurrentChild(this);
         
-
             animation_script.SetAnimationSpeed(target.animation_Index, target.waitTime_seconds, false);
-            animation_script.PlayAnimation(target.animation_Index, true, false);
+            animation_script.PlayAnimation(target.animation_Index, true, false, false);
             
 
             //look at object

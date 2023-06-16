@@ -743,11 +743,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4023988663808783251, guid: 1f92197547e6c864a946f2b65e568cc7, type: 3}
   m_PrefabInstance: {fileID: 150393337}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &272559076 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8428488266250173930, guid: 71c82dfe66c47af4ba8b3f2cda0ac439, type: 3}
-  m_PrefabInstance: {fileID: 2141324632}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &314917421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -806,6 +801,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6977254914155859594, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: isWaitTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977254914155859594, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
+      propertyPath: animation_Index
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7440016335023618315, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
@@ -1908,7 +1907,7 @@ PrefabInstance:
       objectReference: {fileID: 770556652}
     - target: {fileID: 6977254914155859594, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: animation_Index
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7440016335023618315, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: m_Name
@@ -2429,6 +2428,10 @@ PrefabInstance:
       propertyPath: attachedObject
       value: 
       objectReference: {fileID: 464252972}
+    - target: {fileID: 6977254914155859594, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
+      propertyPath: animation_Index
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7440016335023618315, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: m_Name
       value: pref_target
@@ -2469,19 +2472,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 379877033402966536, guid: 58cf617d2bc2b1b439c2706b9f2a0193, type: 3}
       propertyPath: tutorialTargets.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 379877033402966536, guid: 58cf617d2bc2b1b439c2706b9f2a0193, type: 3}
       propertyPath: tutorialTargets.Array.data[0]
       value: 
-      objectReference: {fileID: 1502589475}
+      objectReference: {fileID: 677080685}
+    - target: {fileID: 379877033402966536, guid: 58cf617d2bc2b1b439c2706b9f2a0193, type: 3}
+      propertyPath: tutorialTargets.Array.data[1]
+      value: 
+      objectReference: {fileID: 485556061}
     - target: {fileID: 4560124646269838134, guid: 58cf617d2bc2b1b439c2706b9f2a0193, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4560124646269838134, guid: 58cf617d2bc2b1b439c2706b9f2a0193, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.27
+      value: -1.01
       objectReference: {fileID: 0}
     - target: {fileID: 4560124646269838134, guid: 58cf617d2bc2b1b439c2706b9f2a0193, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2489,7 +2496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4560124646269838134, guid: 58cf617d2bc2b1b439c2706b9f2a0193, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.73
+      value: -0.9
       objectReference: {fileID: 0}
     - target: {fileID: 4560124646269838134, guid: 58cf617d2bc2b1b439c2706b9f2a0193, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2522,6 +2529,10 @@ PrefabInstance:
     - target: {fileID: 4725265333546888955, guid: 58cf617d2bc2b1b439c2706b9f2a0193, type: 3}
       propertyPath: m_Name
       value: pref_child
+      objectReference: {fileID: 0}
+    - target: {fileID: 4725265333546888955, guid: 58cf617d2bc2b1b439c2706b9f2a0193, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2601,24 +2612,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1050600850560547122, guid: 3bc1e74d16d875a4998b4f24e08a4e07, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 6.6502704e-15
       objectReference: {fileID: 0}
     - target: {fileID: 1050600850560547122, guid: 3bc1e74d16d875a4998b4f24e08a4e07, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: -180
       objectReference: {fileID: 0}
     - target: {fileID: 1050600850560547122, guid: 3bc1e74d16d875a4998b4f24e08a4e07, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 2.919113
       objectReference: {fileID: 0}
-    - target: {fileID: 3113858907404828507, guid: 3bc1e74d16d875a4998b4f24e08a4e07, type: 3}
-      propertyPath: animaton
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3113858907404828507, guid: 3bc1e74d16d875a4998b4f24e08a4e07, type: 3}
-      propertyPath: tapeableHalo
-      value: 
-      objectReference: {fileID: 1547050859}
     - target: {fileID: 3113858907404828507, guid: 3bc1e74d16d875a4998b4f24e08a4e07, type: 3}
       propertyPath: attachedTarget
       value: 
@@ -3323,11 +3326,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6363854810662044986, guid: 065742ca75e5f7847b05112bb551ca11, type: 3}
   m_PrefabInstance: {fileID: 1546920924}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1547050859 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5864543624492569645, guid: 3bc1e74d16d875a4998b4f24e08a4e07, type: 3}
-  m_PrefabInstance: {fileID: 1265069398}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1629016817
 PrefabInstance:
@@ -4038,11 +4036,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2248550730200655336, guid: 477922987afba8e4ba0f6ee22817602c, type: 3}
   m_PrefabInstance: {fileID: 1939377480}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1958691828 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7162248927187979276, guid: 71c82dfe66c47af4ba8b3f2cda0ac439, type: 3}
-  m_PrefabInstance: {fileID: 2141324632}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1965555358 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3113858907404828507, guid: 3bc1e74d16d875a4998b4f24e08a4e07, type: 3}
@@ -4417,18 +4410,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5779449351438344552, guid: 71c82dfe66c47af4ba8b3f2cda0ac439, type: 3}
-      propertyPath: halo
-      value: 
-      objectReference: {fileID: 1958691828}
-    - target: {fileID: 5779449351438344552, guid: 71c82dfe66c47af4ba8b3f2cda0ac439, type: 3}
-      propertyPath: tape
-      value: 
-      objectReference: {fileID: 272559076}
-    - target: {fileID: 5779449351438344552, guid: 71c82dfe66c47af4ba8b3f2cda0ac439, type: 3}
-      propertyPath: tapeableHalo
-      value: 
-      objectReference: {fileID: 1958691828}
-    - target: {fileID: 5779449351438344552, guid: 71c82dfe66c47af4ba8b3f2cda0ac439, type: 3}
       propertyPath: attachedTarget
       value: 
       objectReference: {fileID: 1367606319}
@@ -4436,10 +4417,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: pref_obstacle_chest (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 2531949542243854335, guid: ba1ac2c67b771944ab1e58fc2a6474dd, type: 3}
-      propertyPath: attachedTarget
-      value: 
-      objectReference: {fileID: 1367606319}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4475,6 +4452,18 @@ PrefabInstance:
       objectReference: {fileID: 1868856495}
     - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
       propertyPath: isTutorial
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
+      propertyPath: gameCountdownTime_Seconds
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
+      propertyPath: prepCountdownTime_Seconds
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
+      propertyPath: consumablesHaveExistenceTimer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3828961552438409505, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}

@@ -6,10 +6,12 @@ public class Animation_Script : MonoBehaviour
 {
     Animator anim;
 
-    List<string> objectAnimation_Bools = new List<string>();
-    List<string> childrenAnimation_Bools = new List<string>();
+    List<string> object_anim_IdleBools = new List<string>();
+    List<string> object_anim_DeathBools = new List<string>();
+    List<string> children_anim_IdleBools = new List<string>();
+    List<string> children_anim_DeathBools = new List<string>();
     float speed;
-    float normal_AnimationLength;
+    float normal_AnimationLength_seconds;
 
     string animation_Speed = "animation_speed";
     string animationBool_isWalking_name = "isWalking";
@@ -20,32 +22,35 @@ public class Animation_Script : MonoBehaviour
         anim = GetComponent<Animator>();
         speed = 1.0f;
 
-        childrenAnimation_Bools.Add("anim_removeTape");
-        childrenAnimation_Bools.Add("anim_removeTape");
+        children_anim_IdleBools.Add("anim_c_Wardrobe_Idle");
+        children_anim_IdleBools.Add("anim_removeTape");
 
-        objectAnimation_Bools.Add("anim_schrankFällt");
-        objectAnimation_Bools.Add("anim_schrankDreht");
+        children_anim_DeathBools.Add("anim_c_Wardrobe_Death");
+
+        object_anim_IdleBools.Add("anim_o_Wardrobe_Idle");
+        
+        object_anim_DeathBools.Add("anim_o_Wardrobe_Death");
     }
 
-    public void SetAnimationSpeed(int anim_index, float targetSpeed, bool isObjectAnimation)
-    {
-        speed = 1f; //reset to default value
-
-        if(isObjectAnimation)   normal_AnimationLength = TraverseAnimationClips(objectAnimation_Bools, anim_index);
-        else                    normal_AnimationLength = TraverseAnimationClips(childrenAnimation_Bools, anim_index);
-
-        float multiply_ratio = normal_AnimationLength / targetSpeed;
-        speed *= multiply_ratio;
-
-        anim.SetFloat(animation_Speed, speed);
-    }
-    
-    public void PlayAnimation(int anim_index, bool isPlaying, bool isObjectAnimation)
+    public void PlayAnimation(int anim_index, bool isPlaying, bool isObjectAnimation, bool isDeathAnimation)
     {
         string animation_bool;
 
-        if(isObjectAnimation)      animation_bool = objectAnimation_Bools[anim_index];
-        else                       animation_bool = childrenAnimation_Bools[anim_index];
+        if(!isDeathAnimation)
+        {
+            List<string> o_anim = object_anim_IdleBools;
+            List<string> c_anim = children_anim_IdleBools;
+
+            if(isObjectAnimation)       animation_bool = o_anim[anim_index];
+            else                        animation_bool = c_anim[anim_index];
+        }
+        else
+        {
+            List<string> o_anim = object_anim_DeathBools;
+            if(isObjectAnimation &&  o_anim.Count-1 < anim_index) return; 
+            else animation_bool = "timerup";       
+            Debug.Log(animation_bool);
+        }
 
         if(animation_bool != "") anim.SetBool(animation_bool, isPlaying);
     }
@@ -62,7 +67,23 @@ public class Animation_Script : MonoBehaviour
     }
 
 
-    float TraverseAnimationClips(List<string> listToCompare, int anim_index)
+    public void SetAnimationSpeed(int anim_index, float targetSpeed_seconds, bool isObjectAnimation)
+    {
+        speed = 1f; //reset to default value
+
+        if(isObjectAnimation)   normal_AnimationLength_seconds = Get_AnimClipLength(object_anim_IdleBools, anim_index);
+        else                    normal_AnimationLength_seconds = Get_AnimClipLength(children_anim_IdleBools, anim_index);
+
+        float numOfLoops_withBias = targetSpeed_seconds / normal_AnimationLength_seconds;
+        float numOfLoops = (int)numOfLoops_withBias;
+        float multiply_ratio = numOfLoops / numOfLoops_withBias;
+
+        speed *= multiply_ratio;
+
+        anim.SetFloat(animation_Speed, speed);
+    }
+    
+    float Get_AnimClipLength(List<string> listToCompare, int anim_index)
     {
         //check if index can be reached
         if(listToCompare.Count > anim_index)
@@ -77,16 +98,23 @@ public class Animation_Script : MonoBehaviour
             return anim.runtimeAnimatorController.animationClips[i].length;
         }
 
-        else return 1f; //default 
+        else return 0f; //default 
+    }
+
+    public float Get_DeathAnimClipLength(int anim_index, bool isObjectAnimation)
+    {
+        if(isObjectAnimation) return Get_AnimClipLength(object_anim_DeathBools, anim_index);
+        else return Get_AnimClipLength(children_anim_DeathBools, anim_index);
     }
 
 
     public void ResetChildAnimations()
     {
-        foreach(string animation_bool in childrenAnimation_Bools)
+        foreach(string animation_bool in children_anim_IdleBools)
         {
             anim.SetBool(animation_bool, false);
         }
+
         PlayWalkingAnimation(true);
     }
 }
