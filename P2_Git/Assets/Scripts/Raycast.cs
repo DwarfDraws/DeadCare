@@ -135,7 +135,7 @@ public class Raycast : MonoBehaviour
                         if(!isObject_Animation_Rewinded && !object_attachedTarget.isOpen) 
                         {   
                             if(object_Animation != null) object_Animation.RewindAnimation();
-                            object_attachedTarget.currentChild_atTarget.animation_Script.RewindAnimation();
+                            object_attachedTarget.currentChild_atTarget.animation_script.RewindAnimation();
                             isObject_Animation_Rewinded = true;
                         }
 
@@ -193,7 +193,7 @@ public class Raycast : MonoBehaviour
                     if(isObject_Animation_Rewinded) 
                     {
                         if(object_Animation != null) object_Animation.RewindAnimation();
-                        object_attachedTarget.currentChild_atTarget.animation_Script.RewindAnimation();
+                        object_attachedTarget.currentChild_atTarget.animation_script.RewindAnimation();
                         isObject_Animation_Rewinded = false;
                     }
 

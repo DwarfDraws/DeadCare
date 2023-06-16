@@ -28,11 +28,12 @@ public class Target : MonoBehaviour
     
 
 
-    private void Start() {
+    private void Start() 
+    {
         canvas = GameObject.Find(canvas_name).GetComponent<Canvas_Script>();
         if(attachedObject != null && attachedObject.GetComponent<Animation_Script>() != null) attachedObject_Animation = attachedObject.GetComponent<Animation_Script>();
         if(attachedObject == null && !isConsumable) isWaitTarget = true;
-        if(attachedObject_Animation != null) attachedObject_Animation.SetAnimationSpeed(waitTime_seconds);
+        if(attachedObject_Animation != null) attachedObject_Animation.SetAnimationSpeed(animation_Index, waitTime_seconds, true);
 
         timer = 1.0f;
         timerDown = true;
@@ -85,7 +86,7 @@ public class Target : MonoBehaviour
             if (timer > 1.0f)
             { 
                 child.Reset();
-                child.animation_Script.PlayAnimation(animation_Index, false, false);
+                child.animation_script.PlayAnimation(animation_Index, false, false);
                 if(attachedObject_Animation != null) attachedObject_Animation.PlayAnimation(animation_Index, false, true);
                 Destroy(widget.gameObject);
                 ToggleDown(true);

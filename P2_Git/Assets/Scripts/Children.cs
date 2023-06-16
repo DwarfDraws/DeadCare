@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +10,8 @@ public class Children : MonoBehaviour
     Settings_script settings;
     Gameplay gameplay;
     
-    [SerializeField] Animator animator;
-    [HideInInspector] public Animation_Script animation_Script;
+    //[SerializeField] Animator animator;
+    [HideInInspector] public Animation_Script animation_script;
     [SerializeField] List<Target> tutorialTargets;
     [HideInInspector] public Target currentTarget;
     Target tempOldTarget;
@@ -23,7 +24,6 @@ public class Children : MonoBehaviour
     float beginTimer;
     float standStill_velocityThreshold;
     float init_WaitTime;
-    [HideInInspector] public bool isStopped;
     bool isPathInitialized;
     bool startTimer;
     bool isInSafeZone;
@@ -49,19 +49,14 @@ public class Children : MonoBehaviour
         gameplay = GameObject.Find(gamplayHandler_name).GetComponent<Gameplay>();
  
         attachedAgent = GetComponent<NavMeshAgent>();
-        animation_Script = GetComponent<Animation_Script>();
+        animation_script = GetComponent<Animation_Script>();
         navMesh = GameObject.Find(navMeshHandler_name).GetComponent<NavMesh>();
 
+        animation_script.PlayWalkingAnimation(true); 
     }
 
     void Update()
     {
-        
-        //animator
-        animator.SetBool("isidle", isStopped);
-        //animator
-        
-
         beginTimer += Time.deltaTime;
         if(beginTimer >= init_WaitTime && !isPathInitialized)
         {            
@@ -70,7 +65,7 @@ public class Children : MonoBehaviour
                 if(tutorialTargets.Count != 0) navMesh.SetSpecificPath(attachedAgent, tutorialTargets[tutorialIndex]);
                 else
                 {
-                    Debug.Log("!!!! no tutorial-target set !!!!");
+                    Debug.Log("Error: no tutorial-target set.");
                     navMesh.StopAgent(attachedAgent);
                 }
             }
@@ -82,7 +77,7 @@ public class Children : MonoBehaviour
         if(startTimer) currentTarget.Timer(this);
 
 
-        //wait for target-destination reached
+        //wait until target-destination reached
         if(waitForAgentToStop)
         {
            if(attachedAgent.velocity.sqrMagnitude <= standStill_velocityThreshold) 
@@ -94,64 +89,73 @@ public class Children : MonoBehaviour
     }
 
 
-    public void SetTarget(Target t)
+    public Target CurrentTarget
     {
-        currentTarget = t;
-        ResetTimer();
+        get 
+        { 
+            return currentTarget; 
+        }
+        set
+        {
+            currentTarget = value;
+            ResetTimer();
+        }
     }
 
-    public Target GetTarget() 
-    { 
-        return currentTarget; 
-    }
 
     private void OnTriggerEnter(Collider other)
     {
-        triggerObject = other.gameObject;
-        
+        Target hitTarget = other.gameObject.GetComponent<Target>();
+
+        //current target
+        if (other.tag == tag_target && hitTarget == currentTarget)
+        {
+            //Debug.Log("enter");
+            triggerObject = other.gameObject;
+
+            animation_script.PlayWalkingAnimation(false); 
+            waitForAgentToStop = true;
+            isTargetDetected = true;
+        }       
+
         //consumable
         if(other.tag == tag_consumableRadius && !isInSafeZone)
         {
+            triggerObject = other.gameObject;
             Target consumableTarget = triggerObject.transform.GetComponentInParent<Target>();
+
             if(consumableTarget.isOpen)
             {   
-                isWidgetInstantiated = false;
-                
                 Consumables consumable = triggerObject.GetComponentInParent<Consumables>();
+                Animation_Script object_animationScript = currentTarget.attachedObject_Animation;
+                int anim_index = currentTarget.animation_Index;
+                isWidgetInstantiated = false;
 
+                if (!currentTarget.isWaitTarget) currentTarget.DestroyWidget();
+                object_animationScript.PlayAnimation(anim_index, false, true); //reset animation
 
-                if (!currentTarget.isWaitTarget)
-                {
-                    currentTarget.DestroyWidget();
-                }
-                
-                if (currentTarget.attachedObject_Animation != null) currentTarget.attachedObject_Animation.PlayAnimation(currentTarget.animation_Index, false, true); //reset animation
-                SetTarget(consumableTarget);
-
+                CurrentTarget = consumableTarget;
                 navMesh.SetSpecificPath(attachedAgent, consumableTarget);
+
                 if(settings.consumablesHaveExistenceTimer) consumable.StartExistenceTimer(false);
 
                 consumableTarget.isOpen = false;
                 isTargetDetected = false;
             }            
         }
-
-        //current target
-        if (other.tag == tag_target && triggerObject.GetComponent<Target>() == currentTarget)
-        {
-            //Debug.Log("enter");
-            waitForAgentToStop = true;
-            isTargetDetected = true;
-        }        
     }
 
     private void OnTriggerStay(Collider other) 
     {
-        triggerObject = other.gameObject;
+        Target hitTarget = other.gameObject.GetComponent<Target>();
 
-        if (other.tag == tag_target && triggerObject.GetComponent<Target>() == currentTarget && !isTargetDetected)
+        //current target
+        if (other.tag == tag_target && hitTarget == currentTarget && !isTargetDetected)
         {
             //Debug.Log("stay");
+            triggerObject = other.gameObject;
+
+            animation_script.PlayWalkingAnimation(false); 
             waitForAgentToStop = true;
             isTargetDetected = true;
         }
@@ -160,25 +164,26 @@ public class Children : MonoBehaviour
     private void OnTriggerExit(Collider other) 
     {
         IsSafeZone(false);
-        isStopped = false; //animator
+        animation_script.PlayWalkingAnimation(true); 
     }
-
 
 
     void TargetTriggered(GameObject triggerObject)
     {
-            isStopped = true; //animator
 
             Target target = triggerObject.GetComponent<Target>();
             target.SetCurrentChild(this);
         
-            animation_Script.SetAnimationSpeed(target.waitTime_seconds);
-            animation_Script.PlayAnimation(target.animation_Index, true, false);
 
+            animation_script.SetAnimationSpeed(target.animation_Index, target.waitTime_seconds, false);
+            animation_script.PlayAnimation(target.animation_Index, true, false);
+            
+
+            //look at object
             if(target.attachedObject != null)
             {
-                Vector3 lookAtObject = target.attachedObject.transform.position;
-                this.transform.LookAt(lookAtObject, Vector3.up);
+                Vector3 lookAt_direction = target.attachedObject.transform.position;
+                this.transform.LookAt(lookAt_direction, Vector3.up);
             }
 
             Color color;
@@ -234,6 +239,7 @@ public class Children : MonoBehaviour
             }
         }
         
+        animation_script.ResetChildAnimations();
         IsSafeZone(false);
         isTargetDetected = false;
         isWidgetInstantiated = false;
