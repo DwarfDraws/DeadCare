@@ -619,13 +619,13 @@ MonoBehaviour:
   gameplay: {fileID: 1791416769}
   btnSpawnChildren: {fileID: 237338581}
   canvas: {fileID: 119891109}
-  consumablesHaveExistenceTimer: 0
-  isTutorial: 0
-  hideTargets: 1
-  prepCountdownTime_Seconds: 30
-  gameCountdownTime_Seconds: 60
   children_Amount: 4
   tape_Amount: 3
+  prepCountdownTime_Seconds: 30
+  gameCountdownTime_Seconds: 60
+  hideTargets: 1
+  consumablesHaveExistenceTimer: 0
+  isTutorial: 0
 --- !u!4 &99948831
 Transform:
   m_ObjectHideFlags: 0
@@ -936,7 +936,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5998625273391649513, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.0669117
+      value: -2.0669115
       objectReference: {fileID: 0}
     - target: {fileID: 5998625273391649513, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -944,7 +944,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5998625273391649513, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.91651154
+      value: -1.4165115
       objectReference: {fileID: 0}
     - target: {fileID: 5998625273391649513, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1437,9 +1437,10 @@ MonoBehaviour:
   attachedTarget: {fileID: 0}
   tape: {fileID: 0}
   moveableHalo: {fileID: 0}
-  isMoveable: 1
+  tapeableHalo: {fileID: 0}
   isRotated: 0
   isTaped: 0
+  isMoveable: 1
 --- !u!23 &146061356
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1993,7 +1994,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5998625273391649513, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.01
+      value: -0.06691146
       objectReference: {fileID: 0}
     - target: {fileID: 5998625273391649513, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2001,7 +2002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5998625273391649513, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.08348845
+      value: 0.58348846
       objectReference: {fileID: 0}
     - target: {fileID: 5998625273391649513, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6388,7 +6389,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5998625273391649513, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.26
+      value: -2.0669115
       objectReference: {fileID: 0}
     - target: {fileID: 5998625273391649513, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6396,7 +6397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5998625273391649513, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.26
+      value: 0.58348846
       objectReference: {fileID: 0}
     - target: {fileID: 5998625273391649513, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: m_LocalRotation.w
