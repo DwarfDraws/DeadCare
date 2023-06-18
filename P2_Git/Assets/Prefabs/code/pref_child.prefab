@@ -121,7 +121,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 1
+  m_Speed: 1.5
   m_Acceleration: 5
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -145,11 +145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54175ac6b9a39e54b9eb75fce9ad7297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 2916585423511289209}
-  animation_Script: {fileID: 0}
+  animation_script: {fileID: 0}
   tutorialTargets: []
   currentTarget: {fileID: 0}
-  isStopped: 0
 --- !u!54 &5298535208730907419
 Rigidbody:
   m_ObjectHideFlags: 0
