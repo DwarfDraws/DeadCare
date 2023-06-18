@@ -83,9 +83,10 @@ public class Outline : MonoBehaviour {
   private Material outlineFillMaterial;
 
   private bool needsUpdate;
+    private bool gotclicked;
 
   void Awake() {
-
+        gotclicked = false;
     // Cache renderers
     renderers = GetComponentsInChildren<Renderer>();
 
@@ -272,9 +273,20 @@ public class Outline : MonoBehaviour {
     mesh.subMeshCount++;
     mesh.SetTriangles(mesh.triangles, mesh.subMeshCount - 1);
   }
+    //change mode onclick
+    void changemode()
+    {
+        gotclicked = !gotclicked;
+    }
+        void UpdateMaterialProperties() {
+        //if(gotclicked)
+        //{
 
-  void UpdateMaterialProperties() {
+        //}
+        //if(gotclicked = false)
+        //{
 
+        //}
         // Apply properties according to mode
         //outlineFillMaterial.SetColor("_OutlineColor", outlineColor);
         outlineFillMaterial.SetColor("_OutlineColor", outlineColorSettings.outlineColor);
@@ -296,7 +308,7 @@ public class Outline : MonoBehaviour {
                 break;
                     //        GameObject.Find("schrankzu").GetComponent<Outline>().OutlineMode = Outline.Mode.Outline_default;
 
-            //default outline button pressed
+            //defaultic outline button pressed
         case Mode.OutlineAll_pressed:
                 outlineFillMaterial.SetColor("_OutlineColor", outlineColorSettings.outlineColorpressed);
 
