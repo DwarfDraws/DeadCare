@@ -14,9 +14,11 @@ public class Menu_Handler : MonoBehaviour
     GameObject[] obstacles;
 
     int displayTimer;
+    int countdown_Speed;
     float init_prepCountdownTimer, current_prepCountdownTimer;
     float init_gameCountdownTimer, current_gameCountdownTimer;
     [HideInInspector] public bool isGameOver;
+    bool isCountdownSpedUp;
     bool prepCountDownStart, gameCountdownStart;
     bool spawnChildAfterCountdown;
 
@@ -26,14 +28,24 @@ public class Menu_Handler : MonoBehaviour
 
     private void Start() 
     {
+        countdown_Speed = 1;
+
         obstacles = GameObject.FindGameObjectsWithTag(tag_obstacle);
     }  
+
+
+    public void setCountdown_Speed()
+    {
+        isCountdownSpedUp = !isCountdownSpedUp;
+        if(isCountdownSpedUp) countdown_Speed = 50;
+        else countdown_Speed = 1;
+    }
 
     private void Update() 
     {
         if(prepCountDownStart)
         {
-            current_prepCountdownTimer -= Time.deltaTime;
+            current_prepCountdownTimer -= Time.deltaTime * countdown_Speed;
             displayTimer = (int)current_prepCountdownTimer + 1;
             canvas.SetCountdown_Txt(displayTimer.ToString());
         } 
@@ -71,12 +83,15 @@ public class Menu_Handler : MonoBehaviour
     public void StartCountdown(){
         isGameOver = false; //in case of restart
         prepCountDownStart = true;
+
+        canvas.btn_skipCountdown.SetActive(true);
     }
 
     void NextPhase()
     {
         canvas.btn_move.SetActive(false);
-        canvas.btn_tape.SetActive(false);   
+        canvas.btn_tape.SetActive(false);  
+        canvas.btn_skipCountdown.SetActive(false); 
         canvas.Deactivate_MoveButton();
         canvas.Deactivate_TapeButton();
         canvas.SetMoveableHalosActive(false);

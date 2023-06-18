@@ -10,8 +10,11 @@ public class Object_attributes : MonoBehaviour
 
     [HideInInspector] public bool isRotated; 
     [HideInInspector] public bool isTaped; 
+    [HideInInspector] public bool isInNoMoveArea;
     public bool isMoveable = true; 
     bool isClamped_left, isClamped_right, isClamped_front, isClamped_back;
+
+    string tag_noMoveArea = "noMoveArea";
 
 
     public void SetTapeActive(bool isActive)
@@ -53,4 +56,21 @@ public class Object_attributes : MonoBehaviour
         if(isClamped) isClamped_back = true;
         else isClamped_back = false;
     }
+
+
+    private void OnTriggerEnter(Collider other) 
+    {
+        if(other.tag == tag_noMoveArea)
+        {
+            isInNoMoveArea = true;
+        }    
+    }
+    private void OnTriggerExit(Collider other) 
+    {
+        if(other.tag == tag_noMoveArea)
+        {
+            isInNoMoveArea = false;
+        }    
+    }
+
 }

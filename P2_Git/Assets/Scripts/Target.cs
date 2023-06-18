@@ -22,7 +22,7 @@ public class Target : MonoBehaviour
     public bool isDeadly;
     public bool isConsumable;
     bool isTaped;
-    bool timerDown;
+    [HideInInspector] public bool timerDown;
     bool childDies;
 
 
