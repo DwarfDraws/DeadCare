@@ -16,7 +16,7 @@ public class Canvas_Script : MonoBehaviour
     [SerializeField] Slider slider_prefab;
     [SerializeField] GameObject pref_consumable;
 
-    public GameObject btn_move, btn_tape;
+    public GameObject btn_move, btn_tape, btn_skipCountdown;
     public GameObject pnl_GameOver;
     [SerializeField] GameObject youWin, youLose;
     [SerializeField] TMP_Text txt_ChildrenCounter;
@@ -79,7 +79,7 @@ public class Canvas_Script : MonoBehaviour
         
         if(!obj_moveHandler.IsObjectAtEdge(instantiate_pos))
         {
-            Instantiate(pref_consumable, raycast.GetMousePos3D(), Quaternion.identity);               
+            Instantiate(pref_consumable, instantiate_pos, Quaternion.identity);               
         }
     }
 

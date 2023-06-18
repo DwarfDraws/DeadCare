@@ -132,7 +132,9 @@ public class Children : MonoBehaviour
                 isWidgetInstantiated = false;
 
                 if (!currentTarget.isWaitTarget) currentTarget.DestroyWidget();
-                object_animationScript.PlayAnimation(anim_index, false, true, false); //reset animation
+
+                if(object_animationScript != null) object_animationScript.PlayAnimation(anim_index, false, true, false); //reset animation
+                animation_script.PlayAnimation(anim_index, false, false, false);
 
                 CurrentTarget = consumableTarget;
                 navMesh.SetSpecificPath(attachedAgent, consumableTarget);
@@ -175,8 +177,6 @@ public class Children : MonoBehaviour
 
             target.SetCurrentChild(this);
         
-            animation_script.SetAnimationSpeed(target.animation_Index, target.waitTime_seconds, false);
-            animation_script.PlayAnimation(target.animation_Index, true, false, false);
             
 
             //look at object
@@ -207,6 +207,8 @@ public class Children : MonoBehaviour
 
             currentTarget.isOpen = false;
             startTimer = true;
+            animation_script.SetAnimationSpeed(target.animation_Index, target.waitTime_seconds, false);
+            animation_script.PlayAnimation(target.animation_Index, true, false, false);
             currentTarget.Animate_AttachedObject(); 
     }
   

@@ -134,10 +134,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachedTarget: {fileID: 0}
   tape: {fileID: 0}
-  animaton: {fileID: 0}
-  isMoveable: 1
+  moveableHalo: {fileID: 0}
+  tapeableHalo: {fileID: 0}
   isRotated: 0
   isTaped: 0
+  isInNoMoveArea: 0
+  isMoveable: 1
 --- !u!114 &-3658021604067511530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,11 +153,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachedObject: {fileID: 0}
+  currentChild_atTarget: {fileID: 0}
+  attachedObject_Animation: {fileID: 0}
+  animation_Index: 1
   waitTime_seconds: 4
-  isDeadly: 0
-  isConsumable: 1
   isOpen: 1
   isTargeted: 0
+  isWaitTarget: 0
+  isDeadly: 0
+  isConsumable: 1
+  timerDown: 0
 --- !u!136 &2784715910017231618
 CapsuleCollider:
   m_ObjectHideFlags: 0

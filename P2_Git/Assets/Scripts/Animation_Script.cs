@@ -12,6 +12,8 @@ public class Animation_Script : MonoBehaviour
     List<string> children_anim_DeathBools = new List<string>();
     float speed;
     float normal_AnimationLength_seconds;
+    bool hasObject_anims;
+    bool hasChild_anims;
 
     string animation_Speed = "animation_speed";
     string animationBool_isWalking_name = "isWalking";
@@ -19,39 +21,54 @@ public class Animation_Script : MonoBehaviour
     
     private void Awake() 
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
+
         speed = 1.0f;
 
+        //children-anims
         children_anim_IdleBools.Add("anim_c_Wardrobe_Idle");
         children_anim_IdleBools.Add("anim_removeTape");
 
         children_anim_DeathBools.Add("anim_c_Wardrobe_Death");
 
-        object_anim_IdleBools.Add("anim_o_Wardrobe_Idle");
+        //object-anims
+        //object_anim_IdleBools.Add("anim_o_Wardrobe_Idle");
         
-        object_anim_DeathBools.Add("anim_o_Wardrobe_Death");
+        //object_anim_DeathBools.Add("anim_o_Wardrobe_Death");
+
+
+        if(children_anim_IdleBools.Count > 0) hasChild_anims = true;
+        if(object_anim_IdleBools.Count > 0) hasObject_anims = true;
     }
 
     public void PlayAnimation(int anim_index, bool isPlaying, bool isObjectAnimation, bool isDeathAnimation)
     {
-        string animation_bool;
+        string animation_bool = "";
 
         if(!isDeathAnimation)
         {
             List<string> o_anim = object_anim_IdleBools;
             List<string> c_anim = children_anim_IdleBools;
-
-            if(isObjectAnimation)       animation_bool = o_anim[anim_index];
-            else                        animation_bool = c_anim[anim_index];
+            
+            if(isObjectAnimation && hasObject_anims)            animation_bool = o_anim[anim_index];
+            else if (!isObjectAnimation && hasChild_anims)      animation_bool = c_anim[anim_index];
         }
         else
         {
             List<string> o_anim = object_anim_DeathBools;
+            List<string> c_anim = children_anim_IdleBools;
+
             if(isObjectAnimation &&  o_anim.Count-1 < anim_index) return; 
+            else if(!isObjectAnimation &&  c_anim.Count-1 < anim_index) return; 
+            
             else animation_bool = "timerup";       
         }
 
-        if(animation_bool != "") anim.SetBool(animation_bool, isPlaying);
+        if(animation_bool != "")
+        {            
+            anim.SetBool(animation_bool, isPlaying);
+            //Debug.Log(animation_bool + " " + isPlaying);
+        }
     }
 
     public void PlayWalkingAnimation(bool isPlaying)

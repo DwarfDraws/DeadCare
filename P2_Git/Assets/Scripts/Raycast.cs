@@ -22,6 +22,8 @@ public class Raycast : MonoBehaviour
     Transform hitObject;
     Vector3 mouse_Pos3D, offset, mouse3D_wOffset;
     Vector3 initMouse_Pos, initHit_Offset;
+    Vector3 initObject_Pos;
+    Quaternion initObject_Rot;
 
     float obj_posY;
     float localLength_x_Object, localLength_z_Object;
@@ -65,6 +67,9 @@ public class Raycast : MonoBehaviour
                         {
                             isMoveable = true;                  
                             MousePressed_L = true;
+
+                            initObject_Pos = hitObject.position;
+                            initObject_Rot = hitObject.rotation;
 
                             obj_attributes = hitObject.GetComponent<Object_attributes>();
                             localLength_x_Object = hitObject.lossyScale.x;
@@ -125,7 +130,6 @@ public class Raycast : MonoBehaviour
 
             if (Input.GetMouseButton(0))
             {
-                //Object Transformation
                 if(MousePressed_L)
                 {
                     //switch timer to go up 
@@ -135,13 +139,13 @@ public class Raycast : MonoBehaviour
                         if(!isObject_Animation_Rewinded && !object_attachedTarget.isOpen) 
                         {   
                             if(object_Animation != null) object_Animation.RewindAnimation();
-                            object_attachedTarget.currentChild_atTarget.animation_script.RewindAnimation();
+                            if (object_attachedTarget.currentChild_atTarget != null) object_attachedTarget.currentChild_atTarget.animation_script.RewindAnimation();
                             isObject_Animation_Rewinded = true;
                         }
-
                     }
 
 
+                    //Object Transformation
                     if(isMoveable && canvas.isMoveBtnPressed)
                     {
                         ray = main_camera.ScreenPointToRay(Input.mousePosition);
@@ -183,8 +187,16 @@ public class Raycast : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             if (MousePressed_L){
+                obj_attributes = hitObject.GetComponent<Object_attributes>();
+                
                 MousePressed_L = false;
                 missingOffset = false;
+
+                if(obj_attributes.isInNoMoveArea)
+                {
+                    hitObject.position = initObject_Pos;
+                    hitObject.rotation = initObject_Rot; 
+                }
 
                 //switch timer to go down 
                 if(hasAttachedTarget)
@@ -193,7 +205,7 @@ public class Raycast : MonoBehaviour
                     if(isObject_Animation_Rewinded) 
                     {
                         if(object_Animation != null) object_Animation.RewindAnimation();
-                        object_attachedTarget.currentChild_atTarget.animation_script.RewindAnimation();
+                        if (object_attachedTarget.currentChild_atTarget != null) object_attachedTarget.currentChild_atTarget.animation_script.RewindAnimation();
                         isObject_Animation_Rewinded = false;
                     }
 
