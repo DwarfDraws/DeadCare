@@ -21,9 +21,9 @@ public class Animation_Script : MonoBehaviour
     
     private void Awake() 
     {
-        anim = GetComponentInChildren<Animator>();
+        anim = GetComponent<Animator>();
 
-        speed = 1.0f;
+        speed = 1f;
 
         //children-anims
         children_anim_IdleBools.Add("anim_c_Wardrobe_Idle");
@@ -32,9 +32,9 @@ public class Animation_Script : MonoBehaviour
         children_anim_DeathBools.Add("anim_c_Wardrobe_Death");
 
         //object-anims
-        //object_anim_IdleBools.Add("anim_o_Wardrobe_Idle");
+        object_anim_IdleBools.Add("anim_0_Wardrope_Idle");
         
-        //object_anim_DeathBools.Add("anim_o_Wardrobe_Death");
+        object_anim_DeathBools.Add("anim_o_Wardrobe_Death");
 
 
         if(children_anim_IdleBools.Count > 0) hasChild_anims = true;
@@ -43,6 +43,7 @@ public class Animation_Script : MonoBehaviour
 
     public void PlayAnimation(int anim_index, bool isPlaying, bool isObjectAnimation, bool isDeathAnimation)
     {
+        //Debug.Log("Hallo hier 1 debug");
         string animation_bool = "";
 
         if(!isDeathAnimation)
@@ -65,9 +66,9 @@ public class Animation_Script : MonoBehaviour
         }
 
         if(animation_bool != "")
-        {            
-            anim.SetBool(animation_bool, isPlaying);
+        {
             //Debug.Log(animation_bool + " " + isPlaying);
+            anim.SetBool(animation_bool, isPlaying);
         }
     }
 
@@ -87,14 +88,20 @@ public class Animation_Script : MonoBehaviour
     {
         speed = 1f; //reset to default value
 
-        if(isObjectAnimation)   normal_AnimationLength_seconds = Get_AnimClipLength(object_anim_IdleBools, anim_index);
-        else                    normal_AnimationLength_seconds = Get_AnimClipLength(children_anim_IdleBools, anim_index);
+        if(isObjectAnimation && anim_index < object_anim_IdleBools.Count)               normal_AnimationLength_seconds = Get_AnimClipLength(object_anim_IdleBools, anim_index);
+        else if (!isObjectAnimation && anim_index < children_anim_IdleBools.Count)      normal_AnimationLength_seconds = Get_AnimClipLength(children_anim_IdleBools, anim_index);
+        else 
+        {
+            Debug.Log("SetAnimationSpeed(): anim_index out of bounds");
+            return;
+        }
 
         float numOfLoops_withBias = targetSpeed_seconds / normal_AnimationLength_seconds;
         float numOfLoops = (int)numOfLoops_withBias;
         float multiply_ratio = numOfLoops / numOfLoops_withBias;
 
         speed *= multiply_ratio;
+        //Debug.Log(speed);
 
         anim.SetFloat(animation_Speed, speed);
     }
@@ -105,11 +112,17 @@ public class Animation_Script : MonoBehaviour
         if(listToCompare.Count > anim_index)
         { 
             AnimationClip[] avaiable_animClips = anim.runtimeAnimatorController.animationClips;
+
             string animation_name = listToCompare[anim_index];
-            int i = 0;
 
             //find the matching animation-clip 
-            while(animation_name != avaiable_animClips[i].name) { i++; }
+            int i = 0;
+            while(animation_name != avaiable_animClips[i].name) 
+            { 
+                //Debug.Log(animation_name + " / " + avaiable_animClips[i].name);
+                i++; 
+            }
+            //Debug.Log(animation_name + " " + anim.runtimeAnimatorController.animationClips[i].length);
 
             return anim.runtimeAnimatorController.animationClips[i].length;
         }
