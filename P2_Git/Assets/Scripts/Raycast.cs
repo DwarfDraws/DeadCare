@@ -90,7 +90,7 @@ public class Raycast : MonoBehaviour
                             MousePressed_L = true;
 
                             object_attachedTarget = hit.transform.GetComponent<Object_attributes>().attachedTarget;
-                            object_Animation = hit.transform.GetComponent<Animation_Script>();
+                            object_Animation = hit.transform.GetComponentInChildren<Animation_Script>();
                         }
                         else hasAttachedTarget = false;
 
