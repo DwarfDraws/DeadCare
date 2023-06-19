@@ -89,10 +89,11 @@ MonoBehaviour:
   attachedTarget: {fileID: 0}
   tape: {fileID: 1119573010087654864}
   moveableHalo: {fileID: 0}
-  animaton: {fileID: 0}
-  isMoveable: 0
+  tapeableHalo: {fileID: 5861448902031950982}
   isRotated: 0
   isTaped: 0
+  isInNoMoveArea: 0
+  isMoveable: 0
 --- !u!1 &1119573010087654864
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,7 +105,6 @@ GameObject:
   - component: {fileID: 8179204573235733924}
   - component: {fileID: 2274475896898217168}
   - component: {fileID: 8058780210753641468}
-  - component: {fileID: 1377630422225735110}
   m_Layer: 7
   m_Name: tape
   m_TagString: Untagged
@@ -177,27 +177,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1377630422225735110
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1119573010087654864}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.0000005, y: 1, z: 1.0000005}
-  m_Center: {x: 0.00000011920932, y: 0, z: -0.00000005960467}
 --- !u!1 &5861448902031950982
 GameObject:
   m_ObjectHideFlags: 0
