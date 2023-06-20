@@ -28,6 +28,7 @@ public class Animation_Script : MonoBehaviour
         //children-anims
 
         children_anim_IdleBools.Add("anim_c_Bed_Interaction");
+        children_anim_DeathBools.Add(" ");
 
         children_anim_IdleBools.Add("anim_c_Wardrobe_Idle");
         children_anim_DeathBools.Add("anim_c_Wardrobe_Death");
@@ -44,6 +45,7 @@ public class Animation_Script : MonoBehaviour
 
         //object-anims
         object_anim_IdleBools.Add("anim_o_Bed_Interaction");
+        object_anim_DeathBools.Add(" ");
 
         object_anim_IdleBools.Add("anim_o_Wardrobe_Idle");
         object_anim_DeathBools.Add("anim_o_Wardrobe_Death");
