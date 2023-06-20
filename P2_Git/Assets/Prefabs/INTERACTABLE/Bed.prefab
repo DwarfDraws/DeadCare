@@ -116,7 +116,7 @@ Transform:
   - {fileID: 1019942079767463928}
   - {fileID: 3181162829958801878}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9189515505979156592
 MonoBehaviour:
@@ -228,7 +228,7 @@ Animator:
   m_GameObject: {fileID: 6587704213595004458}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b067f76c08d4070448449600362a7157, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6265ee8b63309cf44b4e7656258de5b7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -261,7 +261,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.005, y: 0.002, z: 0.004}
+  m_Extents: {x: 0.51, y: 0.05, z: 0.14}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
