@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7329894256314992855}
   - component: {fileID: 1607907415291873426}
   - component: {fileID: 7939503416839555778}
+  - component: {fileID: 5099195865257742264}
   m_Layer: 7
   m_Name: pref_obstacle_plasticchair
   m_TagString: obstacle
@@ -55,8 +56,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.64611095, y: 0.85751975, z: 0.7067593}
-  m_Center: {x: -0.018073916, y: 0.02835077, z: -0.005238965}
+  m_Size: {x: 0.5937013, y: 0.7773786, z: 0.7067593}
+  m_Center: {x: -0.014660567, y: 0.18232587, z: -0.0052389503}
 --- !u!208 &1607907415291873426
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -91,7 +92,35 @@ MonoBehaviour:
   tapeableHalo: {fileID: 0}
   isRotated: 0
   isTaped: 0
+  isInNoMoveArea: 0
   isMoveable: 1
+--- !u!54 &5099195865257742264
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3360355035461982118}
+  serializedVersion: 4
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1001 &75106670040184795
 PrefabInstance:
   m_ObjectHideFlags: 0

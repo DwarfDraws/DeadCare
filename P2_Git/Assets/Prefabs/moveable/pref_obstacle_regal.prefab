@@ -378,6 +378,7 @@ GameObject:
   - component: {fileID: 9048519082759642257}
   - component: {fileID: 7731826382493977556}
   - component: {fileID: 7698937856899995367}
+  - component: {fileID: -1551891617730568926}
   m_Layer: 7
   m_Name: pref_obstacle_regal
   m_TagString: obstacle
@@ -421,8 +422,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.9313245, y: 0.9790108, z: 0.45866305}
-  m_Center: {x: 0.001983285, y: 0.11123347, z: 0.16380128}
+  m_Size: {x: 0.900021, y: 0.9790108, z: 0.45866305}
+  m_Center: {x: 0.005118221, y: 0.11123347, z: 0.16380128}
 --- !u!208 &7731826382493977556
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -454,7 +455,35 @@ MonoBehaviour:
   attachedTarget: {fileID: 0}
   tape: {fileID: 0}
   moveableHalo: {fileID: 332031748875898999}
-  animaton: {fileID: 0}
-  isMoveable: 1
+  tapeableHalo: {fileID: 0}
   isRotated: 0
   isTaped: 0
+  isInNoMoveArea: 0
+  isMoveable: 1
+--- !u!54 &-1551891617730568926
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4981708213843656516}
+  serializedVersion: 4
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0

@@ -58,7 +58,7 @@ public class Object_attributes : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other) 
+    private void OnTriggerStay(Collider other) //edited: was onTriggerEnter
     {
         if(other.tag == tag_noMoveArea)
         {
