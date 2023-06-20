@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5068513085499845943}
   m_Layer: 0
   m_Name: Mimic
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 6994543229768144852}
   - {fileID: 5561656133560057723}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5068513085499845943
 MonoBehaviour:
