@@ -55,7 +55,6 @@ public class Animation_Script : MonoBehaviour
 
     public void PlayAnimation(int anim_index, bool isPlaying, bool isObjectAnimation, bool isDeathAnimation)
     {
-        //Debug.Log("Hallo hier 1 debug");
         string animation_bool = "";
 
         if(!isDeathAnimation)
