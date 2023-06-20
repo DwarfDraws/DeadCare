@@ -131,13 +131,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachedTarget: {fileID: 0}
-  tape: {fileID: 4204344987298327578}
+  tape: {fileID: 754084037736357726}
   moveableHalo: {fileID: 0}
   tapeableHalo: {fileID: 0}
   isRotated: 0
   isTaped: 0
   isInNoMoveArea: 0
-  isMoveable: 1
+  isMoveable: 0
 --- !u!1001 &6317797960606393211
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -359,10 +359,5 @@ PrefabInstance:
 --- !u!4 &1019942079767463928 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5998625273391649513, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
-  m_PrefabInstance: {fileID: 6708368989161248017}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4204344987298327578 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7440016335023618315, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
   m_PrefabInstance: {fileID: 6708368989161248017}
   m_PrefabAsset: {fileID: 0}
