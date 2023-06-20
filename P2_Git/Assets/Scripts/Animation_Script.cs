@@ -37,8 +37,16 @@ public class Animation_Script : MonoBehaviour
         children_anim_DeathBools.Add("anim_c_Mimic_Death");
 
         //object-anims
+        object_anim_IdleBools.Add("anim_o_Bed_Interaction");
+
         object_anim_IdleBools.Add("anim_o_Wardrobe_Idle");
         object_anim_DeathBools.Add("anim_o_Wardrobe_Death");
+
+        object_anim_IdleBools.Add("anim_o_Cupboard_Idle");
+        object_anim_DeathBools.Add("anim_o_Cupboard_Death");
+
+        object_anim_IdleBools.Add("anim_o_Mimic_Idle");
+        object_anim_DeathBools.Add("anim_o_Mimic_Death");
 
 
         if(children_anim_IdleBools.Count > 0) hasChild_anims = true;
