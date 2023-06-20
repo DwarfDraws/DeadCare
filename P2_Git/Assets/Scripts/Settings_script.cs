@@ -14,6 +14,7 @@ public class Settings_script : MonoBehaviour
 
     [SerializeField] int children_Amount = 0;
     [SerializeField] int tape_Amount = 0;
+    [SerializeField] int consumable_Amount = 0;
     [SerializeField] float prepCountdownTime_Seconds;
     [SerializeField] float gameCountdownTime_Seconds;
     [SerializeField] bool hideTargets;
@@ -28,10 +29,9 @@ public class Settings_script : MonoBehaviour
         menu_Handler.SetPrepCountdownTimer(prepCountdownTime_Seconds);
         menu_Handler.SetGameCountdownTimer(gameCountdownTime_Seconds);
         spawner.childrenToSpawn = this.children_Amount;
-        gameplay.init_childCounter = this.children_Amount;
-        gameplay.init_tapeCounter = tape_Amount;
-        canvas.SetTapeCounter_Txt(tape_Amount.ToString());
-
+        gameplay.SetChildrenCount(children_Amount);
+        gameplay.SetTapeCount(tape_Amount);
+        gameplay.SetConsumableCount(consumable_Amount);
 
         if (isTutorial) btnSpawnChildren.gameObject.SetActive(false);
         if (hideTargets) HideTargets();

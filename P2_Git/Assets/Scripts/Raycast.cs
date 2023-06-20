@@ -41,7 +41,8 @@ public class Raycast : MonoBehaviour
     //Hakon
     private GameObject halochild;
 
-    private void Start() {
+    private void Start() 
+    {
         gameplay = GameObject.Find(gameplayHandler_name).GetComponent<Gameplay>();
         canvas = GameObject.Find(canvas_name).GetComponent<Canvas_Script>();
     }

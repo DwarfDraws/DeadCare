@@ -26,15 +26,35 @@ public class Animation_Script : MonoBehaviour
         speed = 1f;
 
         //children-anims
-        children_anim_IdleBools.Add("anim_c_Wardrobe_Idle");
-        children_anim_IdleBools.Add("anim_removeTape");
 
+        children_anim_IdleBools.Add("anim_c_Bed_Interaction");
+        children_anim_DeathBools.Add(" ");
+
+        children_anim_IdleBools.Add("anim_c_Wardrobe_Idle");
         children_anim_DeathBools.Add("anim_c_Wardrobe_Death");
 
+        children_anim_IdleBools.Add("anim_c_Cupboard_Idle");
+        children_anim_DeathBools.Add("anim_c_Cupboard_Death");
+
+        children_anim_IdleBools.Add("anim_c_Mimic_Idle");
+        children_anim_DeathBools.Add("anim_c_Mimic_Death");
+
+            //additional Child-Anims without corresponding object-anim
+        children_anim_IdleBools.Add("anim_removeTape");
+        children_anim_IdleBools.Add("anim_c_Idle");
+
         //object-anims
-        object_anim_IdleBools.Add("anim_0_Wardrope_Idle");
-        
+        object_anim_IdleBools.Add("anim_o_Bed_Interaction");
+        object_anim_DeathBools.Add(" ");
+
+        object_anim_IdleBools.Add("anim_o_Wardrobe_Idle");
         object_anim_DeathBools.Add("anim_o_Wardrobe_Death");
+
+        object_anim_IdleBools.Add("anim_o_Cupboard_Idle");
+        object_anim_DeathBools.Add("anim_o_Cupboard_Death");
+
+        object_anim_IdleBools.Add("anim_o_Mimic_Idle");
+        object_anim_DeathBools.Add("anim_o_Mimic_Death");
 
 
         if(children_anim_IdleBools.Count > 0) hasChild_anims = true;
@@ -43,7 +63,6 @@ public class Animation_Script : MonoBehaviour
 
     public void PlayAnimation(int anim_index, bool isPlaying, bool isObjectAnimation, bool isDeathAnimation)
     {
-        //Debug.Log("Hallo hier 1 debug");
         string animation_bool = "";
 
         if(!isDeathAnimation)
@@ -101,7 +120,10 @@ public class Animation_Script : MonoBehaviour
         float multiply_ratio = numOfLoops / numOfLoops_withBias;
 
         speed *= multiply_ratio;
-        //Debug.Log(speed);
+        Debug.Log(anim_index + " " + speed);
+        Debug.Log(numOfLoops_withBias + " " + targetSpeed_seconds + " " + normal_AnimationLength_seconds);
+
+        if(numOfLoops == 0) Debug.Log("SetAnimationSpeed(): target-waittime shorter than animation! target-waittime: " + targetSpeed_seconds + " anim_length: " + normal_AnimationLength_seconds);
 
         anim.SetFloat(animation_Speed, speed);
     }
