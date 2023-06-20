@@ -26,6 +26,8 @@ public class Animation_Script : MonoBehaviour
         speed = 1f;
 
         //children-anims
+        children_anim_IdleBools.Add("anim_c_wait_idle");
+
         children_anim_IdleBools.Add("anim_c_Bed_Interaction");
 
         children_anim_IdleBools.Add("anim_c_Wardrobe_Idle");
@@ -40,6 +42,8 @@ public class Animation_Script : MonoBehaviour
         children_anim_IdleBools.Add("anim_removeTape");
 
         //object-anims
+        object_anim_IdleBools.Add("anim_o_wait_idle");
+
         object_anim_IdleBools.Add("anim_o_Bed_Interaction");
 
         object_anim_IdleBools.Add("anim_o_Wardrobe_Idle");
