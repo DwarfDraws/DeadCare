@@ -26,15 +26,18 @@ public class Animation_Script : MonoBehaviour
         speed = 1f;
 
         //children-anims
-        children_anim_IdleBools.Add("anim_removeTape");
-
         children_anim_IdleBools.Add("anim_c_Bed_Interaction");
 
         children_anim_IdleBools.Add("anim_c_Wardrobe_Idle");
         children_anim_DeathBools.Add("anim_c_Wardrobe_Death");
 
+        children_anim_IdleBools.Add("anim_c_Cupboard_Idle");
+        children_anim_DeathBools.Add("anim_c_Cupboard_Death");
+
         children_anim_IdleBools.Add("anim_c_Mimic_Idle");
         children_anim_DeathBools.Add("anim_c_Mimic_Death");
+
+        children_anim_IdleBools.Add("anim_removeTape");
 
         //object-anims
         object_anim_IdleBools.Add("anim_o_Bed_Interaction");
