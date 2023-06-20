@@ -115,7 +115,9 @@ public class Animation_Script : MonoBehaviour
         float multiply_ratio = numOfLoops / numOfLoops_withBias;
 
         speed *= multiply_ratio;
-        //Debug.Log(speed);
+        //Debug.Log(numOfLoops_withBias + " " + targetSpeed_seconds + " " + normal_AnimationLength_seconds);
+
+        if(numOfLoops == 0) Debug.Log("SetAnimationSpeed(): target-waittime shorter than animation! target-waittime: " + targetSpeed_seconds + " anim_length: " + normal_AnimationLength_seconds);
 
         anim.SetFloat(animation_Speed, speed);
     }
