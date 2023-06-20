@@ -9,34 +9,41 @@ public class Gameplay : MonoBehaviour
     [SerializeField] Canvas_Script canvas;
     
     [HideInInspector] public int init_tapeCounter;
+    [HideInInspector] public int init_consumableCounter;
     [HideInInspector] public int init_childCounter;
     int current_tapeCounter;
-    int current_ChildCounter;
+    int current_consumableCounter;
+    int current_childCounter;
 
-    
-    private void Start() 
-    {       
-        current_ChildCounter = init_childCounter;
-        current_tapeCounter = init_tapeCounter;
+
+    public void SetChildrenCount(int count)
+    {
+        init_childCounter = count;
+        current_childCounter = init_childCounter;
     }
-
-
     public void DecreaseChildCount()
     {
-        current_ChildCounter--;
-        if(current_ChildCounter == 0) menu_Handler.GameOver(false);
+        current_childCounter--;
+        if(current_childCounter == 0) menu_Handler.GameOver(false);
     }
     public int GetChildCount()
     {
-        return current_ChildCounter;
+        return current_childCounter;
     }
     public void ResetChildCount()
     {
-        current_ChildCounter = init_childCounter;
+        current_childCounter = init_childCounter;
         spawner.childrenToSpawn = init_childCounter;
     }
 
 
+
+    public void SetTapeCount(int count)
+    {
+        init_tapeCounter = count;
+        current_tapeCounter = init_consumableCounter;
+        canvas.SetTapeCounter_Txt(current_tapeCounter.ToString());
+    }
     public void DecreaseTapeCount() 
     {
         current_tapeCounter--;
@@ -46,7 +53,6 @@ public class Gameplay : MonoBehaviour
     {
         current_tapeCounter++;
         canvas.SetTapeCounter_Txt(current_tapeCounter.ToString());
-
     }
     public void ResetTapeCount()
     {
@@ -56,5 +62,44 @@ public class Gameplay : MonoBehaviour
     public int GetTapeCount()
     {
         return current_tapeCounter;
+    }
+
+
+
+
+    public void SetConsumableCount(int count)
+    {
+        init_consumableCounter = count;
+        current_consumableCounter = init_consumableCounter;
+        canvas.SetConsumableCounter_Txt(current_consumableCounter.ToString());
+    }
+
+    public void InstantiateConsumable(GameObject pref_consumable, Vector3 inst_Pos)
+    {
+        if(current_consumableCounter > 0)
+        {
+            Instantiate(pref_consumable, inst_Pos, Quaternion.identity); 
+            DecreaseConsumableCount();
+        }
+    }
+
+    public void DecreaseConsumableCount() 
+    {
+        current_consumableCounter--;
+        canvas.SetConsumableCounter_Txt(current_consumableCounter.ToString());
+    }
+    public void IncreaseConsumableCount() 
+    {
+        current_consumableCounter++;
+        canvas.SetConsumableCounter_Txt(current_consumableCounter.ToString());
+    }
+    public void ResetConsumableCount()
+    {
+        current_consumableCounter = init_tapeCounter;
+        canvas.SetConsumableCounter_Txt(current_consumableCounter.ToString());
+    }
+    public int GetConsumableCount()
+    {
+        return current_consumableCounter;
     }
 }

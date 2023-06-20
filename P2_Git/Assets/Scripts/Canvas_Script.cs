@@ -8,6 +8,7 @@ public class Canvas_Script : MonoBehaviour
 {
     [SerializeField] Raycast raycast;
     [SerializeField] Object_moveHandler obj_moveHandler;
+    [SerializeField] Gameplay gameplay;
     GameObject inGameMenuCanvas;
     Canvas canvas;
     Object_attributes pref_consumable_attributes;
@@ -22,6 +23,7 @@ public class Canvas_Script : MonoBehaviour
     [SerializeField] TMP_Text txt_ChildrenCounter;
     [SerializeField] TMP_Text txt_Countdown;
     [SerializeField] TMP_Text txt_tapeCounter;
+    [SerializeField] TMP_Text txt_consumableCounter;
     GameObject[] allObstacles;
 
     [HideInInspector] float pref_consumable_localScaleX, pref_consumable_localScaleZ;
@@ -79,9 +81,10 @@ public class Canvas_Script : MonoBehaviour
         
         if(!obj_moveHandler.IsObjectAtEdge(instantiate_pos))
         {
-            Instantiate(pref_consumable, instantiate_pos, Quaternion.identity);               
+            gameplay.InstantiateConsumable(pref_consumable, instantiate_pos);            
         }
     }
+
 
     public void moveButtonPressed()
     {
@@ -103,30 +106,6 @@ public class Canvas_Script : MonoBehaviour
             btn_move.GetComponent<Image>().color = Color.white;
             SetMoveableHalosActive(false);
         }
-    }
-
-    public void Deactivate_MoveButton()
-    {
-        isMoveBtnPressed = false;
-        btn_move.GetComponent<Image>().color = Color.white;
-    }
-
-    public void SetMoveableHalosActive(bool isActive)
-    {
-        foreach(GameObject obstacle in allObstacles)
-        {
-            GameObject halo = obstacle.GetComponent<Object_attributes>().moveableHalo;
-            if(halo != null) halo.SetActive(isActive);
-        }        
-    }
-
-    public void SetTapeableHalosActive(bool isActive)
-    {
-        foreach(GameObject obstacle in allObstacles)
-        {
-            GameObject halo = obstacle.GetComponent<Object_attributes>().tapeableHalo;
-            if(halo != null) halo.SetActive(isActive);
-        }        
     }
 
     public void tapeButtonPressed()
@@ -151,11 +130,44 @@ public class Canvas_Script : MonoBehaviour
         }
     }
 
+
+    public void Deactivate_MoveButton()
+    {
+        isMoveBtnPressed = false;
+        btn_move.GetComponent<Image>().color = Color.white;
+    }
     public void Deactivate_TapeButton()
     {
         isTapeBtnPressed = false;
         btn_tape.GetComponent<Image>().color = Color.white;
     }
+
+
+
+
+    public void SetMoveableHalosActive(bool isActive)
+    {
+        foreach(GameObject obstacle in allObstacles)
+        {
+            GameObject halo = obstacle.GetComponent<Object_attributes>().moveableHalo;
+            if(halo != null) halo.SetActive(isActive);
+        }        
+    }
+
+    public void SetTapeableHalosActive(bool isActive)
+    {
+        foreach(GameObject obstacle in allObstacles)
+        {
+            GameObject halo = obstacle.GetComponent<Object_attributes>().tapeableHalo;
+            if(halo != null) halo.SetActive(isActive);
+        }        
+    }
+
+
+
+
+
+
 
 
     public void SetCountdown_Txt(string text)
@@ -182,9 +194,16 @@ public class Canvas_Script : MonoBehaviour
         }
     }
 
+
+
     public void SetTapeCounter_Txt(string text)
     {
         txt_tapeCounter.text = text;
+    }
+
+    public void SetConsumableCounter_Txt(string text)
+    {
+        txt_consumableCounter.text = text;
     }
 
 }
