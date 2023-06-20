@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1849224982483446771}
   - component: {fileID: 1604592168153492847}
+  - component: {fileID: -8819937789614844657}
   m_Layer: 0
   m_Name: Wardrobe
   m_TagString: obstacle
@@ -55,6 +56,27 @@ MonoBehaviour:
   isTaped: 0
   isInNoMoveArea: 0
   isMoveable: 0
+--- !u!65 &-8819937789614844657
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3169000328794744182}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1598761, y: 1.6278672, z: 0.5319282}
+  m_Center: {x: 0.00159657, y: 0.79612184, z: 0.23403591}
 --- !u!1 &8196203732102659130
 GameObject:
   m_ObjectHideFlags: 0

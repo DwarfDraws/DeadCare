@@ -120,7 +120,8 @@ public class Animation_Script : MonoBehaviour
         float multiply_ratio = numOfLoops / numOfLoops_withBias;
 
         speed *= multiply_ratio;
-        //Debug.Log(numOfLoops_withBias + " " + targetSpeed_seconds + " " + normal_AnimationLength_seconds);
+        Debug.Log(anim_index + " " + speed);
+        Debug.Log(numOfLoops_withBias + " " + targetSpeed_seconds + " " + normal_AnimationLength_seconds);
 
         if(numOfLoops == 0) Debug.Log("SetAnimationSpeed(): target-waittime shorter than animation! target-waittime: " + targetSpeed_seconds + " anim_length: " + normal_AnimationLength_seconds);
 
@@ -140,7 +141,7 @@ public class Animation_Script : MonoBehaviour
             int i = 0;
             while(animation_name != avaiable_animClips[i].name) 
             { 
-                Debug.Log(animation_name + " / " + avaiable_animClips[i].name);
+                //Debug.Log(animation_name + " / " + avaiable_animClips[i].name);
                 i++; 
             }
             //Debug.Log(animation_name + " " + anim.runtimeAnimatorController.animationClips[i].length);

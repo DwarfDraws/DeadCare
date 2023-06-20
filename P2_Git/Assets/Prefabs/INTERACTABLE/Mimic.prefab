@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3589930343629411825}
   - component: {fileID: 5068513085499845943}
+  - component: {fileID: 5394018337940289436}
   m_Layer: 0
   m_Name: Mimic
   m_TagString: obstacle
@@ -55,6 +56,27 @@ MonoBehaviour:
   isTaped: 0
   isInNoMoveArea: 0
   isMoveable: 0
+--- !u!65 &5394018337940289436
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8798710481738599947}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0358654, y: 0.764727, z: 0.5909238}
+  m_Center: {x: 0.006028235, y: 0.3548612, z: -0.7358649}
 --- !u!1 &8844099353044836941
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,6 +230,10 @@ PrefabInstance:
       objectReference: {fileID: 5068513085499845943}
     - target: {fileID: 6977254914155859594, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: animation_Index
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977254914155859594, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
+      propertyPath: waitTime_seconds
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7440016335023618315, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}

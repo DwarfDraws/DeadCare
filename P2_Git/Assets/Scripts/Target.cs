@@ -118,6 +118,11 @@ public class Target : MonoBehaviour
 
                 else 
                 {
+                    if(attachedObject_Animation != null)
+                    {
+                        Animation_Script o_anim = attachedObject_Animation;
+                        o_anim.PlayAnimation(animation_Index, false, true, false);
+                    }
                     currentChild_atTarget.Reset();
                     ResetTimer();
                 }
