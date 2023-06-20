@@ -9,7 +9,7 @@ public class Target : MonoBehaviour
     Canvas_Script canvas;
     public Object_attributes attachedObject;
     [HideInInspector] public Children currentChild_atTarget;
-    public Animation_Script attachedObject_Animation;
+    [HideInInspector] public Animation_Script attachedObject_Animation;
 
 
     public int animation_Index;
@@ -33,10 +33,13 @@ public class Target : MonoBehaviour
     private void Start() 
     {
         canvas = GameObject.Find(canvas_name).GetComponent<Canvas_Script>();
-        if(attachedObject != null && attachedObject.GetComponent<Animation_Script>() != null) attachedObject_Animation = attachedObject.GetComponent<Animation_Script>();
+        if(attachedObject != null && attachedObject.GetComponentInChildren<Animation_Script>() != null) 
+        {
+            //Debug.Log(gameObject.name + " " + animation_Index);
+            attachedObject_Animation = attachedObject.GetComponentInChildren<Animation_Script>();
+            attachedObject_Animation.SetAnimationSpeed(animation_Index, waitTime_seconds, true);
+        }
         if(attachedObject == null && !isConsumable) isWaitTarget = true;
-
-        if(attachedObject_Animation != null) attachedObject_Animation.SetAnimationSpeed(animation_Index, waitTime_seconds, true);
 
         timer = 1.0f;
         timerDown = true;
