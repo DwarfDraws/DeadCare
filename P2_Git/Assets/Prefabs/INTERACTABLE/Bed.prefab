@@ -116,7 +116,7 @@ Transform:
   - {fileID: 1019942079767463928}
   - {fileID: 3181162829958801878}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9189515505979156592
 MonoBehaviour:
@@ -152,11 +152,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b6bb85eff90b9b04c93bf35300e0a47b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b6bb85eff90b9b04c93bf35300e0a47b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.028876483
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b6bb85eff90b9b04c93bf35300e0a47b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -261,9 +261,9 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 1.194, y: 0.65, z: 0.777}
+  m_Extents: {x: 0.665, y: 0.65, z: 0.265}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.016, y: 0.49100003, z: -0.014}
   m_TimeToStationary: 0.5

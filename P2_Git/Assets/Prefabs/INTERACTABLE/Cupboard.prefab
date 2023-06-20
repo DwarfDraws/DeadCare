@@ -116,7 +116,7 @@ Transform:
   - {fileID: 1863315718170852523}
   - {fileID: 803014001757365345}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1687361500345550508
 MonoBehaviour:
@@ -261,11 +261,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.005, y: 0.0025, z: 0.008}
+  m_Extents: {x: 0.001, y: 0.00001, z: 0.00001}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: -0.002, z: 0.008}
+  m_Center: {x: 0, y: -0.004, z: 0.002}
   m_TimeToStationary: 0.5
 --- !u!1001 &5396638513003834946
 PrefabInstance:

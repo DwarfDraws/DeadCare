@@ -33,7 +33,7 @@ Transform:
   - {fileID: 796884212663803760}
   - {fileID: 5461541368399993858}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1604592168153492847
 MonoBehaviour:
@@ -256,11 +256,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.0055, y: 0.0023, z: 0.008}
+  m_Extents: {x: 0.001, y: 0.00001, z: 0.008}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: -0.002, z: 0.008}
+  m_Center: {x: 0, y: -0.004, z: 0.008}
   m_TimeToStationary: 0.5
 --- !u!4 &796884212663803760 stripped
 Transform:
