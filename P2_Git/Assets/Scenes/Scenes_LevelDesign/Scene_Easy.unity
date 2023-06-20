@@ -3548,7 +3548,7 @@ PrefabInstance:
       objectReference: {fileID: 1313924544}
     - target: {fileID: 6977254914155859594, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: waitTime_seconds
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6977254914155859594, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: attachedObject_Animation
@@ -10083,6 +10083,10 @@ PrefabInstance:
       propertyPath: attachedObject
       value: 
       objectReference: {fileID: 1221941631}
+    - target: {fileID: 6977254914155859594, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
+      propertyPath: animation_Index
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6977254914155859594, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: waitTime_seconds
       value: 4
