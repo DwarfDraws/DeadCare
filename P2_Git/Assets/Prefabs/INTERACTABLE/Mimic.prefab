@@ -33,7 +33,7 @@ Transform:
   - {fileID: 6994543229768144852}
   - {fileID: 5561656133560057723}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5068513085499845943
 MonoBehaviour:
@@ -208,7 +208,7 @@ PrefabInstance:
       objectReference: {fileID: 5068513085499845943}
     - target: {fileID: 6977254914155859594, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: animation_Index
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7440016335023618315, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: m_Name
@@ -368,7 +368,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8630699261307363621}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: c41bb8a63f081d24592f33bd3095fef1, type: 3}
   m_Controller: {fileID: 9100000, guid: 6265ee8b63309cf44b4e7656258de5b7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0

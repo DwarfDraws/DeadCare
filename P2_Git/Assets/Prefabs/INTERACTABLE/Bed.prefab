@@ -164,11 +164,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b6bb85eff90b9b04c93bf35300e0a47b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b6bb85eff90b9b04c93bf35300e0a47b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b6bb85eff90b9b04c93bf35300e0a47b, type: 3}
       propertyPath: m_LocalRotation.y
@@ -180,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b6bb85eff90b9b04c93bf35300e0a47b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b6bb85eff90b9b04c93bf35300e0a47b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -206,7 +206,7 @@ PrefabInstance:
       addedObject: {fileID: 59990989082018532}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b6bb85eff90b9b04c93bf35300e0a47b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1658402621863661079}
+      addedObject: {fileID: 8175751710278102464}
   m_SourcePrefab: {fileID: 100100000, guid: b6bb85eff90b9b04c93bf35300e0a47b, type: 3}
 --- !u!4 &5775843126780150928 stripped
 Transform:
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47aeef793461c29448b4db1c9f0114cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!208 &1658402621863661079
+--- !u!208 &8175751710278102464
 NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -261,11 +261,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.665, y: 0.65, z: 0.265}
+  m_Extents: {x: 0.005, y: 0.002, z: 0.004}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: -0.016, y: 0.49100003, z: -0.014}
+  m_Center: {x: 0, y: 0, z: 0.004}
   m_TimeToStationary: 0.5
 --- !u!1001 &6708368989161248017
 PrefabInstance:
@@ -297,7 +297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5998625273391649513, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: -0.9
       objectReference: {fileID: 0}
     - target: {fileID: 5998625273391649513, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -337,7 +337,7 @@ PrefabInstance:
       objectReference: {fileID: 9189515505979156592}
     - target: {fileID: 6977254914155859594, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: animation_Index
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6977254914155859594, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: waitTime_seconds
