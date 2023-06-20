@@ -26,7 +26,6 @@ public class Animation_Script : MonoBehaviour
         speed = 1f;
 
         //children-anims
-        children_anim_IdleBools.Add("anim_c_wait_idle");
 
         children_anim_IdleBools.Add("anim_c_Bed_Interaction");
 
@@ -39,11 +38,11 @@ public class Animation_Script : MonoBehaviour
         children_anim_IdleBools.Add("anim_c_Mimic_Idle");
         children_anim_DeathBools.Add("anim_c_Mimic_Death");
 
+            //additional Child-Anims without corresponding object-anim
         children_anim_IdleBools.Add("anim_removeTape");
+        children_anim_IdleBools.Add("anim_c_Idle");
 
         //object-anims
-        object_anim_IdleBools.Add("anim_o_wait_idle");
-
         object_anim_IdleBools.Add("anim_o_Bed_Interaction");
 
         object_anim_IdleBools.Add("anim_o_Wardrobe_Idle");
@@ -139,7 +138,7 @@ public class Animation_Script : MonoBehaviour
             int i = 0;
             while(animation_name != avaiable_animClips[i].name) 
             { 
-                //Debug.Log(animation_name + " / " + avaiable_animClips[i].name);
+                Debug.Log(animation_name + " / " + avaiable_animClips[i].name);
                 i++; 
             }
             //Debug.Log(animation_name + " " + anim.runtimeAnimatorController.animationClips[i].length);
