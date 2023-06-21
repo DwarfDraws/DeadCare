@@ -87,10 +87,11 @@ MonoBehaviour:
   attachedTarget: {fileID: 0}
   tape: {fileID: 0}
   moveableHalo: {fileID: 0}
-  animaton: {fileID: 0}
-  isMoveable: 0
+  tapeableHalo: {fileID: 0}
   isRotated: 0
   isTaped: 0
+  isInNoMoveArea: 0
+  isMoveable: 0
 --- !u!1001 &5346614696783482330
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -159,7 +160,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 303633806208944075, guid: f8888f0c2fab35e43a05317044eb68c2, type: 3}
+    - {fileID: 2064878619224838932, guid: f8888f0c2fab35e43a05317044eb68c2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
