@@ -27,7 +27,7 @@ public class Object_moveHandler : MonoBehaviour
 
     public void CheckInput_Rotation(Transform hitObject, Vector3 mouse_Pos3D, Vector3 initHit_Offset)
     {     
-        if (Input.GetMouseButtonDown(2))
+        if (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))
         {
             var key = Input.inputString;
             float rotateAngle = 90f;

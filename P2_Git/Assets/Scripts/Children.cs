@@ -110,9 +110,9 @@ public class Children : MonoBehaviour
         //current target
         if (other.tag == tag_target && hitTarget == currentTarget)
         {
-            //Debug.Log("enter");
+            Debug.Log("enter");
             triggerObject = other.gameObject;
-
+            
             animation_script.PlayWalkingAnimation(false); 
             waitForAgentToStop = true;
             isTargetDetected = true;
@@ -165,6 +165,7 @@ public class Children : MonoBehaviour
 
     private void OnTriggerExit(Collider other) 
     {
+        Debug.Log("exit");
         IsSafeZone(false);
         animation_script.PlayWalkingAnimation(true); 
     }

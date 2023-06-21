@@ -41,7 +41,7 @@ public class Gameplay : MonoBehaviour
     public void SetTapeCount(int count)
     {
         init_tapeCounter = count;
-        current_tapeCounter = init_consumableCounter;
+        current_tapeCounter = init_tapeCounter;
         canvas.SetTapeCounter_Txt(current_tapeCounter.ToString());
     }
     public void DecreaseTapeCount() 

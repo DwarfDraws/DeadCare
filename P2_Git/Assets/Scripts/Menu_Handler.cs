@@ -34,11 +34,9 @@ public class Menu_Handler : MonoBehaviour
     }  
 
 
-    public void setCountdown_Speed()
+    public void setCountdown_Speed(int speed)
     {
-        isCountdownSpedUp = !isCountdownSpedUp;
-        if(isCountdownSpedUp) countdown_Speed = 50;
-        else countdown_Speed = 1;
+        countdown_Speed = speed;
     }
 
     private void Update() 
@@ -83,6 +81,7 @@ public class Menu_Handler : MonoBehaviour
     public void StartCountdown(){
         isGameOver = false; //in case of restart
         prepCountDownStart = true;
+        countdown_Speed = 1;
 
         canvas.btn_skipCountdown.SetActive(true);
     }

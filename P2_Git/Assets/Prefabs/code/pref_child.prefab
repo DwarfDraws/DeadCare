@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4560124646269838134}
   - component: {fileID: 7752388624357001736}
   - component: {fileID: 1998556062279604164}
-  - component: {fileID: 4942258776356958949}
   - component: {fileID: 5780309410393319945}
   - component: {fileID: 379877033402966536}
+  - component: {fileID: 2353241418362088014}
   - component: {fileID: 5298535208730907419}
   - component: {fileID: 2788864446836801784}
   - component: {fileID: 2916585423511289209}
@@ -90,27 +90,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &4942258776356958949
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4725265333546888955}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.41855693
-  m_Center: {x: 0, y: 0.098556876, z: 0}
 --- !u!195 &5780309410393319945
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -148,6 +127,29 @@ MonoBehaviour:
   animation_script: {fileID: 0}
   tutorialTargets: []
   currentTarget: {fileID: 0}
+--- !u!136 &2353241418362088014
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4725265333546888955}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.17363095
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0.00006246567, y: 0, z: 0}
 --- !u!54 &5298535208730907419
 Rigidbody:
   m_ObjectHideFlags: 0

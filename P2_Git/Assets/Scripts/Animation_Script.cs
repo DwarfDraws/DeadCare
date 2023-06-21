@@ -94,6 +94,7 @@ public class Animation_Script : MonoBehaviour
     public void PlayWalkingAnimation(bool isPlaying)
     {
         anim.SetBool(animationBool_isWalking_name, isPlaying);
+        Debug.Log(isPlaying);
     }
 
     public void RewindAnimation()
@@ -161,6 +162,8 @@ public class Animation_Script : MonoBehaviour
 
     public void ResetChildAnimations()
     {
+        Debug.Log("ResetChildAnimations()");
+
         foreach(string animation_bool in children_anim_IdleBools)
         {
             anim.SetBool(animation_bool, false);
