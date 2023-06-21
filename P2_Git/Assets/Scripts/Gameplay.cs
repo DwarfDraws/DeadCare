@@ -30,7 +30,7 @@ public class Gameplay : MonoBehaviour
     {
         return current_childCounter;
     }
-    public void ResetChildCount()
+    void ResetChildCount()
     {
         current_childCounter = init_childCounter;
         spawner.childrenToSpawn = init_childCounter;
@@ -54,7 +54,7 @@ public class Gameplay : MonoBehaviour
         current_tapeCounter++;
         canvas.SetTapeCounter_Txt(current_tapeCounter.ToString());
     }
-    public void ResetTapeCount()
+    void ResetTapeCount()
     {
         current_tapeCounter = init_tapeCounter;
         canvas.SetTapeCounter_Txt(current_tapeCounter.ToString());
@@ -93,7 +93,7 @@ public class Gameplay : MonoBehaviour
         current_consumableCounter++;
         canvas.SetConsumableCounter_Txt(current_consumableCounter.ToString());
     }
-    public void ResetConsumableCount()
+    void ResetConsumableCount()
     {
         current_consumableCounter = init_tapeCounter;
         canvas.SetConsumableCounter_Txt(current_consumableCounter.ToString());
@@ -101,5 +101,13 @@ public class Gameplay : MonoBehaviour
     public int GetConsumableCount()
     {
         return current_consumableCounter;
+    }
+
+
+    public void Reset()
+    {
+        ResetChildCount();
+        ResetConsumableCount();
+        ResetTapeCount();
     }
 }
