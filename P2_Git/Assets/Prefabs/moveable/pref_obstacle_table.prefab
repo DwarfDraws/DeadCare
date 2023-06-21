@@ -32,10 +32,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 103781514622243118}
   - {fileID: 6191176694639240768}
+  - {fileID: 103781514622243118}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &7059254579346032592
 BoxCollider:
@@ -56,8 +56,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.9783714, y: 0.7246883, z: 1.2170129}
-  m_Center: {x: 0.10078037, y: -0.038065016, z: -0.002935052}
+  m_Size: {x: 0.8365614, y: 0.7246883, z: 1.0038457}
+  m_Center: {x: 0.0855865, y: -0.038065016, z: 0.0023555756}
 --- !u!208 &1550322413939456921
 NavMeshObstacle:
   m_ObjectHideFlags: 0

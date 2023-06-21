@@ -8,6 +8,9 @@ public class Object_attributes : MonoBehaviour
     [SerializeField] GameObject tape;
     public GameObject moveableHalo, tapeableHalo;
 
+    Material moveableHalo_Mat;
+    Color init_moveableHalo_Color;
+
     [HideInInspector] public bool isRotated; 
     [HideInInspector] public bool isTaped; 
     [HideInInspector] public bool isInNoMoveArea;
@@ -16,6 +19,15 @@ public class Object_attributes : MonoBehaviour
 
     string tag_noMoveArea = "noMoveArea";
 
+    void Start()
+    {
+        if(moveableHalo != null)
+        {
+            moveableHalo_Mat = moveableHalo.GetComponent<Renderer>().material;
+            init_moveableHalo_Color = moveableHalo_Mat.GetColor("_BaseColor");
+            
+        }
+    }
 
     public void SetTapeActive(bool isActive)
     {
@@ -58,11 +70,12 @@ public class Object_attributes : MonoBehaviour
     }
 
 
-    private void OnTriggerStay(Collider other) //edited: was onTriggerEnter
+    private void OnTriggerStay(Collider other)
     {
-        if(other.tag == tag_noMoveArea)
+        if(other.tag == tag_noMoveArea && !isInNoMoveArea)
         {
             isInNoMoveArea = true;
+            moveableHalo_Mat.SetColor("_BaseColor", Color.red);
         }    
     }
     private void OnTriggerExit(Collider other) 
@@ -70,6 +83,7 @@ public class Object_attributes : MonoBehaviour
         if(other.tag == tag_noMoveArea)
         {
             isInNoMoveArea = false;
+            moveableHalo_Mat.SetColor("_BaseColor", init_moveableHalo_Color);
         }    
     }
 

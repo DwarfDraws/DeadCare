@@ -17,6 +17,7 @@ public class Settings_script : MonoBehaviour
     [SerializeField] int consumable_Amount = 0;
     [SerializeField] float prepCountdownTime_Seconds;
     [SerializeField] float gameCountdownTime_Seconds;
+    [SerializeField] float children_walkSpeed;
     [SerializeField] bool hideTargets;
     public bool consumablesHaveExistenceTimer;
     public bool isTutorial;
@@ -28,7 +29,10 @@ public class Settings_script : MonoBehaviour
     {
         menu_Handler.SetPrepCountdownTimer(prepCountdownTime_Seconds);
         menu_Handler.SetGameCountdownTimer(gameCountdownTime_Seconds);
+        
         spawner.childrenToSpawn = this.children_Amount;
+        spawner.children_walkSpeed = children_walkSpeed;
+
         gameplay.SetChildrenCount(children_Amount);
         gameplay.SetTapeCount(tape_Amount);
         gameplay.SetConsumableCount(consumable_Amount);
