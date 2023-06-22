@@ -93,8 +93,8 @@ public class Animation_Script : MonoBehaviour
 
     public void PlayWalkingAnimation(bool isPlaying)
     {
+        //Debug.Log(animationBool_isWalking_name + isPlaying);
         anim.SetBool(animationBool_isWalking_name, isPlaying);
-        Debug.Log(isPlaying);
     }
 
     public void RewindAnimation()
@@ -121,8 +121,8 @@ public class Animation_Script : MonoBehaviour
         float multiply_ratio = numOfLoops / numOfLoops_withBias;
 
         speed *= multiply_ratio;
-        Debug.Log(anim_index + " " + speed);
-        Debug.Log(numOfLoops_withBias + " " + targetSpeed_seconds + " " + normal_AnimationLength_seconds);
+        //Debug.Log(anim_index + " " + speed);
+        //Debug.Log(numOfLoops_withBias + " " + targetSpeed_seconds + " " + normal_AnimationLength_seconds);
 
         if(numOfLoops == 0) Debug.Log("SetAnimationSpeed(): target-waittime shorter than animation! target-waittime: " + targetSpeed_seconds + " anim_length: " + normal_AnimationLength_seconds);
 
@@ -162,7 +162,7 @@ public class Animation_Script : MonoBehaviour
 
     public void ResetChildAnimations()
     {
-        Debug.Log("ResetChildAnimations()");
+        //Debug.Log("ResetChildAnimations()");
 
         foreach(string animation_bool in children_anim_IdleBools)
         {

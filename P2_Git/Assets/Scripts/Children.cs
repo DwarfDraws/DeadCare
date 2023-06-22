@@ -10,7 +10,7 @@ public class Children : MonoBehaviour
     Settings_script settings;
     Gameplay gameplay;
     
-    //[SerializeField] Animator animator;
+
     [HideInInspector] public Animation_Script animation_script;
     [SerializeField] List<Target> tutorialTargets;
     [HideInInspector] public Target currentTarget;
@@ -18,6 +18,7 @@ public class Children : MonoBehaviour
     NavMesh navMesh;
     NavMeshAgent attachedAgent; 
     GameObject triggerObject;
+
 
     int tutorialIndex;
     float waitTime_seconds; 
@@ -110,7 +111,7 @@ public class Children : MonoBehaviour
         //current target
         if (other.tag == tag_target && hitTarget == currentTarget)
         {
-            Debug.Log("enter");
+            //Debug.Log("enter");
             triggerObject = other.gameObject;
             
             animation_script.PlayWalkingAnimation(false); 
@@ -154,7 +155,7 @@ public class Children : MonoBehaviour
         //current target
         if (other.tag == tag_target && hitTarget == currentTarget && !isTargetDetected)
         {
-            Debug.Log("stay");
+            //Debug.Log("stay");
             triggerObject = other.gameObject;
 
             animation_script.PlayWalkingAnimation(false); 
@@ -165,7 +166,7 @@ public class Children : MonoBehaviour
 
     private void OnTriggerExit(Collider other) 
     {
-        Debug.Log("exit");
+        //Debug.Log("exit");
         IsSafeZone(false);
         animation_script.PlayWalkingAnimation(true); 
     }

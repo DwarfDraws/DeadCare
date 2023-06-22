@@ -56,8 +56,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.53562164, y: 1.0147948, z: 1}
-  m_Center: {x: 0.0054852366, y: 0.10698828, z: -2.2438763e-17}
+  m_Size: {x: 0.42305455, y: 1.0147948, z: 0.81816083}
+  m_Center: {x: 0.0617688, y: 0.10698831, z: 0.000000014901161}
 --- !u!208 &8784993113189381390
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -205,6 +205,10 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7089340276916281336, guid: c8c909d9e4ad3e247ab9c83afe7ea428, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6becfc227f8ca754dae14fd93a3021df, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -237,7 +241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 899083169207669629, guid: c8c909d9e4ad3e247ab9c83afe7ea428, type: 3}
       propertyPath: m_TagString
-      value: halo
+      value: moveHalo
       objectReference: {fileID: 0}
     - target: {fileID: 899083169207669629, guid: c8c909d9e4ad3e247ab9c83afe7ea428, type: 3}
       propertyPath: m_StaticEditorFlags

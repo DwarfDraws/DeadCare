@@ -10,6 +10,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] GameObject childPrefab;
 
     [HideInInspector] public int childrenToSpawn;
+    [HideInInspector] public float children_walkSpeed = 1.25f;
     bool isBlocked;
     bool isSpawning;
    
@@ -47,6 +48,8 @@ public class Spawner : MonoBehaviour
     {
         GameObject newChild = GameObject.Instantiate(childPrefab, this.gameObject.transform.position, Quaternion.identity);
         NavMeshAgent newAgent = newChild.GetComponent<NavMeshAgent>();
+        newAgent.speed = children_walkSpeed;
+        
         navMesh.Add_Agent(newAgent);
     }
 
