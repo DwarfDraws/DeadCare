@@ -28,7 +28,6 @@ public class Canvas_Script : MonoBehaviour
     public GameObject pnl_GameOver;
     [SerializeField] GameObject youWin, youLose;
     [SerializeField] TMP_Text txt_ChildrenCounter;
-    [SerializeField] TMP_Text txt_Score;
     [SerializeField] TMP_Text txt_Countdown;
     [SerializeField] TMP_Text txt_tapeCounter;
     [SerializeField] TMP_Text txt_consumableCounter;
@@ -192,10 +191,6 @@ public class Canvas_Script : MonoBehaviour
         txt_ChildrenCounter.text = text;
     }
 
-    public void SetScore_Txt(string text)
-    {        
-        txt_Score.text = "Your current score: " + text;
-    }
 
     public void SetYouWin(bool isWin)
     {

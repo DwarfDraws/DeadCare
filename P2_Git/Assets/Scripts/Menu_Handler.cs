@@ -128,7 +128,6 @@ public class Menu_Handler : MonoBehaviour
             if(isWon) canvas.SetYouWin(true);
             else canvas.SetYouWin(false);
             canvas.SetChildrenCounter_Txt(survivedChildren.ToString() + "/" + initial_childAmount.ToString());
-            canvas.SetScore_Txt(GetScore().ToString());
             int starReward_Count = CalculateStarReward(survivedChildren, initial_childAmount);
             canvas.SetStarImages(starReward_Count);
             SetScore(starReward_Count);
