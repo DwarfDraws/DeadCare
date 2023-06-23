@@ -5,6 +5,8 @@ using TMPro;
 
 public class Menu_Handler : MonoBehaviour
 {
+    SaveData saveData;
+    
     [SerializeField] Raycast raycast;
     [SerializeField] Spawner spawner;
     [SerializeField] Canvas_Script canvas;
@@ -32,12 +34,6 @@ public class Menu_Handler : MonoBehaviour
 
         obstacles = GameObject.FindGameObjectsWithTag(tag_obstacle);
     }  
-
-
-    public void setCountdown_Speed(int speed)
-    {
-        countdown_Speed = speed;
-    }
 
     private void Update() 
     {
@@ -67,6 +63,14 @@ public class Menu_Handler : MonoBehaviour
         }
     }
 
+
+
+
+    public void setCountdown_Speed(int speed)
+    {
+        countdown_Speed = speed;
+    }
+
     public void SetPrepCountdownTimer(float f)
     {
         init_prepCountdownTimer = f;
@@ -84,7 +88,14 @@ public class Menu_Handler : MonoBehaviour
         countdown_Speed = 1;
 
         canvas.btn_skipCountdown.SetActive(true);
+
+
+        saveData = SaveManager.Load();
+        Debug.Log(saveData.score);
     }
+
+
+
 
     void NextPhase()
     {
@@ -112,10 +123,16 @@ public class Menu_Handler : MonoBehaviour
             //GameOver-Panel
             int survivedChildren = gameplay.GetChildCount();
             int initial_childAmount = gameplay.init_childCounter;
-            canvas.SetChildrenCounter_Txt(survivedChildren.ToString() + "/" + initial_childAmount.ToString());
             if(isWon) canvas.SetYouWin(true);
             else canvas.SetYouWin(false);
+            canvas.SetChildrenCounter_Txt(survivedChildren.ToString() + "/" + initial_childAmount.ToString());
+            canvas.SetScore_Txt(GetScore().ToString());
+            int starReward_Count = CalculateStarReward(survivedChildren, initial_childAmount);
+            canvas.SetStarImages(starReward_Count);
+            SetScore(starReward_Count);
             canvas.pnl_GameOver.SetActive(true);
+
+            
 
             isGameOver = true;
             
@@ -130,9 +147,12 @@ public class Menu_Handler : MonoBehaviour
                 Object_attributes oa = obstacle.GetComponent<Object_attributes>();
                 oa.SetTapeActive(false);
 
-                if(obstacle.GetComponent<Animation_Script>() != null)
+                if(obstacle.GetComponentInChildren<Animation_Script>() != null)
                 {
-                    obstacle.GetComponent<Animation_Script>().PlayAnimation(oa.attachedTarget.animation_Index, false, true, false);
+                    Animation_Script anim_script = obstacle.GetComponentInChildren<Animation_Script>();
+                    
+                    anim_script.PlayAnimation(oa.attachedTarget.animation_Index, false, true, false);
+                    anim_script.PlayAnimation(oa.attachedTarget.animation_Index, false, true, true);
                 }
                 i++;
             }
@@ -140,5 +160,35 @@ public class Menu_Handler : MonoBehaviour
                 Destroy(widget);
             }
         }
+    }
+
+
+    void SetScore(int newScore)
+    {
+        saveData = SaveManager.Load();
+        saveData.score = newScore;
+        SaveManager.Save(saveData);
+    }
+
+    public void ResetScore()
+    {
+        saveData = SaveManager.Load();
+        saveData.score = 0;
+        SaveManager.Save(saveData);
+    }
+
+    public int GetScore()
+    {
+        saveData = SaveManager.Load();
+        return saveData.score;
+    } 
+
+
+    int CalculateStarReward(int survivedChildren, int init_childCounter)
+    {
+        if(survivedChildren == init_childCounter) return 3;
+        else if(survivedChildren / (float)init_childCounter >= 0.5f) return 2;
+        else if(survivedChildren >= 1) return 1;
+        else return 0;
     }
 }

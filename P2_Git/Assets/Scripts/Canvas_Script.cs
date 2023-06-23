@@ -6,9 +6,12 @@ using TMPro;
 
 public class Canvas_Script : MonoBehaviour
 {
+    SaveData saveData;
+
     [SerializeField] Raycast raycast;
     [SerializeField] Object_moveHandler obj_moveHandler;
     [SerializeField] Gameplay gameplay;
+
     GameObject inGameMenuCanvas;
     Canvas canvas;
     Object_attributes pref_consumable_attributes;
@@ -16,11 +19,16 @@ public class Canvas_Script : MonoBehaviour
     [SerializeField] Camera cam;
     [SerializeField] Slider slider_prefab;
     [SerializeField] GameObject pref_consumable;
+    [SerializeField] Image[] stars_Images;
+    [SerializeField] Sprite star_Filled;
+    [SerializeField] Sprite star_Empty;
+
 
     public GameObject btn_move, btn_tape, btn_skipCountdown;
     public GameObject pnl_GameOver;
     [SerializeField] GameObject youWin, youLose;
     [SerializeField] TMP_Text txt_ChildrenCounter;
+    [SerializeField] TMP_Text txt_Score;
     [SerializeField] TMP_Text txt_Countdown;
     [SerializeField] TMP_Text txt_tapeCounter;
     [SerializeField] TMP_Text txt_consumableCounter;
@@ -180,6 +188,11 @@ public class Canvas_Script : MonoBehaviour
         txt_ChildrenCounter.text = text;
     }
 
+    public void SetScore_Txt(string text)
+    {        
+        txt_Score.text = "Your current score: " + text;
+    }
+
     public void SetYouWin(bool isWin)
     {
         if(isWin) 
@@ -204,6 +217,30 @@ public class Canvas_Script : MonoBehaviour
     public void SetConsumableCounter_Txt(string text)
     {
         txt_consumableCounter.text = text;
+    }
+
+
+    public void SetStarImages(int starCount)
+    {
+        switch (starCount)
+        {
+            case 0:
+                foreach(Image img in stars_Images) img.sprite = star_Empty;
+                break;
+            case 1: 
+                stars_Images[0].sprite = star_Filled;
+                stars_Images[1].sprite = star_Empty;
+                stars_Images[2].sprite = star_Empty;
+                break;
+            case 2:
+                stars_Images[0].sprite = star_Filled;
+                stars_Images[1].sprite = star_Filled;
+                stars_Images[2].sprite = star_Empty;
+                break;
+            case 3:
+                foreach(Image img in stars_Images) img.sprite = star_Filled;
+                break;
+        }
     }
 
 }

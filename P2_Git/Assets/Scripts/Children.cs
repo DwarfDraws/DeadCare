@@ -266,7 +266,7 @@ public class Children : MonoBehaviour
 
     public void ChildDestroy()
     {
-        navMesh.Remove_Agent(this.GetComponent<NavMeshAgent>());
+        navMesh.Remove_Agent(GetComponent<NavMeshAgent>());
         gameplay.DecreaseChildCount();
         Destroy(gameObject); 
     }

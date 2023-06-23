@@ -58,14 +58,14 @@ public class Target : MonoBehaviour
                 Animation_Script c_anim = currentChild_atTarget.animation_script;
 
                 //idle-anims
-                o_anim.PlayAnimation(animation_Index, false, true, false);
-                c_anim.PlayAnimation(animation_Index, false, false, false);
+                if(o_anim != null) o_anim.PlayAnimation(animation_Index, false, true, false);
+                if(c_anim != null) c_anim.PlayAnimation(animation_Index, false, false, false);
                 
                 //death-anims
-                o_anim.PlayAnimation(animation_Index, false, true, true);
-                c_anim.PlayAnimation(animation_Index, false, false, true);
+                if(o_anim != null) o_anim.PlayAnimation(animation_Index, false, true, true);
+                if(c_anim != null) c_anim.PlayAnimation(animation_Index, false, false, true);
 
-                currentChild_atTarget.ChildDestroy();
+                if(currentChild_atTarget != null) currentChild_atTarget.ChildDestroy();
                 childDies = false;
             }
         }    
