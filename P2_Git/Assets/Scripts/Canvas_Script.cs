@@ -17,7 +17,7 @@ public class Canvas_Script : MonoBehaviour
     [SerializeField] Slider slider_prefab;
     [SerializeField] GameObject pref_consumable;
 
-    public GameObject btn_move, btn_tape, btn_skipCountdown;
+    public GameObject btn_move, btn_tape, btn_skipCountdown, btn_consumable;
     public GameObject pnl_GameOver;
     [SerializeField] GameObject youWin, youLose;
     [SerializeField] TMP_Text txt_ChildrenCounter;
@@ -67,6 +67,11 @@ public class Canvas_Script : MonoBehaviour
     public void SetButton_Consumable(bool onOff)
     {
         btnConsumable = onOff;
+    }
+    
+    public void ActivateButton_Consumable(bool onOff)
+    {
+        btn_consumable.SetActive(onOff);
     }
 
     public bool isBtnPressed_Consumable()
@@ -141,9 +146,8 @@ public class Canvas_Script : MonoBehaviour
         isTapeBtnPressed = false;
         btn_tape.GetComponent<Image>().color = Color.white;
     }
-
-
-
+    
+    
 
     public void SetMoveableHalosActive(bool isActive)
     {

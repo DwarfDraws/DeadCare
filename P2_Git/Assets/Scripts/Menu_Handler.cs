@@ -83,13 +83,15 @@ public class Menu_Handler : MonoBehaviour
         prepCountDownStart = true;
         countdown_Speed = 1;
 
+        canvas.ActivateButton_Consumable(false); //Cookies are only available in Prep-Phase!
         canvas.btn_skipCountdown.SetActive(true);
     }
 
     void NextPhase()
     {
         canvas.btn_move.SetActive(false);
-        canvas.btn_tape.SetActive(false);  
+        canvas.btn_tape.SetActive(false);
+        canvas.ActivateButton_Consumable(true);
         canvas.btn_skipCountdown.SetActive(false); 
         canvas.Deactivate_MoveButton();
         canvas.Deactivate_TapeButton();
