@@ -120,7 +120,7 @@ public class Children : MonoBehaviour
         }       
 
         //consumable
-        if(other.tag == tag_consumableRadius && !isInSafeZone)
+        if(other.tag == tag_consumableRadius /*&& !isInSafeZone*/) //Make children always stop their action for cookies
         {
             triggerObject = other.gameObject;
             Target consumableTarget = triggerObject.transform.GetComponentInParent<Target>();
