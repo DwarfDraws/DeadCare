@@ -18,7 +18,7 @@ public class Target : MonoBehaviour
     float timeTillDeath_seconds;
     [HideInInspector] public bool isOpen; 
     [HideInInspector] public bool isTargeted;
-    [HideInInspector] public bool isWaitTarget;
+     public bool isWaitTarget;
     public bool isDeadly;
     public bool isConsumable;
     bool isTaped;
@@ -40,6 +40,7 @@ public class Target : MonoBehaviour
             attachedObject_Animation.SetAnimationSpeed(animation_Index, waitTime_seconds, true);
         }
         if(attachedObject == null && !isConsumable) isWaitTarget = true;
+        else isWaitTarget = false;
 
         timer = 1.0f;
         timerDown = true;
