@@ -18,7 +18,7 @@ public class Target : MonoBehaviour
     float timeTillDeath_seconds;
     [HideInInspector] public bool isOpen; 
     [HideInInspector] public bool isTargeted;
-     public bool isWaitTarget;
+    [HideInInspector] public bool isWaitTarget;
     public bool isDeadly;
     public bool isConsumable;
     bool isTaped;

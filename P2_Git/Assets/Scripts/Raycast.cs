@@ -14,7 +14,8 @@ public class Raycast : MonoBehaviour
     Animation_Script object_Animation;
     
     [SerializeField] Camera main_camera;
-    [SerializeField] LayerMask layer_Floor;
+    LayerMask layer_Floor;
+    LayerMask layers_FloorAndChild;
     RaycastHit hit;
     Ray ray;
 
@@ -45,6 +46,9 @@ public class Raycast : MonoBehaviour
     {
         gameplay = GameObject.Find(gameplayHandler_name).GetComponent<Gameplay>();
         canvas = GameObject.Find(canvas_name).GetComponent<Canvas_Script>();
+
+        layer_Floor = LayerMask.GetMask("Floor");
+        layers_FloorAndChild = LayerMask.GetMask("Floor", "Child", "NoMoveArea");
     }
 
     void Update()
@@ -57,9 +61,10 @@ public class Raycast : MonoBehaviour
             {
                 ray = main_camera.ScreenPointToRay(Input.mousePosition);
 
-                if (Physics.Raycast(ray, out hit, float.MaxValue, ~layer_Floor))
+                if (Physics.Raycast(ray, out hit, float.MaxValue, ~layers_FloorAndChild))
                 { 
                     hitObject = hit.transform; //object transform
+                    //Debug.Log(hitObject.name);
 
                     if(hitObject.CompareTag(tag_obstacle))
                     {
