@@ -21,6 +21,8 @@ public class Settings_script : MonoBehaviour
     [SerializeField] bool hideTargets;
     public bool consumablesHaveExistenceTimer;
     public bool isTutorial;
+    [SerializeField] Children tutorial_Child;
+    [SerializeField] List<Target> tutorialTargets;
 
 
     string tag_target = "target";
@@ -37,7 +39,13 @@ public class Settings_script : MonoBehaviour
         gameplay.SetTapeCount(tape_Amount);
         gameplay.SetConsumableCount(consumable_Amount);
 
-        if (isTutorial) btnSpawnChildren.gameObject.SetActive(false);
+        if (isTutorial)
+        {
+            btnSpawnChildren.gameObject.SetActive(false);
+            if (tutorial_Child != null && tutorialTargets != null) tutorial_Child.tutorialTargets = tutorialTargets;
+            else if(tutorial_Child == null) Debug.Log("Settings_Script(): missing tutorial-child!");
+            else if(tutorialTargets == null) Debug.Log("Settings_Script(): missing tutorial-targets!");
+        }
         if (hideTargets) HideTargets();
     }
 

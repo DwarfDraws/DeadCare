@@ -12,7 +12,7 @@ public class Children : MonoBehaviour
     
 
     [HideInInspector] public Animation_Script animation_script;
-    [SerializeField] List<Target> tutorialTargets;
+    [HideInInspector] public List<Target> tutorialTargets;
     [HideInInspector] public Target currentTarget;
     Target tempOldTarget;
     NavMesh navMesh;
