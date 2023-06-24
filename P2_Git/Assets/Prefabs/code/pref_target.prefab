@@ -34,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 7517008447879967337}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4785041230934246241
 MeshFilter:
@@ -119,10 +119,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499a29b21a31f28478ee7d4f0c6740ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTime_seconds: 2
-  isDeadly: 0
+  attachedObject: {fileID: 0}
+  currentChild_atTarget: {fileID: 0}
+  attachedObject_Animation: {fileID: 0}
+  animation_Index: 6
+  waitTime_seconds: 3
   isOpen: 0
   isTargeted: 0
+  isWaitTarget: 1
+  isDeadly: 0
+  isConsumable: 0
+  timerDown: 0
 --- !u!1 &8251126494690254459
 GameObject:
   m_ObjectHideFlags: 0
