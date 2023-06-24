@@ -142,7 +142,7 @@ public class Animation_Script : MonoBehaviour
             int i = 0;
             while(animation_name != avaiable_animClips[i].name) 
             { 
-                Debug.Log(animation_name + " / " + avaiable_animClips[i].name);
+                //Debug.Log(animation_name + " / " + avaiable_animClips[i].name);
                 i++; 
             }
             //Debug.Log(animation_name + " " + anim.runtimeAnimatorController.animationClips[i].length);
