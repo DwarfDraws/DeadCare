@@ -8,10 +8,14 @@ public class tapematerial : MonoBehaviour
     public TapeSettings tapesettings;
     public List<GameObject> go;
     public List<Material> tapemats;
+    [SerializeField] ObjectSFX sfx;
     private float fillspeed;
 
     private void Awake()
     {
+        if(sfx != null){
+            sfx.InteractionTape();
+        }
         fillspeed = tapesettings.fillspeed;
         go = new List<GameObject>();
         tapemats = new List<Material>();

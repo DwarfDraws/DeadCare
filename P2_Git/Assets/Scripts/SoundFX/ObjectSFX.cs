@@ -6,6 +6,7 @@ public class ObjectSFX : MonoBehaviour
 {
     [SerializeField] List<AudioClip> m_Idles;
     [SerializeField] List<AudioClip> m_Deaths;
+    [SerializeField] List<AudioClip> m_Tapes;
     [SerializeField]AudioSource m_AudioSource;
 
 
@@ -25,6 +26,14 @@ public class ObjectSFX : MonoBehaviour
             deathIndex += 1;
         }
         m_AudioSource.clip = m_Deaths[Random.Range(0, deathIndex)];
+        m_AudioSource.Play();
+    }
+    public void InteractionTape(){
+        int tapeIndex = 0;
+        foreach(AudioClip sound in m_Tapes){
+            tapeIndex += 1;
+        }
+        m_AudioSource.clip = m_Deaths[Random.Range(0, tapeIndex)];
         m_AudioSource.Play();
     }
 }
