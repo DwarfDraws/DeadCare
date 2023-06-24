@@ -38,6 +38,9 @@ public class Animation_Script : MonoBehaviour
 
         children_anim_IdleBools.Add("anim_c_Mimic_Idle");
         children_anim_DeathBools.Add("anim_c_Mimic_Death");
+        
+        children_anim_IdleBools.Add("anim_c_Cactus_Idle");
+        children_anim_DeathBools.Add("anim_c_Cactus_Death");
 
             //additional Child-Anims without corresponding object-anim
         children_anim_IdleBools.Add("anim_removeTape");
@@ -55,6 +58,9 @@ public class Animation_Script : MonoBehaviour
 
         object_anim_IdleBools.Add("anim_o_Mimic_Idle");
         object_anim_DeathBools.Add("anim_o_Mimic_Death");
+
+        object_anim_IdleBools.Add("anim_o_Cactus_Idle");
+        object_anim_DeathBools.Add("anim_o_Cactus_Death");
 
 
         if(children_anim_IdleBools.Count > 0) hasChild_anims = true;
