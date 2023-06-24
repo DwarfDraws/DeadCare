@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3042597797263384304}
   - component: {fileID: 7329894256314992855}
   - component: {fileID: 1607907415291873426}
-  - component: {fileID: 7939503416839555778}
   - component: {fileID: 5099195865257742264}
   m_Layer: 7
   m_Name: pref_obstacle_plasticchair
@@ -56,8 +55,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5937013, y: 0.7773786, z: 0.7067593}
-  m_Center: {x: -0.014660567, y: 0.18232587, z: -0.0052389503}
+  m_Size: {x: 0.5937013, y: 0.66985923, z: 0.7067593}
+  m_Center: {x: -0.014660567, y: 0.23608555, z: -0.0052389503}
 --- !u!208 &1607907415291873426
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -68,32 +67,12 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.075, y: 0.5, z: 0.075}
+  m_Extents: {x: 0.075, y: 0.5, z: 0.005}
   m_MoveThreshold: 0
   m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0
---- !u!114 &7939503416839555778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3360355035461982118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0b761287f9862b4ebe3d337d87e55d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attachedTarget: {fileID: 0}
-  tape: {fileID: 0}
-  moveableHalo: {fileID: 9008467787891551861}
-  tapeableHalo: {fileID: 0}
-  isRotated: 0
-  isTaped: 0
-  isInNoMoveArea: 0
-  isMoveable: 1
 --- !u!54 &5099195865257742264
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -297,7 +276,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f8b98b9a2bb1012478b7b48efaf1408c, type: 3}
       propertyPath: m_TagString
-      value: moveHalo
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f8b98b9a2bb1012478b7b48efaf1408c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -307,10 +290,5 @@ PrefabInstance:
 --- !u!4 &8525121774455846095 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f8b98b9a2bb1012478b7b48efaf1408c, type: 3}
-  m_PrefabInstance: {fileID: 8198214232351576868}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &9008467787891551861 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f8b98b9a2bb1012478b7b48efaf1408c, type: 3}
   m_PrefabInstance: {fileID: 8198214232351576868}
   m_PrefabAsset: {fileID: 0}
