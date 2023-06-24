@@ -33,7 +33,7 @@ public class ObjectSFX : MonoBehaviour
         foreach(AudioClip sound in m_Tapes){
             tapeIndex += 1;
         }
-        m_AudioSource.clip = m_Deaths[Random.Range(0, tapeIndex)];
+        m_AudioSource.clip = m_Tapes[Random.Range(0, tapeIndex)];
         m_AudioSource.Play();
     }
 }

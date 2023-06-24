@@ -251,7 +251,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -433,6 +433,10 @@ MonoBehaviour:
   m_Idles: []
   m_Deaths:
   - {fileID: 8300000, guid: a34c9ca0d7f873c4192c7b70837969d5, type: 3}
+  m_Tapes:
+  - {fileID: 8300000, guid: 1a302f70004fae042b27cc0834a9cb84, type: 3}
+  - {fileID: 8300000, guid: 9c5df354e3615cb4a84156cc3cfc4894, type: 3}
+  - {fileID: 8300000, guid: 77405f0bbeab58341b27fdd376b7c706, type: 3}
   m_AudioSource: {fileID: 8967445242059213003}
 --- !u!4 &796884212663803760 stripped
 Transform:
@@ -687,6 +691,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6785559266178122873, guid: 15c426e3da65eee4190dad9a9963797d, type: 3}
+      propertyPath: sfx
+      value: 
+      objectReference: {fileID: 1356574007774485213}
     - target: {fileID: 6785559266178122873, guid: 15c426e3da65eee4190dad9a9963797d, type: 3}
       propertyPath: fillspeed
       value: 0.3

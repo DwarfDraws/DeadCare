@@ -36,7 +36,7 @@ Transform:
   - {fileID: 7032313869455394675}
   - {fileID: 5176297659724641767}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1687361500345550508
 MonoBehaviour:
@@ -167,7 +167,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -354,6 +354,10 @@ MonoBehaviour:
   m_Idles: []
   m_Deaths:
   - {fileID: 8300000, guid: 0b4a79480d772664781ce8265ef628cc, type: 3}
+  m_Tapes:
+  - {fileID: 8300000, guid: 1a302f70004fae042b27cc0834a9cb84, type: 3}
+  - {fileID: 8300000, guid: 9c5df354e3615cb4a84156cc3cfc4894, type: 3}
+  - {fileID: 8300000, guid: 77405f0bbeab58341b27fdd376b7c706, type: 3}
   m_AudioSource: {fileID: 658302809825304625}
 --- !u!1001 &5267485457906067245
 PrefabInstance:
@@ -415,6 +419,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6785559266178122873, guid: 15c426e3da65eee4190dad9a9963797d, type: 3}
+      propertyPath: sfx
+      value: 
+      objectReference: {fileID: 6140220199419591127}
     - target: {fileID: 6785559266178122873, guid: 15c426e3da65eee4190dad9a9963797d, type: 3}
       propertyPath: fillspeed
       value: 0.3
