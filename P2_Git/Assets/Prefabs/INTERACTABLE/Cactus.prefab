@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5063935026889122652}
   m_Layer: 0
   m_Name: Cactus
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +32,7 @@ Transform:
   - {fileID: 775526955847759596}
   - {fileID: 6526265143006063008}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5063935026889122652
 MonoBehaviour:
