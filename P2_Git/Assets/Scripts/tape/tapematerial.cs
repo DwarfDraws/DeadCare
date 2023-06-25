@@ -11,8 +11,7 @@ public class tapematerial : MonoBehaviour
     [SerializeField] ObjectSFX sfx;
     private float fillspeed;
 
-    private void Awake()
-    {
+    private void OnEnable() {
         if(sfx != null){
             sfx.InteractionAddTape();
         }

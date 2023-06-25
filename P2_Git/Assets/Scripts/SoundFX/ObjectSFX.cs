@@ -9,7 +9,6 @@ public class ObjectSFX : MonoBehaviour
     [SerializeField] List<AudioClip> m_AddTapes = new List<AudioClip>();
     [SerializeField] List<AudioClip> m_RemoveTapes = new List<AudioClip>();
     [SerializeField]AudioSource m_AudioSource;
-    private bool removedTape = false;
 
 
 
@@ -39,16 +38,12 @@ public class ObjectSFX : MonoBehaviour
         m_AudioSource.Play();
     }
     public void InteractionRemoveTape(){
-        Debug.Log("repeat");
-        if(!removedTape){
             int tapeIndex = 0;
             foreach(AudioClip sound in m_RemoveTapes){
                 tapeIndex += 1;
         }
         m_AudioSource.clip = m_RemoveTapes[Random.Range(0, tapeIndex)];
         m_AudioSource.Play();
-        removedTape = true;
         }
         
-    }
 }
