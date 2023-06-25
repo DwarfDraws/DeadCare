@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChildSFX : MonoBehaviour
 {
-    [SerializeField] List<AudioClip> m_AudioClips;
+    [SerializeField] List<AudioClip> m_AudioClips = new List<AudioClip>();
     AudioSource m_AudioSource;
 
 

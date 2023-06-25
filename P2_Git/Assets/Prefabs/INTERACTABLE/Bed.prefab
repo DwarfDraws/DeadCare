@@ -1054,10 +1054,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Idles: []
   m_Deaths: []
-  m_Tapes:
+  m_AddTapes:
   - {fileID: 8300000, guid: 1a302f70004fae042b27cc0834a9cb84, type: 3}
   - {fileID: 8300000, guid: 9c5df354e3615cb4a84156cc3cfc4894, type: 3}
   - {fileID: 8300000, guid: 77405f0bbeab58341b27fdd376b7c706, type: 3}
+  m_RemoveTapes:
+  - {fileID: 8300000, guid: fa03a8953354ab1468347890929f783a, type: 3}
   m_AudioSource: {fileID: 1931060879521058821}
 --- !u!1001 &6708368989161248017
 PrefabInstance:
