@@ -17,7 +17,7 @@ public class Canvas_Script : MonoBehaviour
     Object_attributes pref_consumable_attributes;
 
     [SerializeField] Camera cam;
-    [SerializeField] Slider slider_prefab;
+    [SerializeField] GameObject widget_prefab;
     [SerializeField] GameObject pref_consumable;
     [SerializeField] Image[] stars_Images;
     [SerializeField] Sprite star_Filled;
@@ -55,17 +55,15 @@ public class Canvas_Script : MonoBehaviour
 
     public Widget InstantiateWidget(Vector3 widget_worldPos, Color color)
     {
-
-        Slider widget_instance = Slider.Instantiate(slider_prefab, widget_worldPos, Quaternion.identity, canvas.transform);
+        GameObject widget_instance = Instantiate(widget_prefab, widget_worldPos, Quaternion.identity, canvas.transform);
         
-        Image fillColor_image = widget_instance.gameObject.transform.GetChild(1).GetChild(0).transform.GetComponent<Image>();
-        fillColor_image.color = color;
+        //Image fillColor_image = widget_instance.gameObject.transform.GetChild(1).GetChild(0).transform.GetComponent<Image>();
+        //fillColor_image.color = color;
 
         RectTransform newWidget_transform = widget_instance.GetComponent<RectTransform>();
-        
         Vector3 widget_screenPos = cam.WorldToScreenPoint(widget_worldPos);
         newWidget_transform.anchoredPosition3D = widget_screenPos;
-        newWidget_transform.rotation = cam.transform.rotation;
+        newWidget_transform.rotation = Quaternion.identity;
         
         Widget widget = widget_instance.GetComponent<Widget>();
         return widget;
@@ -189,7 +187,8 @@ public class Canvas_Script : MonoBehaviour
 
     public float GetCountdown_Txt_Size()
     {
-        return txt_Countdown.fontSize;
+        if(txt_Countdown != null) return txt_Countdown.fontSize;
+        else return 0;
     }
 
     public void SetChildrenCounter_Txt(string text)

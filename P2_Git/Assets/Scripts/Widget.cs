@@ -6,20 +6,20 @@ using UnityEngine.UI;
 public class Widget : MonoBehaviour
 {
 
-    Slider slider;
+    Image img;
 
     private void Start() 
     {
-        slider = this.gameObject.GetComponent<Slider>();
+        img = GetComponent<Image>();
     }
 
     public void SetTimer(float time)
     {
-        slider.maxValue = time;
+        img.fillAmount = time;
     }
 
     public void UpdateWidget(float timer)
     {
-        slider.value = timer;
+        img.fillAmount = timer;
     }
 }

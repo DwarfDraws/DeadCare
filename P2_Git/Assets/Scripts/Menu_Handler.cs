@@ -36,7 +36,7 @@ public class Menu_Handler : MonoBehaviour
     private void Start() 
     {
         countdown_Speed = 1;
-        countdownTxt_Size_init = canvas.GetCountdown_Txt_Size();
+        if(canvas != null) countdownTxt_Size_init = canvas.GetCountdown_Txt_Size();
         countdownTxt_Size = countdownTxt_Size_init;
 
         obstacles = GameObject.FindGameObjectsWithTag(tag_obstacle);
