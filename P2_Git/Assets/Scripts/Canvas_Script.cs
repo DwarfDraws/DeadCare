@@ -181,9 +181,15 @@ public class Canvas_Script : MonoBehaviour
 
 
 
-    public void SetCountdown_Txt(string text)
+    public void SetCountdown_Txt(string text, float size)
     {
         txt_Countdown.text = text;
+        txt_Countdown.fontSize = size;
+    }
+
+    public float GetCountdown_Txt_Size()
+    {
+        return txt_Countdown.fontSize;
     }
 
     public void SetChildrenCounter_Txt(string text)

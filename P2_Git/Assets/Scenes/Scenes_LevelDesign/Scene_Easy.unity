@@ -8146,25 +8146,17 @@ PrefabInstance:
       propertyPath: layer_Child.m_Bits
       value: 512
       objectReference: {fileID: 0}
+    - target: {fileID: 1949712952973311804, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949712952973311804, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -31
+      objectReference: {fileID: 0}
     - target: {fileID: 2521740259316462722, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 155.81982
-      objectReference: {fileID: 0}
-    - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
-      propertyPath: isTutorial
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
-      propertyPath: tutorial_Child
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
-      propertyPath: gameCountdownTime_Seconds
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
-      propertyPath: tutorialTargets.Array.size
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
       propertyPath: tutorialTargets.Array.data[0]
@@ -8225,6 +8217,26 @@ PrefabInstance:
     - target: {fileID: 4262023743892056167, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
       propertyPath: m_Name
       value: pref_levelSetup
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380085182903361835, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
+      propertyPath: m_text
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380085182903361835, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
+      propertyPath: m_margin.x
+      value: 77.122406
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380085182903361835, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
+      propertyPath: m_margin.y
+      value: 84.161865
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380085182903361835, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380085182903361835, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -49,6 +49,8 @@ MonoBehaviour:
   canvas: {fileID: 678790711900801821}
   gameplay: {fileID: 1741366284504729551}
   navMesh: {fileID: 7686922439290494537}
+  countdownTxt_Size_MAX: 0
+  countdownTxt_TimeFromWhenScale: 0
   isGameOver: 0
 --- !u!1 &180859552432806177
 GameObject:
@@ -562,9 +564,6 @@ MonoBehaviour:
   object_MoveHandler: {fileID: 309365093159007742}
   menu_Handler: {fileID: 2625686117659107189}
   main_camera: {fileID: 1567759417918610811}
-  layer_Floor:
-    serializedVersion: 2
-    m_Bits: 64
   consumable_ghostObject: {fileID: 663058201648264049}
   isMoveable: 0
 --- !u!1 &4973867229916657211
@@ -702,12 +701,16 @@ MonoBehaviour:
   children_Amount: 2
   tape_Amount: 1
   consumable_Amount: 0
-  prepCountdownTime_Seconds: 20
-  gameCountdownTime_Seconds: 20
   children_walkSpeed: 1.2
+  prepTime_Seconds: 20
+  gameTime_Seconds: 60
+  countdownTxt_Size_MAX: 200
+  timeFromWhenToScale: 15
+  isTutorial: 0
+  tutorial_Child: {fileID: 0}
+  tutorialTargets: []
   hideTargets: 1
   consumablesHaveExistenceTimer: 0
-  isTutorial: 0
 --- !u!1 &6015999984729840246
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,28 +12,41 @@ public class Settings_script : MonoBehaviour
     [SerializeField] Button btnSpawnChildren;
     [SerializeField] Canvas_Script canvas;
 
+    //Inspector tweak variables
+
+    [Header("Gameplay")]
     [SerializeField] int children_Amount = 0;
     [SerializeField] int tape_Amount = 0;
     [SerializeField] int consumable_Amount = 0;
-    [SerializeField] float prepCountdownTime_Seconds;
-    [SerializeField] float gameCountdownTime_Seconds;
     [SerializeField] float children_walkSpeed;
-    [SerializeField] bool hideTargets;
-    public bool consumablesHaveExistenceTimer;
+
+    [Header("Countdowns")]
+    [SerializeField] float prepTime_Seconds;
+    [SerializeField] float gameTime_Seconds;
+    [SerializeField] int countdownTxt_Size_MAX;
+    [SerializeField] int timeFromWhenToScale;
+    
+    [Header("Tutorial")]
     public bool isTutorial;
     [SerializeField] Children tutorial_Child;
     [SerializeField] List<Target> tutorialTargets;
+
+    [Header("Miscellaneous")]
+    [SerializeField] bool hideTargets;
+    public bool consumablesHaveExistenceTimer;
 
 
     string tag_target = "target";
 
     private void Awake() 
     {
-        menu_Handler.SetPrepCountdownTimer(prepCountdownTime_Seconds);
-        menu_Handler.SetGameCountdownTimer(gameCountdownTime_Seconds);
+        menu_Handler.SetPrepCountdownTimer(prepTime_Seconds);
+        menu_Handler.SetGameCountdownTimer(gameTime_Seconds);
+        menu_Handler.countdownTxt_Size_MAX = this.countdownTxt_Size_MAX;
+        menu_Handler.countdownTxt_TimeFromWhenScale = timeFromWhenToScale;
         
         spawner.childrenToSpawn = this.children_Amount;
-        spawner.children_walkSpeed = children_walkSpeed;
+        spawner.children_walkSpeed = this.children_walkSpeed;
 
         gameplay.SetChildrenCount(children_Amount);
         gameplay.SetTapeCount(tape_Amount);

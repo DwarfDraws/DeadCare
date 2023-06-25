@@ -15,11 +15,16 @@ public class Menu_Handler : MonoBehaviour
 
     GameObject[] obstacles;
 
-    int displayTimer;
+    [HideInInspector] public int countdownTxt_Size_MAX;
+    [HideInInspector] public int countdownTxt_TimeFromWhenScale;
     int countdown_Speed;
+    int displayTimer, tmp_displayTimer;
+    float countdownTxt_Size_init;
+    float countdownTxt_Size;
     float init_prepCountdownTimer, current_prepCountdownTimer;
     float init_gameCountdownTimer, current_gameCountdownTimer;
     [HideInInspector] public bool isGameOver;
+    bool isCountdown_ScaleUP;
     bool isCountdownSpedUp;
     bool prepCountDownStart, gameCountdownStart;
     bool spawnChildAfterCountdown;
@@ -31,31 +36,56 @@ public class Menu_Handler : MonoBehaviour
     private void Start() 
     {
         countdown_Speed = 1;
+        countdownTxt_Size_init = canvas.GetCountdown_Txt_Size();
+        countdownTxt_Size = countdownTxt_Size_init;
 
         obstacles = GameObject.FindGameObjectsWithTag(tag_obstacle);
     }  
 
     private void Update() 
     {
+        //prep-Countdown
         if(prepCountDownStart)
         {
             current_prepCountdownTimer -= Time.deltaTime * countdown_Speed;
-            displayTimer = (int)current_prepCountdownTimer + 1;
-            canvas.SetCountdown_Txt(displayTimer.ToString());
-        } 
-        if(current_prepCountdownTimer < 0)
-        {
+
+            if(current_prepCountdownTimer < 0)
+            {
             prepCountDownStart = false;
             current_prepCountdownTimer = init_prepCountdownTimer;
 
             NextPhase();
-        } 
+            return;
+            } 
 
+            displayTimer = (int)current_prepCountdownTimer + 1;
+            
+
+            //Sizing Countdown_Txt
+            if(tmp_displayTimer != displayTimer && displayTimer <= countdownTxt_TimeFromWhenScale) 
+            {
+                countdownTxt_Size = countdownTxt_Size_MAX - 20; //making countdownTxt_Size an int-value
+                isCountdown_ScaleUP = true;
+            }
+            if(isCountdown_ScaleUP && countdownTxt_Size != countdownTxt_Size_MAX) 
+            {
+                countdownTxt_Size += 2;
+                if(countdownTxt_Size == countdownTxt_Size_MAX) isCountdown_ScaleUP = false;
+            }
+            else if (!isCountdown_ScaleUP && countdownTxt_Size != countdownTxt_Size_init) countdownTxt_Size--;
+
+            tmp_displayTimer = displayTimer;
+
+
+            canvas.SetCountdown_Txt(displayTimer.ToString(), countdownTxt_Size);
+        } 
+        
+        //gameplay-Countdown
         if(gameCountdownStart)
         {
             current_gameCountdownTimer -= Time.deltaTime;
             displayTimer = (int)current_gameCountdownTimer + 1;
-            canvas.SetCountdown_Txt(displayTimer.ToString());
+            canvas.SetCountdown_Txt(displayTimer.ToString(), countdownTxt_Size_init);
         }
         if(current_gameCountdownTimer < 0)
         {
@@ -87,7 +117,7 @@ public class Menu_Handler : MonoBehaviour
         prepCountDownStart = true;
         countdown_Speed = 1;
 
-        canvas.ActivateButton_Consumable(false); //Cookies are only available in Prep-Phase!
+        canvas.ActivateButton_Consumable(false); //Cookies are not available in Prep-Phase!
         canvas.btn_skipCountdown.SetActive(true);
 
 
@@ -120,7 +150,7 @@ public class Menu_Handler : MonoBehaviour
         {
             gameCountdownStart = false;
             current_gameCountdownTimer = init_gameCountdownTimer;
-            canvas.SetCountdown_Txt(" ");
+            canvas.SetCountdown_Txt(" ", countdownTxt_Size_init);
 
             //GameOver-Panel
             int survivedChildren = gameplay.GetChildCount();
