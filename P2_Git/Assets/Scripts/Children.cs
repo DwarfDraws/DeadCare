@@ -36,6 +36,7 @@ public class Children : MonoBehaviour
     string navMeshHandler_name = "NavMesh_Handler";
     string consumableRadius_tag = "consumable_radius";
     string target_tag = "target";
+    string childrenCounter_tag = "childrenCounter";
     
 
     private void Start() 
@@ -106,6 +107,8 @@ public class Children : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Target hitTarget = other.gameObject.GetComponent<Target>();
+
+        if(other.tag == childrenCounter_tag) other.GetComponent<ChildCounter>().IncreaseChildCount();
 
         //current target
         if (other.tag == target_tag && hitTarget == currentTarget)

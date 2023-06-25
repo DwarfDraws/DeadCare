@@ -29,6 +29,7 @@ public class Menu_Handler : MonoBehaviour
     bool prepCountDownStart, gameCountdownStart;
     bool spawnChildAfterCountdown;
 
+    string door_name = "door";
     string tag_obstacle = "obstacle";
     string tag_child = "child";
     string tag_widget = "widget";
@@ -139,6 +140,8 @@ public class Menu_Handler : MonoBehaviour
         canvas.SetMoveableHalosActive(false);
         canvas.SetTapeableHalosActive(false);
 
+        Animator door_anim = GameObject.Find(door_name).GetComponent<Animator>();
+        door_anim.SetTrigger("türAuf");
         spawner.SpawnChildren();
 
         gameCountdownStart = true;

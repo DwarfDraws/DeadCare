@@ -24,7 +24,7 @@ public class Canvas_Script : MonoBehaviour
     [SerializeField] Sprite star_Empty;
 
 
-    public GameObject btn_move, btn_tape, btn_skipCountdown, btn_consumable;
+    public GameObject btn_move, btn_tape, btn_start, btn_skipCountdown, btn_consumable, btn_spawnChild;
     public GameObject pnl_GameOver;
     [SerializeField] GameObject youWin, youLose;
     [SerializeField] TMP_Text txt_ChildrenCounter;
