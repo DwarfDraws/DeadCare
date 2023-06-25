@@ -167,6 +167,7 @@ public class Canvas_Script : MonoBehaviour
     {
         foreach(GameObject obstacle in allObstacles)
         {
+            Debug.Log(obstacle.name);
             GameObject halo = obstacle.GetComponent<Object_attributes>().tapeableHalo;
             if(halo != null) halo.SetActive(isActive);
         }        

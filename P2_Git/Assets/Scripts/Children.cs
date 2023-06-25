@@ -176,15 +176,17 @@ public class Children : MonoBehaviour
     {
 
             Target target = triggerObject.GetComponent<Target>();
+            Object_attributes attachedObject = target.attachedObject;
+
 
             target.SetCurrentChild(this);
         
             
 
             //look at object
-            if(target.attachedObject != null)
+            if(attachedObject != null)
             {
-                Vector3 lookAt_direction = target.attachedObject.transform.position;
+                Vector3 lookAt_direction = attachedObject.transform.position;
                 this.transform.LookAt(lookAt_direction, Vector3.up);
             }
 
@@ -209,9 +211,14 @@ public class Children : MonoBehaviour
 
             currentTarget.isOpen = false;
             startTimer = true;
+            
             animation_script.SetAnimationSpeed(target.animation_Index, target.waitTime_seconds, false);
-            animation_script.PlayAnimation(target.animation_Index, true, false, false);
-            currentTarget.Animate_AttachedObject(); 
+            if(!attachedObject.isTaped)
+            {
+                animation_script.PlayAnimation(target.animation_Index, true, false, false);
+                currentTarget.Animate_AttachedObject(); 
+            }
+            else animation_script.PlayAnimation(6, true, false, false);
     }
   
 
