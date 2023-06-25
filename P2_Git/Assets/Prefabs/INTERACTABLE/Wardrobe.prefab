@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 6965014243266539879}
   m_Layer: 7
   m_Name: halo
-  m_TagString: moveHalo
+  m_TagString: tapeHalo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -819,6 +819,10 @@ PrefabInstance:
     - target: {fileID: 6977254914155859594, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: isDeadly
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977254914155859594, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
+      propertyPath: isWaitTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6977254914155859594, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: attachedObject
