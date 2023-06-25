@@ -34,9 +34,8 @@ public class Children : MonoBehaviour
     string settings_name = "Settings";
     string gamplayHandler_name = "Gameplay_Handler";
     string navMeshHandler_name = "NavMesh_Handler";
-
-    string tag_consumableRadius = "consumable_radius";
-    string tag_target = "target";
+    string consumableRadius_tag = "consumable_radius";
+    string target_tag = "target";
     
 
     private void Start() 
@@ -109,7 +108,7 @@ public class Children : MonoBehaviour
         Target hitTarget = other.gameObject.GetComponent<Target>();
 
         //current target
-        if (other.tag == tag_target && hitTarget == currentTarget)
+        if (other.tag == target_tag && hitTarget == currentTarget)
         {
             //Debug.Log("enter");
             triggerObject = other.gameObject;
@@ -119,28 +118,32 @@ public class Children : MonoBehaviour
             isTargetDetected = true;
         }       
 
-        //consumable
-        if(other.tag == tag_consumableRadius && !isInSafeZone) //Make children always stop their action for cookies when not checking 2nd statement
+        //child WALKS INTO consumable_radius
+        if(other.tag == consumableRadius_tag && !isInSafeZone) //Make children always stop their action for cookies when not checking 2nd statement
         {
             triggerObject = other.gameObject;
-            Target consumableTarget = triggerObject.transform.GetComponentInParent<Target>();
+            
+            Target consumableTarget = triggerObject.transform.GetComponentInParent<Target>();            
 
             if(consumableTarget.isOpen)
             {   
                 Consumables consumable = triggerObject.GetComponentInParent<Consumables>();
-                Animation_Script object_animationScript = currentTarget.attachedObject_Animation;
-                int anim_index = currentTarget.animation_Index;
+                if(settings.consumablesHaveExistenceTimer) consumable.StartExistenceTimer(false);
+
+                //Destroy old-target Widget
+                if (!currentTarget.isWaitTarget) currentTarget.DestroyWidget();
                 isWidgetInstantiated = false;
 
-                if (!currentTarget.isWaitTarget) currentTarget.DestroyWidget();
-
-                if(object_animationScript != null) object_animationScript.PlayAnimation(anim_index, false, true, false); //reset animation
+                //Stop old-attachedObject animation
+                Animation_Script object_animationScript = currentTarget.attachedObject_Animation;
+                int anim_index = currentTarget.animation_Index;
+                if(object_animationScript != null) object_animationScript.PlayAnimation(anim_index, false, true, false); 
                 animation_script.PlayAnimation(anim_index, false, false, false);
 
+                //override target
                 CurrentTarget = consumableTarget;
                 navMesh.SetSpecificPath(attachedAgent, consumableTarget);
 
-                if(settings.consumablesHaveExistenceTimer) consumable.StartExistenceTimer(false);
 
                 consumableTarget.isOpen = false;
                 isTargetDetected = false;
@@ -152,10 +155,10 @@ public class Children : MonoBehaviour
     {
         Target hitTarget = other.gameObject.GetComponent<Target>();
 
-        //current target
-        if (other.tag == tag_target && hitTarget == currentTarget && !isTargetDetected)
+        //child IS in the Consumable, but did not detect it yet
+        if (other.tag == target_tag && hitTarget == currentTarget && !isTargetDetected)
         {
-            //Debug.Log("stay");
+            Debug.Log("stay");
             triggerObject = other.gameObject;
 
             animation_script.PlayWalkingAnimation(false); 
@@ -177,7 +180,6 @@ public class Children : MonoBehaviour
 
             Target target = triggerObject.GetComponent<Target>();
             Object_attributes attachedObject = target.attachedObject;
-
 
             target.SetCurrentChild(this);
         
