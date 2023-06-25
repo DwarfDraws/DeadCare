@@ -14,7 +14,7 @@ public class tapematerial : MonoBehaviour
     private void Awake()
     {
         if(sfx != null){
-            sfx.InteractionTape();
+            sfx.InteractionAddTape();
         }
         fillspeed = tapesettings.fillspeed;
         go = new List<GameObject>();
@@ -37,5 +37,10 @@ public class tapematerial : MonoBehaviour
 
     void Update()
     {
+    }
+    private void OnDisable() {
+        if(sfx != null){
+            sfx.InteractionRemoveTape();
+        }
     }
 }
