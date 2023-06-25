@@ -17,6 +17,7 @@ public class Animation_Script : MonoBehaviour
 
     string animation_Speed = "animation_speed";
     string animationBool_isWalking_name = "isWalking";
+    string animationBool_removeTape_name = "anim_removeTape";
 
     
     private void Awake() 
@@ -44,10 +45,7 @@ public class Animation_Script : MonoBehaviour
 
         children_anim_IdleBools.Add("anim_c_Cable_Idle");
         children_anim_DeathBools.Add("anim_c_Cable_Death");
-
-            //additional Child-Anims without corresponding object-anim
-        children_anim_IdleBools.Add("anim_removeTape");
-        children_anim_IdleBools.Add("anim_c_Idle");
+        
 
         //object-anims
         object_anim_IdleBools.Add("anim_o_Bed_Interaction");
@@ -103,11 +101,21 @@ public class Animation_Script : MonoBehaviour
         }
     }
 
+
+
     public void PlayWalkingAnimation(bool isPlaying)
     {
         //Debug.Log(animationBool_isWalking_name + isPlaying);
         anim.SetBool(animationBool_isWalking_name, isPlaying);
     }
+
+    public void PlayTapeRemoveAnimation(bool isPlaying)
+    {
+        //Debug.Log(animationBool_isWalking_name + isPlaying);
+        anim.SetBool(animationBool_removeTape_name, isPlaying);
+    }
+
+
 
     public void RewindAnimation()
     {

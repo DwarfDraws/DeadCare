@@ -92,6 +92,7 @@ public class Target : MonoBehaviour
                     isTargeted = false;
                     isTaped = false;
                     attachedObject.SetTapeActive(false);
+                    currentChild_atTarget.animation_script.PlayTapeRemoveAnimation(false);
                     currentChild_atTarget.Reset(); 
                     ResetTimer();
                 }

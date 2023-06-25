@@ -212,13 +212,27 @@ public class Children : MonoBehaviour
             currentTarget.isOpen = false;
             startTimer = true;
             
-            animation_script.SetAnimationSpeed(target.animation_Index, target.waitTime_seconds, false);
-            if(!attachedObject.isTaped)
+            //animations
+            //normal anim
+            if(attachedObject != null)
             {
-                animation_script.PlayAnimation(target.animation_Index, true, false, false);
-                currentTarget.Animate_AttachedObject(); 
+                if(!attachedObject.isTaped && !target.isWaitTarget)
+                {
+                    animation_script.SetAnimationSpeed(target.animation_Index, target.waitTime_seconds, false);
+                    animation_script.PlayAnimation(target.animation_Index, true, false, false);
+                    currentTarget.Animate_AttachedObject(); 
+                }
+                //taperemove
+                else if(attachedObject.isTaped)
+                {
+                    animation_script.PlayTapeRemoveAnimation(true);
+                }
             }
-            else animation_script.PlayAnimation(6, true, false, false);
+            //wait-target
+            else
+            {
+                animation_script.PlayWalkingAnimation(false);
+            }
     }
   
 
