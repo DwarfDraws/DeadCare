@@ -14,12 +14,16 @@ public class Gameplay : MonoBehaviour
     int current_tapeCounter;
     int current_consumableCounter;
     int current_childCounter;
+    public bool isCreatorMode;
 
 
     private void Start() 
     {
-        int rewarded_Consumables = menu_Handler.GetScore();
-        SetConsumableCount(rewarded_Consumables);    
+        if(!isCreatorMode)
+        {
+            int rewarded_Consumables = menu_Handler.GetScore();
+            SetConsumableCount(rewarded_Consumables);
+        }
     }
 
 

@@ -8274,6 +8274,10 @@ PrefabInstance:
       value: 155.81982
       objectReference: {fileID: 0}
     - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
+      propertyPath: creatorMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
       propertyPath: playtesting
       value: 1
       objectReference: {fileID: 0}
@@ -8283,7 +8287,7 @@ PrefabInstance:
       objectReference: {fileID: 1300080220}
     - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
       propertyPath: gameTime_Seconds
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
       propertyPath: consumable_Amount

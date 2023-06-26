@@ -35,7 +35,7 @@ public class Settings_script : MonoBehaviour
     [Header("Miscellaneous")]
     [SerializeField] bool hideTargets;
     public bool consumablesHaveExistenceTimer;
-    [SerializeField] bool playtesting;
+    [SerializeField] bool creatorMode;
 
 
     string tag_target = "target";
@@ -52,7 +52,11 @@ public class Settings_script : MonoBehaviour
 
         gameplay.SetChildrenCount(children_Amount);
         gameplay.SetTapeCount(tape_Amount);
-        //if(!playtesting) gameplay.SetConsumableCount(consumable_Amount);
+        if(creatorMode)
+        {
+            gameplay.isCreatorMode = true;
+            gameplay.SetConsumableCount(consumable_Amount);
+        } 
 
         childCounter.SetChildrenAmount(children_Amount);
 
@@ -65,7 +69,7 @@ public class Settings_script : MonoBehaviour
         }
         if (hideTargets) HideTargets();
 
-        if(playtesting)
+        if(!creatorMode)
         {
             canvas.btn_spawnChild.SetActive(false);
             canvas.btn_start.SetActive(false);
