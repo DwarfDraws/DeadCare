@@ -72,7 +72,7 @@ public class Object_attributes : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.tag == tag_noMoveArea && !isInNoMoveArea)
+        if(isMoveable && other.tag == tag_noMoveArea && !isInNoMoveArea)
         {
             isInNoMoveArea = true;
             moveableHalo_Mat.SetColor("_BaseColor", Color.red);
@@ -80,7 +80,7 @@ public class Object_attributes : MonoBehaviour
     }
     private void OnTriggerExit(Collider other) 
     {
-        if(other.tag == tag_noMoveArea)
+        if(isMoveable && other.tag == tag_noMoveArea)
         {
             isInNoMoveArea = false;
             moveableHalo_Mat.SetColor("_BaseColor", init_moveableHalo_Color);

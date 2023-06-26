@@ -18,4 +18,8 @@ public class InGameUI : MonoBehaviour
             inGameMenuObject.SetActive(false);
         }
     }
+
+    public void nextLevel(){
+        
+    }
 }
