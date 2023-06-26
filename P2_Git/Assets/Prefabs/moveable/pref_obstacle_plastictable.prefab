@@ -27,10 +27,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1338967344873488583}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -1.0669115, y: 0, z: -1.9165115}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3985065877324320827}
   - {fileID: 3285502882650184419}
@@ -57,8 +57,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0559065, y: 1.0259577, z: 1.5331537}
-  m_Center: {x: -0.5002235, y: -0.40494126, z: -0.006003976}
+  m_Size: {x: 1.0352049, y: 0.8772653, z: 1.4135239}
+  m_Center: {x: -0.43951643, y: -0.33059502, z: 0.002518366}
 --- !u!208 &6183023226785675582
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -69,11 +69,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.3, y: 0.5, z: 0.575}
+  m_Extents: {x: 0.15, y: 0.5, z: 0.4}
   m_MoveThreshold: 0
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: -0.5, y: 0, z: 0}
+  m_Center: {x: -0.45, y: 0, z: 0}
   m_TimeToStationary: 0
 --- !u!114 &8902054980185717264
 MonoBehaviour:
