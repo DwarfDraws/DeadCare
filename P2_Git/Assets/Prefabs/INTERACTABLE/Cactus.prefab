@@ -939,8 +939,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Idles: []
   m_Deaths: []
-  m_AddTapes: []
-  m_RemoveTapes: []
+  m_AddTapes:
+  - {fileID: 8300000, guid: 1a302f70004fae042b27cc0834a9cb84, type: 3}
+  - {fileID: 8300000, guid: 9c5df354e3615cb4a84156cc3cfc4894, type: 3}
+  - {fileID: 8300000, guid: 77405f0bbeab58341b27fdd376b7c706, type: 3}
+  m_RemoveTapes:
+  - {fileID: 8300000, guid: fa03a8953354ab1468347890929f783a, type: 3}
   m_AudioSource: {fileID: 6355111869511827676}
 --- !u!208 &4879077748873809558
 NavMeshObstacle:
@@ -1124,6 +1128,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6785559266178122873, guid: 15c426e3da65eee4190dad9a9963797d, type: 3}
+      propertyPath: sfx
+      value: 
+      objectReference: {fileID: 1782269827609264798}
     - target: {fileID: 6785559266178122873, guid: 15c426e3da65eee4190dad9a9963797d, type: 3}
       propertyPath: fillspeed
       value: 0.3
