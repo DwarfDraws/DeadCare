@@ -32,4 +32,8 @@ public class InGamePauseMenu : MonoBehaviour
     {
         Time.timeScale = 1;
     }
+
+    public void nextLevel(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 }
