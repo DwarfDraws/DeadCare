@@ -633,7 +633,7 @@ Transform:
   - {fileID: 4847690569778159389}
   - {fileID: 6499726839374779674}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4677027055578876801
 GameObject:
@@ -825,7 +825,7 @@ MonoBehaviour:
   prepTime_Seconds: 20
   gameTime_Seconds: 60
   countdownTxt_Size_MAX: 200
-  timeFromWhenToScale: 15
+  timeFromWhenToScale: 10
   isTutorial: 0
   tutorial_Child: {fileID: 0}
   tutorialTargets:
@@ -834,6 +834,7 @@ MonoBehaviour:
   - {fileID: 0}
   hideTargets: 1
   consumablesHaveExistenceTimer: 0
+  playtesting: 0
 --- !u!1 &6015999984729840246
 GameObject:
   m_ObjectHideFlags: 0
