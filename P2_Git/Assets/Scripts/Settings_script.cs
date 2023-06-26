@@ -52,7 +52,7 @@ public class Settings_script : MonoBehaviour
 
         gameplay.SetChildrenCount(children_Amount);
         gameplay.SetTapeCount(tape_Amount);
-        gameplay.SetConsumableCount(consumable_Amount);
+        //if(!playtesting) gameplay.SetConsumableCount(consumable_Amount);
 
         childCounter.SetChildrenAmount(children_Amount);
 

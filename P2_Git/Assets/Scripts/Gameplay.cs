@@ -16,6 +16,13 @@ public class Gameplay : MonoBehaviour
     int current_childCounter;
 
 
+    private void Start() 
+    {
+        int rewarded_Consumables = menu_Handler.GetScore();
+        SetConsumableCount(rewarded_Consumables);    
+    }
+
+
     public void SetChildrenCount(int count)
     {
         init_childCounter = count;
@@ -80,6 +87,7 @@ public class Gameplay : MonoBehaviour
         {
             Instantiate(pref_consumable, inst_Pos, Quaternion.identity); 
             DecreaseConsumableCount();
+            menu_Handler.DecreaseScore();
         }
     }
 
