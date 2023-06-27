@@ -12,6 +12,7 @@ public class Settings_script : MonoBehaviour
     [SerializeField] Button btnSpawnChildren;
     [SerializeField] Canvas_Script canvas;
     [SerializeField] ChildCounter childCounter;
+    [SerializeField] DOTweenScale star_DOTweenScale;
 
     //Inspector tweak variables
 
@@ -31,6 +32,12 @@ public class Settings_script : MonoBehaviour
     public bool isTutorial;
     [SerializeField] Children tutorial_Child;
     [SerializeField] List<Target> tutorialTargets;
+
+    [Header("Stars_Animation")]
+    [SerializeField] float stars_tweeningFactor;
+    [SerializeField] float stars_tweeningDuration_seconds;
+    [SerializeField] float stars_tweeningOffset_seconds;
+    [SerializeField] float waitTime_atMax_seconds;
 
     [Header("Miscellaneous")]
     [SerializeField] bool hideTargets;
@@ -52,11 +59,18 @@ public class Settings_script : MonoBehaviour
 
         gameplay.SetChildrenCount(children_Amount);
         gameplay.SetTapeCount(tape_Amount);
+
         if(creatorMode)
         {
             gameplay.isCreatorMode = true;
             gameplay.SetConsumableCount(consumable_Amount);
         } 
+        else
+        {
+            canvas.btn_spawnChild.SetActive(false);
+            canvas.btn_start.SetActive(false);
+            menu_Handler.StartCountdown();
+        }
 
         childCounter.SetChildrenAmount(children_Amount);
 
@@ -69,12 +83,7 @@ public class Settings_script : MonoBehaviour
         }
         if (hideTargets) HideTargets();
 
-        if(!creatorMode)
-        {
-            canvas.btn_spawnChild.SetActive(false);
-            canvas.btn_start.SetActive(false);
-            menu_Handler.StartCountdown();
-        }
+        star_DOTweenScale.SetupTweening(stars_tweeningFactor, stars_tweeningDuration_seconds, stars_tweeningOffset_seconds, waitTime_atMax_seconds);
     }
 
 

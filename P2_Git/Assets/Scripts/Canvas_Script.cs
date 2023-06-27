@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class Canvas_Script : MonoBehaviour
 {
@@ -17,21 +18,20 @@ public class Canvas_Script : MonoBehaviour
     Object_attributes pref_consumable_attributes;
 
     [SerializeField] Camera cam;
-    [SerializeField] GameObject widget_prefab;
-    [SerializeField] GameObject pref_consumable;
-    [SerializeField] Image[] stars_Images;
-    [SerializeField] Sprite star_Filled;
-    [SerializeField] Sprite star_Empty;
-
-
     public GameObject btn_move, btn_tape, btn_start, btn_skipCountdown, btn_consumable, btn_spawnChild;
     public GameObject pnl_GameOver;
     [SerializeField] GameObject youWin, youLose;
+    [SerializeField] GameObject widget_prefab;
+    [SerializeField] GameObject pref_consumable;
+    GameObject[] allObstacles;
+    [SerializeField] List<GameObject> stars = new List<GameObject>();
+    List<Image> stars_Images = new List<Image>();
+    [SerializeField] Sprite star_Filled;
+    [SerializeField] Sprite star_Empty;
     [SerializeField] TMP_Text txt_ChildrenCounter;
     [SerializeField] TMP_Text txt_Countdown;
     [SerializeField] TMP_Text txt_tapeCounter;
     [SerializeField] TMP_Text txt_consumableCounter;
-    GameObject[] allObstacles;
 
     [HideInInspector] float pref_consumable_localScaleX, pref_consumable_localScaleZ;
     [HideInInspector] public bool isMoveBtnPressed, isTapeBtnPressed;
