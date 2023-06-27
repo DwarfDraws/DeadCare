@@ -13,6 +13,7 @@ public class Menu_Handler : MonoBehaviour
     [SerializeField] Gameplay gameplay;
     [SerializeField] NavMesh navMesh;
 
+    [SerializeField] GameObject[] reward_stars;
     GameObject[] obstacles;
 
     [HideInInspector] public int countdownTxt_Size_MAX;
@@ -165,6 +166,11 @@ public class Menu_Handler : MonoBehaviour
             canvas.SetStarImages(starReward_Count);
             AddScoreReward(starReward_Count);
             canvas.pnl_GameOver.SetActive(true);
+            foreach(GameObject star in reward_stars)
+            {
+                star.GetComponent<DOTweenScale>().StartTweening();
+            }
+
 
             
 

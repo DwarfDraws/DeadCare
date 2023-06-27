@@ -51,6 +51,11 @@ public class Canvas_Script : MonoBehaviour
         pref_consumable_localScaleZ = pref_consumable.transform.localScale.z;
 
         allObstacles = GameObject.FindGameObjectsWithTag(tag_obstacle);
+        
+        foreach(GameObject star in stars)
+        {
+            stars_Images.Add(star.GetComponent<Image>());
+        }
     }
 
     public Widget InstantiateWidget(Vector3 widget_worldPos, Color color)

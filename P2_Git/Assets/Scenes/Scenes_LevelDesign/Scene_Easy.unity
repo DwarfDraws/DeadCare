@@ -473,22 +473,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &83216415 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 904442582176558276, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
-  m_PrefabInstance: {fileID: 1534637412}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &83216419 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2282972252161322485, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
-  m_PrefabInstance: {fileID: 1534637412}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 83216415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ede68f10f4459014dafbff32a831efc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &86575902
 GameObject:
   m_ObjectHideFlags: 0
@@ -7560,11 +7544,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4023988663808783251, guid: 1f92197547e6c864a946f2b65e568cc7, type: 3}
   m_PrefabInstance: {fileID: 1284931421}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1290307055 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4078540128078420066, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
-  m_PrefabInstance: {fileID: 1534637412}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1297216477 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3045541583628466413, guid: ad0899b668177a6489f5ccf8cafb0060, type: 3}
@@ -7840,11 +7819,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 535225785609065202, guid: 22fc320b53661ec478fbfeb107547aa6, type: 3}
   m_PrefabInstance: {fileID: 1322611366}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1327357646 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8234143857562662564, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
-  m_PrefabInstance: {fileID: 1534637412}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1367634389
 PrefabInstance:
@@ -8821,22 +8795,6 @@ PrefabInstance:
       propertyPath: floor
       value: 
       objectReference: {fileID: 2147458257}
-    - target: {fileID: 678790711900801821, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
-      propertyPath: stars.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 678790711900801821, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
-      propertyPath: stars.Array.data[0]
-      value: 
-      objectReference: {fileID: 83216415}
-    - target: {fileID: 678790711900801821, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
-      propertyPath: stars.Array.data[1]
-      value: 
-      objectReference: {fileID: 1327357646}
-    - target: {fileID: 678790711900801821, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
-      propertyPath: stars.Array.data[2]
-      value: 
-      objectReference: {fileID: 1290307055}
     - target: {fileID: 1002840032845858345, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
       propertyPath: door_animator
       value: 
@@ -8861,10 +8819,6 @@ PrefabInstance:
       propertyPath: tutorial_Child
       value: 
       objectReference: {fileID: 1300080220}
-    - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
-      propertyPath: star_DOTweenScale
-      value: 
-      objectReference: {fileID: 83216419}
     - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
       propertyPath: tutorialTargets.Array.data[0]
       value: 

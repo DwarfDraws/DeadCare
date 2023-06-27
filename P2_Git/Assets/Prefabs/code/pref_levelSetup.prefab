@@ -49,6 +49,10 @@ MonoBehaviour:
   canvas: {fileID: 678790711900801821}
   gameplay: {fileID: 1741366284504729551}
   navMesh: {fileID: 7686922439290494537}
+  reward_stars:
+  - {fileID: 904442582176558276}
+  - {fileID: 8234143857562662564}
+  - {fileID: 4078540128078420066}
   countdownTxt_Size_MAX: 0
   countdownTxt_TimeFromWhenScale: 0
   isGameOver: 0
@@ -846,12 +850,12 @@ MonoBehaviour:
   btnSpawnChildren: {fileID: 3056522842976417700}
   canvas: {fileID: 678790711900801821}
   childCounter: {fileID: 1002840032845858345}
-  star_DOTweenScale: {fileID: 0}
+  star_DOTweenScale: {fileID: 2282972252161322485}
   children_Amount: 2
   tape_Amount: 2
   consumable_Amount: 0
   children_walkSpeed: 1.2
-  prepTime_Seconds: 20
+  prepTime_Seconds: 30
   gameTime_Seconds: 60
   countdownTxt_Size_MAX: 200
   timeFromWhenToScale: 10
@@ -1529,6 +1533,18 @@ PrefabInstance:
       propertyPath: btn_skipCountdown
       value: 
       objectReference: {fileID: 3839089573345459907}
+    - target: {fileID: 2642965194358850329, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}
+      propertyPath: stars.Array.data[0]
+      value: 
+      objectReference: {fileID: 904442582176558276}
+    - target: {fileID: 2642965194358850329, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}
+      propertyPath: stars.Array.data[1]
+      value: 
+      objectReference: {fileID: 8234143857562662564}
+    - target: {fileID: 2642965194358850329, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}
+      propertyPath: stars.Array.data[2]
+      value: 
+      objectReference: {fileID: 4078540128078420066}
     - target: {fileID: 2642965194358850329, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}
       propertyPath: txt_consumableCounter
       value: 
