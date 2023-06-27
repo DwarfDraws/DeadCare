@@ -351,8 +351,9 @@ GameObject:
   - component: {fileID: 6988198168807814949}
   - component: {fileID: 8860477925669426924}
   - component: {fileID: 4286737546979966787}
+  - component: {fileID: 2282972252161322485}
   m_Layer: 5
-  m_Name: Img_Star01
+  m_Name: Star01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -416,6 +417,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2282972252161322485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904442582176558276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede68f10f4459014dafbff32a831efc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  starID: 0
 --- !u!1 &3819740380426004086
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,8 +547,9 @@ GameObject:
   - component: {fileID: 2069732571214707152}
   - component: {fileID: 5239261282458026076}
   - component: {fileID: 9215737591686235862}
+  - component: {fileID: 7408701585899540668}
   m_Layer: 5
-  m_Name: Img_Star03
+  m_Name: Star03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -598,6 +613,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7408701585899540668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4078540128078420066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede68f10f4459014dafbff32a831efc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  starID: 2
 --- !u!1 &4262023743892056167
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,9 +846,10 @@ MonoBehaviour:
   btnSpawnChildren: {fileID: 3056522842976417700}
   canvas: {fileID: 678790711900801821}
   childCounter: {fileID: 1002840032845858345}
+  star_DOTweenScale: {fileID: 0}
   children_Amount: 2
   tape_Amount: 2
-  consumable_Amount: 6
+  consumable_Amount: 0
   children_walkSpeed: 1.2
   prepTime_Seconds: 20
   gameTime_Seconds: 60
@@ -832,9 +861,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  stars_tweeningFactor: 1.3
+  stars_tweeningDuration_seconds: 1
+  stars_tweeningOffset_seconds: 0.2
+  waitTime_atMax_seconds: 0.5
   hideTargets: 1
   consumablesHaveExistenceTimer: 0
-  playtesting: 0
+  creatorMode: 0
 --- !u!1 &6015999984729840246
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,6 +964,7 @@ MonoBehaviour:
   init_tapeCounter: 0
   init_consumableCounter: 0
   init_childCounter: 0
+  isCreatorMode: 0
 --- !u!1 &8234143857562662564
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,8 +976,9 @@ GameObject:
   - component: {fileID: 2071259867752401107}
   - component: {fileID: 8110286971838584356}
   - component: {fileID: 3928083968195361949}
+  - component: {fileID: 815832607701637162}
   m_Layer: 5
-  m_Name: Img_Star02
+  m_Name: Star02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1007,6 +1042,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &815832607701637162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8234143857562662564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede68f10f4459014dafbff32a831efc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  starID: 1
 --- !u!1 &8312253775272091268
 GameObject:
   m_ObjectHideFlags: 0
