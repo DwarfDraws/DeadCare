@@ -142,7 +142,8 @@ public class Target : MonoBehaviour
             if (timer > 1.0f)
             { 
                 currentChild_atTarget.Reset();
-                currentChild_atTarget.animation_script.PlayAnimation(animation_Index, false, false, false);
+                if(isTaped) currentChild_atTarget.animation_script.PlayTapeRemoveAnimation(false);
+                else currentChild_atTarget.animation_script.PlayAnimation(animation_Index, false, false, false);
                 if(attachedObject_Animation != null) attachedObject_Animation.PlayAnimation(animation_Index, false, true, false);
                 Destroy(widget.gameObject);
                 ToggleDown(true);

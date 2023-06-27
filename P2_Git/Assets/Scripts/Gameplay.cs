@@ -14,6 +14,17 @@ public class Gameplay : MonoBehaviour
     int current_tapeCounter;
     int current_consumableCounter;
     int current_childCounter;
+    public bool isCreatorMode;
+
+
+    private void Start() 
+    {
+        if(!isCreatorMode)
+        {
+            int rewarded_Consumables = menu_Handler.GetScore();
+            SetConsumableCount(rewarded_Consumables);
+        }
+    }
 
 
     public void SetChildrenCount(int count)
@@ -80,6 +91,7 @@ public class Gameplay : MonoBehaviour
         {
             Instantiate(pref_consumable, inst_Pos, Quaternion.identity); 
             DecreaseConsumableCount();
+            menu_Handler.DecreaseScore();
         }
     }
 

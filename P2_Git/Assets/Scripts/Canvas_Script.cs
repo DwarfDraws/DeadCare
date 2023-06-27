@@ -69,21 +69,6 @@ public class Canvas_Script : MonoBehaviour
         return widget;
     }
 
-    public void SetButton_Consumable(bool onOff)
-    {
-        btnConsumable = onOff;
-    }
-    
-    public void ActivateButton_Consumable(bool onOff)
-    {
-        btn_consumable.SetActive(onOff);
-    }
-
-    public bool isBtnPressed_Consumable()
-    {
-        return btnConsumable;
-    }
-
     public void InstantiateConsumable()
     {
         Vector3 instantiate_pos = raycast.GetMousePos3D();
@@ -94,6 +79,8 @@ public class Canvas_Script : MonoBehaviour
             gameplay.InstantiateConsumable(pref_consumable, instantiate_pos);            
         }
     }
+
+
 
 
     public void moveButtonPressed()
@@ -141,6 +128,25 @@ public class Canvas_Script : MonoBehaviour
     }
 
 
+
+    public void SetButton_Consumable(bool onOff)
+    {
+        btnConsumable = onOff;
+    }
+    
+    public void ActivateButton_Consumable(bool onOff)
+    {
+        btn_consumable.SetActive(onOff);
+    }
+
+    public bool isBtnPressed_Consumable()
+    {
+        return btnConsumable;
+    }
+
+
+
+
     public void Deactivate_MoveButton()
     {
         isMoveBtnPressed = false;
@@ -152,8 +158,6 @@ public class Canvas_Script : MonoBehaviour
         btn_tape.GetComponent<Image>().color = Color.white;
     }
     
-    
-
     public void SetMoveableHalosActive(bool isActive)
     {
         foreach(GameObject obstacle in allObstacles)

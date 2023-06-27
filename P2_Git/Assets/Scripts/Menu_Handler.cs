@@ -163,7 +163,7 @@ public class Menu_Handler : MonoBehaviour
             canvas.SetChildrenCounter_Txt(survivedChildren.ToString() + "/" + initial_childAmount.ToString());
             int starReward_Count = CalculateStarReward(survivedChildren, initial_childAmount);
             canvas.SetStarImages(starReward_Count);
-            SetScore(starReward_Count);
+            AddScoreReward(starReward_Count);
             canvas.pnl_GameOver.SetActive(true);
 
             
@@ -197,10 +197,17 @@ public class Menu_Handler : MonoBehaviour
     }
 
 
-    void SetScore(int newScore)
+    void AddScoreReward(int newScore)
     {
         saveData = SaveManager.Load();
-        saveData.score = newScore;
+        saveData.score += newScore;
+        SaveManager.Save(saveData);
+    }
+
+    public void DecreaseScore()
+    {
+        saveData = SaveManager.Load();
+        saveData.score--;
         SaveManager.Save(saveData);
     }
 
