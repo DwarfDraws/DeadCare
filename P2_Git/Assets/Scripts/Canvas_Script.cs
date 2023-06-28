@@ -41,7 +41,7 @@ public class Canvas_Script : MonoBehaviour
     string pref_Canvas = "pref_Canvas";
     string tag_obstacle = "obstacle";
     
-    // Start is called before the first frame update
+
     void Start()
     {
         inGameMenuCanvas = GameObject.Find(pref_Canvas);
@@ -207,8 +207,8 @@ public class Canvas_Script : MonoBehaviour
     }
 
 
-    // public void SetYouWin(bool isWin)
-    // {
+    public void SetYouWin(bool isWin)
+     {
     //     if(isWin) 
     //     {
     //         youLose.SetActive(false);
@@ -219,7 +219,7 @@ public class Canvas_Script : MonoBehaviour
     //         youLose.SetActive(true);
     //         youWin.SetActive(false);
     //     }
-    // }
+     }
 
 
 
@@ -236,8 +236,11 @@ public class Canvas_Script : MonoBehaviour
 
     public void SetStarImages(int starCount)
     {
+        foreach(Image img in stars_Images) img.enabled = true;
+
         switch (starCount)
         {
+
             case 0:
                 //foreach(Image img in stars_Images) img.sprite = star_Empty;
                 foreach(Image img in stars_Images) img.enabled = false;
@@ -253,6 +256,7 @@ public class Canvas_Script : MonoBehaviour
                 stars_Images[2].enabled = false;
                 break;
             case 3:
+                foreach(Image img in stars_Images) img.enabled = true;
                 foreach(Image img in stars_Images) img.sprite = star_Filled;
                 break;
         }
