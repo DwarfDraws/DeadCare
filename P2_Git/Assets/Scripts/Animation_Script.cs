@@ -18,7 +18,7 @@ public class Animation_Script : MonoBehaviour
     string animation_Speed = "animation_speed";
     string animationBool_isWalking_name = "isWalking";
     string animationBool_removeTape_name = "anim_removeTape";
-    string animationBool_eatConsumables_name = "anim_xxxxxx";
+    string animationBool_eatConsumables_name = "anim_c_Cookie_Interaction";
 
     
     private void Awake() 
