@@ -18,6 +18,7 @@ public class Animation_Script : MonoBehaviour
     string animation_Speed = "animation_speed";
     string animationBool_isWalking_name = "isWalking";
     string animationBool_removeTape_name = "anim_removeTape";
+    string animationBool_eatConsumables_name = "anim_xxxxxx";
 
     
     private void Awake() 
@@ -114,6 +115,11 @@ public class Animation_Script : MonoBehaviour
         //Debug.Log(animationBool_isWalking_name + isPlaying);
         anim.SetBool(animationBool_removeTape_name, isPlaying);
     }
+    public void PlayConsumableAnimation(bool isPlaying)
+    {
+        //Debug.Log(animationBool_isWalking_name + isPlaying);
+        anim.SetBool(animationBool_removeTape_name, isPlaying);
+    }
 
 
 
@@ -189,6 +195,8 @@ public class Animation_Script : MonoBehaviour
             anim.SetBool(animation_bool, false);
         }
 
+        PlayWalkingAnimation(false);
+        PlayTapeRemoveAnimation(false);
         PlayWalkingAnimation(true);
     }
 }
