@@ -64,7 +64,7 @@ public class Raycast : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, float.MaxValue, ~layers_FloorAndChild))
                 { 
                     hitObject = hit.transform; //object transform
-                    //Debug.Log(hitObject.name);
+                    //Debug.Log("Hit object: " + hitObject.name);
 
                     if(hitObject.CompareTag(tag_obstacle))
                     {
@@ -142,7 +142,8 @@ public class Raycast : MonoBehaviour
                     if(hasAttachedTarget && !canvas.isTapeBtnPressed && !canvas.isMoveBtnPressed)
                     { 
                         object_attachedTarget.ToggleDown(false);
-                        if(!isObject_Animation_Rewinded && !object_attachedTarget.isOpen) 
+                        
+                        if(!isObject_Animation_Rewinded && object_attachedTarget.isTargeted) 
                         {   
                             if(object_Animation != null) object_Animation.RewindAnimation();
                             if (object_attachedTarget.currentChild_atTarget != null) object_attachedTarget.currentChild_atTarget.animation_script.RewindAnimation();

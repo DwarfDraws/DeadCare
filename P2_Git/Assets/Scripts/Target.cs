@@ -83,6 +83,7 @@ public class Target : MonoBehaviour
         if(timerDown)
         {
             timer -= Time.deltaTime / waitTime_seconds;
+      
 
             if(timer <= 0)
             {
