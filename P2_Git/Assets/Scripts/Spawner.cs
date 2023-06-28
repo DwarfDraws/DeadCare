@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour
 {
     
     NavMesh navMesh;
-    [SerializeField] GameObject childPrefab;
+    [SerializeField] GameObject[] childPrefabs;
 
     [HideInInspector] public int childrenToSpawn;
     [HideInInspector] public float children_walkSpeed = 1.25f;
@@ -26,7 +26,9 @@ public class Spawner : MonoBehaviour
 
         if(isSpawning && !isBlocked && childrenToSpawn > 0)
         {
-            GameObject newChild = GameObject.Instantiate(childPrefab, this.gameObject.transform.position, Quaternion.identity);
+            int rndmIndex = Random.Range(0, 2);
+
+            GameObject newChild = GameObject.Instantiate(childPrefabs[rndmIndex], this.gameObject.transform.position, Quaternion.identity);
             NavMeshAgent newAgent = newChild.GetComponent<NavMeshAgent>();
             navMesh.Add_Agent(newAgent);
 
@@ -46,7 +48,7 @@ public class Spawner : MonoBehaviour
     //single spawn by UI Button
     public void SpawnChild()
     {
-        GameObject newChild = GameObject.Instantiate(childPrefab, this.gameObject.transform.position, Quaternion.identity);
+        GameObject newChild = GameObject.Instantiate(childPrefabs[0], this.gameObject.transform.position, Quaternion.identity);
         NavMeshAgent newAgent = newChild.GetComponent<NavMeshAgent>();
         newAgent.speed = children_walkSpeed;
         
