@@ -236,7 +236,7 @@ public class Children : MonoBehaviour
             else if(target.isConsumable)
             {
                 animation_script.PlayWalkingAnimation(false);
-                animation_script.PlayTapeRemoveAnimation(true);
+                animation_script.PlayConsumableAnimation(true);
             }
             //wait-target
             else

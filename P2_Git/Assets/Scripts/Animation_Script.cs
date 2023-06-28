@@ -197,6 +197,7 @@ public class Animation_Script : MonoBehaviour
 
         PlayWalkingAnimation(false);
         PlayTapeRemoveAnimation(false);
+        PlayConsumableAnimation(false);
         PlayWalkingAnimation(true);
     }
 }

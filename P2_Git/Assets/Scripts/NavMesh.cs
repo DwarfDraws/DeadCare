@@ -175,7 +175,7 @@ public class NavMesh : MonoBehaviour
             if (agent.CalculatePath(target.gameObject.transform.position, path)){ //checks all reachable targets
                 if (path.status == NavMeshPathStatus.PathComplete){
                     target.isOpen = true;
-                    Debug.Log(target.name + " got opened");
+                    //Debug.Log(target.name + " got opened");
                 }
                 else target.isOpen = false;
             }
