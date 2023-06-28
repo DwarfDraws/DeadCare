@@ -336,17 +336,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437210744674446290}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.14825824, w: 0.9889487}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.51227, y: 3.51227, z: 3.51227}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3693690753778700353}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -17.052}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 359, y: 197.5}
+  m_AnchoredPosition: {x: 346.1, y: 214}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &831076004220693216
@@ -377,7 +377,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f43dfeeea5b29b542bf7d5b89fea3ccb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 85f6f2c10760b6747a2accb2ffb45146, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -888,17 +888,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7903768154195780908}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.14826027, w: 0.9889484}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.512275, y: 3.512275, z: 3.512275}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3693690753778700353}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 17.052}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -355.59998, y: 191.9}
+  m_AnchoredPosition: {x: -344.6, y: 209.4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6390013518276736588
@@ -929,7 +929,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7b13eea701c390547b8a78c5544d17a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 85f6f2c10760b6747a2accb2ffb45146, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1425,7 +1425,7 @@ PrefabInstance:
     - target: {fileID: 2642965194358850329, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}
       propertyPath: star_Filled
       value: 
-      objectReference: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 21300000, guid: 85f6f2c10760b6747a2accb2ffb45146, type: 3}
     - target: {fileID: 2642965194358850329, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}
       propertyPath: btn_consumable
       value: 
