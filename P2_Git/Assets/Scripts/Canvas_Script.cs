@@ -27,7 +27,7 @@ public class Canvas_Script : MonoBehaviour
     [SerializeField] List<GameObject> stars = new List<GameObject>();
     List<Image> stars_Images = new List<Image>();
     [SerializeField] Sprite star_Filled;
-    [SerializeField] Sprite star_Empty;
+    //[SerializeField] Sprite star_Empty;
     [SerializeField] TMP_Text txt_ChildrenCounter;
     [SerializeField] TMP_Text txt_Countdown;
     [SerializeField] TMP_Text txt_tapeCounter;
@@ -239,17 +239,18 @@ public class Canvas_Script : MonoBehaviour
         switch (starCount)
         {
             case 0:
-                foreach(Image img in stars_Images) img.sprite = star_Empty;
+                //foreach(Image img in stars_Images) img.sprite = star_Empty;
+                foreach(Image img in stars_Images) img.enabled = false;
                 break;
             case 1: 
                 stars_Images[0].sprite = star_Filled;
-                stars_Images[1].sprite = star_Empty;
-                stars_Images[2].sprite = star_Empty;
+                stars_Images[1].enabled = false;
+                stars_Images[2].enabled = false;
                 break;
             case 2:
                 stars_Images[0].sprite = star_Filled;
                 stars_Images[1].sprite = star_Filled;
-                stars_Images[2].sprite = star_Empty;
+                stars_Images[2].enabled = false;
                 break;
             case 3:
                 foreach(Image img in stars_Images) img.sprite = star_Filled;
