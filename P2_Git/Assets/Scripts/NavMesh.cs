@@ -25,7 +25,7 @@ public class NavMesh : MonoBehaviour
 
     private void Update() 
     {
-               
+
         //EDIT: Random walk
         //in every frame try to find a new destination for the agents if they're stopped
         if(stoppedAgents.Count > 0)
@@ -41,6 +41,13 @@ public class NavMesh : MonoBehaviour
                 }
             }
         }
+
+        /*
+        foreach(NavMeshAgent a in agents)
+        {
+            Debug.Log(a.name + " " + a.destination);
+        }
+        */
     }
 
 
@@ -51,7 +58,7 @@ public class NavMesh : MonoBehaviour
 
     //gets also called when mousebutton is released after dragging dynamic obstacle
     public void RecalculatePath(NavMeshAgent agent){ 
-        
+
         if(agents != null){
 
             Children children = agent.gameObject.GetComponent<Children>();
@@ -168,6 +175,7 @@ public class NavMesh : MonoBehaviour
             if (agent.CalculatePath(target.gameObject.transform.position, path)){ //checks all reachable targets
                 if (path.status == NavMeshPathStatus.PathComplete){
                     target.isOpen = true;
+                    //Debug.Log(target.name + " got opened");
                 }
                 else target.isOpen = false;
             }

@@ -233,6 +233,11 @@ public class Children : MonoBehaviour
                     animation_script.PlayTapeRemoveAnimation(true);
                 }
             }
+            else if(target.isConsumable)
+            {
+                animation_script.PlayWalkingAnimation(false);
+                animation_script.PlayConsumableAnimation(true);
+            }
             //wait-target
             else
             {
