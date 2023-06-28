@@ -20,7 +20,7 @@ public class Canvas_Script : MonoBehaviour
     [SerializeField] Camera cam;
     public GameObject btn_move, btn_tape, btn_start, btn_skipCountdown, btn_consumable, btn_spawnChild;
     public GameObject pnl_GameOver;
-    [SerializeField] GameObject youWin, youLose;
+    //[SerializeField] GameObject youWin, youLose;
     [SerializeField] GameObject widget_prefab;
     [SerializeField] GameObject pref_consumable;
     GameObject[] allObstacles;
@@ -207,19 +207,19 @@ public class Canvas_Script : MonoBehaviour
     }
 
 
-    public void SetYouWin(bool isWin)
-    {
-        if(isWin) 
-        {
-            youLose.SetActive(false);
-            youWin.SetActive(true);
-        }
-        else
-        {
-            youLose.SetActive(true);
-            youWin.SetActive(false);
-        }
-    }
+    // public void SetYouWin(bool isWin)
+    // {
+    //     if(isWin) 
+    //     {
+    //         youLose.SetActive(false);
+    //         youWin.SetActive(true);
+    //     }
+    //     else
+    //     {
+    //         youLose.SetActive(true);
+    //         youWin.SetActive(false);
+    //     }
+    // }
 
 
 

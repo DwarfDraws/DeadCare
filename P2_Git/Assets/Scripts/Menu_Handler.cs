@@ -159,8 +159,8 @@ public class Menu_Handler : MonoBehaviour
             //GameOver-Panel
             int survivedChildren = gameplay.GetChildCount();
             int initial_childAmount = gameplay.init_childCounter;
-            if(isWon) canvas.SetYouWin(true);
-            else canvas.SetYouWin(false);
+            //if(isWon) canvas.SetYouWin(true);
+            //else canvas.SetYouWin(false);
             canvas.SetChildrenCounter_Txt(survivedChildren.ToString() + "/" + initial_childAmount.ToString());
             int starReward_Count = CalculateStarReward(survivedChildren, initial_childAmount);
             canvas.SetStarImages(starReward_Count);
