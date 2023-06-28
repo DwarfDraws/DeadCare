@@ -743,7 +743,7 @@ MonoBehaviour:
   btnSpawnChildren: {fileID: 3056522842976417700}
   canvas: {fileID: 678790711900801821}
   childCounter: {fileID: 1002840032845858345}
-  star_DOTweenScale: {fileID: 0}
+  star_DOTweenScale: {fileID: 96127367264121700}
   children_Amount: 2
   tape_Amount: 2
   consumable_Amount: 0
@@ -1476,6 +1476,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5162270597288002691, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491702909075732908, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491702909075732908, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491702909075732908, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6832394642587724108, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}
