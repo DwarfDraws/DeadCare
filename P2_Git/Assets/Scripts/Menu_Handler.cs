@@ -13,6 +13,7 @@ public class Menu_Handler : MonoBehaviour
     [SerializeField] Gameplay gameplay;
     [SerializeField] NavMesh navMesh;
 
+    [SerializeField] GameObject[] reward_stars;
     GameObject[] obstacles;
 
     [HideInInspector] public int countdownTxt_Size_MAX;
@@ -101,7 +102,6 @@ public class Menu_Handler : MonoBehaviour
     {
         countdown_Speed = speed;
     }
-
     public void SetPrepCountdownTimer(float f)
     {
         init_prepCountdownTimer = f;
@@ -158,13 +158,18 @@ public class Menu_Handler : MonoBehaviour
             //GameOver-Panel
             int survivedChildren = gameplay.GetChildCount();
             int initial_childAmount = gameplay.init_childCounter;
-            if(isWon) canvas.SetYouWin(true);
-            else canvas.SetYouWin(false);
+            //if(isWon) canvas.SetYouWin(true);
+            //else canvas.SetYouWin(false);
             canvas.SetChildrenCounter_Txt(survivedChildren.ToString() + "/" + initial_childAmount.ToString());
             int starReward_Count = CalculateStarReward(survivedChildren, initial_childAmount);
             canvas.SetStarImages(starReward_Count);
             AddScoreReward(starReward_Count);
             canvas.pnl_GameOver.SetActive(true);
+            foreach(GameObject star in reward_stars)
+            {
+                star.GetComponent<DOTweenScale>().StartTweening();
+            }
+
 
             
 

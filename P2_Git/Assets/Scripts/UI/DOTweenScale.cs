@@ -12,18 +12,21 @@ public class DOTweenScale : MonoBehaviour
     static float stars_tweeningDuration_seconds;
     static float tweeningOffset_seconds;
     static float waitTime_atMaxScale_seconds;
+    float waitTime;
 
     void Start()
     {
         stars_initScale = transform.localScale;
         stars_scaleTo = stars_initScale * stars_tweeningFactor;
-
-        float waitTime = tweeningOffset_seconds * starID;
-        Invoke("StartTweening", waitTime);
-        
     }
 
-    void StartTweening()
+    public void StartTweening()
+    {
+        waitTime = tweeningOffset_seconds * starID;
+        Invoke("StartStarTween", waitTime);
+    }
+
+    void StartStarTween()
     {
         transform.DOScale(stars_scaleTo, stars_tweeningDuration_seconds)
             .SetEase(Ease.InOutSine)
@@ -32,10 +35,9 @@ public class DOTweenScale : MonoBehaviour
                 transform.DOScale(stars_initScale, stars_tweeningDuration_seconds)
                     .SetEase(Ease.OutBounce)
                     .SetDelay(waitTime_atMaxScale_seconds)
-                    .OnComplete(StartTweening);
+                    .OnComplete(StartStarTween);
             });
     }
-
 
     public void SetupTweening(float factor, float duration_sec, float offset_sec, float waitTime_atMax_sec) 
     {

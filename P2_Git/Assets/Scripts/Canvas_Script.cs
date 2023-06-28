@@ -20,14 +20,14 @@ public class Canvas_Script : MonoBehaviour
     [SerializeField] Camera cam;
     public GameObject btn_move, btn_tape, btn_start, btn_skipCountdown, btn_consumable, btn_spawnChild;
     public GameObject pnl_GameOver;
-    [SerializeField] GameObject youWin, youLose;
+    //[SerializeField] GameObject youWin, youLose;
     [SerializeField] GameObject widget_prefab;
     [SerializeField] GameObject pref_consumable;
     GameObject[] allObstacles;
     [SerializeField] List<GameObject> stars = new List<GameObject>();
     List<Image> stars_Images = new List<Image>();
     [SerializeField] Sprite star_Filled;
-    [SerializeField] Sprite star_Empty;
+    //[SerializeField] Sprite star_Empty;
     [SerializeField] TMP_Text txt_ChildrenCounter;
     [SerializeField] TMP_Text txt_Countdown;
     [SerializeField] TMP_Text txt_tapeCounter;
@@ -41,7 +41,7 @@ public class Canvas_Script : MonoBehaviour
     string pref_Canvas = "pref_Canvas";
     string tag_obstacle = "obstacle";
     
-    // Start is called before the first frame update
+
     void Start()
     {
         inGameMenuCanvas = GameObject.Find(pref_Canvas);
@@ -51,6 +51,11 @@ public class Canvas_Script : MonoBehaviour
         pref_consumable_localScaleZ = pref_consumable.transform.localScale.z;
 
         allObstacles = GameObject.FindGameObjectsWithTag(tag_obstacle);
+        
+        foreach(GameObject star in stars)
+        {
+            stars_Images.Add(star.GetComponent<Image>());
+        }
     }
 
     public Widget InstantiateWidget(Vector3 widget_worldPos, Color color)
@@ -203,18 +208,18 @@ public class Canvas_Script : MonoBehaviour
 
 
     public void SetYouWin(bool isWin)
-    {
-        if(isWin) 
-        {
-            youLose.SetActive(false);
-            youWin.SetActive(true);
-        }
-        else
-        {
-            youLose.SetActive(true);
-            youWin.SetActive(false);
-        }
-    }
+     {
+    //     if(isWin) 
+    //     {
+    //         youLose.SetActive(false);
+    //         youWin.SetActive(true);
+    //     }
+    //     else
+    //     {
+    //         youLose.SetActive(true);
+    //         youWin.SetActive(false);
+    //     }
+     }
 
 
 
@@ -231,22 +236,27 @@ public class Canvas_Script : MonoBehaviour
 
     public void SetStarImages(int starCount)
     {
+        foreach(Image img in stars_Images) img.enabled = true;
+
         switch (starCount)
         {
+
             case 0:
-                foreach(Image img in stars_Images) img.sprite = star_Empty;
+                //foreach(Image img in stars_Images) img.sprite = star_Empty;
+                foreach(Image img in stars_Images) img.enabled = false;
                 break;
             case 1: 
                 stars_Images[0].sprite = star_Filled;
-                stars_Images[1].sprite = star_Empty;
-                stars_Images[2].sprite = star_Empty;
+                stars_Images[1].enabled = false;
+                stars_Images[2].enabled = false;
                 break;
             case 2:
                 stars_Images[0].sprite = star_Filled;
                 stars_Images[1].sprite = star_Filled;
-                stars_Images[2].sprite = star_Empty;
+                stars_Images[2].enabled = false;
                 break;
             case 3:
+                foreach(Image img in stars_Images) img.enabled = true;
                 foreach(Image img in stars_Images) img.sprite = star_Filled;
                 break;
         }
