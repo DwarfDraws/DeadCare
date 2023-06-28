@@ -118,7 +118,7 @@ public class Animation_Script : MonoBehaviour
     public void PlayConsumableAnimation(bool isPlaying)
     {
         //Debug.Log(animationBool_isWalking_name + isPlaying);
-        anim.SetBool(animationBool_removeTape_name, isPlaying);
+        anim.SetBool(animationBool_eatConsumables_name, isPlaying);
     }
 
 
