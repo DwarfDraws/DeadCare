@@ -23,7 +23,7 @@ public class Target : MonoBehaviour
     public bool isConsumable;
     bool isTaped;
     [HideInInspector] public bool timerDown;
-    bool childDies;
+    public bool childDies;
 
 
     string canvas_name = "InGameUI";

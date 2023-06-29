@@ -147,36 +147,35 @@ public class Menu_Handler : MonoBehaviour
     {
         if(!isGameOver)
         {
+            isGameOver = true;
             gameCountdownStart = false;
             current_gameCountdownTimer = init_gameCountdownTimer;
             canvas.SetCountdown_Txt(" ", countdownTxt_Size_init);
+            canvas.btn_consumable.SetActive(false);
 
             //GameOver-Panel
             int survivedChildren = gameplay.GetChildCount();
             int initial_childAmount = gameplay.init_childCounter;
-            //if(isWon) canvas.SetYouWin(true);
-            //else canvas.SetYouWin(false);
             canvas.SetChildrenCounter_Txt(survivedChildren.ToString() + "/" + initial_childAmount.ToString());
             int starReward_Count = CalculateStarReward(survivedChildren, initial_childAmount);
+            //Debug.Log("starReward_Count: " + starReward_Count);
             AddScoreReward(starReward_Count);
             canvas.SetStarImages(starReward_Count);
             canvas.pnl_GameOver.SetActive(true);
-            
+
             foreach(GameObject star in reward_stars)
             {
                 star.GetComponent<DOTweenScale>().StartTweening();
             }
 
 
-            
-
-            isGameOver = true;
-            
+            //Reset Children    
             foreach(GameObject child in GameObject.FindGameObjectsWithTag(tag_child)) 
             {
                 child.GetComponent<Children>().ChildDestroy();
             }
 
+            //Reset Obstacles
             int i = 0;
             foreach(GameObject obstacle in GameObject.FindGameObjectsWithTag(tag_obstacle))
             {
@@ -192,10 +191,13 @@ public class Menu_Handler : MonoBehaviour
                 }
                 i++;
             }
+
+            //Reset Widgets
             foreach(GameObject widget in GameObject.FindGameObjectsWithTag(tag_widget))
             {
                 Destroy(widget);
             }
+            
         }
     }
 

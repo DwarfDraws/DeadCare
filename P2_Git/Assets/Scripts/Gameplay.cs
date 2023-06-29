@@ -24,6 +24,7 @@ public class Gameplay : MonoBehaviour
         {
             int rewarded_Consumables = menu_Handler.GetScore();
             SetConsumableCount(rewarded_Consumables);
+            Debug.Log("rewarded_Consumables: " + rewarded_Consumables);
         }
     }
 

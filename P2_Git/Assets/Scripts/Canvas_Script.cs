@@ -207,22 +207,6 @@ public class Canvas_Script : MonoBehaviour
     }
 
 
-    public void SetYouWin(bool isWin)
-     {
-    //     if(isWin) 
-    //     {
-    //         youLose.SetActive(false);
-    //         youWin.SetActive(true);
-    //     }
-    //     else
-    //     {
-    //         youLose.SetActive(true);
-    //         youWin.SetActive(false);
-    //     }
-     }
-
-
-
     public void SetTapeCounter_Txt(string text)
     {
         txt_tapeCounter.text = text;

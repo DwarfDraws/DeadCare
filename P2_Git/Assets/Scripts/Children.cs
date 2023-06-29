@@ -122,7 +122,7 @@ public class Children : MonoBehaviour
         }       
 
         //child WALKS INTO consumable_radius
-        if(other.tag == consumableRadius_tag && !isInSafeZone) //Make children always stop their action for cookies when not checking 2nd statement
+        if(other.tag == consumableRadius_tag && !isInSafeZone && !currentTarget.childDies) //Make children always stop their action for cookies when not checking 2nd statement
         {
             triggerObject = other.gameObject;
             
@@ -233,8 +233,10 @@ public class Children : MonoBehaviour
                     animation_script.PlayTapeRemoveAnimation(true);
                 }
             }
+            //consumable
             else if(target.isConsumable)
             {
+                animation_script.ResetChildAnimations();
                 animation_script.PlayWalkingAnimation(false);
                 animation_script.PlayConsumableAnimation(true);
             }
