@@ -3,7 +3,17 @@ guid: 63519ed3b7a91b14e88d1f1f76b7c210
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: EyeBall
+    second: {fileID: 2100000, guid: 1a6fda97f4cf66648bf566dc5a18b1f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Textures
+    second: {fileID: 2100000, guid: 671e6df3554e64f41a82885bd6b02ed3, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
