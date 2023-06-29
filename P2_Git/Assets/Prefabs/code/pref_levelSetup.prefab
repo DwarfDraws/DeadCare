@@ -68,6 +68,7 @@ GameObject:
   - component: {fileID: 1567759417918610811}
   - component: {fileID: 8660576199546683321}
   - component: {fileID: 5470853593551774338}
+  - component: {fileID: 3244194779994189623}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -192,6 +193,23 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &3244194779994189623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180859552432806177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 77f612660815cb740ab3da43eb61a3a6, type: 2}
 --- !u!1 &437210744674446290
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,7 +620,7 @@ Transform:
   - {fileID: 4847690569778159389}
   - {fileID: 6499726839374779674}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4677027055578876801
 GameObject:
@@ -788,7 +806,7 @@ MonoBehaviour:
   canvas: {fileID: 678790711900801821}
   childCounter: {fileID: 281187573232663793}
   star_DOTweenScale: {fileID: 96127367264121700}
-  children_Amount: 4
+  children_Amount: 2
   tape_Amount: 2
   consumable_Amount: 0
   children_walkSpeed: 1.2
@@ -1336,7 +1354,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 85f6f2c10760b6747a2accb2ffb45146, type: 3}
     - target: {fileID: 1247887556878825947, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1344585884949734176, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}
       propertyPath: m_Pivot.x
@@ -1576,7 +1594,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3846755631828959119, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3947681878783702840, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}
       propertyPath: m_AnchoredPosition.x
