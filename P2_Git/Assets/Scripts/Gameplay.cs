@@ -7,6 +7,7 @@ public class Gameplay : MonoBehaviour
     [SerializeField] Menu_Handler menu_Handler;
     [SerializeField] Spawner spawner;
     [SerializeField] Canvas_Script canvas;
+    [SerializeField] ChildCounter childCounter;
     
     [HideInInspector] public int init_tapeCounter;
     [HideInInspector] public int init_consumableCounter;
@@ -39,6 +40,7 @@ public class Gameplay : MonoBehaviour
     }
     public int GetChildCount()
     {
+        Debug.Log(current_childCounter);
         return current_childCounter;
     }
     void ResetChildCount()
@@ -119,6 +121,7 @@ public class Gameplay : MonoBehaviour
     public void Reset()
     {
         ResetChildCount();
+        childCounter.ResetChildCount();
         ResetConsumableCount();
         ResetTapeCount();
     }

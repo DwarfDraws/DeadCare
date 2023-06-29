@@ -120,10 +120,6 @@ public class Menu_Handler : MonoBehaviour
 
         canvas.ActivateButton_Consumable(false); //Cookies are not available in Prep-Phase!
         canvas.btn_skipCountdown.SetActive(true);
-
-
-        saveData = SaveManager.Load();
-        Debug.Log(saveData.score);
     }
 
 
@@ -162,9 +158,10 @@ public class Menu_Handler : MonoBehaviour
             //else canvas.SetYouWin(false);
             canvas.SetChildrenCounter_Txt(survivedChildren.ToString() + "/" + initial_childAmount.ToString());
             int starReward_Count = CalculateStarReward(survivedChildren, initial_childAmount);
-            canvas.SetStarImages(starReward_Count);
             AddScoreReward(starReward_Count);
+            canvas.SetStarImages(starReward_Count);
             canvas.pnl_GameOver.SetActive(true);
+            
             foreach(GameObject star in reward_stars)
             {
                 star.GetComponent<DOTweenScale>().StartTweening();
@@ -195,7 +192,8 @@ public class Menu_Handler : MonoBehaviour
                 }
                 i++;
             }
-            foreach(GameObject widget in GameObject.FindGameObjectsWithTag(tag_widget)){
+            foreach(GameObject widget in GameObject.FindGameObjectsWithTag(tag_widget))
+            {
                 Destroy(widget);
             }
         }
@@ -233,7 +231,7 @@ public class Menu_Handler : MonoBehaviour
     int CalculateStarReward(int survivedChildren, int init_childCounter)
     {
         if(survivedChildren == init_childCounter) return 3;
-        else if(survivedChildren / (float)init_childCounter >= 0.5f) return 2;
+        else if(survivedChildren / (float)init_childCounter > 0.5f) return 2;
         else if(survivedChildren >= 1) return 1;
         else return 0;
     }
