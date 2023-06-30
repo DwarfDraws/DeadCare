@@ -6,22 +6,30 @@ public class ChildCounter : MonoBehaviour
 {
     Animator door_animator;
     static int childCount;
-    static int childrensAmount;
+    static int childrenAmount;
 
     string door_name = "door";
 
-    private void Start() {
+    private void Start() 
+    {
+        ResetChildCount();
         door_animator = GameObject.Find(door_name).GetComponent<Animator>();
     }
 
     public void IncreaseChildCount()
     {
         childCount++;
-        if(childCount == childrensAmount) door_animator.SetTrigger("türZu"); //Play door close
+        Debug.Log("childCount: " + childCount + " childrenAmount: " + childrenAmount);
+        if(childCount == childrenAmount) door_animator.SetTrigger("türZu"); //Play door close
     }
 
     public void SetChildrenAmount(int amount)
     {
-        childrensAmount = amount;
+        childrenAmount = amount;
+    }
+
+    public void ResetChildCount()
+    {
+        childCount = 0;
     }
 }

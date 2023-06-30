@@ -120,10 +120,6 @@ public class Menu_Handler : MonoBehaviour
 
         canvas.ActivateButton_Consumable(false); //Cookies are not available in Prep-Phase!
         canvas.btn_skipCountdown.SetActive(true);
-
-
-        saveData = SaveManager.Load();
-        Debug.Log(saveData.score);
     }
 
 
@@ -151,35 +147,35 @@ public class Menu_Handler : MonoBehaviour
     {
         if(!isGameOver)
         {
+            isGameOver = true;
             gameCountdownStart = false;
             current_gameCountdownTimer = init_gameCountdownTimer;
             canvas.SetCountdown_Txt(" ", countdownTxt_Size_init);
+            canvas.btn_consumable.SetActive(false);
 
             //GameOver-Panel
             int survivedChildren = gameplay.GetChildCount();
             int initial_childAmount = gameplay.init_childCounter;
-            //if(isWon) canvas.SetYouWin(true);
-            //else canvas.SetYouWin(false);
             canvas.SetChildrenCounter_Txt(survivedChildren.ToString() + "/" + initial_childAmount.ToString());
             int starReward_Count = CalculateStarReward(survivedChildren, initial_childAmount);
-            canvas.SetStarImages(starReward_Count);
+            //Debug.Log("starReward_Count: " + starReward_Count);
             AddScoreReward(starReward_Count);
+            canvas.SetStarImages(starReward_Count);
             canvas.pnl_GameOver.SetActive(true);
+
             foreach(GameObject star in reward_stars)
             {
                 star.GetComponent<DOTweenScale>().StartTweening();
             }
 
 
-            
-
-            isGameOver = true;
-            
+            //Reset Children    
             foreach(GameObject child in GameObject.FindGameObjectsWithTag(tag_child)) 
             {
                 child.GetComponent<Children>().ChildDestroy();
             }
 
+            //Reset Obstacles
             int i = 0;
             foreach(GameObject obstacle in GameObject.FindGameObjectsWithTag(tag_obstacle))
             {
@@ -195,9 +191,13 @@ public class Menu_Handler : MonoBehaviour
                 }
                 i++;
             }
-            foreach(GameObject widget in GameObject.FindGameObjectsWithTag(tag_widget)){
+
+            //Reset Widgets
+            foreach(GameObject widget in GameObject.FindGameObjectsWithTag(tag_widget))
+            {
                 Destroy(widget);
             }
+            
         }
     }
 
@@ -233,7 +233,7 @@ public class Menu_Handler : MonoBehaviour
     int CalculateStarReward(int survivedChildren, int init_childCounter)
     {
         if(survivedChildren == init_childCounter) return 3;
-        else if(survivedChildren / (float)init_childCounter >= 0.5f) return 2;
+        else if(survivedChildren / (float)init_childCounter > 0.5f) return 2;
         else if(survivedChildren >= 1) return 1;
         else return 0;
     }
