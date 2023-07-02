@@ -131,7 +131,7 @@ public class Children : MonoBehaviour
             if(consumableTarget.isOpen)
             {   
                 Consumables consumable = triggerObject.GetComponentInParent<Consumables>();
-                if(settings.consumablesHaveExistenceTimer) consumable.StartExistenceTimer(false);
+                if(settings.consumablesHaveExistenceTime) consumable.StartExistenceTimer(false);
 
                 //Destroy old-target Widget
                 if (!currentTarget.isWaitTarget) currentTarget.DestroyWidget();
@@ -209,7 +209,8 @@ public class Children : MonoBehaviour
 
                 if(!isWidgetInstantiated) 
                 {
-                    currentTarget.InstantiateWidget_target(widget_pos, color);
+                    if(!currentTarget.isConsumable) currentTarget.InstantiateWidget_target(widget_pos, color);
+                    else if (settings.showConsumableTimer) currentTarget.InstantiateWidget_target(widget_pos, color);
                     isWidgetInstantiated = true;
                 }
             }
