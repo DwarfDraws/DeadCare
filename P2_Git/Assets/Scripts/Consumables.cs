@@ -21,7 +21,7 @@ public class Consumables : MonoBehaviour
         timer = 1.0f;
         settings = GameObject.Find(settings_name).GetComponent<Settings_script>();
 
-        if(settings.consumablesHaveExistenceTimer)
+        if(settings.consumablesHaveExistenceTime)
         {
             Vector3 widget_pos = this.transform.GetChild(0).gameObject.transform.position;
 

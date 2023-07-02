@@ -41,7 +41,8 @@ public class Settings_script : MonoBehaviour
 
     [Header("Miscellaneous")]
     [SerializeField] bool hideTargets;
-    public bool consumablesHaveExistenceTimer;
+    public bool consumablesHaveExistenceTime;
+    public bool showConsumableTimer;
     [SerializeField] bool creatorMode;
 
 
