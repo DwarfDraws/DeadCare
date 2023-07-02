@@ -39,10 +39,12 @@ public class Settings_script : MonoBehaviour
     [SerializeField] float stars_tweeningOffset_seconds;
     [SerializeField] float waitTime_atMax_seconds;
 
+    [Header("Consumables")]
+    public bool showConsumableTimer;
+    public bool consumablesHaveExistenceTime;
+    
     [Header("Miscellaneous")]
     [SerializeField] bool hideTargets;
-    public bool consumablesHaveExistenceTime;
-    public bool showConsumableTimer;
     [SerializeField] bool creatorMode;
 
 
