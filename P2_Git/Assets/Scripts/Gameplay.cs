@@ -8,6 +8,7 @@ public class Gameplay : MonoBehaviour
     [SerializeField] Spawner spawner;
     [SerializeField] Canvas_Script canvas;
     [SerializeField] ChildCounter childCounter;
+    [SerializeField] Settings_script settings;
     
     [HideInInspector] public int init_tapeCounter;
     [HideInInspector] public int init_consumableCounter;
@@ -24,7 +25,7 @@ public class Gameplay : MonoBehaviour
         {
             int rewarded_Consumables = menu_Handler.GetScore();
             SetConsumableCount(rewarded_Consumables);
-            Debug.Log("rewarded_Consumables: " + rewarded_Consumables);
+            //Debug.Log("rewarded_Consumables: " + rewarded_Consumables);
         }
     }
 
@@ -92,7 +93,8 @@ public class Gameplay : MonoBehaviour
     {
         if(current_consumableCounter > 0)
         {
-            Instantiate(pref_consumable, inst_Pos, Quaternion.identity); 
+            GameObject consumable = Instantiate(pref_consumable, inst_Pos, Quaternion.identity); 
+            consumable.GetComponentInChildren<SphereCollider>().radius = 0.5f * settings.consumable_radius;
             DecreaseConsumableCount();
             menu_Handler.DecreaseScore();
         }
