@@ -13,13 +13,14 @@ public class Settings_script : MonoBehaviour
     [SerializeField] Canvas_Script canvas;
     [SerializeField] ChildCounter childCounter;
     [SerializeField] DOTweenScale star_DOTweenScale;
+    
+    [SerializeField] GameObject consumableGhost_Radius;
 
     //Inspector tweak variables
 
     [Header("Gameplay")]
     [SerializeField] int children_Amount = 0;
     [SerializeField] int tape_Amount = 0;
-    [SerializeField] int consumable_Amount = 0;
     [SerializeField] float children_walkSpeed;
 
     [Header("Countdowns")]
@@ -27,25 +28,27 @@ public class Settings_script : MonoBehaviour
     [SerializeField] float gameTime_Seconds;
     [SerializeField] int countdownTxt_Size_MAX;
     [SerializeField] int timeFromWhenToScale;
-    
-    [Header("Tutorial")]
-    public bool isTutorial;
-    [SerializeField] Children tutorial_Child;
-    [SerializeField] List<Target> tutorialTargets;
+
+    [Header("Consumables")]
+    public float consumable_radius;
+    public bool showConsumableTimer;
+    public bool consumablesHaveExistenceTime;
 
     [Header("Stars_Animation")]
     [SerializeField] float stars_tweeningFactor;
     [SerializeField] float stars_tweeningDuration_seconds;
     [SerializeField] float stars_tweeningOffset_seconds;
     [SerializeField] float waitTime_atMax_seconds;
-
-    [Header("Consumables")]
-    public bool showConsumableTimer;
-    public bool consumablesHaveExistenceTime;
     
-    [Header("Miscellaneous")]
-    [SerializeField] bool hideTargets;
+    [Header("Tutorial")]
+    public bool isTutorial;
+    [SerializeField] Children tutorial_Child;
+    [SerializeField] List<Target> tutorialTargets;
+    
+    [Header("Creator Mode")]
     [SerializeField] bool creatorMode;
+    [SerializeField] bool hideTargets;
+    [SerializeField] int consumable_Amount = 0;
 
 
     string tag_target = "target";
@@ -85,6 +88,8 @@ public class Settings_script : MonoBehaviour
             else if(tutorialTargets == null) Debug.Log("Settings_Script(): missing tutorial-targets!");
         }
         if (hideTargets) HideTargets();
+
+        consumableGhost_Radius.transform.localScale = new Vector3(consumable_radius, 0.04f, consumable_radius);
 
         star_DOTweenScale.SetupTweening(stars_tweeningFactor, stars_tweeningDuration_seconds, stars_tweeningOffset_seconds, waitTime_atMax_seconds);
     }
