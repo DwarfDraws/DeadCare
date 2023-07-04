@@ -660,7 +660,6 @@ Transform:
   - {fileID: 980420599}
   - {fileID: 64212570}
   - {fileID: 479186127}
-  - {fileID: 272239229}
   - {fileID: 2079551750}
   - {fileID: 874431168}
   - {fileID: 1887012550}
@@ -1263,7 +1262,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230185482}
   m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
-  m_LocalPosition: {x: 0.09719334, y: -0.11066421, z: 0}
+  m_LocalPosition: {x: 0.108, y: -0.11066421, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1643,7 +1642,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 80665204}
+    m_TransformParent: {fileID: 1408952422}
     m_Modifications:
     - target: {fileID: 2870438824691426038, guid: f33d81260e83f53469e41d51e5b6dacc, type: 3}
       propertyPath: m_Name
@@ -1651,7 +1650,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2870438824691426038, guid: f33d81260e83f53469e41d51e5b6dacc, type: 3}
       propertyPath: m_TagString
-      value: obstacle
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7686767711657094056, guid: f33d81260e83f53469e41d51e5b6dacc, type: 3}
       propertyPath: m_RootOrder
@@ -1659,15 +1658,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7686767711657094056, guid: f33d81260e83f53469e41d51e5b6dacc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.559
+      value: -0.6105461
       objectReference: {fileID: 0}
     - target: {fileID: 7686767711657094056, guid: f33d81260e83f53469e41d51e5b6dacc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.139
+      value: -0.9225644
       objectReference: {fileID: 0}
     - target: {fileID: 7686767711657094056, guid: f33d81260e83f53469e41d51e5b6dacc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.94
+      value: 0.3063724
       objectReference: {fileID: 0}
     - target: {fileID: 7686767711657094056, guid: f33d81260e83f53469e41d51e5b6dacc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1697,7 +1696,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7865458891749619840, guid: f33d81260e83f53469e41d51e5b6dacc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7686767711657094056, guid: f33d81260e83f53469e41d51e5b6dacc, type: 3}
@@ -2782,7 +2782,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 506596119}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0.09719334, y: -0.11066421, z: 0}
+  m_LocalPosition: {x: 0.108, y: -0.11066421, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6793,6 +6793,7 @@ Transform:
   - {fileID: 1465571407}
   - {fileID: 400910909}
   - {fileID: 1379756256}
+  - {fileID: 272239229}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9080,28 +9081,12 @@ PrefabInstance:
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
-      propertyPath: isTutorial
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
-      propertyPath: creatorMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
       propertyPath: tape_Amount
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
       propertyPath: children_Amount
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
-      propertyPath: consumable_Amount
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
-      propertyPath: children_walkSpeed
-      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
       propertyPath: gameCountdownTime_Seconds

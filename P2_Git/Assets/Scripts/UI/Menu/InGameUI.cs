@@ -19,7 +19,5 @@ public class InGameUI : MonoBehaviour
         }
     }
 
-    public void nextLevel(){
-        
-    }
+   
 }
