@@ -49,6 +49,7 @@ MonoBehaviour:
   canvas: {fileID: 678790711900801821}
   gameplay: {fileID: 1741366284504729551}
   navMesh: {fileID: 7686922439290494537}
+  ingame_Consumables: []
   reward_stars:
   - {fileID: 7903768154195780908}
   - {fileID: 3066168600240412140}
@@ -1377,6 +1378,9 @@ MonoBehaviour:
   canvas: {fileID: 678790711900801821}
   childCounter: {fileID: 281187573232663793}
   settings: {fileID: 2854175084282038385}
+  noMoveArea_Layer:
+    serializedVersion: 2
+    m_Bits: 1024
   init_tapeCounter: 0
   init_consumableCounter: 0
   init_childCounter: 0
@@ -1959,6 +1963,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 85f6f2c10760b6747a2accb2ffb45146, type: 3}
     - target: {fileID: 2642965194358850329, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}
+      propertyPath: btn_NextLevel
+      value: 
+      objectReference: {fileID: 1926195130657225842}
+    - target: {fileID: 2642965194358850329, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}
       propertyPath: btn_consumable
       value: 
       objectReference: {fileID: 3640660128851540222}
@@ -2202,6 +2210,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1926195130657225842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3998358766104654966, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}
+  m_PrefabInstance: {fileID: 3298392329082472452}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2982173460279965698 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 334656907786596358, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}

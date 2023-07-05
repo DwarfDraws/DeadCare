@@ -10,6 +10,8 @@ public class Gameplay : MonoBehaviour
     [SerializeField] ChildCounter childCounter;
     [SerializeField] Settings_script settings;
     
+    [SerializeField] LayerMask noMoveArea_Layer;
+    
     [HideInInspector] public int init_tapeCounter;
     [HideInInspector] public int init_consumableCounter;
     [HideInInspector] public int init_childCounter;
@@ -94,7 +96,16 @@ public class Gameplay : MonoBehaviour
         if(current_consumableCounter > 0)
         {
             GameObject consumable = Instantiate(pref_consumable, inst_Pos, Quaternion.identity); 
-            consumable.GetComponentInChildren<SphereCollider>().radius = 0.5f * settings.consumable_radius;
+            SphereCollider sc = consumable.GetComponentInChildren<SphereCollider>();
+            sc.radius = 0.5f * settings.consumable_radius;
+
+            //check collision with noMoveArea
+            if (Physics.CheckSphere(inst_Pos, 0.4f, noMoveArea_Layer)) 
+            {
+                Destroy(consumable);
+                return;
+            }
+            
             DecreaseConsumableCount();
             menu_Handler.ingame_Consumables.Add(consumable);
             menu_Handler.DecreaseScore();
@@ -113,7 +124,7 @@ public class Gameplay : MonoBehaviour
     }
     void ResetConsumableCount()
     {
-        current_consumableCounter = init_tapeCounter;
+        current_consumableCounter = init_consumableCounter;
         canvas.SetConsumableCounter_Txt(current_consumableCounter.ToString());
     }
     public int GetConsumableCount()
