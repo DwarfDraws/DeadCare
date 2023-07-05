@@ -13,6 +13,7 @@ public class Menu_Handler : MonoBehaviour
     [SerializeField] Gameplay gameplay;
     [SerializeField] NavMesh navMesh;
 
+    public List<GameObject> ingame_Consumables = new List<GameObject>();
     [SerializeField] GameObject[] reward_stars;
     GameObject[] obstacles;
 
@@ -190,6 +191,12 @@ public class Menu_Handler : MonoBehaviour
                     anim_script.PlayAnimation(oa.attachedTarget.animation_Index, false, true, true);
                 }
                 i++;
+            }
+
+            //Reset Consumables
+            foreach(GameObject consumable in ingame_Consumables)
+            {
+                Destroy(consumable);
             }
 
             //Reset Widgets

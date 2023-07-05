@@ -96,6 +96,7 @@ public class Gameplay : MonoBehaviour
             GameObject consumable = Instantiate(pref_consumable, inst_Pos, Quaternion.identity); 
             consumable.GetComponentInChildren<SphereCollider>().radius = 0.5f * settings.consumable_radius;
             DecreaseConsumableCount();
+            menu_Handler.ingame_Consumables.Add(consumable);
             menu_Handler.DecreaseScore();
         }
     }

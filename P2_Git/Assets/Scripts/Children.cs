@@ -25,8 +25,8 @@ public class Children : MonoBehaviour
     float beginTimer;
     float standStill_velocityThreshold;
     float init_WaitTime;
-    bool isPathInitialized;
     bool startTimer;
+    bool isPathInitialized;
     bool isInSafeZone;
     bool isTargetDetected, isWidgetInstantiated;
     bool waitForAgentToStop;
@@ -75,7 +75,11 @@ public class Children : MonoBehaviour
         }
 
 
-        if(startTimer) currentTarget.Timer();
+        if(startTimer)
+        {
+            currentTarget.isTimerActive = true;
+            currentTarget.Timer();
+        }
 
 
         //wait until target-destination reached
