@@ -1168,6 +1168,14 @@ PrefabInstance:
       value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
+      propertyPath: creatorMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
+      propertyPath: hideTargets
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
       propertyPath: children_Amount
       value: 4
       objectReference: {fileID: 0}
@@ -3045,6 +3053,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 80665204}
     m_Modifications:
+    - target: {fileID: 1607907415291873426, guid: 5e5e127636484344f861e034ed29696f, type: 3}
+      propertyPath: m_Carve
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3042597797263384304, guid: 5e5e127636484344f861e034ed29696f, type: 3}
       propertyPath: m_RootOrder
       value: 11
