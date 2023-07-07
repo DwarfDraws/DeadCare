@@ -31,7 +31,7 @@ public class Menu_Handler : MonoBehaviour
     bool prepCountDownStart, gameCountdownStart;
     bool spawnChildAfterCountdown;
 
-    string door_name = "door";
+    string door_name = "pref_door";
     string tag_obstacle = "obstacle";
     string tag_child = "child";
     string tag_widget = "widget";

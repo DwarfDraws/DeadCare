@@ -610,7 +610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5998625273391649513, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.239
       objectReference: {fileID: 0}
     - target: {fileID: 5998625273391649513, guid: 86dfc1c559a2ee449b648f42194462c4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -935,6 +935,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 77405f0bbeab58341b27fdd376b7c706, type: 3}
   m_RemoveTapes:
   - {fileID: 8300000, guid: fa03a8953354ab1468347890929f783a, type: 3}
+  doorOpen: {fileID: 0}
+  doorClose: {fileID: 0}
   m_AudioSource: {fileID: 1611401576432737170}
 --- !u!4 &6796905534988105220 stripped
 Transform:

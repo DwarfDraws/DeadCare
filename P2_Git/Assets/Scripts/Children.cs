@@ -28,6 +28,7 @@ public class Children : MonoBehaviour
     bool startTimer;
     bool isPathInitialized;
     bool isInSafeZone;
+    bool isCounted;
     bool isTargetDetected, isWidgetInstantiated;
     bool waitForAgentToStop;
 
@@ -112,7 +113,11 @@ public class Children : MonoBehaviour
     {
         Target hitTarget = other.gameObject.GetComponent<Target>();
 
-        if(other.tag == childrenCounter_tag) other.GetComponent<ChildCounter>().IncreaseChildCount();
+        if(other.tag == childrenCounter_tag && !isCounted)
+        {
+            other.GetComponent<ChildCounter>().IncreaseChildCount();
+            isCounted = true;
+        }
 
         //current target
         if (other.tag == target_tag && hitTarget == currentTarget)

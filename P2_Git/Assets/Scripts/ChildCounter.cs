@@ -8,7 +8,7 @@ public class ChildCounter : MonoBehaviour
     static int childCount;
     static int childrenAmount;
 
-    string door_name = "door";
+    string door_name = "pref_door";
 
     private void Start() 
     {
@@ -19,7 +19,7 @@ public class ChildCounter : MonoBehaviour
     public void IncreaseChildCount()
     {
         childCount++;
-        //Debug.Log("childCount: " + childCount + " childrenAmount: " + childrenAmount);
+        Debug.Log("childCount: " + childCount + " childrenAmount: " + childrenAmount);
         if(childCount == childrenAmount) door_animator.SetTrigger("türZu"); //Play door close
     }
 
