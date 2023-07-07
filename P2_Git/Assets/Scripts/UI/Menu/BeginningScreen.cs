@@ -5,8 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class BeginningScreen : MonoBehaviour
 {
+
+    [SerializeField] PersistentSoundLogic pSL;
     private void Update(){
-        if(Input.anyKey)
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        
+        if(Input.anyKey){
+            pSL.clicked();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        
     }
 }

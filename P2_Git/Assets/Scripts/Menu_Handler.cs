@@ -13,6 +13,7 @@ public class Menu_Handler : MonoBehaviour
     [SerializeField] Gameplay gameplay;
     [SerializeField] NavMesh navMesh;
 
+    public List<GameObject> ingame_Consumables = new List<GameObject>();
     [SerializeField] GameObject[] reward_stars;
     GameObject[] obstacles;
 
@@ -156,11 +157,13 @@ public class Menu_Handler : MonoBehaviour
             //GameOver-Panel
             int survivedChildren = gameplay.GetChildCount();
             int initial_childAmount = gameplay.init_childCounter;
-            canvas.SetChildrenCounter_Txt(survivedChildren.ToString() + "/" + initial_childAmount.ToString());
             int starReward_Count = CalculateStarReward(survivedChildren, initial_childAmount);
+            canvas.SetChildrenCounter_Txt(survivedChildren.ToString() + "/" + initial_childAmount.ToString());
             //Debug.Log("starReward_Count: " + starReward_Count);
             AddScoreReward(starReward_Count);
             canvas.SetStarImages(starReward_Count);
+            if(survivedChildren == 0) canvas.btn_NextLevel.SetActive(false);
+            else canvas.btn_NextLevel.SetActive(true);
             canvas.pnl_GameOver.SetActive(true);
 
             foreach(GameObject star in reward_stars)
@@ -190,6 +193,12 @@ public class Menu_Handler : MonoBehaviour
                     anim_script.PlayAnimation(oa.attachedTarget.animation_Index, false, true, true);
                 }
                 i++;
+            }
+
+            //Reset Consumables
+            foreach(GameObject consumable in ingame_Consumables)
+            {
+                Destroy(consumable);
             }
 
             //Reset Widgets

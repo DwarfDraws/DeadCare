@@ -18,6 +18,7 @@ public class Target : MonoBehaviour
     float timeTillDeath_seconds;
     [HideInInspector] public bool isOpen; 
     [HideInInspector] public bool isTargeted;
+    public bool isTimerActive;
     public bool isWaitTarget;
     public bool isDeadly;
     public bool isConsumable;
@@ -185,6 +186,7 @@ public class Target : MonoBehaviour
 
     void ResetTimer()
     {
+        isTimerActive = false;
         timer = 1.0f;
     }
 

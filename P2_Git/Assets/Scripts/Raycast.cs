@@ -30,6 +30,7 @@ public class Raycast : MonoBehaviour
     float localLength_x_Object, localLength_z_Object;
     [HideInInspector] public bool isMoveable;
     bool MousePressed_L;
+    bool isRewindPossible;
     bool missingOffset;
     bool hasAttachedTarget;
     bool isObject_Animation_Rewinded;
@@ -96,6 +97,8 @@ public class Raycast : MonoBehaviour
                             MousePressed_L = true;
 
                             object_attachedTarget = hit.transform.GetComponent<Object_attributes>().attachedTarget;
+                            if(object_attachedTarget.isTimerActive) isRewindPossible = true;
+                            
                             object_Animation = hit.transform.GetComponentInChildren<Animation_Script>();
                         }
                         else hasAttachedTarget = false;
@@ -138,8 +141,8 @@ public class Raycast : MonoBehaviour
             {
                 if(MousePressed_L)
                 {
-                    //switch timer to go up 
-                    if(hasAttachedTarget && !canvas.isTapeBtnPressed && !canvas.isMoveBtnPressed)
+                    //switch timer to go UP 
+                    if(hasAttachedTarget && !canvas.isTapeBtnPressed && !canvas.isMoveBtnPressed && isRewindPossible)
                     { 
                         object_attachedTarget.ToggleDown(false);
                         
@@ -193,6 +196,8 @@ public class Raycast : MonoBehaviour
         //EDIT weist ja
         if (Input.GetMouseButtonUp(0))
         {
+            isRewindPossible = false;
+
             if (MousePressed_L){
                 obj_attributes = hitObject.GetComponent<Object_attributes>();
                 
@@ -205,7 +210,7 @@ public class Raycast : MonoBehaviour
                     hitObject.rotation = initObject_Rot; 
                 }
 
-                //switch timer to go down 
+                //switch timer to go DOWN 
                 if(hasAttachedTarget)
                 {
                     object_attachedTarget.ToggleDown(true);

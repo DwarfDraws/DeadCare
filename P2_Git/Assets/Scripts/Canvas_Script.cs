@@ -18,7 +18,7 @@ public class Canvas_Script : MonoBehaviour
     Object_attributes pref_consumable_attributes;
 
     [SerializeField] Camera cam;
-    public GameObject btn_move, btn_tape, btn_start, btn_skipCountdown, btn_consumable, btn_spawnChild;
+    public GameObject btn_move, btn_tape, btn_start, btn_skipCountdown, btn_consumable, btn_spawnChild, btn_NextLevel;
     public GameObject pnl_GameOver;
     //[SerializeField] GameObject youWin, youLose;
     [SerializeField] GameObject widget_prefab;

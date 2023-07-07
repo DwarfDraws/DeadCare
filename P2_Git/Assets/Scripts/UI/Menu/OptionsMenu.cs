@@ -7,13 +7,11 @@ using UnityEngine.UI;
 public class OptionsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
-
     public TMPro.TMP_Dropdown resolutionDropdown;
 
     Resolution[] resolutions;
     private void Start()
     {
-       
 
         resolutions = Screen.resolutions;
 
