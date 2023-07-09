@@ -17,7 +17,8 @@ public class Object_moveHandler : MonoBehaviour
     float localLength_x_Object, localLength_z_Object;
 
 
-    private void Start() {
+    private void Start() 
+    {
         floor_length_x  = floor.transform.localScale.x;
         floor_depth_z   = floor.transform.localScale.z;
 
@@ -189,7 +190,8 @@ public class Object_moveHandler : MonoBehaviour
         return offset_toOuterBorder;
     }
 
-    public void SetObject(Object_attributes obj_attributes_, float localLength_x_Object_, float localLength_z_Object_){
+    public void SetObject(Object_attributes obj_attributes_, float localLength_x_Object_, float localLength_z_Object_)
+    {
         obj_attributes = obj_attributes_;
         localLength_x_Object = localLength_x_Object_;
         localLength_z_Object = localLength_z_Object_;

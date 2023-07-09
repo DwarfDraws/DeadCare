@@ -54,6 +54,7 @@ MonoBehaviour:
   - {fileID: 7903768154195780908}
   - {fileID: 3066168600240412140}
   - {fileID: 437210744674446290}
+  noMoveArea_Spawn: {fileID: 0}
   countdownTxt_Size_MAX: 0
   countdownTxt_TimeFromWhenScale: 0
   isGameOver: 0
@@ -1970,6 +1971,10 @@ PrefabInstance:
       propertyPath: btn_consumable
       value: 
       objectReference: {fileID: 3640660128851540222}
+    - target: {fileID: 2642965194358850329, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}
+      propertyPath: consumableGhost
+      value: 
+      objectReference: {fileID: 178023333249886667}
     - target: {fileID: 2642965194358850329, guid: 115a6c3d61c0aed4980da262e6e3a0ab, type: 3}
       propertyPath: obj_moveHandler
       value: 

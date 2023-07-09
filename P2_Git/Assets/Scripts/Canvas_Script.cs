@@ -21,10 +21,11 @@ public class Canvas_Script : MonoBehaviour
     public GameObject btn_move, btn_tape, btn_start, btn_skipCountdown, btn_consumable, btn_spawnChild, btn_NextLevel;
     public GameObject pnl_GameOver;
     //[SerializeField] GameObject youWin, youLose;
+    [SerializeField] List<GameObject> stars = new List<GameObject>();
     [SerializeField] GameObject widget_prefab;
     [SerializeField] GameObject pref_consumable;
+    [SerializeField] GameObject consumableGhost;
     GameObject[] allObstacles;
-    [SerializeField] List<GameObject> stars = new List<GameObject>();
     List<Image> stars_Images = new List<Image>();
     [SerializeField] Sprite star_Filled;
     //[SerializeField] Sprite star_Empty;
@@ -76,6 +77,8 @@ public class Canvas_Script : MonoBehaviour
 
     public void InstantiateConsumable()
     {
+        if(!btnConsumable) return;
+        
         Vector3 instantiate_pos = raycast.GetMousePos3D();
         obj_moveHandler.SetObject(pref_consumable_attributes, pref_consumable_localScaleX, pref_consumable_localScaleZ);
         
@@ -100,6 +103,7 @@ public class Canvas_Script : MonoBehaviour
                 btn_tape.GetComponent<Image>().color = Color.white;
                 SetTapeableHalosActive(false);
             }
+
             btn_move.GetComponent<Image>().color = Color.gray;
             SetMoveableHalosActive(true);  
         }
@@ -122,6 +126,7 @@ public class Canvas_Script : MonoBehaviour
                 btn_move.GetComponent<Image>().color = Color.white;
                 SetMoveableHalosActive(false);
             }
+
             btn_tape.GetComponent<Image>().color = Color.gray;
             SetTapeableHalosActive(true);
         }
@@ -147,6 +152,10 @@ public class Canvas_Script : MonoBehaviour
     public bool isBtnPressed_Consumable()
     {
         return btnConsumable;
+    }
+    public void HideConsumableGhost()
+    {
+        consumableGhost.SetActive(false);
     }
 
 
@@ -197,8 +206,9 @@ public class Canvas_Script : MonoBehaviour
 
     public float GetCountdown_Txt_Size()
     {
-        if(txt_Countdown != null) return txt_Countdown.fontSize;
-        else return 0;
+        if(txt_Countdown == null) return 0;
+        
+        return txt_Countdown.fontSize;
     }
 
     public void SetChildrenCounter_Txt(string text)

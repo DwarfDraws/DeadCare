@@ -59,44 +59,48 @@ public class NavMesh : MonoBehaviour
     //gets also called when mousebutton is released after dragging dynamic obstacle
     public void RecalculatePath(NavMeshAgent agent){ 
 
-        if(agents != null){
-
-            Children children = agent.gameObject.GetComponent<Children>();
-            List<Target> openTargets; //EDIT: Make global?
-            int targetIndex;
-            Vector3 destination;
-
-            UpdateAllOpenTargets(agent);
-            Update_AllTargeted();
-            openTargets = GetOpenTargets();
-
-            if(openTargets.Count == 0)
-            {
-                StopAgent(agent);
-                return;
-            }
-
-
-            targetIndex = RandomTargetIndex(openTargets);
-            destination = openTargets[targetIndex].gameObject.transform.position;
-
-            //Calculates the Path
-            if (agent.CalculatePath(destination, path)) 
-            {         
-                //sets navMesh Path   
-                if (path.status == NavMeshPathStatus.PathComplete){ //EDIT: already calculated in UpdateAllOpenTargets(agent); ?
-                    agent.destination = destination;
-                    agent.isStopped = false;
-
-
-                    openTargets[targetIndex].isTargeted = true;
-                    children.CurrentTarget = openTargets[targetIndex];
-                    
-                    //Debug.Log(agent.name + " target: " + openTargets[targetIndex].name);
-                }           
-            }
+        if(agents == null){
+            Debug.Log("ALL CHILDREN DEAD!");
+            return;
         }
-        else Debug.Log("ALL CHILDREN DEAD!");
+
+
+        Children children = agent.gameObject.GetComponent<Children>();
+        List<Target> openTargets; //EDIT: Make global?
+        int targetIndex;
+        Vector3 destination;
+
+        UpdateAllOpenTargets(agent);
+        Update_AllTargeted();
+        openTargets = GetOpenTargets();
+
+        if(openTargets.Count == 0)
+        {
+            StopAgent(agent);
+            return;
+        }
+
+
+        targetIndex = RandomTargetIndex(openTargets);
+        destination = openTargets[targetIndex].gameObject.transform.position;
+
+        //Calculates the Path
+        if (agent.CalculatePath(destination, path)) 
+        {         
+            //sets navMesh Path   
+            if (path.status == NavMeshPathStatus.PathComplete){ //EDIT: already calculated in UpdateAllOpenTargets(agent); ?
+                agent.destination = destination;
+                agent.isStopped = false;
+
+
+                openTargets[targetIndex].isTargeted = true;
+                children.CurrentTarget = openTargets[targetIndex];
+                
+                //Debug.Log(agent.name + " target: " + openTargets[targetIndex].name);
+            }           
+        
+        }
+
     }
 
 
@@ -104,24 +108,23 @@ public class NavMesh : MonoBehaviour
     public void SetSpecificPath(NavMeshAgent agent, Target target){
         UpdateAllOpenTargets(agent);
         
-        if(target.isOpen)
-        {  
-            Children children = agent.gameObject.GetComponent<Children>();
-            Vector3 destination;
-            destination = target.transform.position;
+        if(!target.isOpen) return;
+        
+        Children children = agent.gameObject.GetComponent<Children>();
+        Vector3 destination;
+        destination = target.transform.position;
 
-            //Calculates the Path
-            if (agent.CalculatePath(destination, path)) 
-            {         
-                //sets navMesh Path   
-                if (path.status == NavMeshPathStatus.PathComplete){ 
-                    agent.destination = destination;
-                    agent.isStopped = false;
-                    target.isOpen = false;
+        //Calculates the Path
+        if (agent.CalculatePath(destination, path)) 
+        {         
+            //sets navMesh Path   
+            if (path.status == NavMeshPathStatus.PathComplete){ 
+                agent.destination = destination;
+                agent.isStopped = false;
+                target.isOpen = false;
 
-                    children.CurrentTarget = target;
-                }           
-            }
+                children.CurrentTarget = target;
+            }           
         }
     }
 
@@ -151,7 +154,7 @@ public class NavMesh : MonoBehaviour
 
     public void StopAgent(NavMeshAgent agent)
     {
-        Debug.Log("StopAgent(): " + agent.name);
+        //Debug.Log("StopAgent(): " + agent.name);
         agent.isStopped = true;
         stoppedAgents.Add(agent);
     }

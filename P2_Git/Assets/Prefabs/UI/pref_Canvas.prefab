@@ -2696,8 +2696,8 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 2642965194358850329}
           m_TargetAssemblyTypeName: Canvas_Script, Assembly-CSharp
-          m_MethodName: SetButton_Consumable
-          m_Mode: 6
+          m_MethodName: InstantiateConsumable
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2708,8 +2708,8 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 2642965194358850329}
           m_TargetAssemblyTypeName: Canvas_Script, Assembly-CSharp
-          m_MethodName: InstantiateConsumable
-          m_Mode: 1
+          m_MethodName: SetButton_Consumable
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3359,6 +3359,7 @@ MonoBehaviour:
   btn_skipCountdown: {fileID: 0}
   btn_consumable: {fileID: 0}
   btn_spawnChild: {fileID: 358519008728201010}
+  btn_NextLevel: {fileID: 0}
   pnl_GameOver: {fileID: 1510766077933562000}
   widget_prefab: {fileID: 4227024364464450912, guid: 5b4b975f5679b9b4d9375c37186a0a04, type: 3}
   pref_consumable: {fileID: 1431314073483110035, guid: 0c18892e1042be14ba7c2c2de462bb02, type: 3}

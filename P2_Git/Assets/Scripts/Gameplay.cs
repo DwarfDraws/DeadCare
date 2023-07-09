@@ -23,12 +23,11 @@ public class Gameplay : MonoBehaviour
 
     private void Start() 
     {
-        if(!isCreatorMode)
-        {
-            int rewarded_Consumables = menu_Handler.GetScore();
-            SetConsumableCount(rewarded_Consumables);
-            //Debug.Log("rewarded_Consumables: " + rewarded_Consumables);
-        }
+        if(isCreatorMode) return;
+
+        int rewarded_Consumables = menu_Handler.GetScore();
+        SetConsumableCount(rewarded_Consumables);
+        //Debug.Log("rewarded_Consumables: " + rewarded_Consumables);
     }
 
 
@@ -44,7 +43,7 @@ public class Gameplay : MonoBehaviour
     }
     public int GetChildCount()
     {
-        Debug.Log(current_childCounter);
+        //Debug.Log(current_childCounter);
         return current_childCounter;
     }
     void ResetChildCount()
@@ -93,23 +92,22 @@ public class Gameplay : MonoBehaviour
 
     public void InstantiateConsumable(GameObject pref_consumable, Vector3 inst_Pos)
     {
-        if(current_consumableCounter > 0)
-        {
-            GameObject consumable = Instantiate(pref_consumable, inst_Pos, Quaternion.identity); 
-            SphereCollider sc = consumable.GetComponentInChildren<SphereCollider>();
-            sc.radius = 0.5f * settings.consumable_radius;
+        if(!(current_consumableCounter > 0)) return;
 
-            //check collision with noMoveArea
-            if (Physics.CheckSphere(inst_Pos, 0.4f, noMoveArea_Layer)) 
-            {
-                Destroy(consumable);
-                return;
-            }
-            
-            DecreaseConsumableCount();
-            menu_Handler.ingame_Consumables.Add(consumable);
-            menu_Handler.DecreaseScore();
+        GameObject consumable = Instantiate(pref_consumable, inst_Pos, Quaternion.identity); 
+        SphereCollider sc = consumable.GetComponentInChildren<SphereCollider>();
+        sc.radius = 0.5f * settings.consumable_radius;
+
+        //check collision with noMoveArea
+        if (Physics.CheckSphere(inst_Pos, 0.4f, noMoveArea_Layer)) 
+        {
+            Destroy(consumable);
+            return;
         }
+        
+        DecreaseConsumableCount();
+        menu_Handler.ingame_Consumables.Add(consumable);
+        menu_Handler.DecreaseScore();
     }
 
     public void DecreaseConsumableCount() 

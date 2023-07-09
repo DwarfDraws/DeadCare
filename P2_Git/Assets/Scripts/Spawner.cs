@@ -22,8 +22,8 @@ public class Spawner : MonoBehaviour
         navMesh = GameObject.Find(navMeshHandler_name).GetComponent<NavMesh>();
     }
 
-    private void Update() {
-
+    private void Update() 
+    {
         if(isSpawning && !isBlocked && childrenToSpawn > 0)
         {
             int rndmIndex = Random.Range(0, 2);

@@ -40,8 +40,8 @@ public class Target : MonoBehaviour
             attachedObject_Animation = attachedObject.GetComponentInChildren<Animation_Script>();
             attachedObject_Animation.SetAnimationSpeed(animation_Index, waitTime_seconds, true);
         }
-        if(attachedObject == null && !isConsumable) isWaitTarget = true;
-        else isWaitTarget = false;
+ 
+        isWaitTarget = (attachedObject == null && !isConsumable) ? true : false;
 
         timer = 1.0f;
         timerDown = true;
@@ -84,8 +84,6 @@ public class Target : MonoBehaviour
         if(timerDown)
         {
             timer -= Time.deltaTime / waitTime_seconds;
-      
-
             if(timer <= 0)
             {
                 if(isTaped)
@@ -98,23 +96,23 @@ public class Target : MonoBehaviour
                     currentChild_atTarget.Reset(); 
                     ResetTimer();
                 }
-                
+
                 else if(isDeadly)
                 {
                     isOpen = true;
                     isTargeted = false;
-                    
+
                     if(attachedObject_Animation != null)
                     {
                         Animation_Script o_anim = attachedObject_Animation;
                         Animation_Script c_anim = currentChild_atTarget.animation_script;                       
-                        
+
                         timeTillDeath_seconds = attachedObject_Animation.Get_DeathAnimClipLength(animation_Index, true);
                         o_anim.PlayAnimation(animation_Index, true, true, true);
                         c_anim.PlayAnimation(animation_Index, true, false, true);
 
                     } 
-                    
+
                     childDies = true;
                     currentChild_atTarget.ResetTimer();
                     ResetTimer();
@@ -168,8 +166,7 @@ public class Target : MonoBehaviour
 
     public void ToggleDown(bool isDown) 
     { 
-        if(isDown) timerDown = true;
-        else timerDown = false;
+        timerDown = isDown ? true : false;
     }
 
     public void InstantiateWidget_target(Vector3 widget_worldPos, Color color)

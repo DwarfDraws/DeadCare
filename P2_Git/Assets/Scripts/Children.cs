@@ -65,11 +65,7 @@ public class Children : MonoBehaviour
             if(settings.isTutorial) 
             {
                 if(tutorialTargets.Count != 0) navMesh.SetSpecificPath(attachedAgent, tutorialTargets[tutorialIndex]);
-                else
-                {
-                    Debug.Log("Error: no tutorial-target set.");
-                    navMesh.StopAgent(attachedAgent);
-                }
+                else navMesh.StopAgent(attachedAgent);
             }
             else navMesh.RecalculatePath(attachedAgent);
             isPathInitialized = true;
@@ -170,7 +166,7 @@ public class Children : MonoBehaviour
         //child IS in the Consumable, but did not detect it yet
         if (other.tag == target_tag && hitTarget == currentTarget && !isTargetDetected)
         {
-            Debug.Log("stay");
+            //Debug.Log("stay");
             triggerObject = other.gameObject;
 
             animation_script.PlayWalkingAnimation(false); 
@@ -302,8 +298,7 @@ public class Children : MonoBehaviour
 
     void IsSafeZone(bool isActivated)
     {
-        if (isActivated) isInSafeZone = true;
-        else isInSafeZone = false;
+        isInSafeZone = isActivated ? true : false;
     }
     
 

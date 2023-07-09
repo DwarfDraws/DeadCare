@@ -31,17 +31,17 @@ public class Object_attributes : MonoBehaviour
 
     public void SetTapeActive(bool isActive)
     {
-        if(tape != null){
-            if (isActive){
-                isTaped = true;
-                tape.SetActive(true);
-                attachedTarget.SetTargetTaped();
-            }
-            else{
-                isTaped = false;
-                tape.SetActive(false);
-                attachedTarget.SetTargetUntaped();
-            }
+        if(tape == null) return;
+
+        if (isActive){
+            isTaped = true;
+            tape.SetActive(true);
+            attachedTarget.SetTargetTaped();
+        }
+        else{
+            isTaped = false;
+            tape.SetActive(false);
+            attachedTarget.SetTargetUntaped();
         }
     }
 
@@ -52,21 +52,17 @@ public class Object_attributes : MonoBehaviour
     public bool IsClamped_Back(){ return isClamped_back; } 
 
     public void SetClamp_Left(bool isClamped){
-        if(isClamped) isClamped_left = true;
-        else isClamped_left = false;
+        isClamped_left = isClamped ? true : false;
     }
     public void SetClamp_Right(bool isClamped){
-        if(isClamped) isClamped_right = true;
-        else isClamped_right = false;
+        isClamped_right = isClamped ? true : false;
 
     }
     public void SetClamp_Front(bool isClamped){
-        if(isClamped) isClamped_front = true;
-        else isClamped_front = false;
+        isClamped_front = isClamped ? true : false;
     }
     public void SetClamp_Back(bool isClamped){
-        if(isClamped) isClamped_back = true;
-        else isClamped_back = false;
+        isClamped_back = isClamped ? true : false;
     }
 
 

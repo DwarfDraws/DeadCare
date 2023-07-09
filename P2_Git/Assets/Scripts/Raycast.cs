@@ -190,58 +190,63 @@ public class Raycast : MonoBehaviour
 
                 }
             }
-        }
-            
-        //Left Mouse Up finally re-calculates NavMesh
-        //EDIT weist ja
-        if (Input.GetMouseButtonUp(0))
-        {
-            isRewindPossible = false;
 
-            if (MousePressed_L){
-                obj_attributes = hitObject.GetComponent<Object_attributes>();
-                
-                MousePressed_L = false;
-                missingOffset = false;
 
-                if(obj_attributes.isInNoMoveArea)
-                {
-                    hitObject.position = initObject_Pos;
-                    hitObject.rotation = initObject_Rot; 
-                }
+            if (Input.GetMouseButtonDown(1)) 
+            {
+                canvas.SetButton_Consumable(false);
+                canvas.HideConsumableGhost();
+            }
 
-                //switch timer to go DOWN 
-                if(hasAttachedTarget)
-                {
-                    object_attachedTarget.ToggleDown(true);
-                    if(isObject_Animation_Rewinded) 
+            //Left Mouse Up finally re-calculates NavMesh
+            //EDIT weist ja
+            if (Input.GetMouseButtonUp(0))
+            {
+                isRewindPossible = false;
+
+                if (MousePressed_L){
+                    obj_attributes = hitObject.GetComponent<Object_attributes>();
+                    
+                    MousePressed_L = false;
+                    missingOffset = false;
+
+                    if(obj_attributes.isInNoMoveArea)
                     {
-                        if(object_Animation != null) object_Animation.RewindAnimation();
-                        if (object_attachedTarget.currentChild_atTarget != null) object_attachedTarget.currentChild_atTarget.animation_script.RewindAnimation();
-                        isObject_Animation_Rewinded = false;
+                        hitObject.position = initObject_Pos;
+                        hitObject.rotation = initObject_Rot; 
                     }
 
+                    //switch timer to go DOWN 
+                    if(hasAttachedTarget)
+                    {
+                        object_attachedTarget.ToggleDown(true);
+                        if(isObject_Animation_Rewinded) 
+                        {
+                            if(object_Animation != null) object_Animation.RewindAnimation();
+                            if (object_attachedTarget.currentChild_atTarget != null) object_attachedTarget.currentChild_atTarget.animation_script.RewindAnimation();
+                            isObject_Animation_Rewinded = false;
+                        }
+
+                    }
+                }
+            }
+
+
+            //consumables
+            if(canvas.isBtnPressed_Consumable()){
+                ray = main_camera.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray, out hit, float.MaxValue, layer_Floor)){
+                    mouse_Pos3D = hit.point;
+                    mouse_Pos3D.y = consumable_ghostObject.position.y;
+
+                    localLength_x_Object = consumable_ghostObject.localScale.x;
+                    localLength_z_Object = consumable_ghostObject.localScale.z;
+
+                    consumable_ghostObject.position = mouse_Pos3D;
                 }
             }
         }
-
-
-        //consumables
-        if(canvas.isBtnPressed_Consumable()){
-            ray = main_camera.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit, float.MaxValue, layer_Floor)){
-                mouse_Pos3D = hit.point;
-                mouse_Pos3D.y = consumable_ghostObject.position.y;
-
-                localLength_x_Object = consumable_ghostObject.localScale.x;
-                localLength_z_Object = consumable_ghostObject.localScale.z;
-
-                consumable_ghostObject.position = mouse_Pos3D;
-            }
-        }
-
-        
     }
 
     public Vector3 GetMousePos3D(){
