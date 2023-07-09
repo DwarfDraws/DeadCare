@@ -857,6 +857,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -30
       objectReference: {fileID: 0}
+    - target: {fileID: 2625686117659107189, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
+      propertyPath: noMoveArea_Spawn
+      value: 
+      objectReference: {fileID: 2005268733}
     - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
       propertyPath: playtesting
       value: 0
@@ -3015,7 +3019,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 351115c180fe4ee4d8ea4e46d5a5c4b7, type: 2}
     - target: {fileID: 4287494634739708516, guid: 4db9aafb40bcf654497853fa9a9a4dcf, type: 3}
       propertyPath: m_Extents.x
-      value: 0.25
+      value: 0.315
       objectReference: {fileID: 0}
     - target: {fileID: 4287494634739708516, guid: 4db9aafb40bcf654497853fa9a9a4dcf, type: 3}
       propertyPath: m_Extents.z
@@ -4029,7 +4033,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287494634739708516, guid: 4db9aafb40bcf654497853fa9a9a4dcf, type: 3}
       propertyPath: m_Extents.x
-      value: 0.25
+      value: 0.395
       objectReference: {fileID: 0}
     - target: {fileID: 4287494634739708516, guid: 4db9aafb40bcf654497853fa9a9a4dcf, type: 3}
       propertyPath: m_Extents.z
@@ -5128,6 +5132,11 @@ PrefabInstance:
 --- !u!4 &2005268732 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3045541583628466413, guid: ad0899b668177a6489f5ccf8cafb0060, type: 3}
+  m_PrefabInstance: {fileID: 2005268731}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2005268733 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 633638192627041334, guid: ad0899b668177a6489f5ccf8cafb0060, type: 3}
   m_PrefabInstance: {fileID: 2005268731}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2062071155 stripped

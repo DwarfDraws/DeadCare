@@ -15,6 +15,7 @@ public class Menu_Handler : MonoBehaviour
 
     public List<GameObject> ingame_Consumables = new List<GameObject>();
     [SerializeField] GameObject[] reward_stars;
+    [SerializeField] GameObject noMoveArea_Spawn;
     GameObject[] obstacles;
 
     [HideInInspector] public int countdownTxt_Size_MAX;
@@ -119,6 +120,8 @@ public class Menu_Handler : MonoBehaviour
         prepCountDownStart = true;
         countdown_Speed = 1;
 
+        noMoveArea_Spawn.SetActive(true);
+
         canvas.ActivateButton_Consumable(false); //Cookies are not available in Prep-Phase!
         canvas.btn_skipCountdown.SetActive(true);
     }
@@ -136,6 +139,8 @@ public class Menu_Handler : MonoBehaviour
         canvas.Deactivate_TapeButton();
         canvas.SetMoveableHalosActive(false);
         canvas.SetTapeableHalosActive(false);
+
+        noMoveArea_Spawn.SetActive(false);
 
         Animator door_anim = GameObject.Find(door_name).GetComponent<Animator>();
         door_anim.SetTrigger("türAuf");

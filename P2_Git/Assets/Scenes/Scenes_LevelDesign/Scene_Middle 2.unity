@@ -1631,6 +1631,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -30
       objectReference: {fileID: 0}
+    - target: {fileID: 2625686117659107189, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
+      propertyPath: noMove_Spawn
+      value: 
+      objectReference: {fileID: 1586885253}
     - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
       propertyPath: creatorMode
       value: 0
@@ -7061,6 +7065,11 @@ PrefabInstance:
 --- !u!4 &1586885252 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3045541583628466413, guid: ad0899b668177a6489f5ccf8cafb0060, type: 3}
+  m_PrefabInstance: {fileID: 1586885251}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1586885253 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 633638192627041334, guid: ad0899b668177a6489f5ccf8cafb0060, type: 3}
   m_PrefabInstance: {fileID: 1586885251}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1611294845

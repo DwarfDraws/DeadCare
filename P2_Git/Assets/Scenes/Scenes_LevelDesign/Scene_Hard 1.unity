@@ -1455,6 +1455,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3045541583628466413, guid: ad0899b668177a6489f5ccf8cafb0060, type: 3}
   m_PrefabInstance: {fileID: 154026078}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &154026080 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 633638192627041334, guid: ad0899b668177a6489f5ccf8cafb0060, type: 3}
+  m_PrefabInstance: {fileID: 154026078}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &160267772
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9994,6 +9999,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -30
       objectReference: {fileID: 0}
+    - target: {fileID: 2625686117659107189, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
+      propertyPath: noMoveArea_Spawn
+      value: 
+      objectReference: {fileID: 154026080}
     - target: {fileID: 2854175084282038385, guid: 539abbefa151af446bfb7b5c5c496141, type: 3}
       propertyPath: tape_Amount
       value: 3
