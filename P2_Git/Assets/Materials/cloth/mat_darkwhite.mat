@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mat_wallcol 3
-  m_Shader: {fileID: -6465566751694194690, guid: a29f12b3096ed9549b15f2bc46d3a230, type: 3}
+  m_Name: mat_darkwhite
+  m_Shader: {fileID: -6465566751694194690, guid: 8b1e40a44e7fe524fb83e5a2ca81cce1, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -23,20 +23,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _SampleTexture2D_60a263299efe493797c4422345be6162_Texture_1:
-        m_Texture: {fileID: 2800000, guid: 4eba1a97feaf8fb4e8c5cf4b55092f40, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _mask:
-        m_Texture: {fileID: 2800000, guid: e7f1d8ed4427f6e48a9a20d38673cbc7, type: 3}
+    - _colormap:
+        m_Texture: {fileID: 2800000, guid: 109447c14e9d9a8499756a9acec0d474, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _normal:
-        m_Texture: {fileID: 2800000, guid: 4eba1a97feaf8fb4e8c5cf4b55092f40, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _saturated:
-        m_Texture: {fileID: 2800000, guid: 5e68998e16b069c4ba7918f0567721f6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7f9e99a727db8994086211d511500a07, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -55,13 +47,12 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ao: 0
-    - _smoothnes: -3
+    - _metallicness: 0
+    - _smoothness: 0
     m_Colors:
-    - _wall: {r: 0.9811321, g: 0.9717512, b: 0.38360822, a: 0}
-    - _wood: {r: 0.9339623, g: 0.71856356, b: 0.593859, a: 0}
+    - _tint: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &1522578512059651966
+--- !u!114 &7439962308902730079
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

@@ -1034,7 +1034,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.75, y: 0.5, z: 0.25}
+  m_Extents: {x: 0.75, y: 0.5, z: 0.35}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -1060,6 +1060,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 77405f0bbeab58341b27fdd376b7c706, type: 3}
   m_RemoveTapes:
   - {fileID: 8300000, guid: fa03a8953354ab1468347890929f783a, type: 3}
+  doorOpen: {fileID: 0}
+  doorClose: {fileID: 0}
   m_AudioSource: {fileID: 1931060879521058821}
 --- !u!1001 &6708368989161248017
 PrefabInstance:
@@ -1354,16 +1356,32 @@ PrefabInstance:
     m_TransformParent: {fileID: 3845947492418852680}
     m_Modifications:
     - target: {fileID: 217475149990960446, guid: ad0899b668177a6489f5ccf8cafb0060, type: 3}
+      propertyPath: m_Size.x
+      value: 1.1920816
+      objectReference: {fileID: 0}
+    - target: {fileID: 217475149990960446, guid: ad0899b668177a6489f5ccf8cafb0060, type: 3}
       propertyPath: m_Size.y
-      value: 0.38965586
+      value: 0.5594215
+      objectReference: {fileID: 0}
+    - target: {fileID: 217475149990960446, guid: ad0899b668177a6489f5ccf8cafb0060, type: 3}
+      propertyPath: m_Size.z
+      value: 1.214372
       objectReference: {fileID: 0}
     - target: {fileID: 217475149990960446, guid: ad0899b668177a6489f5ccf8cafb0060, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 217475149990960446, guid: ad0899b668177a6489f5ccf8cafb0060, type: 3}
+      propertyPath: m_Center.x
+      value: -0.026637983
+      objectReference: {fileID: 0}
+    - target: {fileID: 217475149990960446, guid: ad0899b668177a6489f5ccf8cafb0060, type: 3}
       propertyPath: m_Center.y
-      value: -0.30517206
+      value: -0.22028926
+      objectReference: {fileID: 0}
+    - target: {fileID: 217475149990960446, guid: ad0899b668177a6489f5ccf8cafb0060, type: 3}
+      propertyPath: m_Center.z
+      value: 0.010864174
       objectReference: {fileID: 0}
     - target: {fileID: 633638192627041334, guid: ad0899b668177a6489f5ccf8cafb0060, type: 3}
       propertyPath: m_Name
