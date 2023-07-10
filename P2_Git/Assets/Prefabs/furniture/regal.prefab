@@ -126,6 +126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1139960153212322880}
   - component: {fileID: 7372454179074248849}
+  - component: {fileID: 2311210209993704597}
   m_Layer: 0
   m_Name: regal
   m_TagString: obstacle
@@ -172,6 +173,26 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: -1.17}
   m_TimeToStationary: 0.5
+--- !u!114 &2311210209993704597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549369232210716569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0b761287f9862b4ebe3d337d87e55d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attachedTarget: {fileID: 0}
+  tape: {fileID: 0}
+  moveableHalo: {fileID: 4465010551947644302}
+  tapeableHalo: {fileID: 0}
+  isRotated: 0
+  isTaped: 0
+  isInNoMoveArea: 0
+  isMoveable: 1
 --- !u!1 &1228135976753509993
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +625,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8305049349394969074
 Transform:
   m_ObjectHideFlags: 0
@@ -613,8 +634,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4465010551947644302}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0.29057115, y: 0.001159817, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: 0.29057115, y: -0.034, z: 0}
+  m_LocalScale: {x: 104.4669, y: 104.4669, z: 104.4669}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1139960153212322880}
@@ -648,7 +669,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: 6d448115c6427964591e2df64ebe4c85, type: 3}
+  - {fileID: 2100000, guid: 4f1af4fc41e66a84c9b2f0ff99231729, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
