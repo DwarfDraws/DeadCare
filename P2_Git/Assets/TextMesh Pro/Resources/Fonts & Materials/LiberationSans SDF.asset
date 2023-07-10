@@ -30,13 +30,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FaceDilate: 0.317
-    - _OutlineWidth: 0.215
+    - _FaceDilate: 0.35
+    - _OutlineSoftness: 0
+    - _OutlineWidth: 0.25
     - _ScaleRatioA: 0.9
-    - _ScaleRatioC: 0.44594997
+    - _ScaleRatioC: 0.41625
     m_Colors:
-    - _FaceColor: {r: 1, g: 0.69559526, b: 0, a: 1}
-    - _OutlineColor: {r: 0.41509432, g: 0.050066777, b: 0, a: 1}
+    - _FaceColor: {r: 0.9473069, g: 0.7156938, b: 0.25415218, a: 1}
+    - _OutlineColor: {r: 0.09305898, g: 0.005181517, b: 0.005181517, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &11400000
 MonoBehaviour:
