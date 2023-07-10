@@ -130,12 +130,11 @@ public class Gameplay : MonoBehaviour
         return current_consumableCounter;
     }
 
-
     public void Reset()
     {
         ResetChildCount();
         childCounter.ResetChildCount();
-        ResetConsumableCount();
+        SetConsumableCount(menu_Handler.GetScore());
         ResetTapeCount();
     }
 }

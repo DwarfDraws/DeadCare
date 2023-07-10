@@ -167,7 +167,7 @@ public class Menu_Handler : MonoBehaviour
             //Debug.Log("starReward_Count: " + starReward_Count);
             AddScoreReward(starReward_Count);
             canvas.SetStarImages(starReward_Count);
-            if(survivedChildren == 0) canvas.btn_NextLevel.SetActive(false);
+            if(survivedChildren <= 1) canvas.btn_NextLevel.SetActive(false);
             else canvas.btn_NextLevel.SetActive(true);
             canvas.pnl_GameOver.SetActive(true);
 
