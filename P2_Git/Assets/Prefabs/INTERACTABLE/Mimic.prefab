@@ -1025,7 +1025,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.175, y: 0.5, z: 0.075}
+  m_Extents: {x: 0.325, y: 0.5, z: 0.075}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -1052,6 +1052,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 77405f0bbeab58341b27fdd376b7c706, type: 3}
   m_RemoveTapes:
   - {fileID: 8300000, guid: fa03a8953354ab1468347890929f783a, type: 3}
+  doorOpen: {fileID: 0}
+  doorClose: {fileID: 0}
   m_AudioSource: {fileID: 8612212034489178895}
 --- !u!4 &8975031859541179295 stripped
 Transform:
