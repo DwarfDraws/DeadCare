@@ -33,11 +33,7 @@ public class InGamePauseMenu : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    //das hier sollte in nem anderen Menü sein!
     public void nextLevel(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-    public void StartMenu(){
-        SceneManager.LoadScene(0);
     }
 }
