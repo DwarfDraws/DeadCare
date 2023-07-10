@@ -38,6 +38,6 @@ public class InGamePauseMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void StartMenu(){
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }

@@ -6,12 +6,17 @@ using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
+    SaveData saveData;
+
+    [SerializeField] Slider vol_Slider;
     public AudioMixer audioMixer;
     public TMPro.TMP_Dropdown resolutionDropdown;
 
     Resolution[] resolutions;
     private void Start()
     {
+
+        LoadVolume();
 
         resolutions = Screen.resolutions;
 
@@ -37,10 +42,6 @@ public class OptionsMenu : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
     }
 
-    public void SetVolume (float volume)
-    {
-        AudioListener.volume = volume;
-    }
 
     public void SetFullscreen (bool isFullscreen)
     {
@@ -51,6 +52,20 @@ public class OptionsMenu : MonoBehaviour
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
+
+    public void SetVolume (float volume)
+    {
+        AudioListener.volume = volume;
+        saveData = SaveManager.Load();
+        saveData.volume = volume;
+        SaveManager.Save(saveData);
+    }
+    public void LoadVolume()
+    {
+        saveData = SaveManager.Load();
+        vol_Slider.value = saveData.volume;
     }
    
 }

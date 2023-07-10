@@ -5,8 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class BeginningScreen : MonoBehaviour
 {
-
     [SerializeField] PersistentSoundLogic pSL;
+
+
+    private void Start() {
+        InitVolSettings();
+    }
+
+
     private void Update(){
         
         if(Input.anyKey){
@@ -14,5 +20,12 @@ public class BeginningScreen : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         
+    }
+
+    void InitVolSettings()
+    {
+        SaveData saveData = SaveManager.Load();
+        saveData.volume = 1.0f;
+        SaveManager.Save(saveData);
     }
 }
