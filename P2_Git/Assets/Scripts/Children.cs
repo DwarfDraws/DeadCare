@@ -283,6 +283,7 @@ public class Children : MonoBehaviour
         }
         
         animation_script.ResetChildAnimations();
+        animation_script.PlayWalkingAnimation(true);
         IsSafeZone(false);
         isTargetDetected = false;
         isWidgetInstantiated = false;
