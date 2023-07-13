@@ -66,6 +66,14 @@ public class Object_attributes : MonoBehaviour
     }
 
 
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.GetComponent<Target>() != null)
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if(isMoveable && other.tag == tag_noMoveArea && !isInNoMoveArea)
@@ -80,7 +88,12 @@ public class Object_attributes : MonoBehaviour
         {
             isInNoMoveArea = false;
             moveableHalo_Mat.SetColor("_BaseColor", init_moveableHalo_Color);
-        }    
+        } 
+
+        if(other.gameObject.GetComponent<Target>() != null)
+        {
+            other.gameObject.SetActive(true);
+        } 
     }
 
 }
