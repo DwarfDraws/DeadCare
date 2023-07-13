@@ -217,7 +217,7 @@ public class NavMesh : MonoBehaviour
 
         foreach(Target t in targets)
         {
-            if (t.isOpen && !t.isTargeted) openTargets.Add(t);
+            if (t.isOpen && !t.isTargeted && !t.isCovered) openTargets.Add(t);
         }
 
         return openTargets;

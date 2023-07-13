@@ -70,7 +70,7 @@ public class Object_attributes : MonoBehaviour
     {
         if(other.gameObject.GetComponent<Target>() != null)
         {
-            other.gameObject.SetActive(false);
+            other.gameObject.GetComponent<Target>().isCovered = true;
         }
     }
 
@@ -92,7 +92,7 @@ public class Object_attributes : MonoBehaviour
 
         if(other.gameObject.GetComponent<Target>() != null)
         {
-            other.gameObject.SetActive(true);
+            other.gameObject.GetComponent<Target>().isCovered = false;
         } 
     }
 
