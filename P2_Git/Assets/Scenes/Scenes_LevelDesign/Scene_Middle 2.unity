@@ -6042,7 +6042,6 @@ GameObject:
   - component: {fileID: 1396364073}
   - component: {fileID: 1396364075}
   - component: {fileID: 1396364074}
-  - component: {fileID: 1396364076}
   m_Layer: 0
   m_Name: pillow1
   m_TagString: Untagged
@@ -6115,22 +6114,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1396364072}
   m_Mesh: {fileID: -2400686715723578074, guid: 023a3001a305b4240b6ddf042b4e754c, type: 3}
---- !u!208 &1396364076
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1396364072}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.001, y: 0.001, z: 0.002}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &1408952421
 GameObject:
   m_ObjectHideFlags: 0
@@ -9326,7 +9309,6 @@ GameObject:
   - component: {fileID: 1887923064}
   - component: {fileID: 1887923066}
   - component: {fileID: 1887923065}
-  - component: {fileID: 1887923067}
   m_Layer: 0
   m_Name: pillow1 (1)
   m_TagString: Untagged
@@ -9399,22 +9381,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1887923063}
   m_Mesh: {fileID: -2400686715723578074, guid: 023a3001a305b4240b6ddf042b4e754c, type: 3}
---- !u!208 &1887923067
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1887923063}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.001, y: 0.001, z: 0.002}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1001 &1946494124
 PrefabInstance:
   m_ObjectHideFlags: 0
