@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InGameUI : MonoBehaviour
 {
+    [SerializeField] Canvas_Script canvas;
     public GameObject pauseMenuObject;
     public GameObject inGameMenuObject;
     public AudioSource click;
@@ -16,6 +17,8 @@ public class InGameUI : MonoBehaviour
             click.Play();
             pauseMenuObject.SetActive(true);
             inGameMenuObject.SetActive(false);
+
+            canvas.SetWidgetsActive(false);
         }
     }
 

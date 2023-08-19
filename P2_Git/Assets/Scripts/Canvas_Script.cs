@@ -13,6 +13,7 @@ public class Canvas_Script : MonoBehaviour
     [SerializeField] Object_moveHandler obj_moveHandler;
     [SerializeField] Gameplay gameplay;
 
+    GameObject[] currentWidgets;
     GameObject inGameMenuCanvas;
     Canvas canvas;
     Object_attributes pref_consumable_attributes;
@@ -253,6 +254,17 @@ public class Canvas_Script : MonoBehaviour
                 foreach(Image img in stars_Images) img.enabled = true;
                 foreach(Image img in stars_Images) img.sprite = star_Filled;
                 break;
+        }
+    }
+
+
+    public void SetWidgetsActive(bool isActive)
+    {
+        if(!isActive) currentWidgets = GameObject.FindGameObjectsWithTag("widget");
+        foreach (GameObject go in currentWidgets)
+        {
+            Debug.Log(go.name);
+            go.SetActive(isActive);
         }
     }
 

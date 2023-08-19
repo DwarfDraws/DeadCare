@@ -245,6 +245,7 @@ public class Raycast : MonoBehaviour
 
                     consumable_ghostObject.position = mouse_Pos3D;
                 }
+
             }
         }
     }

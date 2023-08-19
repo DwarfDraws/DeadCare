@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class InGamePauseMenu : MonoBehaviour
 {
+    [SerializeField] Canvas_Script canvas;
     public GameObject pauseMenuObject;
     public GameObject inGameMenuObject;
     public AudioSource click;
@@ -16,8 +17,8 @@ public class InGamePauseMenu : MonoBehaviour
             click.Play();
             inGameMenuObject.SetActive(true);
             pauseMenuObject.SetActive(false);
-           
 
+            canvas.SetWidgetsActive(true);
         }
     }
     public void PauseMenuMainMenu()

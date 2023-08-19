@@ -151,68 +151,67 @@ public class Menu_Handler : MonoBehaviour
 
     public void GameOver(bool isWon)
     {
-        if(!isGameOver)
+        if (isGameOver) return;
+        
+        isGameOver = true;
+        gameCountdownStart = false;
+        current_gameCountdownTimer = init_gameCountdownTimer;
+        canvas.SetCountdown_Txt(" ", countdownTxt_Size_init);
+        canvas.btn_consumable.SetActive(false);
+        canvas.SetWidgetsActive(false);
+
+        //GameOver-Panel
+        int survivedChildren = gameplay.GetChildCount();
+        int initial_childAmount = gameplay.init_childCounter;
+        int starReward_Count = CalculateStarReward(survivedChildren, initial_childAmount);
+        canvas.SetChildrenCounter_Txt(survivedChildren.ToString() + "/" + initial_childAmount.ToString());
+        AddScoreReward(starReward_Count);
+        canvas.SetStarImages(starReward_Count);
+        if(survivedChildren <= 1) canvas.btn_NextLevel.SetActive(false);
+        else canvas.btn_NextLevel.SetActive(true);
+        canvas.pnl_GameOver.SetActive(true);
+
+        foreach(GameObject star in reward_stars)
         {
-            isGameOver = true;
-            gameCountdownStart = false;
-            current_gameCountdownTimer = init_gameCountdownTimer;
-            canvas.SetCountdown_Txt(" ", countdownTxt_Size_init);
-            canvas.btn_consumable.SetActive(false);
-
-            //GameOver-Panel
-            int survivedChildren = gameplay.GetChildCount();
-            int initial_childAmount = gameplay.init_childCounter;
-            int starReward_Count = CalculateStarReward(survivedChildren, initial_childAmount);
-            canvas.SetChildrenCounter_Txt(survivedChildren.ToString() + "/" + initial_childAmount.ToString());
-            //Debug.Log("starReward_Count: " + starReward_Count);
-            AddScoreReward(starReward_Count);
-            canvas.SetStarImages(starReward_Count);
-            if(survivedChildren <= 1) canvas.btn_NextLevel.SetActive(false);
-            else canvas.btn_NextLevel.SetActive(true);
-            canvas.pnl_GameOver.SetActive(true);
-
-            foreach(GameObject star in reward_stars)
-            {
-                star.GetComponent<DOTweenScale>().StartTweening();
-            }
-
-
-            //Reset Children    
-            foreach(GameObject child in GameObject.FindGameObjectsWithTag(tag_child)) 
-            {
-                child.GetComponent<Children>().ChildDestroy();
-            }
-
-            //Reset Obstacles
-            int i = 0;
-            foreach(GameObject obstacle in GameObject.FindGameObjectsWithTag(tag_obstacle))
-            {
-                Object_attributes oa = obstacle.GetComponent<Object_attributes>();
-                oa.SetTapeActive(false);
-
-                if(obstacle.GetComponentInChildren<Animation_Script>() != null)
-                {
-                    Animation_Script anim_script = obstacle.GetComponentInChildren<Animation_Script>();
-                    
-                    anim_script.PlayAnimation(oa.attachedTarget.animation_Index, false, true, false);
-                    anim_script.PlayAnimation(oa.attachedTarget.animation_Index, false, true, true);
-                }
-                i++;
-            }
-
-            //Reset Consumables
-            foreach(GameObject consumable in ingame_Consumables)
-            {
-                Destroy(consumable);
-            }
-
-            //Reset Widgets
-            foreach(GameObject widget in GameObject.FindGameObjectsWithTag(tag_widget))
-            {
-                Destroy(widget);
-            }
-            
+            star.GetComponent<DOTweenScale>().StartTweening();
         }
+
+
+        //Reset Children    
+        foreach(GameObject child in GameObject.FindGameObjectsWithTag(tag_child)) 
+        {
+            child.GetComponent<Children>().ChildDestroy();
+        }
+
+        //Reset Obstacles
+        int i = 0;
+        foreach(GameObject obstacle in GameObject.FindGameObjectsWithTag(tag_obstacle))
+        {
+            Object_attributes oa = obstacle.GetComponent<Object_attributes>();
+            oa.SetTapeActive(false);
+
+            if(obstacle.GetComponentInChildren<Animation_Script>() != null)
+            {
+                Animation_Script anim_script = obstacle.GetComponentInChildren<Animation_Script>();
+                    
+                anim_script.PlayAnimation(oa.attachedTarget.animation_Index, false, true, false);
+                anim_script.PlayAnimation(oa.attachedTarget.animation_Index, false, true, true);
+            }
+            i++;
+        }
+
+        //Reset Consumables
+        foreach(GameObject consumable in ingame_Consumables)
+        {
+            Destroy(consumable);
+        }
+
+        //Reset Widgets
+        foreach(GameObject widget in GameObject.FindGameObjectsWithTag(tag_widget))
+        {
+            Destroy(widget);
+        }
+            
     }
 
 
