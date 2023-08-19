@@ -9,6 +9,7 @@ public class Gameplay : MonoBehaviour
     [SerializeField] Canvas_Script canvas;
     [SerializeField] ChildCounter childCounter;
     [SerializeField] Settings_script settings;
+    [SerializeField] Consumables_Ghost consumables_Ghost;
     
     [SerializeField] LayerMask noMoveArea_Layer;
     
@@ -27,7 +28,6 @@ public class Gameplay : MonoBehaviour
 
         int rewarded_Consumables = menu_Handler.GetScore();
         SetConsumableCount(rewarded_Consumables);
-        //Debug.Log("rewarded_Consumables: " + rewarded_Consumables);
     }
 
 
@@ -43,7 +43,6 @@ public class Gameplay : MonoBehaviour
     }
     public int GetChildCount()
     {
-        //Debug.Log(current_childCounter);
         return current_childCounter;
     }
     void ResetChildCount()
@@ -92,18 +91,11 @@ public class Gameplay : MonoBehaviour
 
     public void InstantiateConsumable(GameObject pref_consumable, Vector3 inst_Pos)
     {
-        if(!(current_consumableCounter > 0)) return;
+        if(!(current_consumableCounter > 0) || consumables_Ghost.isColliding) return;
 
         GameObject consumable = Instantiate(pref_consumable, inst_Pos, Quaternion.identity); 
         SphereCollider sc = consumable.GetComponentInChildren<SphereCollider>();
         sc.radius = 0.5f * settings.consumable_radius;
-
-        //check collision with noMoveArea
-        if (Physics.CheckSphere(inst_Pos, 0.4f, noMoveArea_Layer)) 
-        {
-            Destroy(consumable);
-            return;
-        }
         
         DecreaseConsumableCount();
         menu_Handler.ingame_Consumables.Add(consumable);

@@ -113,6 +113,7 @@ MonoBehaviour:
   radius_Renderer: {fileID: 8890095072816830621}
   matWhite: {fileID: 2100000, guid: 89456f38776135646af6e7cb73e17c46, type: 2}
   matRed: {fileID: 2100000, guid: 3730afb19de3319448d6de47871c8f52, type: 2}
+  isColliding: 0
 --- !u!135 &5377862826685008527
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1445,6 +1446,7 @@ MonoBehaviour:
   canvas: {fileID: 678790711900801821}
   childCounter: {fileID: 281187573232663793}
   settings: {fileID: 2854175084282038385}
+  consumables_Ghost: {fileID: 2575245428692964759}
   noMoveArea_Layer:
     serializedVersion: 2
     m_Bits: 1024
