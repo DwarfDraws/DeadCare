@@ -43,7 +43,7 @@ public class Consumables : MonoBehaviour
         widget.UpdateWidget(timer);
 
         if(timer <= 0)
-        {       
+        {
             Destroy(widget.gameObject);
             Destroy(gameObject);
         }

@@ -54,7 +54,10 @@ public class Children : MonoBehaviour
         animation_script = GetComponent<Animation_Script>();
         navMesh = GameObject.Find(navMeshHandler_name).GetComponent<NavMesh>();
 
-        animation_script.PlayWalkingAnimation(true); 
+        animation_script.PlayWalkingAnimation(true);
+
+        if (settings.isTutorial) tutorialTargets = settings.tutorialTargets;
+
     }
 
     void Update()
@@ -259,8 +262,10 @@ public class Children : MonoBehaviour
     {
         if(settings.isTutorial)
         {
+            if(currentTarget.isConsumable) Destroy(currentTarget.gameObject);
+
             tutorialIndex++;
-            if(tutorialIndex < tutorialTargets.Count)
+            if (tutorialIndex < tutorialTargets.Count)
                 navMesh.SetSpecificPath(attachedAgent, tutorialTargets[tutorialIndex]);
             else Debug.Log("Tutorial finished");
         }

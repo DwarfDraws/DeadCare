@@ -30,6 +30,7 @@ public class Settings_script : MonoBehaviour
     [SerializeField] int timeFromWhenToScale;
 
     [Header("Consumables")]
+    [SerializeField] int consumable_Amount = 0;
     public float consumable_radius;
     public bool showConsumableTimer;
     public bool consumablesHaveExistenceTime;
@@ -42,29 +43,25 @@ public class Settings_script : MonoBehaviour
     
     [Header("Tutorial")]
     public bool isTutorial;
-    [SerializeField] Children tutorial_Child;
-    [SerializeField] List<Target> tutorialTargets;
+    public List<Target> tutorialTargets;
     
     [Header("Creator Mode")]
     [SerializeField] bool creatorMode;
     [SerializeField] bool hideTargets;
-    [SerializeField] int consumable_Amount = 0;
 
 
     string tag_target = "target";
 
     private void Awake() 
     {
-        menu_Handler.SetPrepCountdownTimer(prepTime_Seconds);
-        menu_Handler.SetGameCountdownTimer(gameTime_Seconds);
-        menu_Handler.countdownTxt_Size_MAX = this.countdownTxt_Size_MAX;
-        menu_Handler.countdownTxt_TimeFromWhenScale = timeFromWhenToScale;
-        
-        spawner.childrenToSpawn = this.children_Amount;
-        spawner.children_walkSpeed = this.children_walkSpeed;
-
-        gameplay.SetChildrenCount(children_Amount);
-        gameplay.SetTapeCount(tape_Amount);
+        if (isTutorial)
+        {
+            children_Amount = 1; //tutorial max one child
+            gameplay.isTutorial = true;
+            gameplay.SetConsumableCount(consumable_Amount);
+            btnSpawnChildren.gameObject.SetActive(false);
+            if (tutorialTargets == null) Debug.Log("Settings_Script(): missing tutorial-targets!");
+        }
 
         if(creatorMode)
         {
@@ -78,16 +75,21 @@ public class Settings_script : MonoBehaviour
             menu_Handler.StartCountdown();
         }
 
-        childCounter.SetChildrenAmount(children_Amount);
-
-        if (isTutorial)
-        {
-            btnSpawnChildren.gameObject.SetActive(false);
-            if (tutorial_Child != null && tutorialTargets != null) tutorial_Child.tutorialTargets = tutorialTargets;
-            else if(tutorial_Child == null) Debug.Log("Settings_Script(): missing tutorial-child!");
-            else if(tutorialTargets == null) Debug.Log("Settings_Script(): missing tutorial-targets!");
-        }
         if (hideTargets) HideTargets();
+
+
+        menu_Handler.SetPrepCountdownTimer(prepTime_Seconds);
+        menu_Handler.SetGameCountdownTimer(gameTime_Seconds);
+        menu_Handler.countdownTxt_Size_MAX = this.countdownTxt_Size_MAX;
+        menu_Handler.countdownTxt_TimeFromWhenScale = timeFromWhenToScale;
+        
+        spawner.childrenToSpawn = this.children_Amount;
+        spawner.children_walkSpeed = this.children_walkSpeed;
+
+        gameplay.SetChildrenCount(children_Amount);
+        gameplay.SetTapeCount(tape_Amount);
+
+        childCounter.SetChildrenAmount(children_Amount);
 
         consumableGhost_Radius.transform.localScale = new Vector3(consumable_radius, 0.04f, consumable_radius);
 
