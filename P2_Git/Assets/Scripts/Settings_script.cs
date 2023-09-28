@@ -61,19 +61,9 @@ public class Settings_script : MonoBehaviour
             gameplay.SetConsumableCount(consumable_Amount);
             btnSpawnChildren.gameObject.SetActive(false);
             if (tutorialTargets == null) Debug.Log("Settings_Script(): missing tutorial-targets!");
+            menu_Handler.isTutorial = true;
         }
 
-        if(creatorMode)
-        {
-            gameplay.isCreatorMode = true;
-            gameplay.SetConsumableCount(consumable_Amount);
-        } 
-        else
-        {
-            canvas.btn_spawnChild.SetActive(false);
-            canvas.btn_start.SetActive(false);
-            menu_Handler.StartCountdown();
-        }
 
         if (hideTargets) HideTargets();
 
@@ -94,6 +84,18 @@ public class Settings_script : MonoBehaviour
         consumableGhost_Radius.transform.localScale = new Vector3(consumable_radius, 0.04f, consumable_radius);
 
         star_DOTweenScale.SetupTweening(stars_tweeningFactor, stars_tweeningDuration_seconds, stars_tweeningOffset_seconds, waitTime_atMax_seconds);
+
+        if(creatorMode)
+        {
+            gameplay.isCreatorMode = true;
+            gameplay.SetConsumableCount(consumable_Amount);
+        } 
+        else
+        {
+            canvas.btn_spawnChild.SetActive(false);
+            canvas.btn_start.SetActive(false);
+            menu_Handler.StartCountdown();
+        }
     }
 
 

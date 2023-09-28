@@ -26,6 +26,7 @@ public class Canvas_Script : MonoBehaviour
     [SerializeField] GameObject widget_prefab;
     [SerializeField] GameObject pref_consumable;
     [SerializeField] GameObject consumableGhost;
+    [SerializeField] GameObject tutorialPanel;
     GameObject[] allObstacles;
     List<Image> stars_Images = new List<Image>();
     [SerializeField] Sprite star_Filled;
@@ -257,13 +258,17 @@ public class Canvas_Script : MonoBehaviour
         }
     }
 
+    public void ToggleTutorialPanel(bool isActive)
+    {
+
+    }
+
 
     public void SetWidgetsActive(bool isActive)
     {
         if(!isActive) currentWidgets = GameObject.FindGameObjectsWithTag("widget");
         foreach (GameObject go in currentWidgets)
         {
-            Debug.Log(go.name);
             go.SetActive(isActive);
         }
     }

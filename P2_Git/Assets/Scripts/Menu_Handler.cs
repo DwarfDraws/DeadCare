@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 
 public class Menu_Handler : MonoBehaviour
@@ -12,6 +13,8 @@ public class Menu_Handler : MonoBehaviour
     [SerializeField] Canvas_Script canvas;
     [SerializeField] Gameplay gameplay;
     [SerializeField] NavMesh navMesh;
+
+    [SerializeField] UnityEvent NextPhaseReached;
 
     public List<GameObject> ingame_Consumables = new List<GameObject>();
     [SerializeField] GameObject[] reward_stars;
@@ -27,6 +30,7 @@ public class Menu_Handler : MonoBehaviour
     float init_prepCountdownTimer, current_prepCountdownTimer;
     float init_gameCountdownTimer, current_gameCountdownTimer;
     [HideInInspector] public bool isGameOver;
+    public bool isTutorial;
     bool isCountdown_ScaleUP;
     bool isCountdownSpedUp;
     bool prepCountDownStart, gameCountdownStart;
@@ -55,11 +59,12 @@ public class Menu_Handler : MonoBehaviour
 
             if(current_prepCountdownTimer < 0)
             {
-            prepCountDownStart = false;
-            current_prepCountdownTimer = init_prepCountdownTimer;
+                prepCountDownStart = false;
+                current_prepCountdownTimer = init_prepCountdownTimer;
 
-            NextPhase();
-            return;
+                NextPhase();
+                NextPhaseReached?.Invoke();
+                return;
             } 
 
             displayTimer = (int)current_prepCountdownTimer + 1;
@@ -123,7 +128,7 @@ public class Menu_Handler : MonoBehaviour
         noMoveArea_Spawn.SetActive(true);
 
         canvas.ActivateButton_Consumable(false); //Cookies are not available in Prep-Phase!
-        canvas.btn_skipCountdown.SetActive(true);
+        if (!isTutorial) canvas.btn_skipCountdown.SetActive(true);
     }
 
 
@@ -131,9 +136,9 @@ public class Menu_Handler : MonoBehaviour
 
     void NextPhase()
     {
+        if(!isTutorial) canvas.ActivateButton_Consumable(true);
         canvas.btn_move.SetActive(false);
         canvas.btn_tape.SetActive(false);
-        canvas.ActivateButton_Consumable(true);
         canvas.btn_skipCountdown.SetActive(false); 
         canvas.Deactivate_MoveButton();
         canvas.Deactivate_TapeButton();

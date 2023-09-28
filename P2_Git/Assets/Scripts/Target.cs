@@ -32,7 +32,7 @@ public class Target : MonoBehaviour
     
 
 
-    private void Start() 
+    private void Awake() 
     {
         canvas = GameObject.Find(canvas_name).GetComponent<Canvas_Script>();
         if(attachedObject != null && attachedObject.GetComponentInChildren<Animation_Script>() != null) 
