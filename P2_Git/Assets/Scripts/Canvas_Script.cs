@@ -269,7 +269,7 @@ public class Canvas_Script : MonoBehaviour
         if(!isActive) currentWidgets = GameObject.FindGameObjectsWithTag("widget");
         foreach (GameObject go in currentWidgets)
         {
-            go.SetActive(isActive);
+            if(go != null) go.SetActive(isActive);
         }
     }
 

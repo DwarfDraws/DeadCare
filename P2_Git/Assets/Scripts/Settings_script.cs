@@ -30,7 +30,7 @@ public class Settings_script : MonoBehaviour
     [SerializeField] int timeFromWhenToScale;
 
     [Header("Consumables")]
-    [SerializeField] int consumable_Amount = 0;
+    public int consumable_Amount = 0;
     public float consumable_radius;
     public bool showConsumableTimer;
     public bool consumablesHaveExistenceTime;

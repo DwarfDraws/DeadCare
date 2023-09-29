@@ -162,7 +162,7 @@ public class Menu_Handler : MonoBehaviour
     {
         if (isGameOver) return;
 
-        GameWon?.Invoke();
+        if(isWon) GameWon?.Invoke();
 
         isGameOver = true;
         gameCountdownStart = false;

@@ -55,7 +55,7 @@ public class Children : MonoBehaviour
 
         animation_script.PlayWalkingAnimation(true);
 
-        if (settings.isTutorial) tutorialTargets = settings.tutorialTargets;
+        //if (settings.isTutorial) tutorialTargets = settings.tutorialTargets;
 
     }
 
@@ -63,13 +63,15 @@ public class Children : MonoBehaviour
     {
         beginTimer += Time.deltaTime;
         if(beginTimer >= init_WaitTime && !isPathInitialized)
-        {            
+        {       
+            /*
             if(settings.isTutorial) 
             {
                 if(tutorialTargets.Count != 0) navMesh.SetSpecificPath(attachedAgent, tutorialTargets[tutorialIndex]);
                 else navMesh.StopAgent(attachedAgent);
             }
-            else navMesh.RecalculatePath(attachedAgent);
+            */
+            navMesh.RecalculatePath(attachedAgent);
             isPathInitialized = true;
         }
 
@@ -260,6 +262,7 @@ public class Children : MonoBehaviour
 
     public void Reset()
     {
+        /*
         if(settings.isTutorial)
         {
             if(currentTarget.isConsumable) Destroy(currentTarget.gameObject);
@@ -269,8 +272,9 @@ public class Children : MonoBehaviour
                 navMesh.SetSpecificPath(attachedAgent, tutorialTargets[tutorialIndex]);
             else Debug.Log("Tutorial finished");
         }
+        */
 
-        else if(currentTarget.isConsumable)
+        if(currentTarget.isConsumable)
         {
             Destroy(currentTarget.gameObject);
             navMesh.RecalculatePath(attachedAgent);

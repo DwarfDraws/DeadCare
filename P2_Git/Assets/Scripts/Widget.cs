@@ -22,8 +22,11 @@ public class Widget : MonoBehaviour
 
     public void UpdateWidget(float timer)
     {
-        img.fillAmount = timer;
-        img.color = green;
+        if (img != null)
+        {
+            img.fillAmount = timer;
+            img.color = green;
+        }
         
         if (timer <= 0.5f)
         {

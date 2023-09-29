@@ -126,7 +126,8 @@ public class Gameplay : MonoBehaviour
     {
         ResetChildCount();
         childCounter.ResetChildCount();
-        SetConsumableCount(menu_Handler.GetScore());
+        if (!isTutorial) SetConsumableCount(menu_Handler.GetScore());
+        else SetConsumableCount(settings.consumable_Amount);
         ResetTapeCount();
     }
 }
