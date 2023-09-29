@@ -29,6 +29,7 @@ public class Raycast : MonoBehaviour
     float obj_posY;
     float localLength_x_Object, localLength_z_Object;
     [HideInInspector] public bool isMoveable;
+    public bool enabled = true;
     bool MousePressed_L;
     bool isRewindPossible;
     bool missingOffset;
@@ -55,6 +56,8 @@ public class Raycast : MonoBehaviour
     void Update()
     {
    
+        if (!enabled) return;
+
         if(!menu_Handler.isGameOver)
         {
             //Object Detection (Left Mouse-Click)

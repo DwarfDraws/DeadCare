@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Target : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Target : MonoBehaviour
     [HideInInspector] public Children currentChild_atTarget;
     [HideInInspector] public Animation_Script attachedObject_Animation;
 
+    [SerializeField] UnityEvent ChildInteractionStart, TimerRewinded, ChildDied;
 
     public int animation_Index;
     public float waitTime_seconds = 2.0f;   
@@ -60,15 +62,16 @@ public class Target : MonoBehaviour
                 Animation_Script o_anim = attachedObject_Animation;
                 Animation_Script c_anim = currentChild_atTarget.animation_script;
 
-                //idle-anims
+                //reset idle-anims
                 if(o_anim != null) o_anim.PlayAnimation(animation_Index, false, true, false);
                 if(c_anim != null) c_anim.PlayAnimation(animation_Index, false, false, false);
-                
-                //death-anims
-                if(o_anim != null) o_anim.PlayAnimation(animation_Index, false, true, true);
+
+                //reset death-anims
+                if (o_anim != null) o_anim.PlayAnimation(animation_Index, false, true, true);
                 if(c_anim != null) c_anim.PlayAnimation(animation_Index, false, false, true);
 
                 if(currentChild_atTarget != null) currentChild_atTarget.ChildDestroy();
+                ChildDied?.Invoke();
                 childDies = false;
             }
         }    
@@ -77,6 +80,11 @@ public class Target : MonoBehaviour
     public void Animate_AttachedObject()
     {
         if(!isTaped && attachedObject_Animation != null) attachedObject_Animation.PlayAnimation(animation_Index, true, true, false);
+    }
+
+    public void InteractionStarted()
+    {
+        ChildInteractionStart.Invoke();
     }
 
     public void Timer()
@@ -141,7 +149,8 @@ public class Target : MonoBehaviour
             //Debug.Log(timer);
 
             if (timer > 1.0f)
-            { 
+            {
+                TimerRewinded?.Invoke();
                 currentChild_atTarget.Reset();
                 if(isTaped) currentChild_atTarget.animation_script.PlayTapeRemoveAnimation(false);
                 else currentChild_atTarget.animation_script.PlayAnimation(animation_Index, false, false, false);

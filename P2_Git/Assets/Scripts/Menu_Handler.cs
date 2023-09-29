@@ -14,7 +14,9 @@ public class Menu_Handler : MonoBehaviour
     [SerializeField] Gameplay gameplay;
     [SerializeField] NavMesh navMesh;
 
-    [SerializeField] UnityEvent NextPhaseReached;
+    [SerializeField] UnityEvent PrepPhaseStart;
+    [SerializeField] UnityEvent NextPhaseStart;
+    [SerializeField] UnityEvent GameWon;
 
     public List<GameObject> ingame_Consumables = new List<GameObject>();
     [SerializeField] GameObject[] reward_stars;
@@ -63,7 +65,7 @@ public class Menu_Handler : MonoBehaviour
                 current_prepCountdownTimer = init_prepCountdownTimer;
 
                 NextPhase();
-                NextPhaseReached?.Invoke();
+                NextPhaseStart?.Invoke();
                 return;
             } 
 
@@ -120,7 +122,9 @@ public class Menu_Handler : MonoBehaviour
         current_gameCountdownTimer = init_gameCountdownTimer;
     }
 
-    public void StartCountdown(){
+    public void StartCountdown()
+    {
+        PrepPhaseStart?.Invoke();
         isGameOver = false; //in case of restart
         prepCountDownStart = true;
         countdown_Speed = 1;
@@ -157,7 +161,9 @@ public class Menu_Handler : MonoBehaviour
     public void GameOver(bool isWon)
     {
         if (isGameOver) return;
-        
+
+        GameWon?.Invoke();
+
         isGameOver = true;
         gameCountdownStart = false;
         current_gameCountdownTimer = init_gameCountdownTimer;
@@ -174,7 +180,7 @@ public class Menu_Handler : MonoBehaviour
         canvas.SetStarImages(starReward_Count);
         if(survivedChildren <= 1) canvas.btn_NextLevel.SetActive(false);
         else canvas.btn_NextLevel.SetActive(true);
-        canvas.pnl_GameOver.SetActive(true);
+        if(!isTutorial) canvas.pnl_GameOver.SetActive(true);
 
         foreach(GameObject star in reward_stars)
         {

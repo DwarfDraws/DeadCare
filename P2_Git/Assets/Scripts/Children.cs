@@ -9,7 +9,6 @@ public class Children : MonoBehaviour
 
     Settings_script settings;
     Gameplay gameplay;
-    
 
     [HideInInspector] public Animation_Script animation_script;
     [HideInInspector] public List<Target> tutorialTargets;
@@ -224,6 +223,7 @@ public class Children : MonoBehaviour
             }
 
             currentTarget.isOpen = false;
+            currentTarget.InteractionStarted();
             startTimer = true;
             
             //animations
