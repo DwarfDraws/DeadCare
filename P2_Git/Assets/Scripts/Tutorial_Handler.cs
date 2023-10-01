@@ -25,7 +25,9 @@ public class Tutorial_Handler : MonoBehaviour
     {
         "Welcome to DeadCare! Listen closely, we don't have much time until the kids arrive.",
         "You are in the preperation phase. You have some time to prepare the room before the kids arrive.",
-        "Find potentially dangerous objects. You can tape them, or move other objects in front of them so they can not be reached any more."
+        "Find potentially dangerous objects. You can tape them...", 
+        "...or move other objects in front of them so they can not be reached any more.",
+        "If you think you're ready, you can fast-forward the timer."
     };
     string[] _txtInfo_2 =
     {
@@ -40,7 +42,7 @@ public class Tutorial_Handler : MonoBehaviour
     string[] _txtInfo_4 =
     {
         "Alright, the child is interessted in this object...",
-        "You will now see a timer-widget, going down slowly",
+        "You will now see a timer, going down slowly",
         "If you think, the object might be dangerous, click and hold on it to rewind the timer until it is filled up again!"
     };
     string[] _txtInfo_5 =
@@ -85,15 +87,14 @@ public class Tutorial_Handler : MonoBehaviour
         _txtTutorialInfo.text = text;
 
         if (text == _txtInfo_1[1])
-        {
             _countdownTimer.SetActive(true);
-            _btnFastForward.SetActive(true);
-        }
         else if (text == _txtInfo_1[2])
-        {
             _btnTape.SetActive(true);
-            _btnMove.SetActive(true);   
-        }
+        else if (text == _txtInfo_1[3])
+            _btnMove.SetActive(true);
+        else if (text == _txtInfo_1[4])
+            _btnFastForward.SetActive(true);
+
         else if (text == _txtInfo_5[1])
             _btnConsumable.SetActive(true);
     }
