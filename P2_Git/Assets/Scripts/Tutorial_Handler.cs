@@ -24,39 +24,39 @@ public class Tutorial_Handler : MonoBehaviour
     string[] _txtInfo_1 =
     {
         "Welcome to DeadCare! Listen closely, we don't have much time until the kids arrive.",
-        "You are in the preperation phase. You have some time to prepare the room before the kids arrive.",
-        "Find potentially dangerous objects. You can tape them...", 
-        "...or move other objects in front of them so they can not be reached any more.",
+        "You are in the preparation phase. You have some time to prepare the room.",
+        "Identify potentially dangerous objects. You can tape them...", 
+        "...or move other objects in front of them, so they cannot be reached anymore.",
         "If you think you're ready, you can fast-forward the timer."
     };
     string[] _txtInfo_2 =
     {
-        "The children have arrived!", 
-        "A new timer has started. If you manage to let the children survive, you win."
+        "Oh! Only one kid came today!", 
+        "A new timer has started. If you manage to keep the child alive, you win."
     };
     string[] _txtInfo_3 =
     {
         "Well, seems like the child died.",
-        "Try to avoid the child from playing with dangerous objects by clicking on them when the child wants to interact."
+        "Try to prevent the child from playing with dangerous objects by clicking on them when the child wants to interact."
     };
     string[] _txtInfo_4 =
     {
-        "Alright, the child is interessted in this object...",
-        "You will now see a timer, going down slowly",
+        "Alright, the child is interested in this object...",
+        "You will now see a timer, going down slowly.",
         "If you think, the object might be dangerous, click and hold on it to rewind the timer until it is filled up again!"
     };
     string[] _txtInfo_5 =
     {
         "Hey, good job! This object was indeed dangerous.",
-        "Heres a joker for you. If it get's really messy, use the cookies to distract a child quickly.",
-        "Usually I'd say: Use them wisely. But due to the fact that this is a tutorial, you're free to try this cookie out anytime you want.",
-        "A good timing would be when the child starts a new interaction.",
-        "Alright, now try to finish this level"
+        "Here's a joker for you. If it gets real messy, drag out the cookies to distract a child quickly.",
+        "Usually I'd say: Use them wisely. But for the tutorial's sake you're free to try this cookie out anytime you want.",
+        "A good timing would be when the child starts a new activity.",
+        "Alright, now try to finish this level."
     };
     string[] _txtInfo_6 =
     {
-        "You made it! Good job!",
-        "Now you're ready. Have fun playing the game!"
+        "You did it! Good job!",
+        "Now you're ready for more. Have fun playing the game!"
     };
 
 
