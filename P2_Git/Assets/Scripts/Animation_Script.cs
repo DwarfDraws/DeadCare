@@ -102,12 +102,14 @@ public class Animation_Script : MonoBehaviour
             //Debug.Log(animation_bool + " " + isPlaying);
             anim.SetBool(animation_bool, isPlaying);
         }
+
     }
 
 
 
     public void PlayWalkingAnimation(bool isPlaying)
     {
+        Debug.Log("walking_animation: " + isPlaying);
         anim.SetBool(animationBool_isWalking_name, isPlaying);
     }
 

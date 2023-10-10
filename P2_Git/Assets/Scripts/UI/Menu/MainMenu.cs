@@ -3,10 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void MenuStartGame()
+    public void MenuStartTutorial()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+    public void MenuStartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+    }
+
     public void MenuQuitGame()
     {
         Application.Quit();

@@ -181,9 +181,12 @@ public class Children : MonoBehaviour
 
     private void OnTriggerExit(Collider other) 
     {
-        //Debug.Log("exit");
-        IsSafeZone(false);
-        animation_script.PlayWalkingAnimation(true); 
+        if (other.tag == target_tag)
+        {
+            //Debug.Log("exit");
+            IsSafeZone(false);
+            animation_script.PlayWalkingAnimation(true);
+        }
     }
 
 

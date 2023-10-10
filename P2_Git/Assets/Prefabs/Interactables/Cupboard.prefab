@@ -143,7 +143,7 @@ Transform:
   - {fileID: 5176297659724641767}
   - {fileID: 2348582941302502668}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1687361500345550508
 MonoBehaviour:
@@ -550,7 +550,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.15, y: 0.5, z: 0.05}
+  m_Extents: {x: 0.15, y: 0.5, z: 0.00001}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -577,6 +577,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 77405f0bbeab58341b27fdd376b7c706, type: 3}
   m_RemoveTapes:
   - {fileID: 8300000, guid: fa03a8953354ab1468347890929f783a, type: 3}
+  doorOpen: {fileID: 0}
+  doorClose: {fileID: 0}
   m_AudioSource: {fileID: 658302809825304625}
 --- !u!1001 &2818530715323192039
 PrefabInstance:
