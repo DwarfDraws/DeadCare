@@ -10,7 +10,7 @@ public class Tutorial_Handler : MonoBehaviour
     [SerializeField] Canvas_Script canvas;
     [SerializeField] InGameUI _inGameUi;
     [SerializeField] Raycast raycast;
-    [SerializeField] GameObject _gameOverPanel;
+    [SerializeField] GameObject _gameOverPanel, _wonPanel;
     public GameObject _tutorialInfo;
     public GameObject _inGameMenuObject;
     public GameObject _countdownTimer, _btnFastForward, _btnTape, _btnMove, _btnConsumable;
@@ -19,7 +19,7 @@ public class Tutorial_Handler : MonoBehaviour
 
     int _index;
     bool _active;
-    bool _childDead, _firstInteraction, _firstRewind, _won;
+    bool _childDead, _firstInteraction, _firstRewind;
     string[] _currentInfo;
     string[] _txtInfo_1 =
     {
@@ -52,11 +52,6 @@ public class Tutorial_Handler : MonoBehaviour
         "Usually I'd say: Use them wisely. But for the tutorial's sake you're free to try this cookie out anytime you want.",
         "A good timing would be when the child starts a new activity.",
         "Alright, now try to finish this level."
-    };
-    string[] _txtInfo_6 =
-    {
-        "You did it! Good job!",
-        "Now you're ready for more. Have fun playing the game!"
     };
 
 
@@ -126,11 +121,6 @@ public class Tutorial_Handler : MonoBehaviour
             _gameOverPanel.SetActive(true);
             _childDead = false;
         }
-
-        else if(_won)
-        {
-            SceneManager.LoadScene(1);
-        }
     }
 
 
@@ -185,8 +175,16 @@ public class Tutorial_Handler : MonoBehaviour
 
     public void Won()
     {
-        _won = true;
-        _currentInfo = _txtInfo_6;
-        ShowTutorialPanel(_currentInfo[0]);
+        _wonPanel.SetActive(true);
+    }
+
+    public void StartActualGame()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(1);
     }
 }

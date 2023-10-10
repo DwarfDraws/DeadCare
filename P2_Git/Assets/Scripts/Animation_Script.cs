@@ -74,7 +74,7 @@ public class Animation_Script : MonoBehaviour
 
     public void PlayAnimation(int anim_index, bool isPlaying, bool isObjectAnimation, bool isDeathAnimation)
     {
-        if(isPlaying) PlayWalkingAnimation(false);
+        if(!isObjectAnimation && isPlaying) PlayWalkingAnimation(false);
 
         string animation_bool = "";
 
@@ -109,7 +109,7 @@ public class Animation_Script : MonoBehaviour
 
     public void PlayWalkingAnimation(bool isPlaying)
     {
-        Debug.Log("walking_animation: " + isPlaying);
+        //Debug.Log("walking_animation: " + isPlaying);
         anim.SetBool(animationBool_isWalking_name, isPlaying);
     }
 

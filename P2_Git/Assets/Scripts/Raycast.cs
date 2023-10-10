@@ -68,7 +68,7 @@ public class Raycast : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, float.MaxValue, ~layers_Ignore))
                 { 
                     hitObject = hit.transform; //object transform
-                    Debug.Log("Hit object: " + hitObject.name);
+                    //Debug.Log("Hit object: " + hitObject.name);
 
                     if(hitObject.CompareTag(tag_obstacle))
                     {
