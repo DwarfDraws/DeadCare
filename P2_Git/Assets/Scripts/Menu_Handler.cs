@@ -172,19 +172,22 @@ public class Menu_Handler : MonoBehaviour
         canvas.SetWidgetsActive(false);
 
         //GameOver-Panel
-        int survivedChildren = gameplay.GetChildCount();
-        int initial_childAmount = gameplay.init_childCounter;
-        int starReward_Count = CalculateStarReward(survivedChildren, initial_childAmount);
-        canvas.SetChildrenCounter_Txt(survivedChildren.ToString() + "/" + initial_childAmount.ToString());
-        AddScoreReward(starReward_Count);
-        canvas.SetStarImages(starReward_Count);
-        if(survivedChildren <= 1) canvas.btn_NextLevel.SetActive(false);
-        else canvas.btn_NextLevel.SetActive(true);
-        if(!isTutorial) canvas.pnl_GameOver.SetActive(true);
-
-        foreach(GameObject star in reward_stars)
+        if (!isTutorial)
         {
-            star.GetComponent<DOTweenScale>().StartTweening();
+            int survivedChildren = gameplay.GetChildCount();
+            int initial_childAmount = gameplay.init_childCounter;
+            int starReward_Count = CalculateStarReward(survivedChildren, initial_childAmount);
+            canvas.SetChildrenCounter_Txt(survivedChildren.ToString() + "/" + initial_childAmount.ToString());
+            AddScoreReward(starReward_Count);
+            canvas.SetStarImages(starReward_Count);
+            if (survivedChildren <= 1) canvas.btn_NextLevel.SetActive(false);
+            else canvas.btn_NextLevel.SetActive(true);
+            canvas.pnl_GameOver.SetActive(true);
+
+            foreach (GameObject star in reward_stars)
+            {
+                star.GetComponent<DOTweenScale>().StartTweening();
+            }
         }
 
 
